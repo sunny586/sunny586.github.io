@@ -344,7 +344,7 @@ angular.module('common', ['ngLocale', 'ngSanitize', 'ui.router', 'ui.bootstrap',
 	};
 	
 	//加载图片库列表
-	$http.get('/pccms/file/list')
+	$http.get('http://localhost:8083/pccms/file/list')
 	.success(function(data, status, headers, config) {
     	if(data.isSuccess){
     		$scope.imglibList = data.data;
@@ -361,7 +361,7 @@ angular.module('common', ['ngLocale', 'ngSanitize', 'ui.router', 'ui.bootstrap',
 	$scope.findPic = function(imgParam){
 		 $http({
 		        method: 'GET',
-		        url: '/pccms/file/list?fileName='+imgParam,
+		        url: 'http://localhost:8083/pccms/file/list?fileName='+imgParam,
 		    })
 		        .success(function(data){
 		         if(data.isSuccess){
@@ -431,7 +431,7 @@ angular.module('common', ['ngLocale', 'ngSanitize', 'ui.router', 'ui.bootstrap',
             //图片库弹窗
             var modalInstance = $modal.open({
                 backdrop : 'static',
-                templateUrl :'http://sunny586.github.io/app/partials/imglibWin.html',
+                templateUrl :'http://localhost:8083/partials/imglibWin.html',
                 controller : 'imglibWinCtrl',
                 size : 'lg',
                 resolve: {
@@ -478,7 +478,7 @@ angular.module('common', ['ngLocale', 'ngSanitize', 'ui.router', 'ui.bootstrap',
 
 		//初始化查询标签列表。    
 		function initTags() {
-			$http.get('/demo/json/tag.json')
+			$http.get('http://localhost:8083/demo/json/tag.json')
 				.success(function(data, status, headers, config) {				
 					if (data.isSuccess && data.data) {
 						$scope.items = data.data;
@@ -655,7 +655,7 @@ angular.module('common', ['ngLocale', 'ngSanitize', 'ui.router', 'ui.bootstrap',
             //标签库弹窗
             var modalInstance = $modal.open({
                 backdrop : 'static',
-                templateUrl :'http://sunny586.github.io/app/partials/taglibWin.html',
+                templateUrl :'http://localhost:8083/partials/taglibWin.html',
                 controller : 'taglibWinCtrl',
                 size : 'lg',
                 resolve: {
