@@ -1,0 +1,14 @@
+
+<div class="row">
+  	<div class="col-md-12">
+    	<ol class="breadcrumb">
+		  <li class="active">标签库示例</li>
+		</ol>
+  	</div>
+</div>
+<button class="btn btn-success" tag-lib result="result" ng-model="result">选择标签</button>
+<h3>参数</h3>
+<div  class="col-md-12">
+	<pre class="col-sm-6">已选择标签:{{result|json}}</pre>	
+	<pre class="col-sm-6">已选择标签(name):{{result|showCtgsName}}</pre>	
+</div>

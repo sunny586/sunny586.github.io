@@ -1,0 +1,71 @@
+<style>
+    .c-thumbImage {max-width: 76px;max-height: 96px;} /* for Firefox & IE7 */
+	* html .c-thumbImage { /* for IE6 */
+		  width: expression(this.width > 76 && this.width > this.height ? 76 : auto);
+		  height: expression(this.height > 96 ? 96 : auto);
+	}
+</style>
+<!-- Nested node template -->
+<script type="text/ng-template" id="nodes_renderer.html">
+  	<div ui-tree-handle data-nodrag class="tree-node tree-node-content">
+    	<a class="pull-left btn btn-xs" ng-if="node.children && node.children.length > 0" data-nodrag ng-click="toggle(this)">
+			<span class="glyphicon" ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}"></span>
+		</a>
+        <span ng-show="node._id != nodeId || ! change">
+    		{{node.name}}
+		</span>
+        <a title="网站缩略图" href="javascript:void(0)" style="cursor:default;" ng-if="node.type == 'PAGETPL'">
+		   <span><img class="c-thumbImage" ng-src="{{node.imgSm}}"/></span>
+		</a>
+
+        <a ng-if="node.type == 'PAGETPL'" ng-show="node._id == nodeId && change">
+           <input type="text" style="width:20%;" ng-model="node.name" placeholder="请输入修改的页面名称..."/><button ng-click="nodeSave(node._id,node.name)">保存</button>
+        </a>
+
+		<a class="pull-right btn btn-xs" data-nodrag  title="页面删除" ng-if="node.type != 'PAGETYPE'" ng-click="deleteNode(node._id,node.type,this)">
+			<span class="glyphicon glyphicon-remove"></span>
+		</a>
+    	<a class="pull-right btn btn-xs" data-nodrag ng-click="addSingle(this)" title="页面新增" ng-if="node.type == 'PAGETYPE' || node.type == 'PAGEMAIN'">
+			<span class="glyphicon glyphicon-plus"></span>
+		</a>
+        <a class="pull-right btn btn-xs" data-nodrag  title="区块编辑" ng-if="node.type == 'PAGETPL'" ng-click="blkEdit(node.tplId)">
+			<span class="glyphicon glyphicon-edit"></span>
+		</a>
+        <a class="pull-right btn btn-xs" data-nodrag  title="页面预览"  ng-if="node.type == 'PAGETPL'" ng-click="singlePagePreview(node.tplId)">
+			<span class="glyphicon glyphicon-eye-open"></span>
+		</a>
+        <a class="pull-right btn btn-xs" data-nodrag  title="页面名称修改" ng-if="node.type == 'PAGETPL'" ng-click="inputShowed(node._id)">
+			<span class="glyphicon glyphicon-pencil"></span>
+		</a>
+  	</div>
+  	<ol ui-tree-nodes ng-model="node.children" ng-class="{hidden: collapsed}">
+    	<li ng-repeat="node in node.children" ui-tree-node ng-include="'nodes_renderer.html'" ></li>
+  	</ol>
+</script>
+<div class="row">
+	<div class="col-md-12">
+	   	<ol class="breadcrumb">
+		    <li><a href="../index.html">首页</a></li>
+		    <li><a href="index.html">页面管理</a></li>
+		    <li class="active">页面列表</li>						    
+		</ol>
+	</div>
+</div>
+<div class="row">
+    <a ng-click="addPack()" class="btn btn-info" style="float:right;margin-right:1.5%;">新选套装</a>
+  	<div class="col-md-12" style="margin-bottom:2%;">
+  	    
+	    <div ui-tree id="tree-root">
+	      	<ol ui-tree-nodes ng-model="data">
+	        	<li ng-repeat="node in data" ui-tree-node ng-include="'nodes_renderer.html'"></li>
+	      	</ol>
+	    </div>
+  	</div>
+	<form class="form-inline" style="text-align:center;clear:both;">
+	    <div class="form-group">
+	        <label for="inchannel">增加频道</label>
+	        <input type="text" class="form-control" id="inchannel" value="" placeholder="请输入新频道名称..." ng-model="channelName">
+	    </div>
+	    <button type="submit" class="btn btn-info" ng-click="addChannel()">添加</button>
+	</form>
+</div>

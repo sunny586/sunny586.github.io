@@ -1,0 +1,37 @@
+<div class="row">
+  	<div class="col-md-12">
+    	<ol class="breadcrumb">
+		  <li class="active">图片库示例</li>
+		</ol>
+  	</div>
+</div>
+<div class="row">
+  	<div class="col-md-12">
+		<div ng-show="status">在线示例：<a href="http://fontawesome.io/examples/" target="_block">http://fontawesome.io/examples/</a></div>
+  		<h2>字体图标</h2>
+  	</div>
+  	<div class="col-md-12">
+  		<a class="btn btn-default" href="../plugin/bootstrap/demo/demo.html" target="_block">点击查看本地示例</a>
+  		<div class="c-row text-success">
+  			注：复制代码提示，选中图标右键，查看元素，找到如：&lt;i class="fa fa-battery-full"&gt;&lt;/i&gt;的代码，复制即可。
+  		</div>
+  	</div>
+</div>
+
+<hr />
+<div class="row">
+  	<div class="col-md-12">
+  		<h2>图片库组件</h2>
+  		<div ng-show="status">在线demo：<a href="http://fex.baidu.com/webuploader/demo.html" target="_block">http://fex.baidu.com/webuploader/demo.html</a></div>
+  		<div ng-show="status">参考文档：<a href="http://fex.baidu.com/webuploader/document.html" target="_block">http://fex.baidu.com/webuploader/document.html</a></div>
+  		<div class="c-row">
+  		    <button class="btn btn-default" ng-click="showImg('../img/tpl/temp01.jpg');">图片预览组件</button>
+  		</div>
+  		
+  		<div class="c-row">
+  		    <button class="btn btn-default" ng-click="openImglibWin();">图片库组件</button>
+	        <p class="c-row" ng-show="status">选择的文件:</p>
+	        <pre ng-show="status">{{imgList | json}}</pre>
+  		</div>
+  	</div>
+</div>

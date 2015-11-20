@@ -1,0 +1,326 @@
+<style type="text/css">
+	ul,li{list-style:none;}
+	.c-top-title{color: #f08300;border-bottom: 2px solid #f08300;}
+	.lwt{font-weight: lighter;padding-left: 0px;} 
+	.mt20{margin-top: 20px;}
+	.mt10{margin-top: 10px;}
+	.mt50{margin-top: 50px;}
+	.ml20{margin-left: 20px;}
+	.fs16{font-size: 16px;}
+	.c-w95{width: 95%;}
+	.c-icon{padding: 0 4px;}
+	.c-icon-tr{position: absolute;top: -4px;}
+	.c-select{width: 50px;height: 20px;margin-right: 8px;}
+	
+</style>
+<div class="row">
+	<div class="col-md-12">
+		<ol class="breadcrumb">
+			<li>
+				<a href="../index.html">首页</a>
+			</li>
+			<li>
+				<a href="index.html">全局配置</a>
+			</li>
+			<li class="active">文章配置</li>
+		</ol>
+	</div>
+</div>
+<form class="form-horizontal">
+	<tabset>
+		<tab heading="录入项" active>
+
+			<ul class="c-w95">
+				<li class="mt20">
+					<p class="c-top-title">分类基本属性</p>
+					<div class="form-group">
+						<label  class="col-sm-2 control-label lwt">栏目描述</label>
+						<div class="col-sm-8">
+							<label class="radio-inline">
+								<input type="radio" name="radioChecked">开启</label>
+							<label class="radio-inline">
+								<input type="radio" name="radioChecked">关闭</label>
+						</div>
+					</div>
+				</li>
+
+				<li class="mt50">
+					<p class="c-top-title">SEO搜索引擎优化设置</p>
+					<div class="form-group">
+						<label  class="col-sm-2 control-label lwt">当前网页访问地址</label>
+						<div class="col-sm-8">
+
+							<label class="radio-inline">
+								<input type="radio" name="radioChecked">开启</label>
+							<label class="radio-inline">
+								<input type="radio" name="radioChecked">关闭</label>
+							<label class="radio-inline">(系统创建)</label>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label  class="col-sm-2 lwt control-label">静态页存放目录</label>
+						<div class="col-sm-8">
+							<label class="radio-inline">
+								<input type="radio" name="radioChecked">开启</label>
+							<label class="radio-inline">
+								<input type="radio" name="radioChecked">关闭</label>
+							<label class="radio-inline">(系统创建)</label>
+						</div>
+					</div>
+				</li>
+
+				<li class="mt20">
+					<p class="c-top-title">其他属性</p>
+					<div class="form-group">
+						<label  class="col-sm-2 control-label lwt">外部链接</label>
+						<div class="col-sm-8">
+							<label class="radio-inline">
+								<input type="radio" name="radioChecked">开启</label>
+							<label class="radio-inline">
+								<input type="radio" name="radioChecked">关闭</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label  class="col-sm-2 control-label lwt">Icon</label>
+						<div class="col-sm-8">
+							<label class="radio-inline">
+								<input type="radio" name="radioChecked">开启</label>
+							<label class="radio-inline">
+								<input type="radio" name="radioChecked">关闭</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label  class="col-sm-2 control-label lwt">栏目缩略图</label>
+						<div class="col-sm-8">
+							<label class="radio-inline">
+								<input type="radio" name="radioChecked">开启</label>
+							<label class="radio-inline">
+								<input type="radio" name="radioChecked">关闭</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label  class="col-sm-2 control-label lwt">相同属性</label>
+						<div class="col-sm-8">
+							<button type="button" class="btn btn-default btn-hover"> <i class="glyphicon glyphicon-plus-sign c-icon"></i>
+								新建属性
+							</button>
+							<button class="btn btn-default" type="button"> <i class="fa fa-sign-in c-icon"></i>
+								导入
+							</button>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-8">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>属性名称</th>
+										<th>类型</th>
+										<th>选项(文本框为空)</th>
+										<th>排序</th>
+										<th class="text-right">操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>出版社</td>
+										<td>出版社</td>
+										<td>出版社</td>
+										<td>
+											<span>
+								    		    <i class="fa fa-arrow-up"></i>&nbsp;
+								    		    <i class="fa fa-arrow-down"></i>
+							    		    </span>
+										</td>
+										<td class="text-right">
+											<div class="btn-group">												
+												<button type="button" class="btn btn-default btn-sm">
+													<i class="fa fa-trash-o"></i>
+													删除
+												</button>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>出版社</td>
+										<td>出版社</td>
+										<td>出版社</td>
+										<td>
+											<span>
+								    		    <i class="fa fa-arrow-up"></i>&nbsp;
+								    		    <i class="fa fa-arrow-down"></i>
+							    		    </span>
+										</td>
+										<td class="text-right">
+											<div class="btn-group">												
+												<button type="button" class="btn btn-default btn-sm">
+													<i class="fa fa-trash-o"></i>
+													删除
+												</button>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="form-group">
+						<label  class="col-sm-2 control-label lwt">选项</label>
+						<div class="col-sm-8">
+							<a  class="btn btn-default"> 
+								产品参数<i class="fa fa-minus-circle c-icon-tr"></i>
+							</a>
+							<a  class="btn btn-default"> 
+								产品参数<i class="fa fa-minus-circle c-icon-tr"></i>
+							</a>
+							<a  class="btn btn-default"> 
+								产品参数<i class="fa fa-minus-circle c-icon-tr"></i>
+							</a>
+							<a  class="btn btn-default"> 
+								产品参数<i class="fa fa-minus-circle c-icon-tr"></i>
+							</a>
+							<a class="ml20 fs16" href="javascript:void(0)"> 
+								<i class="glyphicon glyphicon-plus-sign"></i>
+							</a>
+						</div>
+					</div>
+					<div class="form-group mt50">
+						<div class="col-sm-offset-2 col-sm-8">
+							<button type="button" class="btn btn-primary"> <i class="glyphicon glyphicon-plus-sign c-icon"></i>添加</button>
+						</div>
+					</div>
+				</li>
+
+
+				<li class="mt50">
+					<p class="c-top-title">内容模版</p>
+					<div class="form-group">
+						<label  class="col-sm-2 control-label lwt">列表显示行列数量</label>
+						<div class="col-sm-8">
+							<label class="radio-inline">
+								<input type="radio" name="radioChecked">开启
+							</label>
+							<label class="radio-inline">
+								默认设置为
+							</label>
+							<label class="radio-inline">
+								<select class="c-select">
+							              <option value="1">1</option>
+							              <option value="2">2</option>
+							              <option value="3">3</option>
+							              <option value="4">4</option>
+							 	</select>行
+							</label>
+							<label class="radio-inline">
+								<select class="c-select">
+							              <option value="1">1</option>
+							              <option value="2">2</option>
+							              <option value="3">3</option>
+							              <option value="4">4</option>
+							 	</select>行
+							</label>
+						</div>
+					</div>
+					
+
+					<div class="form-group">
+						<label  class="col-sm-2 control-label lwt">默认列表排序方式</label>
+						<div class="col-sm-8">
+							<label class="radio-inline">
+								<input type="radio" name="radioChecked">开启
+							</label>
+							<label class="radio-inline">
+								默认设置为
+							</label>
+							<label class="radio-inline">
+								<select class="c-select" style="width: 154px;">
+							              <option value="1">列表常用显示方式模版1</option>
+							              <option value="2">列表常用显示方式模版2</option>
+							              <option value="3">列表常用显示方式模版3</option>
+							              <option value="4">列表常用显示方式模版4</option>
+							 	</select>
+							</label>
+							
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label  class="col-sm-2 control-label lwt">列表显示方式</label>
+						<div class="col-sm-8">
+							<label class="radio-inline">
+								<input type="radio" name="radioChecked">开启
+							</label>
+							<label class="radio-inline">
+								默认设置为
+							</label>
+							<label class="radio-inline">
+								<select class="c-select" style="width: 154px;">
+							              <option value="1">列表常用显示方式模版1</option>
+							              <option value="2">列表常用显示方式模版2</option>
+							              <option value="3">列表常用显示方式模版3</option>
+							              <option value="4">列表常用显示方式模版4</option>
+							 	</select>
+							</label>
+							
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label  class="col-sm-2 control-label lwt">列表页模版</label>
+						<div class="col-sm-8">
+							<label class="radio-inline">
+								<input type="radio" name="radioChecked">开启
+							</label>
+							<label class="radio-inline">
+								默认设置为
+							</label>
+							<label class="radio-inline">
+								<select class="c-select" style="width: 154px;">
+							              <option value="1">列表常用显示方式模版1</option>
+							              <option value="2">列表常用显示方式模版2</option>
+							              <option value="3">列表常用显示方式模版3</option>
+							              <option value="4">列表常用显示方式模版4</option>
+							 	</select>
+							</label>
+							
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label  class="col-sm-2 control-label lwt">详细页模版</label>
+						<div class="col-sm-8">
+							<label class="radio-inline">
+								<input type="radio" name="radioChecked">开启
+							</label>
+							<label class="radio-inline">
+								默认设置为
+							</label>
+							<label class="radio-inline">
+								<select class="c-select" style="width: 154px;">
+							              <option value="1">列表常用显示方式模版1</option>
+							              <option value="2">列表常用显示方式模版2</option>
+							              <option value="3">列表常用显示方式模版3</option>
+							              <option value="4">列表常用显示方式模版4</option>
+							 	</select>
+							</label>
+							
+						</div>
+					</div>
+
+					<div class="form-group mt50">
+						<div class="col-sm-offset-2 col-sm-8">
+							<button type="button" class="btn btn-primary">
+								<i class="fa fa-save c-icon"></i>保存
+							</button>
+							<button type="button" class="btn btn-default ml20"> 								
+								<i class="fa fa-pencil c-icon"></i>重填
+							</button>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</tab>	
+	</tabset>
+</form>

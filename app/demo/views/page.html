@@ -1,0 +1,31 @@
+<div class="row">
+  	<div class="col-md-12">
+    	<ol class="breadcrumb">
+		    <li class="active">分页条</li>
+		</ol>
+  	</div>
+</div>
+<div class="row">
+  	<div class="col-md-12">
+  		<h2>分页条</h2>
+  		 
+        <uib-pager total-items="bigTotalItems" ng-model="bigCurrentPage" previous-text="上一页" next-text="下一页"></uib-pager>
+		<uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" previous-text="上一页" next-text="下一页" first-text="首页" last-text="末页"></uib-pagination>
+		<pre>Page: {{bigCurrentPage}} / {{numPages}}</pre>
+  	</div>
+</div>
+<hr />
+<div class="row">
+  	<div class="col-md-12">
+  		<h2>进度条</h2>
+		<div ng-show="visible">	
+			<div class="progress">
+				<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" 	
+					ng-style="style">
+					<span>{{w}}%</span>
+				</div>			
+		    </div>
+		    <button type="button" class="btn btn-warning" ng-click="increase();">增加</button>	
+		</div>
+  	</div>
+</div>

@@ -1,0 +1,78 @@
+<style type="text/css">
+.c-top-tag{border-bottom: 1px solid #ddd;padding: 8px 16px;}
+.c-tag-list{border: 1px solid #ddd;padding: 4px 0px; margin: 12px 8px;}	
+.c-tag-list:hover{color: #f08300;border: 1px solid #f08300;cursor:pointer;}	
+.c-selected{color: #f08300;border: 1px solid #f08300;}
+.c-del{color:#f08300;color: #f08300;position: absolute;top: 6px;right: 2px;}
+.c-jieq{white-space: nowrap;text-overflow: ellipsis;overflow: hidden;width: 14%;}
+.mess-zx{line-height: 28px;color: #847D7D;}
+.form-validation .form-control.ng-dirty.ng-invalid{border-color: #f44336;}
+.err{color: #f44336;}
+.form-validation .form-control.ng-dirty.ng-valid,
+.form-validation .form-control.ng-dirty.ng-valid:focus {border-color: #4caf50;} 
+.c-lwt{font-weight: lighter;}   
+</style>
+<div class="modal-header">
+	<h4 class="modal-title">提取标签库</h4>
+</div>
+<p class="c-top-tag">已选标签：{{tagName}}</p>
+<div class="modal-body">
+	<tabset>		
+		<tab heading="列表"  select="tabSelected('list');" active="tab1.active">
+			<ul class="list-inline col-sm-8">
+				<li class="col-sm-2 text-center c-tag-list" ng-class="{true: 'c-selected', false: ''}[item.isChecked]"  ng-repeat="item in items" ng-click="tagLabels(item)">{{item.name}}</li>
+			</ul>
+			<div class="col-sm-8">
+				<div class="modal-header" style="background-color:#fff;">
+					<h5 class="modal-title">标签选择</h5>
+				</div>
+				<div class="modal-body">
+					<ol class="list-inline col-sm-12">
+						<li class="col-sm-2 text-center c-tag-list c-jieq" ng-repeat="tag in tags" ng-class="{true: 'c-selected', false: ''}[tag.isChecked]" ng-click="checkedLabel(tag)">
+							{{tag.name}} <i class="fa fa-times-circle c-del" ng-if="tag.isChecked"></i>
+						</li>
+					</ol>
+				</div>
+			</div>
+		</tab>
+
+		<tab heading="添加" select="tabSelected('add');">	
+			<form class="form-horizontal form-validation" name="form" style="padding: 32px 0px;" novalidate>
+				<div class="form-group" beyond max-count='32'>					
+					<label class="col-sm-2 control-label c-lwt"><span class="err">*</span>标签名称</label>
+					<div class="col-sm-6">		
+
+						<input type="text" class="form-control" ng-model="ctgs.name" name="name" ng-maxlength="32" required>
+						
+						<div ng-show="form.name.$dirty && form.name.$invalid">
+							<span class="err" ng-show="form.name.$error.required">请填写标签名称</span>
+							<span class="err" ng-show="!form.name.$error.required && form.name.$error">标签名称不合法</span>
+						</div>
+					</div>
+					 <span class="mess-zx">0</span>/32字符
+				</div>
+				<div class="form-group" style="padding: 12px 0;">					
+					<label class="col-sm-2 control-label c-lwt">标签所属栏目</label>
+					<div class="col-sm-6">
+						<select class="form-control" ng-model="ctgs.ctgId">
+							  <option value="{{o._id}}" ng-repeat="o in opts">{{o.name}}</option>			              
+				        </select>					
+					</div>					
+				</div>
+				<div class="form-group">					
+					<label class="col-sm-2 control-label c-lwt">标签超链接</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" ng-model="ctgs.url" name="url" ng-pattern="/^(http(s)?:\/\/)?(www\.)?[\w-]+\.\w{2,4}(\/)?$/">
+						<div ng-show="form.url.$dirty && form.url.$invalid">							
+							<span class="err" ng-show="form.url.$error">标签名称不合法</span>
+						</div>
+					</div>					
+				</div>			
+			</form>
+		</tab>
+	</tabset>
+</div>
+<div class="modal-footer" style="clear:both;">
+	<button class="btn btn-primary" type="button" ng-click="ok()">确定</button>
+	<button class="btn btn-default" type="button" ng-click="cancel()">取消</button>
+</div>

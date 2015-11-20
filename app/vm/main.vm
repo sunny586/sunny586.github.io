@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9" />
+        <title>模板1</title>
+        <link rel="stylesheet" href="../css/init.css" />
+        <link rel="stylesheet" href="../css/tpl.css" />
+        <link rel="stylesheet" href="../css/edit.css" />
+    </head>
+    <body>
+    
+    		#set($param = $pageTpl.get("pageTplId"))<br/>
+   			#set($pageTplId = $pageTpl.get("pageTplId"))<br/>
+   			
+   	##		${pageTplId}--$param
+   				
+  	  		#foreach($data in $pageTpl.get("strucData"))
+  	  			
+  	  			#tpl_blk($data.get("blkConfId"))
+            #end
+            
+    </body>
+</html>

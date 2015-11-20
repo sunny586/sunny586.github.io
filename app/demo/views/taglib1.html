@@ -1,0 +1,66 @@
+<style>
+   .c-tags{padding:10px 0px 16px 15px;margin:0px;background:#FFFAF4;}
+   .c-tags ul li{float:left;list-style-type:none;padding-right:10px;}
+   .c-tags-selected{float:left;padding-right:5px;}
+</style>
+<div class="modal-header">
+  <h3 class="modal-title">
+               标签提取库
+  </h3>
+</div>
+<div class="c-tags">
+    <span class="c-tags-selected">已选标签：</span>
+    <ul>
+	    <li>11111</li>
+		<li>22222</li>
+		<li>33333</li>
+		<li>44444</li>
+		<li>55555</li>
+    </ul>
+</div>
+<div class="modal-body" style="clear:both;">
+    <tabset>
+        <tab heading="列表" active>
+	        <div class="modal-footer">
+	             
+	        </div>
+        </tab>
+        <tab heading="添加">
+			<form class="form-horizontal form-validation" name="formSpeedAdd" style="margin-top: 12px;" novalidate>
+				<div class="form-group" beyond max-count='64'>
+			        <label class="col-sm-4">
+			            <span class="err">*</span> 分类名称
+			        </label>
+			        <div class="col-sm-6">
+			            <input type="text" class="form-control" name="name" ng-maxlength="64" required>
+			            <div ng-show="formSpeedAdd.name.$dirty && formSpeedAdd.name.$invalid">
+			                <span class="err" ng-show="formSpeedAdd.name.$error.required">分类名称</span>
+			                <span class="err" ng-show="!formSpeedAdd.name.$error.required && formSpeedAdd.name.$error">分类名称长度为0~64字符</span>
+			            </div>
+			        </div>
+			        <span class="mess-zx">0</span>/64字符
+			    </div>
+			    <div class="form-group">
+			        <label class="col-sm-4">
+			            <span class="err">*</span>所属分类
+			        </label>            
+			        <div class="col-sm-6">                
+			            <!-- <nested-combo-box  control-disabled="false" collection="collectionEnter"></nested-combo-box> -->
+			        </div> 
+			    </div>
+			    <div class="form-group">
+			        <label  class="col-sm-4">
+			            <span class="err">*</span>标签超链接
+			        </label>            
+			        <div class="col-sm-6">
+			            <input type="text" class="form-control"  ng-maxlength="64" required>
+			        </div>
+			    </div>
+			</form>
+        </tab>
+    </tabset>
+</div>
+<div class="modal-footer" style="clear:both;">
+    <button class="btn btn-primary" type="button" ng-click="ok()">确定</button>
+    <button class="btn btn-primary" type="button" ng-click="cancel()">取消</button>
+</div>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9" />
+    <title>页面管理</title>
+    
+    <link rel="stylesheet" href="../../plugin/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../plugin/bootstrap/css/bootstrap-exp.min.css" />
+    <link rel="stylesheet" href="../../plugin/bootstrap/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="../../plugin/jquery/css/jquery-ui.css" />
+    <link rel="stylesheet" href="../../plugin/jquery/css/jquery-ui-timepicker-addon.css" />
+    
+    <link rel="stylesheet" href="../../plugin/angular-ui-tree/angular-ui-tree.css" />
+
+     <link rel="stylesheet" href="../../plugin/angular-combobox/ng-nested-combobox.css" />
+
+     <!-- 文件上传组件 -->
+    <link rel="stylesheet" href="../../plugin/ueditor/third-party/webuploader/webuploader.css" />
+    
+    <link rel="stylesheet" href="../../css/init.css" />
+    <link rel="stylesheet" href="../../css/common.css" />    
+     <link rel="stylesheet" href="../../css/expand.css" />  
+</head>
+<body>
+    <div class="container-fluid c-header">
+        <div class="container">
+            <div class="row">
+                <a class="c-logo"></a>
+                <div class="c-manager">
+                    <div>
+                        <a>网站首页</a>｜
+                        <a>帮助中心</a>
+                    </div>
+                    <div>
+                        <a class="c-user-name"><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;&nbsp;NSW&nbsp;&nbsp;欢迎你！</a>｜
+                        <a>退出</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container c-container"  ng-app="expandApp">
+        <div class="row">
+            <div class="c-main">
+                <div class="c-main-box">
+                    <ui-view></ui-view>
+                </div>
+            </div>
+            <div class="c-menu-div">
+                <div class="c-menu-title">PC建站</div>
+                <div class="c-menu-box">
+                    <div class="c-menu"><i class="glyphicon glyphicon-tag"></i> 页面管理</div>
+                    <div class="c-menu-list">
+                        <a class="c-menu-item" href="../page/index.html">页面列表</a>                    
+                    </div>
+                    <div class="c-menu "><i class="glyphicon glyphicon-tag"></i> 资讯管理</div>
+                    <div class="c-menu-list">
+                        <a class="c-menu-item " href="../info/index.html#/list">文章列表</a>
+                        <a class="c-menu-item" href="../info/index.html#/add">录入文章</a>
+                        <a class="c-menu-item" href="../info/index.html#/classify">文章分类</a>
+                         <a class="c-menu-item" href="../info/index.html#/addClassify">分类录入</a>
+                        <a class="c-menu-item" href="../info/index.html#/recycle">回收站</a>
+                    </div>
+                    <div class="c-menu"><i class="glyphicon glyphicon-tag"></i> 发布管理</div>
+                    <div class="c-menu-list">
+                        <a class="c-menu-item" href="../page/index.html#/publish">网站发布</a>
+                    </div>
+                    <div class="c-menu expend"><i class="glyphicon glyphicon-tag"></i> 全局配置</div>
+                    <div class="c-menu-list">
+                        <a class="c-menu-item selected" href="#/channel">频道扩展</a>
+                    </div>
+                     <!--动态菜单-->
+                    <div ng-repeat="item in menus" on-finish-render-filters>
+                        <div class="c-menu c-mkname"  ><i class="glyphicon glyphicon-tag"></i>{{item.name}}管理</div>
+                            <div class="c-menu-list">
+                            <a class="c-menu-item selected " href="#/list?moduleId={{item.moduleId}}&name={{item.name}}&page=infoList">{{item.name}}列表</a>
+                            <a class="c-menu-item" href="../info/index.html#/add?moduleId={{item.moduleId}}&name={{item.name}}&page=info">录入{{item.name}}</a>
+                            <a class="c-menu-item" href="../info/index.html#/classify?moduleId={{item.moduleId}}&name={{item.name}}&page=ctgList">分类列表</a>
+                            <a class="c-menu-item" href="../info/index.html#/info-addClassify?moduleId={{item.moduleId}}&name={{item.name}}&page=ctg">分类录入</a>    
+                        </div>
+                    <!--动态菜单end-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid c-footer">
+        <div class="container">
+            <div class="row">
+                <p>@ NSW-PCCMS后台管理系统</p>
+            </div>
+        </div>
+    </div>
+
+    <!--[if lte IE 9]>
+        <script src="../../js/respond.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/es5-shim/3.4.0/es5-shim.min.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript" src="../../plugin/jquery/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="../../plugin/jquery/jquery-ui.js"></script>
+    <script type="text/javascript" src="../../plugin/jquery/jquery-ui-timepicker-addon.js"></script>
+    <script type="text/javascript" src="../../plugin/angular/angular.js"></script>
+    <script type="text/javascript" src="../../plugin/angular/angular-locale_zh-cn.js"></script>
+    <script type="text/javascript" src="../../plugin/angular/angular-sanitize.js"></script>
+    <script type="text/javascript" src="../../plugin/angular/angular-ui-router.js"></script>
+    <script type="text/javascript" src="../../plugin/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../plugin/bootstrap/ui-bootstrap-tpls-0.12.1.js"></script>
+    <script type="text/javascript" src="../../plugin/bootstrap/pagination.js"></script>
+    
+    <script type="text/javascript" src="../../plugin/angular-ui-tree/angular-ui-tree.js"></script>
+
+    <!-- 富文本编辑器 -->    
+    <script type="text/javascript" src="../../plugin/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="../../plugin/ueditor/ueditor.all.min.js"> </script>
+    <script type="text/javascript" src="../../plugin/ueditor/lang/zh-cn/zh-cn.js"></script>
+    <script type="text/javascript" src="../../plugin/ueditor/angular-ueditor.js"></script>
+
+    <!-- 树型下拉列表 -->
+    <script type="text/javascript" src="../../plugin/angular-combobox/ng-nested-combobox.js"></script>
+    
+    <script type="text/javascript" src="../../js/common-jquery.js"></script>
+    <script type="text/javascript" src="../../js/common.js"></script>
+      <script type="text/javascript" src="../../js/constant.js"></script>
+    <script type="text/javascript" src="../../plugin/ueditor/third-party/webuploader/webuploader.js"></script>
+    <script type="text/javascript" src="../../js/angular-webuploader.js"></script>
+    
+   <script src="../js/expand/expand.js"></script>
+    
+    <script>
+    menulist()
+    function menulist(){
+           $('.c-container').css('min-height', $(window).height()-166);
+           $('.c-menu-box .c-menu').bind('click', function(){
+               console.log('click menu.');
+               var menu = this;
+               if($(menu).hasClass('expend')){
+                   $(menu).next().slideUp(500, function(){
+                       $(menu).removeClass('expend');
+                   });
+               }else{
+                   var expend = $('.c-menu.expend');
+                   $(menu).next().slideDown(500, function(){
+                       $(menu).addClass('expend');
+                   });
+                   expend.next().slideUp(500, function(){
+                       expend.removeClass('expend');
+                   });
+               }
+           });
+
+           $('.c-menu-box .c-menu-item').bind('click', function(){
+               $('.c-menu-item.selected').removeClass("selected");
+               $(this).addClass('selected');
+           });
+       }
+   </script>
+    </script>
+</body>
+</html>

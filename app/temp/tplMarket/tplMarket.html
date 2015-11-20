@@ -1,0 +1,142 @@
+<style>
+    .c-smylImage {max-width: 200px;max-height: 96px;} /* for Firefox & IE7 */
+	* html .c-smylImage { /* for IE6 */
+		width: expression(this.width > 200 && this.width > this.height ? 96: auto);
+		height: expression(this.height > 96 ? 96 : auto);
+	}
+	.c-allthumbImage {max-width: 100px;max-height: 120px;} /* for Firefox & IE7 */
+	* html .c-allthumbImage { /* for IE6 */
+		width: expression(this.width > 100 && this.width > this.height ? 100 : auto);
+		height: expression(this.height > 120 ? 120 : auto);
+	}
+</style>
+<div class="row">
+	<div class="col-md-12">
+	   	<ol class="breadcrumb">
+		    <li><a href="../index.html">首页</a></li>
+		    <li><a href="index.html">模版</a></li>
+		    <li class="active">模版市场</li>
+		</ol>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<div class="c-page-filter">
+			<div class="pull-left">
+				<h3>模版筛选<span class="total">共<span class="count">{{filterData.totalCount}}</span>套模版</span></h3>
+			</div>
+			<div>
+				<a href="#" ng-hide="true"><i class="fa fa-question-circle"></i> 如何使用</a>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-12">
+		<table class="table table-bordered c-tag-table">
+	        <tr>
+	            <td class="tag-label"></td>
+	            <td>
+	            	<div class="radio">
+				        <label>
+				            <input type="radio"  value="single" ng-click="filType('single')"  name="tagType" checked/> 单页
+				        </label>
+				        <label>
+				            <input type="radio"  value="pack" ng-click="filType('pack')"  name="tagType"/> 套装
+				        </label>
+				        <button type="button" style="float:right;" class="btn btn-success"  ng-click="addTpl();"> 新增模版</button>
+				    </div>
+				</td>
+	        </tr>
+	        <tr ng-repeat="tag in tagList">
+	            <td class="tag-label">{{tag.value}}：</td>
+	            <td class="tag-items">
+	            	<ul>
+	            		<li ng-class="{selected:item.selected, disabled:tag.isDisabled}" ng-repeat="item in tag.children" ng-click="selectTag(item,tag)">
+	            			<i class="fa fa-square" ng-if="item.type == 'COLOR'" style="border:1px solid #ccc;background-color:{{item.value}};color:{{item.value}}"></i>
+	            			{{item.type == 'COLOR' ? item.name : item.value}}
+	            	    </li>
+	            	</ul>
+				</td>
+	        </tr>
+	    </table>
+	</div>
+	<div class="col-md-12">
+		<ul class="c-list-col c-list-col4 c-tpl-list">
+			<li ng-repeat="item in filterData.list">
+				<div class="item">
+				    <div style="text-align:center;">
+						<img class="c-smylImage" ng-src="{{item.imgSm}}" />
+						<div class="desc">网页特点：{{item.style}}</div>
+						<div class="desc">适合行业：{{item.industry}}</div>
+						<div class="desc">模版名称：{{item.name}}</div>
+					</div>
+					<div class="desc action-btn">
+						<a ng-if="filterType == 'single'" class="btn btn-success" ng-click="preSinglePag(item._id)">预览</a>
+						<a ng-if="filterType == 'pack'" class="btn btn-success" ng-click="previewPackPag(item._id)">预览</a>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+<div ng-show="mask">
+	<div class="mask"></div>
+	<div class="col-sm-6 dialog" >
+        <div class="modal-header">
+            <h3 class="modal-title">新增模版</h3>
+        </div>
+        <div class="modal-body" style="height:350px;overflow-y:scroll">
+            <form class="form-horizontal form-airticle form-validation" name="formInfo" novalidate>
+                <div class="form-group" beyond max-count='64'>
+                    <label  class="col-sm-2 control-label lighter-weight">
+                        <span class="err">*</span>模版名称
+                    </label>
+                    <div class="col-sm-5">
+                        <input type="text" value="" class="form-control" ng-model="name" name="tplTitle" ng-maxlength="64" required>
+                        <div ng-show="formInfo.tplTitle.$dirty && formInfo.tplTitle.$invalid">
+                            <span class="err" ng-show="formInfo.tplTitle.$error.required">请填写模版名称</span>
+                            <span class="err" ng-show="!formInfo.tplTitle.$error.required && formInfo.tplTitle.$error">模版名称长度为0~64字符</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" beyond max-count='20000'>
+                    <label  class="col-sm-2 control-label lighter-weight">
+                        <span class="err">*</span>编辑器
+                    </label>
+                    <div class="col-sm-8">
+                        <textarea type="text"  ng-model="content" config="config" style="width:100%;height:200px;"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="border-slt text-center col-sm-3" style="cursor:pointer;float:left;" img-lib ng-model="res">
+                        <h4 style="margin:5px 0px 5px 12px;font-weight:900;">缩略图：</h4>  
+                        <img class="c-allthumbImage" ng-src="{{res[0].path}}" ng-show="res[0].path != undefined">  
+                        <i class="fa fa-cloud-upload fa-3x" style="margin-top: 20px;" ng-show="res[0].path == undefined"></i>  
+                        <h6 ng-show="res[0].path == undefined" style="margin-bottom: 20px;">点击上传</h6>
+                    </div>
+                    <div class="border-slt text-center col-sm-3" style="cursor:pointer;float:left;" img-lib ng-model="res1">
+                        <h4 style="margin:5px 0px 5px 12px;font-weight:900;">预览图：</h4> 
+                        <img class="c-allthumbImage" ng-src="{{res1[0].path}}" ng-show="res1[0].path != undefined">  
+                        <i class="fa fa-cloud-upload fa-3x" style="margin-top: 20px;" ng-show="res1[0].path == undefined"></i>  
+                        <h6 ng-show="res1[0].path == undefined" style="margin-bottom: 20px;">点击上传</h6>
+                    </div>
+                    <div class="border-slt text-center col-sm-3" style="cursor:pointer;float:left;" img-lib ng-model="res2">
+                        <h4 style="margin:5px 0px 5px 12px;font-weight:900;">效果图：</h4>  
+                        <img class="c-allthumbImage" ng-src="{{res2[0].path}}" ng-show="res2[0].path != undefined">  
+                        <i class="fa fa-cloud-upload fa-3x" style="margin-top: 20px;" ng-show="res2[0].path == undefined"></i>  
+                        <h6 ng-show="res2[0].path == undefined" style="margin-bottom: 20px;">点击上传</h6>
+                    </div>
+                    <div class="border-slt text-center col-sm-3" style="cursor:pointer;float:left;" img-lib ng-model="res3">
+                        <h4 style="margin:5px 0px 5px 12px;font-weight:900;">框架图：</h4>   
+                        <img class="c-allthumbImage" ng-src="{{res3[0].path}}" ng-show="res3[0].path != undefined">  
+                        <i class="fa fa-cloud-upload fa-3x" style="margin-top: 20px;" ng-show="res3[0].path == undefined"></i>  
+                        <h6 ng-show="res3[0].path == undefined" style="margin-bottom: 20px;">点击上传</h6>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="saveTpl()" ng-disabled="formInfo.$invalid">保存</button>
+            <button class="btn btn-default" type="button" ng-click="cancelTpl()">取消</button>
+        </div>   
+	</div>
+</div>

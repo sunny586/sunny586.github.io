@@ -1,0 +1,104 @@
+<form class="form-horizontal form-validation" name="formSpeed" novalidate>
+	<div class="modal-header">
+		<h4 class="modal-title">资料快速修改</h4>
+	</div>
+	<div class="modal-body">
+		<div class="form-group" beyond max-count='64'>
+			<label  class="col-sm-2 control-label lighter-weight pt0">
+				<span class="err">*</span>
+				资讯标题名称
+			</label>
+			<div class="col-sm-5">
+				<input type="text" class="form-control" ng-model="editBean.title" name="title" ng-maxlength="64" required>
+				<div ng-show="formSpeed.title.$dirty && formSpeed.title.$invalid">
+					<span class="err" ng-show="formSpeed.title.$error.required">资讯标题名称</span>
+					<span class="err" ng-show="!formSpeed.title.$error.required && formSpeed.title.$error">资讯标题长度为0~64字符</span>
+				</div>
+			</div>
+			<span class="mess-zx">0</span>
+			/64字符
+		</div>
+		<div class="form-group">
+			<label  class="col-sm-2 control-label lighter-weight pt0">短标题名称</label>
+			<div class="col-sm-5">
+				<input type="text" class="form-control" ng-model="editBean.shortTitle" name="shortTitle" ng-maxlength="30">
+				<div ng-show="formSpeed.shortTitle.$dirty && formSpeed.shortTitle.$invalid">
+					<span class="err" ng-show="formSpeed.shortTitle.$error">短标题标题长度为0~30字符</span>
+				</div>
+			</div>
+			<span class="mess-zx">0/30字符</span>
+		</div>
+		<div class="form-group">
+			<label  class="col-sm-2 control-label lighter-weight pt0">所属分类</label>
+			<div class="col-xs-4">
+				<nested-combo-box  control-disabled="false" collection="collectionEdit" ng-model="activeItemEdit" ></nested-combo-box>
+			</div>
+		</div>
+		<div class="form-group">
+			<label  class="col-sm-2 control-label lighter-weight pt0">
+				<span class="err">*</span>
+				网页访问地址
+			</label>
+			<div class="col-sm-5">
+				<input type="text" class="form-control" ng-model="editBean.seo.staticPageName" name="staticPageName" ng-blur="verRepeat()" ng-maxlength="64" required>
+				<div ng-show="formSpeed.staticPageName.$dirty && formSpeed.staticPageName.$invalid">
+					<span class="err" ng-show="formSpeed.staticPageName.$error.required">请填写网页访问地址</span>
+					<span class="err" ng-show="!formSpeed.staticPageName.$error.required && formSpeed.staticPageName.$error">网页访问地址长度为0~64字符</span>
+				</div>
+			</div>
+			<span class="mess-zx">0/64字符</span>
+		</div>
+
+		<div class="form-group">
+			<label  class="col-sm-2 control-label lighter-weight pt0">
+				<span class="err">*</span>
+				网页标题
+				<br>(Title)</label>
+			<div class="col-sm-5">
+				<input type="text" class="form-control" ng-model="editBean.seo.title" name="seoTitle" ng-maxlength="64" required>
+				<div ng-show="formSpeed.seoTitle.$dirty && formSpeed.seoTitle.$invalid">
+					<span class="err" ng-show="formSpeed.seoTitle.$error.required">请填写网页标题</span>
+					<span class="err" ng-show="!formSpeed.seoTitle.$error.required && formSpeed.seoTitle.$error">网页标题长度为0~64字符</span>
+				</div>
+			</div>
+			<span class="mess-zx">0/64字符</span>
+		</div>
+
+		<div class="form-group">
+			<label  class="col-sm-2 control-label lighter-weight pt0">
+				<span class="err">*</span>
+				网页关键词
+				<br>(Keywords)</label>
+			<div class="col-sm-5">
+				<input type="text" class="form-control" ng-model="editBean.seo.keyword" name="seoKeyword" ng-maxlength="100" required>
+				<div ng-show="formSpeed.seoKeyword.$dirty && formSpeed.seoKeyword.$invalid">
+					<span class="err" ng-show="formSpeed.seoKeyword.$error.required">请填写网页关键词</span>
+					<span class="err" ng-show="!formSpeed.seoKeyword.$error.required && formSpeed.seoKeyword.$error">网页关键词之间用顿号、空格、| 隔开，如abc、def、fdg</span>
+				</div>
+			</div>
+			<span class="mess-zx">0/100字符</span>
+		</div>
+
+		<div class="form-group">
+			<label  class="col-sm-2 control-label lighter-weight pt0">
+				<span class="err">*</span>
+				网页描述
+				<br>(Description)</label>
+			<div class="col-sm-8">
+
+				<textarea class="form-control" rows="3" ng-model="editBean.seo.desc" name="seoDesc" ng-maxlength="150" required></textarea>
+				<div ng-show="formSpeed.seoDesc.$dirty && formSpeed.seoDesc.$invalid">
+					<span class="err" ng-show="formSpeed.seoDesc.$error.required">请填写网页描述</span>
+					<span class="err" ng-show="!formSpeed.seoDesc.$error.required && formSpeed.seoDesc.$error">网页描述长度为0~150字符</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<!-- <button class="btn btn-primary" type="button" ng-click="ok()">确定</button>
+	<button class="btn btn-default" type="button" ng-click="cancel()">取消</button>
+	-->
+		<button type="submit" class="btn btn-warning " ng-disabled="formSpeed.$invalid" ng-click="ok()">保存</button>
+		<button class="btn btn-default" ng-click="cancel()">取消</button>
+	</div>
+</form>

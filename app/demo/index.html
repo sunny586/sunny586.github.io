@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9" />
+    <title>angular组件</title>
+
+    <link rel="stylesheet" href="../plugin/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../plugin/bootstrap/css/bootstrap-exp.min.css" />
+    <link rel="stylesheet" href="../plugin/bootstrap/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="../plugin/jquery/css/jquery-ui.css" />
+    <link rel="stylesheet" href="../plugin/jquery/css/jquery-ui-timepicker-addon.css" />
+
+    <!-- 树 -->
+    <link rel="stylesheet" href="../plugin/angular-ui-tree/angular-ui-tree.css" />
+
+    <!-- 树型下拉列表 -->
+    <link rel="stylesheet" href="../plugin/angular-combobox/ng-nested-combobox.css" />
+
+    <!-- 文件上传组件 -->
+    <link rel="stylesheet" href="../plugin/ueditor/third-party/webuploader/webuploader.css" />
+
+    <link rel="stylesheet" href="../css/init.css" />
+    <link rel="stylesheet" href="../css/common.css" />
+</head>
+
+<body>
+    <div class="container-fluid c-header">
+        <div class="container">
+            <div class="row">
+                <!-- <a class="c-logo"></a>
+            -->
+            <div class="c-manager">
+                <div>
+                    <a>网站首页</a>
+                    ｜
+                    <a>帮助中心</a>
+                </div>
+                <div>
+                    <a class="c-user-name"> <i class="glyphicon glyphicon-user"></i>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;欢迎你！
+                    </a>
+                    ｜
+                    <a>退出</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container c-container" ng-app="demoApp">
+    <div class="row">
+        <div class="c-main">
+            <div class="c-main-box">
+                <ui-view></ui-view>
+            </div>
+        </div>
+        <div class="c-menu-div">
+            <div class="c-menu-title">组件清单</div>
+            <div class="c-menu-box">
+                <div class="c-menu"> <i class="glyphicon glyphicon-tag"></i>
+                    组件
+                </div>
+                <div class="c-menu-list">
+                    <a class="c-menu-item selected" ui-sref="path">路径导航</a>
+                    <a class="c-menu-item" ui-sref="btn">按钮</a>
+                    <a class="c-menu-item" ui-sref="dialog">弹窗</a>
+                    <a class="c-menu-item" ui-sref="form">表单、表格</a>
+                    <a class="c-menu-item" ui-sref="page">分页、进度条</a>
+                    <a class="c-menu-item" ui-sref="http">$http</a>
+                    <a class="c-menu-item" ui-sref="tree">树</a>
+                    <a class="c-menu-item" ui-sref="combobox">树型下拉列表</a>
+                    <a class="c-menu-item" ui-sref="ueditor">富文本编辑器</a>
+                    <a class="c-menu-item" ui-sref="imglib">图标、图片库</a>
+                    <a class="c-menu-item" ui-sref="taglib">标签库</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid c-footer">
+    <div class="container">
+        <div class="row">
+            <p>@ angular组件库</p>
+        </div>
+    </div>
+</div>
+
+<!--[if lte IE 9]>
+<script src="../js/respond.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/es5-shim/3.4.0/es5-shim.min.js"></script>
+<![endif]-->
+
+<script type="text/javascript" src="../plugin/jquery/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="../plugin/jquery/jquery-ui.js"></script>
+<script type="text/javascript" src="../plugin/jquery/jquery-ui-timepicker-addon.js"></script>
+<script type="text/javascript" src="../plugin/angular/angular.js"></script>
+<script type="text/javascript" src="../plugin/angular/angular-locale_zh-cn.js"></script>
+<script type="text/javascript" src="../plugin/angular/angular-sanitize.js"></script>
+<script type="text/javascript" src="../plugin/angular/angular-ui-router.js"></script>
+<script type="text/javascript" src="../plugin/bootstrap/ui-bootstrap-tpls-0.12.1.js"></script>
+
+<!-- 分页 -->
+<script type="text/javascript" src="../plugin/bootstrap/pagination.js"></script>
+
+<!-- 树 -->
+<script type="text/javascript" src="../plugin/angular-ui-tree/angular-ui-tree.js"></script>
+
+<!-- 富文本编辑器 -->
+<script type="text/javascript" src="../plugin/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="../plugin/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript" src="../plugin/ueditor/lang/zh-cn/zh-cn.js"></script>
+
+<script type="text/javascript" src="../plugin/ueditor/angular-ueditor.js"></script>
+
+<!-- 文件上传组件 -->
+<script type="text/javascript" src="../plugin/ueditor/third-party/webuploader/webuploader.js"></script>
+<script type="text/javascript" src="../plugin/ueditor/third-party/webuploader/angular-webuploader.js"></script>
+
+<!-- 树型下拉列表 -->
+<script type="text/javascript" src="../plugin/angular-combobox/ng-nested-combobox.js"></script>
+
+<!-- 共用组件 -->
+<script type="text/javascript" src="../js/common-jquery.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+
+<!-- demo -->
+<script type="text/javascript" src="../demo/js/app.js"></script>
+
+<script type="text/javascript" src="../demo/js/tree.js"></script>
+<script type="text/javascript" src="../demo/js/btn.js"></script>
+<script type="text/javascript" src="../demo/js/dialog.js"></script>
+<script type="text/javascript" src="../demo/js/form.js"></script>
+<script type="text/javascript" src="../demo/js/http.js"></script>
+<script type="text/javascript" src="../demo/js/ueditor.js"></script>
+<script type="text/javascript" src="../demo/js/page.js"></script>
+<script type="text/javascript" src="../demo/js/combobox.js"></script>
+<script type="text/javascript" src="../demo/js/imglib.js"></script>
+<script type="text/javascript" src="../demo/js/taglibCtrl.js"></script>
+<script>
+        $(document).ready(function(){
+            $('.c-container').css('min-height', $(window).height()-166);            
+            localStorage.getItem('isdev') == 'true' ? $('#http').show():$('#http').hide();
+        });
+        //-----------------------------------
+    menulist()
+     function menulist(){
+            $('.c-container').css('min-height', $(window).height()-166);
+            $('.c-menu-box .c-menu').bind('click', function(){
+                console.log('click menu.');
+                var menu = this;
+                if($(menu).hasClass('expend')){
+                    $(menu).next().slideUp(500, function(){
+                        $(menu).removeClass('expend');
+                    });
+                }else{
+                    var expend = $('.c-menu.expend');
+                    $(menu).next().slideDown(500, function(){
+                        $(menu).addClass('expend');
+                    });
+                    expend.next().slideUp(500, function(){
+                        expend.removeClass('expend');
+                    });
+                }
+            });
+            $('.c-menu-box .c-menu-item').bind('click', function(){
+                $('.c-menu-item.selected').removeClass("selected");
+                $(this).addClass('selected');
+            });
+        }; 
+    </script>
+</body>
+</html>

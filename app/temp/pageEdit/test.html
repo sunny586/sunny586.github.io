@@ -1,0 +1,801 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>资讯详细页</title>
+    <link rel="stylesheet" href="http://192.168.4.155/foobar/common.css" />
+    <link rel="stylesheet" href="http://192.168.4.155/foobar/module.css" />
+    <link rel="stylesheet" href="http://192.168.4.155/foobar/information_detail.css" />
+    <link rel="stylesheet" href="http://192.168.4.155/foobar/comment.css" />
+    <link rel="stylesheet" href="http://192.168.4.155/foobar/skins.css" />
+
+<link rel="stylesheet" type="text/css" href="http://localhost:8083/pccms/plugin/bootstrap/css/bootstrap.min.css" /><link rel="stylesheet" type="text/css" href="http://localhost:8083/pccms/plugin/bootstrap/css/bootstrap-exp.min.css" /><link rel="stylesheet" type="text/css" href="http://localhost:8083/pccms/plugin/bootstrap/css/font-awesome.min.css" /><link rel="stylesheet" type="text/css" href="http://localhost:8083/pccms/plugin/jquery/css/jquery-ui.css" /><link rel="stylesheet" type="text/css" href="http://localhost:8083/pccms/plugin/jquery/css/jquery-ui-timepicker-addon.css" /><link rel="stylesheet" type="text/css" href="http://localhost:8083/pccms/css/init.css" /><link rel="stylesheet" type="text/css" href="http://localhost:8083/pccms/css/common.css" /><link rel="stylesheet" type="text/css" href="http://localhost:8083/pccms/css/pageEdit.css" />
+</head>
+<body ng-app="pageEditApp" ng-controller="pageCtrl">
+	<div class="c-edit-toolbar">
+		<div class="container">
+			<div class="pull-left">
+				<div class="compare-type">
+					对比模式： <input type="radio" name="compareType" value="same"
+						ng-model="projPageData.bakConf.type" /> 同屏 <input type="radio"
+						name="compareType" value="wide"
+						ng-model="projPageData.bakConf.type" /> 宽屏
+				</div>
+			</div>
+			<div class="pull-left">
+				<button class="btn btn-default btn-lg backup-btn"
+					ng-click="backup()">备份效果 >></button>
+			</div>
+			<div class="pull-left effect"
+				ng-repeat="item in projPageData.bakConf.bak">
+				<span>效果{{$index+1}}</span> <i class="fa fa-times"
+					ng-click="delBackup($index, item)"></i>
+			</div>
+			<div class="pull-left effect-btn">
+				<button class="btn btn-primary btn-sm" ng-click="compare()"
+					ng-if="projPageData.bakConf.bak.length == 2">开始对比</button>
+			</div>
+			<div class="pull-right">
+				<button class="btn btn-primary btn-lg" ng-click="savePageDesign()">
+					保存</button>
+				<button class="btn btn-default btn-lg" ng-click="outPageDesign()">
+					退出</button>
+			</div>
+		</div>
+	</div>
+	<div class="c-edit-page">
+		<!-- 头部 -->
+    <div class="header">
+        <!-- 1.顶部导航 -->
+        <div class="top-nav">
+            <div class="w">
+                <p class="fl">欢迎光临无锡奔宝汽车配件贸易有限公司官方网站！</p>
+                <ul class="fr">
+                    <li><a href="#">收藏首页</a></li>
+                    <li class="split">|</li>
+                    <li><a href="#">在线留言</a></li>
+                    <li class="split">|</li>
+                    <li><a href="#">常见问题</a></li>
+                    <li class="split">|</li>
+                    <li><a href="#">网站地图</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- 2.logo -->
+        <div class="w">
+            <div class="logo">
+                <a href="#"><img src="http://192.168.4.155/foobar/logo.jpg" /></a>
+                <h2><span>奔宝汽配--</span>15年专业宝马全车配件供应商</h2>
+            </div>
+            <p class="tel">全国订购热线<b>400-0000-651</b></p>
+        </div>
+        <!-- 3.主导航 -->
+        <div class="nav">
+            <ul class="w">                                                                        
+                <li><a href="#">奔宝首页</a></li>
+                <li><a href="#">宝马保养件</a></li>
+                <li><a href="#">宝马底盘件</a></li>
+                <li><a href="#">宝马车身件</a></li>
+                <li><a href="#">奔宝产品中心</a></li>
+                <li><a href="#">限时特价</a></li>
+                <li><a href="#">批发支持</a></li>
+                <li class="current"><a href="#">奔宝资讯</a></li>
+                <li><a href="#">走进奔宝</a></li>
+                <li class="last"><a href="#">联系奔宝</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- 搜索 -->
+    <div class="search">
+     <div class="w">
+         <dl class="fl">
+             <dt>热门关键词搜索：</dt>
+             <dd><a href="#">宝马汽车配件</a></dd>
+             <dd class="split">|</dd>
+             <dd><a href="#">奔驰汽车配件</a></dd>
+             <dd class="split">|</dd>
+             <dd><a href="#">汽车配件订购</a></dd>
+             <dd class="split">|</dd>
+             <dd><a href="#">汽车配件批发</a></dd>
+             <dd class="split">|</dd>
+             <dd><a href="#">汽车配件价格</a></dd>
+         </dl>
+         <div class="fr">
+             <input type="text" />
+             <a class="btn" href="#">搜索</a>
+         </div>
+     </div>
+    </div>
+    <!-- 内页横幅 -->
+    <div class="inside-banner">
+     <div class="w">
+         <a href="#"><img src="http://192.168.4.155/foobar/banner.jpg" /></a>
+     </div>
+    </div>
+    <!-- 主体 -->
+    <div class="main">
+        <div class="w">
+      <!-- 面包屑导航 -->
+         <div class="crumb">
+             当前位置：
+             <a href="#">首页</a><i></i>
+             <a href="#">资讯中心</a>
+         </div>
+   <!-- 主体内容 -->
+         <div class="main-content fr">
+                <div class="article-details">
+                    <h2>资讯标题名称</h2>
+                    <div class="article-details-info">
+                        <div class="fore1">
+                            <div class="classify-logo">
+                                <img src="http://192.168.4.155/foobar/img50.jpg" />
+                            </div>
+                            <dl class="score fl">
+                                <dt>星级：</dt>
+                                <dd class="activa" />
+                                <dd class="activa" />
+                                <dd class="activa" />
+                                <dd />
+                                <dd />
+                            </dl>
+                            <div class="fl">人气：390</div>
+                            <div class="fr">发表时间：2009-01-22 20:12:20</div>
+                        </div>
+                        <div class="fore2">
+                            <ul class="fl">
+                                <li>文章出处：腾讯网</li>
+                                <li>责任编辑：xxxxx</li>
+                                <li>作者：xxxxx</li>
+                            </ul>
+                            <ul class="fr set-font-size">
+                                <li><a href="javascript:void(0)">大</a></li>
+                                <li><a href="javascript:void(0)">中</a></li>
+                                <li><a href="javascript:void(0)">小</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="abstract">
+                       <span>【文章导读】</span>外观方面，大众Cross Coupe GTE相比此前亮相的CrossBlue车型设计更加激进，同时也保留了目前大众家族的设计语言，横向双条幅镀铬装饰条贯穿进气格栅并与前大灯融为一体，下包围的设计在优化了空气...... 
+                    </div>
+                    <div class="article-content">
+                        <p>按照奥迪新一代A4将会在今年2月发布，随后于3月的日内瓦车展上与公众见面的时间节点来推断的化，新一代A4 L长轴距版车型最快有望在今年底或者明年引入国产，而正式上市的时间肯定是在2016年。</p>
+                        <p>根据先前的一系列路试车谍照，我们知道新一代A4的外观设计还是从现款车型进化而来，车身轮廓让人觉得很熟悉，依旧是一种四平八稳的保守姿态，但整个外观风格还是更趋硬朗。前脸的新款大嘴进气隔栅和头灯都会带来新的则表现出了新一代A4气质上的变化，整车会显得更年轻，更有活力，就像这组最新效看点，而更加显眼的腰线则表现出了新一代A4气质上的变化，整车会显得更年轻，更有活力，就像这组最新效果图所描绘出的。而对比之前的谍照，这组效.按照奥迪新一代A4将会在今年2月发布，随后于3月的日内瓦车展上与公众见面的时间节点来推断的化，新一代A4 L长轴距版车型最快有望在今年底或者明年引入国产，而正式上市的时间肯定是在2016年。 </p>
+                        <img src="http://192.168.4.155/foobar/img17.jpg" />
+                        <p>按照奥迪新一代A4将会在今年2月发布，随后于3月的日内瓦车展上与公众见面的时间节点来推断的化，新一代A4 L长轴距版车型最快有望在今年底或者明年引入国产，而正式上市的时间肯定是在2016年。</p>
+                        <p>根据先前的一系列路试车谍照，我们知道新一代A4的外观设计还是从现款车型进化而来，车身轮廓让人觉得很熟悉，依旧是一种四平八稳的保守姿态，但整个外观风格还是更趋硬朗。前脸的新款大嘴进气隔栅和头灯都会带来新的则表现出了新一代A4气质上的变化，整车会显得更年轻，更有活力，就像这组最新效看点，而更加显眼的腰线则表现出了新一代A4气质上的变化，整车会显得更年轻，更有活力，就像这组最新效果图所描绘出的。而对比之前的谍照，这组效.按照奥迪新一代A4将会在今年2月发布，随后于3月的日内瓦车展上与公众见面的时间节点来推断的化，新一代A4 L长轴距版车型最快有望在今年底或者明年引入国产，而正式上市的时间肯定是在2016年。 </p>
+                    </div>
+                    <!-- 点赞、分享按钮 -->
+                    <div class="interact bdsharebuttonbox">
+                        <a class="fore1" href="#">赞</a>
+                        <a href="javascript:void" class="fore2 bds_more" data-cmd="more">分享</a>
+                    </div>
+                    <!-- 页签 -->
+                    <div class="tab-view">
+                        <ul class="tab-view-hd">
+                            <li class="current">看了此文章的人还看了</li>
+                        </ul>
+                        <div class="tab-view-bd">
+                            <div class="item">
+                                <ul class="news-list">
+                                    <li><a href="#">浙江多家银行出现存款失踪 违规贴息被指惹祸</a><span>2015-1-5</span></li>
+                                    <li><a href="#">浙江多家银行出现存款失踪 违规贴息被指惹祸</a><span>2015-1-5</span></li>
+                                    <li><a href="#">浙江多家银行出现存款失踪 违规贴息被指惹祸</a><span>2015-1-5</span></li>
+                                    <li><a href="#">浙江多家银行出现存款失踪 违规贴息被指惹祸</a><span>2015-1-5</span></li>
+                                </ul>
+                                <div class="flip fr">
+                                    <a href="#">上一篇：文章标题名称</a>
+                                    <a href="#">下一篇：文章标题名称</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 关键字 -->
+                    <div class="article-keyword">
+                        <dl>
+                            <dt>此文关键字:</dt>
+                            <dd><a href="#">机油</a></dd>
+                            <dd class="split">|</dd>
+                            <dd><a href="#">火花塞</a></dd>
+                            <dd class="split">|</dd>
+                            <dd><a href="#">助力油</a></dd>
+                            <dd class="split">|</dd>
+                            <dd><a href="#">机油滤芯</a></dd>
+                            <dd class="split">|</dd>
+                            <dd><a href="#">火花塞</a></dd>
+                            <dd class="split">|</dd>
+                            <dd><a href="#">助力油</a></dd>
+                            <dd class="split">|</dd>
+                            <dd><a href="#">机油滤芯</a></dd>
+                            <dd class="split">|</dd>
+                            <dd><a href="#">火花塞</a></dd>
+                            <dd class="split">|</dd>
+                            <dd><a href="#">助力油</a></dd>
+                            <dd class="split">|</dd>
+                            <dd><a href="#">机油滤芯</a></dd>
+                            <dd class="split">|</dd>
+                            <dd><a href="#">火花塞</a></dd>
+                            <dd class="split">|</dd>
+                            <dd><a href="#">助力油</a></dd>
+                        </dl>
+                    </div>
+                    <!-- 横幅 -->
+                    <div class="article-banner">
+                        <a href="#"><img src="http://192.168.4.155/foobar/img18.jpg" /></a>
+                    </div>
+                    <!-- 页签 -->
+                    <div class="tab-view">
+                        <ul class="tab-view-hd">
+                            <li class="current">推荐阅读</li>
+                        </ul>
+                        <div class="tab-view-bd">
+                            <div class="item">
+                                <ul class="news-list news-list-2">
+                                    <li><a href="#">浙江多家银行出被指惹祸浙江多家银行出被指惹祸浙江多家银行出被指惹祸浙江多家银行出被指惹祸</a><span>2015-1-5</span></li>
+                                    <li><a href="#">浙江多家银行出被指惹祸</a><span>2015-1-5</span></li>
+                                    <li><a href="#">浙江多家银行出被指惹祸</a><span>2015-1-5</span></li>
+                                    <li><a href="#">浙江多家银行出被指惹祸</a><span>2015-1-5</span></li>
+                                    <li><a href="#">浙江多家银行出被指惹祸</a><span>2015-1-5</span></li>
+                                    <li><a href="#">浙江多家银行出被指惹祸</a><span>2015-1-5</span></li>
+                                    <li><a href="#">浙江多家银行出被指惹祸</a><span>2015-1-5</span></li>
+                                    <li><a href="#">浙江多家银行出被指惹祸</a><span>2015-1-5</span></li>
+                                </ul>
+                                <div class="flip fr">
+                                    <a href="#">上一篇：文章标题名称</a>
+                                    <a href="#">下一篇：文章标题名称</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 评论 -->
+                <div class="comment">
+                    <ul class="info">
+                        <li><a href="#"><b>98</b>条评论</a></li>
+                        <li class="split">|</li>
+                        <li><a href="#"><b>200</b>人参与</a></li>
+                    </ul>
+                    <div class="reply">
+                        <div class="reply-box">
+                            <a class="avatar fl" href="#"><img src="http://192.168.4.155/foobar/defaultAvatar.jpg" /></a>
+                            <div class="textarea-box">
+                                <textarea class="fr" id="msg" name="msg"></textarea>
+                                <span></span>
+                                <div class="expression"></div>
+                                <a class="btn" href="#">发布</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment-all">
+                        <div class="title">
+                            <h3>最新评论</h3>
+                            <a class="renovate" href="#">刷新</a>
+                        </div>
+                        <ul class="comment-list">
+                            <li>
+                                <a class="avatar" href="#"><img src="http://192.168.4.155/foobar/defaultAvatar.jpg" /></a>
+                                <div class="comment-box">
+                                    <div class="user">
+                                        <a href="#">sfsef-21454362</a>
+                                        <span>[上海]</span>
+                                    </div>
+                                    <dl class="score fr">
+                                        <dt>对此文评分</dt>
+                                        <dd class="activa" />
+                                        <dd class="activa" />
+                                        <dd class="activa" />
+                                        <dd />
+                                        <dd />
+                                    </dl>
+                                    <p class="text">美国国防部高级研究项目局为其海军研制了期待已久的反舰导弹，但是这种新武器无法与计划抗衡的威胁之美国国防部高级研究项目局为其海军研制了期待已久的反舰导弹，但是这种新武器无法与之计划抗衡的威胁之</p>
+                                    <span class="time">今天 11:20 | <a href="#">举报</a></span>
+                                    <div class="interact">
+                                        <a class="fore1" href="#">赞</a>
+                                        <a class="fore2" href="javascript:void(0)">回复</a>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="text" value="回复：sfsef-21454362" />
+                                        <a href="javascript:void(0)" class="btn fr">提交</a>
+                                        <i></i>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a class="avatar" href="#"><img src="http://192.168.4.155/foobar/defaultAvatar.jpg" /></a>
+                                <div class="comment-box">
+                                    <div class="user">
+                                        <a href="#">sfsef-21454362</a>
+                                        <span>[上海]</span>
+                                    </div>
+                                    <dl class="score fr">
+                                        <dt>对此文评分</dt>
+                                        <dd class="activa" />
+                                        <dd class="activa" />
+                                        <dd class="activa" />
+                                        <dd />
+                                        <dd />
+                                    </dl>
+                                    <p class="text">美国国防部高级研究项目局为其海军研制了期待已久的反舰导弹，但是这种新武器无法与计划抗衡的威胁之美国国防部高级研究项目局为其海军研制了期待已久的反舰导弹，但是这种新武器无法与之计划抗衡的威胁之</p>
+                                    <span class="time">今天 11:20 | <a href="#">举报</a></span>
+                                    <div class="interact">
+                                        <a class="fore1" href="#">赞</a>
+                                        <a class="fore2" href="javascript:void(0)">回复</a>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="text" value="回复：sfsef-21454362" />
+                                        <a href="javascript:void(0)" class="btn fr">提交</a>
+                                        <i></i>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a class="avatar" href="#"><img src="http://192.168.4.155/foobar/defaultAvatar.jpg" /></a>
+                                <div class="comment-box">
+                                    <div class="user">
+                                        <a href="#">sfsef-21454362</a>
+                                        <span>[上海]</span>
+                                    </div>
+                                    <dl class="score fr">
+                                        <dt>对此文评分</dt>
+                                        <dd class="activa" />
+                                        <dd class="activa" />
+                                        <dd class="activa" />
+                                        <dd />
+                                        <dd />
+                                    </dl>
+                                    <p class="text">美国国防部高级研究项目局为其海军研制了期待已久的反舰导弹，但是这种新武器无法与计划抗衡的威胁之美国国防部高级研究项目局为其海军研制了期待已久的反舰导弹，但是这种新武器无法与之计划抗衡的威胁之</p>
+                                    <span class="time">今天 11:20 | <a href="#">举报</a></span>
+                                    <div class="interact">
+                                        <a class="fore1" href="#">赞</a>
+                                        <a class="fore2" href="javascript:void(0)">回复</a>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="text" value="回复：sfsef-21454362" />
+                                        <a href="javascript:void(0)" class="btn fr">提交</a>
+                                        <i></i>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="pagination">
+                            <li><a href="#">首页</a></li>
+                            <li><a href="#">上一页</a></li>
+                            <li class="current"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">6</a></li>
+                            <li><a href="#">7</a></li>
+                            <li><a href="#">...</a></li>
+                            <li><a href="#">下一页</a></li>
+                            <li><a href="#">最后一页</a></li>
+                        </ul>
+                    </div> 
+                </div>
+                <!-- 内页横幅 -->
+                <div class="inside-banner">
+                    <a href="#"><img src="http://192.168.4.155/foobar/banner.jpg" /></a>
+                </div>
+         </div>
+            <!-- 主体侧边栏 -->
+            <div class="main-sidebar sm-hidden fl">
+            
+			<div class="tpl-blk">
+				<button class="btn btn-success blk-edit-btn"
+					ng-click="edit('blk001')">
+					<span class="glyphicon glyphicon-pencil"></span> 编辑
+				</button>
+				<div ng-bind-html="projPageData.conf['blk001']"></div>
+			</div>
+                                <div class="ad-pic" style="display: none;">
+                    <a href="#"><img src="http://192.168.4.155/foobar/adImg1.jpg" /></a>
+                </div>
+                <div class="module-box">
+                    <div class="module module-20">
+                        <div class="module-hd">
+                            <h4><a href="#">奔宝汽配新闻中心</a></h4>
+                            <a class="more" href="#">更多 >></a>
+                        </div>
+                        <div class="module-bd">
+                            <ul class="news-list">
+                                <li class="fl">
+                                    <a href="#"><img src="http://192.168.4.155/foobar/img5.jpg" /><span>120句古诗文经典让你受用不尽！</span></a>
+                                </li>
+                                <li class="fr">
+                                    <a href="#"><img src="http://192.168.4.155/foobar/img5.jpg" /><span>120句古诗文经典让你受用不尽！</span></a>
+                                </li>
+                                <li class="fl">
+                                    <a href="#"><img src="http://192.168.4.155/foobar/img5.jpg" /><span>120句古诗文经典让你受用不尽！</span></a>
+                                </li>
+                                <li class="fr">
+                                    <a href="#"><img src="http://192.168.4.155/foobar/img5.jpg" /><span>120句古诗文经典让你受用不尽！</span></a>
+                                </li>
+                                <li class="fl">
+                                    <a href="#"><img src="http://192.168.4.155/foobar/img5.jpg" /><span>120句古诗文经典让你受用不尽！</span></a>
+                                </li>
+                                <li class="fr">
+                                    <a href="#"><img src="http://192.168.4.155/foobar/img5.jpg" /><span>120句古诗文经典让你受用不尽！</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="module-box">
+                    <div class="module module-21">
+                        <div class="module-hd">
+                            <ul class="tab">
+                                <li class="span-2 current"><a href="#">资质认证</a></li>
+                                <li class="span-2"><a href="#">成功案例</a></li>
+                            </ul>
+                        </div>
+                        <div class="module-bd">
+                            <ul class="news-list">
+                                <li class="img-text adaptive current">
+                                    <div class="fl pic-box">
+                                        <a href="#"><img src="http://192.168.4.155/foobar/img7.jpg" /></a>
+                                    </div>
+                                    <div class="fr info">
+                                        <h5><a href="#">11111-30机油</a></h5>
+                                        <p>不久前，江西吉安市委书记王萍江西吉安市委书记王萍江西吉安市委书记王萍...</p>
+                                    </div>
+                                </li>
+                                <li class="img-text adaptive">
+                                    <div class="fl pic-box">
+                                        <a href="#"><img src="http://192.168.4.155/foobar/img7.jpg" /></a>
+                                    </div>
+                                    <div class="fr info">
+                                        <h5><a href="#">1111多5W-30机油</a></h5>
+                                        <p>不久前，江西吉安市委书记王萍江西吉安市委书记王萍江西吉安市委书记王萍...</p>
+                                    </div>
+                                </li>
+                                <li class="img-text adaptive">
+                                    <div class="fl pic-box">
+                                        <a href="#"><img src="http://192.168.4.155/foobar/img7.jpg" /></a>
+                                    </div>
+                                    <div class="fr info">
+                                        <h5><a href="#">1111多5W-30机油</a></h5>
+                                        <p>不久前，江西吉安市委书记王萍江西吉安市委书记王萍江西吉安市委书记王萍...</p>
+                                    </div>
+                                </li>
+                                <li class="img-text adaptive">
+                                    <div class="fl pic-box">
+                                        <a href="#"><img src="http://192.168.4.155/foobar/img7.jpg" /></a>
+                                    </div>
+                                    <div class="fr info">
+                                        <h5><a href="#">1111多5W-30机油</a></h5>
+                                        <p>不久前，江西吉安市委书记王萍江西吉安市委书记王萍江西吉安市委书记王萍...</p>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="news-list">
+                                <li class="img-text adaptive current">
+                                    <div class="fl pic-box">
+                                        <a href="#"><img src="http://192.168.4.155/foobar/img7.jpg" /></a>
+                                    </div>
+                                    <div class="fr info">
+                                        <h5><a href="#">嘉实多5W-30机油</a></h5>
+                                        <p>不久前，江西吉安市委书记王萍江西吉安市委书记王萍江西吉安市委书记王萍...</p>
+                                    </div>
+                                </li>
+                                <li class="img-text adaptive">
+                                    <div class="fl pic-box">
+                                        <a href="#"><img src="http://192.168.4.155/foobar/img7.jpg" /></a>
+                                    </div>
+                                    <div class="fr info">
+                                        <h5><a href="#">嘉实多5W-30机油</a></h5>
+                                        <p>不久前，江西吉安市委书记王萍江西吉安市委书记王萍江西吉安市委书记王萍...</p>
+                                    </div>
+                                </li>
+                                <li class="img-text adaptive">
+                                    <div class="fl pic-box">
+                                        <a href="#"><img src="http://192.168.4.155/foobar/img7.jpg" /></a>
+                                    </div>
+                                    <div class="fr info">
+                                        <h5><a href="#">嘉实多5W-30机油</a></h5>
+                                        <p>不久前，江西吉安市委书记王萍江西吉安市委书记王萍江西吉安市委书记王萍...</p>
+                                    </div>
+                                </li>
+                                <li class="img-text adaptive">
+                                    <div class="fl pic-box">
+                                        <a href="#"><img src="http://192.168.4.155/foobar/img7.jpg" /></a>
+                                    </div>
+                                    <div class="fr info">
+                                        <h5><a href="#">嘉实多5W-30机油</a></h5>
+                                        <p>不久前，江西吉安市委书记王萍江西吉安市委书记王萍江西吉安市委书记王萍...</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="module-box" style="display: none;">
+                    <div class="module module-6">
+                        <div class="module-hd">
+                            <h4><a href="#">新车到店</a></h4>
+                            <a class="more" href="#">更多 >></a>
+                        </div>
+                        <div class="module-bd">
+                            <div class="img-title fl">
+                                <a href="#"><img src="http://192.168.4.155/foobar/img9.jpg" /><span>文章标题名称</span></a>
+                            </div>
+                            <div class="img-title fr">
+                                <a href="#"><img src="http://192.168.4.155/foobar/img9.jpg" /><span>文章标题名称</span></a>
+                            </div>
+                            <ul class="news-list">
+                                <li><a href="#">欢乐贺新年锋范售全国各地 让利2.7万元</a></li>
+                                <li><a href="#">欢乐贺新年锋范售全国各地 让利2.7万元</a></li>
+                                <li><a href="#">欢乐贺新年锋范售全国各地 让利2.7万元</a></li>
+                                <li><a href="#">欢乐贺新年锋范售全国各地 让利2.7万元</a></li>
+                                <li><a href="#">欢乐贺新年锋范售全国各地 让利2.7万元</a></li>
+                                <li><a href="#">欢乐贺新年锋范售全国各地 让利2.7万元</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="module-box">
+                    <div class="module module-23">
+                        <div class="module-hd">
+                            <h4><a href="#">热点标签</a></h4>
+                        </div>
+                        <div class="module-bd">
+                            <a href="#">汽车配件批发</a>
+                            <a href="#">宝马保养件</a>
+                            <a href="#">宝马配件</a>
+                            <a href="#">宝马底盘件</a>
+                            <a href="#">宝马改装</a>
+                            <a href="#">汽车配件批发</a>
+                            <a href="#">宝马保养件</a>
+                            <a href="#">宝马配件</a>
+                            <a href="#">宝马底盘件</a>
+                            <a href="#">宝马改装</a>
+                            <a href="#">汽车配件批发</a>
+                            <a href="#">宝马保养件</a>
+                            <a href="#">宝马配件</a>
+                            <a href="#">宝马底盘件</a>
+                            <a href="#">宝马改装</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="module-box pin">
+                    <div class="module module-22">
+                        <div class="module-hd">
+                            <h4><a href="#">联系我们</a></h4>
+                        </div>
+                        <div class="module-bd">
+                            <div class="pic-box"><img src="http://192.168.4.155/foobar/img8.jpg" /></div>
+                            <p>无锡奔宝汽车配件贸易有限公司</p>
+                            <dl>
+                                <dt>400电话：</dt>
+                                <dd>400-0000-xxx</dd>
+                            </dl>
+                            <dl>
+                                <dt>公司传真：</dt>
+                                <dd>0755-822633xxx</dd>
+                            </dl>
+                            <dl>
+                                <dt>邮箱：</dt>
+                                <dd>masterlijf@hotmail.com</dd>
+                            </dl>
+                            <dl>
+                                <dt>公司地址：</dt>
+                                <dd>无锡市广益汽配城<br />B—2—123号</dd>
+                            </dl>
+                            <div class="qr-code">
+                                <img src="http://192.168.4.155/foobar/QRCode.jpg" />扫一扫
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 底部 -->
+    <div class="footer">
+        <!-- 1.底部链接列表 -->
+        <div class="link-list link-list-1">
+            <div class="w">
+                <dl class="span-6">
+                    <dt><a href="#">宝马保养件</a></dt>
+                    <dd><a href="#">机油</a></dd>
+                    <dd><a href="#">火花塞</a></dd>
+                    <dd><a href="#">助力油</a></dd>
+                    <dd><a href="#">机油滤芯</a></dd>
+                    <dd><a href="#">刹车片</a></dd>
+                    <dd><a href="#">空气滤芯</a></dd>
+                    <dd><a href="#">刹车盘</a></dd>
+                </dl>
+                <dl class="span-6">
+                    <dt><a href="#">宝马底盘件</a></dt>
+                    <dd><a href="#">防尘套</a></dd>
+                    <dd><a href="#">摆臂/托臂及衬套</a></dd>
+                    <dd><a href="#">平衡吊杆</a></dd>
+                    <dd><a href="#">减震器/止推轴承</a></dd>
+                </dl>
+                <dl class="span-6">
+                    <dt><a href="#">宝马电器件</a></dt>
+                    <dd><a href="#">大灯</a></dd>
+                    <dd><a href="#">尾灯</a></dd>
+                    <dd><a href="#">空调泵</a></dd>
+                    <dd><a href="#">音响</a></dd>
+                </dl>
+                <dl class="span-6">
+                    <dt><a href="#">宝马车身件</a></dt>
+                    <dd><a href="#">保险杠</a></dd>
+                    <dd><a href="#">轮眉</a></dd>
+                    <dd><a href="#">模块支架</a></dd>
+                    <dd><a href="#">大灯臂</a></dd>
+                </dl>
+                <dl class="span-6">
+                    <dt><a href="#">宝马冷却</a></dt>
+                    <dd><a href="#">汽油泵</a></dd>
+                    <dd><a href="#">进油软管</a></dd>
+                    <dd><a href="#">回流管路</a></dd>
+                    <dd><a href="#">节温器</a></dd>
+                    <dd><a href="#">蒸发器</a></dd>
+                    <dd><a href="#">冷凝器</a></dd>
+                </dl>
+                <dl class="span-6">
+                    <dt><a href="#">走进奔宝</a></dt>
+                    <dd><a href="#">关于奔宝</a></dd>
+                    <dd><a href="#">联系奔宝</a></dd>
+                    <dd><a href="#">诚聘英才</a></dd>
+                    <dd><a href="#">网站地图</a></dd>
+                    <dd><a href="#">在线留言</a></dd>
+                    <dd><a href="#">常见问题解答</a></dd>
+                </dl>
+            </div>
+        </div>
+        <div class="link-list link-list-2">
+            <div class="w">
+                <dl>
+                    <dt><a href="#">宝马保养件</a></dt>
+                    <dd><a href="#">机油</a></dd>
+                    <dd><a href="#">火花塞</a></dd>
+                    <dd><a href="#">助力油</a></dd>
+                    <dd><a href="#">机油滤芯</a></dd>
+                    <dd><a href="#">刹车片</a></dd>
+                    <dd><a href="#">空气滤芯</a></dd>
+                    <dd><a href="#">刹车盘</a></dd>
+                </dl>
+                <dl>
+                    <dt><a href="#">宝马底盘件</a></dt>
+                    <dd><a href="#">防尘套</a></dd>
+                    <dd><a href="#">摆臂/托臂及衬套</a></dd>
+                    <dd><a href="#">平衡吊杆</a></dd>
+                    <dd><a href="#">减震器/止推轴承</a></dd>
+                </dl>
+                <dl>
+                    <dt><a href="#">宝马电器件</a></dt>
+                    <dd><a href="#">大灯</a></dd>
+                    <dd><a href="#">尾灯</a></dd>
+                    <dd><a href="#">空调泵</a></dd>
+                    <dd><a href="#">音响</a></dd>
+                </dl>
+                <dl>
+                    <dt><a href="#">宝马车身件</a></dt>
+                    <dd><a href="#">保险杠</a></dd>
+                    <dd><a href="#">轮眉</a></dd>
+                    <dd><a href="#">模块支架</a></dd>
+                    <dd><a href="#">大灯臂</a></dd>
+                </dl>
+                <dl>
+                    <dt><a href="#">宝马冷却</a></dt>
+                    <dd><a href="#">汽油泵</a></dd>
+                    <dd><a href="#">进油软管</a></dd>
+                    <dd><a href="#">回流管路</a></dd>
+                    <dd><a href="#">节温器</a></dd>
+                    <dd><a href="#">蒸发器</a></dd>
+                    <dd><a href="#">汽油泵</a></dd>
+                    <dd><a href="#">进油软管</a></dd>
+                    <dd><a href="#">回流管路</a></dd>
+                    <dd><a href="#">节温器</a></dd>
+                    <dd><a href="#">蒸发器</a></dd>
+                    <dd><a href="#">汽油泵</a></dd>
+                    <dd><a href="#">进油软管</a></dd>
+                    <dd><a href="#">回流管路</a></dd>
+                    <dd><a href="#">节温器</a></dd>
+                    <dd><a href="#">蒸发器</a></dd>
+                    <dd><a href="#">汽油泵</a></dd>
+                    <dd><a href="#">进油软管</a></dd>
+                    <dd><a href="#">回流管路</a></dd>
+                    <dd><a href="#">节温器</a></dd>
+                    <dd><a href="#">蒸发器</a></dd>
+                    <dd><a href="#">冷凝器</a></dd>
+                </dl>
+                <dl>
+                    <dt><a href="#">走进奔宝</a></dt>
+                    <dd><a href="#">关于奔宝</a></dd>
+                    <dd><a href="#">联系奔宝</a></dd>
+                    <dd><a href="#">诚聘英才</a></dd>
+                    <dd><a href="#">网站地图</a></dd>
+                    <dd><a href="#">在线留言</a></dd>
+                    <dd><a href="#">常见问题解答</a></dd>
+                </dl>
+            </div>
+        </div>
+        <!-- 2.底部导航 -->
+        <div class="footer-nav">
+            <ul class="w">                                                                                     
+                <li><a href="#">奔宝首页</a></li>
+                <li><a href="#">宝马保养件</a></li>
+                <li><a href="#">宝马底盘件</a></li>
+                <li><a href="#">宝马车身件</a></li>
+                <li><a href="#">奔宝产品中心</a></li>
+                <li><a href="#">批发支持</a></li>
+                <li><a href="#">网站地图</a></li>
+                <li><a href="#">走进奔宝</a></li>
+                <li class="last"><a href="#">联系奔宝</a></li>
+            </ul>
+        </div>
+        <!-- 3.底部信息 -->
+        <div class="footer-info">
+         <div class="w">
+             <div class="fl">
+                 <a href="#"><img src="http://192.168.4.155/foobar/footerLogo.jpg" /></a>
+             </div>
+             <div class="fr">
+                 <p>无锡奔宝汽车配件贸易有限公司　备案号：苏ICP备14032160号</p>
+                 <p>客服热线：400-0000-651</p>
+                 <p>传真：0510-82263370　邮箱：106736050@qq.com</p>
+                 <p>地址：无锡市广益汽配城B-2-123号</p>
+                 <p class="last">技术支持：<a href="#">牛商网</a></p>
+             </div>
+         </div>
+        </div>
+    </div>
+	</div>
+	<div ui-view="blkEdit"></div>
+	
+	
+    <script src="http://192.168.4.155/foobar/jquery-1.11.3.min.js"> 
+ 
+</script>
+    <script src="http://192.168.4.155/foobar/jquery.pin.js"> 
+ 
+</script>
+    <script src="http://192.168.4.155/foobar/response.js"> 
+ 
+</script>
+    <script src="http://192.168.4.155/foobar/share.js"> 
+ 
+</script>
+    <script src="http://192.168.4.155/foobar/demo.js"> 
+ 
+</script>
+    <script src="http://192.168.4.155/foobar/common.js"> 
+ 
+</script>
+    <script src="http://192.168.4.155/foobar/information_detail.js"> 
+ 
+</script>
+    <script src="http://192.168.4.155/foobar/module.js"> 
+ 
+</script>
+	<script type="text/javascript"
+		src="http://localhost:8083/pccms/plugin/jquery/jquery-1.11.3.js"> 
+ 
+</script>
+	<script type="text/javascript" src="http://localhost:8083/pccms/plugin/jquery/jquery-ui.js"> 
+ 
+</script><script type="text/javascript" src="http://localhost:8083/pccms/plugin/jquery/jquery-ui-timepicker-addon.js"> 
+ 
+</script><script type="text/javascript" src="http://localhost:8083/pccms/plugin/angular/angular.js"> 
+ 
+</script><script type="text/javascript" src="http://localhost:8083/pccms/plugin/angular/angular-locale_zh-cn.js"> 
+ 
+</script><script type="text/javascript" src="http://localhost:8083/pccms/plugin/angular/angular-sanitize.js"> 
+ 
+</script><script type="text/javascript" src="http://localhost:8083/pccms/plugin/angular/angular-ui-router.js"> 
+ 
+</script><script type="text/javascript" src="http://localhost:8083/pccms/plugin/bootstrap/ui-bootstrap-tpls-0.12.1.js"> 
+ 
+</script><script type="text/javascript" src="http://localhost:8083/pccms/js/common-jquery.js"> 
+ 
+</script><script type="text/javascript" src="http://localhost:8083/pccms/js/common.js"> 
+ 
+</script><script type="text/javascript" src="http://localhost:8083/pccms/js/pageEdit.js"> 
+ 
+</script><script type="text/javascript"> 
+ 
+var sysBasePath = "http://localhost:8083/pccms" ;var projPageData = {"id":"560b30de8fe8b99f2ca9db5b","bakConf":{"bak":[],"type":"same"},"conf":{"blk001":"   <style>\r\n\t    *{margin: 0; padding: 0;}\r\n\t    .main-sidebar {width: 220px;font: 12px/1.5 宋体, 'Microsoft Yahei', sans-serif;}\r\n\t\t.vice-nav {margin-bottom: 20px;}\r\n\t\t.vice-nav a {text-decoration: none;}\r\n\t\t.vice-nav .vice-nav-hd {height: 38px; line-height: 38px; padding-left: 20px; font-size: 14px; color: #fff; background-color: #fb007e;}\r\n\t\t.vice-nav .vice-nav-bd {border: 1px solid #dbdbdb; border-top: 0 none; background-color: #fafafa;}\r\n\t\t.vice-nav-left .menu {border-bottom: 1px dashed #d8d8d8; width: 100%; overflow: hidden;}\r\n\t\t.vice-nav-left .menu a{display: block; line-height: 37px; padding: 0px 20px 0 30px; overflow: hidden; color: #666; background: url(http://192.168.4.155/foobar/icon.png) no-repeat 10px -638px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}\r\n\t\t.vice-nav-left .menu a:hover{background-color: #fff;}\r\n\t\t.vice-nav-left .menu li {line-height: 25px; width: 100%; overflow: hidden;}\r\n\t\t.vice-nav-left .menu li  {padding-left: 50px; color: #777; background-position: 30px -638px;}\r\n\t\t.vice-nav-left .menu:last-child {border-bottom: 0 none;}\r\n    </style>\r\n\t<div class=\"main-sidebar\">\r\n        <div class=\"vice-nav  vice-nav-left\">\r\n            <h3 class=\"vice-nav-hd\">资讯分类</h3>\r\n            <ul class=\"vice-nav-bd\">\r\n            \t                <li class=\"menu\"><a href=\"www.baidu.com\">德逸轩资讯</a></li>\r\n                                <li class=\"menu\"><a href=\"www.baidu.com\">客户中心</a></li>\r\n                            </ul>\r\n        </div>\r\n    </div>"}};
+</script></body></html>

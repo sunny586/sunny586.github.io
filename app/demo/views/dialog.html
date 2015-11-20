@@ -1,0 +1,39 @@
+<div class="row">
+  	<div class="col-md-12">
+    	<ol class="breadcrumb">
+		  <li class="active">弹窗示例</li>
+		</ol>
+  	</div>
+</div>
+<div class="row">
+  	<div class="col-md-12">
+  	    <h2>弹出窗应用实例</h2>
+	    <script type="text/ng-template" id="myModalContent.html">
+            <div class="modal-header">
+                <h3 class="modal-title">我是一个模态框</h3>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    <li ng-repeat="item in items">
+                        <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
+                    </li>
+                </ul>
+                选中: <b>{{ selected.item }}</b>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="button" ng-click="ok()">确定</button>
+                <button class="btn btn-default" type="button" ng-click="cancel()">取消</button>
+            </div>
+      </script>
+	
+	    <button type="button" class="btn btn-default" ng-click="open()">中等大小</button>
+	    <button type="button" class="btn btn-default" ng-click="open('lg')">大窗体</button>
+	    <button type="button" class="btn btn-default" ng-click="open('sm')">小窗体</button>
+		<hr />
+  	    <h2>工具弹窗实例</h2>
+	    <button type="button" class="btn btn-default" ng-click="openUtils('alert')">提示框</button>
+	    <button type="button" class="btn btn-default" ng-click="openUtils('confirm')">确认框</button>
+	    <button type="button" class="btn btn-default" ng-click="openUtils('openWin')">通用弹窗</button>
+  	    
+  	</div>
+</div>

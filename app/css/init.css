@@ -1,0 +1,10 @@
+html{
+    font-family: 12px "Microsoft Yahei";
+}
+html,body {
+    background-color:#fefefe;
+    height:100%;
+    width:100%;
+    font-size:12px;
+    color:#515567
+}

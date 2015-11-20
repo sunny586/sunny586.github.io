@@ -1,0 +1,47 @@
+<div class="row">
+  	<div class="col-md-12">
+    	<ol class="breadcrumb">
+		  <li class="active">富文本编辑器</li>
+		</ol>
+  	</div>
+</div>
+<div class="row">
+  	<div class="col-md-12">
+  		<div ng-show="status">在线demo：<a href="http://zqjimlove.github.io/angular-ueditor/" target="_block">http://zqjimlove.github.io/angular-ueditor/</a></div>
+  		<div ng-show="status">github地址：<a href="https://github.com/zqjimlove/angular-ueditor" target="_block">https://github.com/zqjimlove/angular-ueditor</a></div>
+  		<div ng-show="status">参考文档：<a href="http://fex.baidu.com/ueditor/" target="_block">http://fex.baidu.com/ueditor/</a></div>
+  		
+  		<h2>完整的ueditor示例</h2>
+        <div ueditor ng-model="content"></div>
+        <div ng-show="status" style="border:1px solid #ccc;color:#999;margin:20px 0;padding:10px;">{{content}}</div>
+        
+		<hr />
+        <h2>自定义工具栏示例</h2>
+        <div ueditor ng-model="content2" config="config2"></div>
+        <div ng-show="status" style="border:1px solid #ccc;color:#999;margin:20px 0;padding:10px;">{{content2}}</div>
+        
+		<hr />
+       	<h2>表单非空验证</h2>
+        <form name="myForm">
+            <div class="ueditor" name="content" ng-model="content3" config="config3" required></div>
+        </form>
+
+        <div style="background:#FFF;color:red" ng-show="status">
+            <div>content = {{content3}}</div>
+            <br>  
+            <tt>myForm.content.$valid = {{myForm.content.$valid}}</tt>
+            <br>  
+            <tt>myForm.content.$error = {{myForm.content.$error}}</tt>
+            <br>  
+            <tt>myForm.$valid = {{myForm.$valid}}</tt>
+            <br>  
+            <tt>myForm.$error.required = {{!!myForm.$error.required}}</tt>
+            <br>
+        </div>
+        
+		<hr />
+        <h2 ng-show="status">源码编辑</h2>
+        <div ng-show="status" ueditor ng-model="content4" config="config4"></div>
+        <div ng-show="status" style="border:1px solid #ccc;color:#999;margin:20px 0;padding:10px;">{{content4}}</div>
+  	</div>
+</div>

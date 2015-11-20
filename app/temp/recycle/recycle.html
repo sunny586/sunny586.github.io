@@ -1,0 +1,68 @@
+<div class="row">
+  	<div class="col-xs-4">
+	   	<ol class="breadcrumb">
+		    <li><a href="../index.html">首页</a></li>
+		    <li><a href="index.html">资讯管理</a></li>
+		    <li class="active">回收站</li>
+		</ol>
+  	</div>
+</div>
+<div class="row">
+    <div class="col-xs-5">
+	    <div class="input-group">
+	        <input type="text" class="form-control" ng-model="queryParams.title" placeholder="请输入关键字查询">
+	        <span class="input-group-btn">
+	            <button type="button" class="btn btn-default" ng-click="searchRecycle()"><i class="fa fa-search"></i></button>
+	        </span>
+	    </div>
+    </div>
+    <div class="col-xs-7 text-right">
+    	<button type="button" class="btn btn-default" ng-click="replayBatch()"><i class="fa fa-reply-all"></i> 批量还原</button>
+    	<button type="button" class="btn btn-default" ng-click="deleteBatch()"><i class="fa fa-trash-o"></i> 批量彻底删除</button>
+    	<button type="button" class="btn btn-default" ng-click="reloadRecycle()"><i class="fa fa-refresh"></i> 刷新</button>
+    	<button type="button" class="btn btn-default" ng-click="clearRecycle()"><i class="fa fa-trash-o"></i> 全部清空</button>
+    	<button type="button" class="btn btn-default" ng-click="check(dataList)"> 全选</button>
+    	<button type="button" class="btn btn-default" ng-click="fanCheck(dataList)"> 反选</button>
+    </div>
+</div>
+<div class="row c-row">
+    <div class="col-xs-12">
+    	<table class="table table-hover">
+    		<thead>
+		        <tr>
+		        	<th><input type="checkbox" ng-model="isCheckAll" ng-click="checkAll()"/></th>
+		            <th>标题名称</th>
+		            <th>类型</th>
+		            <th>删除时间</th>
+		           <!--  <th>录入时间</th> -->
+		            <th class="text-center">操作</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		    	<tr ng-repeat="item in dataList">
+		        	<td><input type="checkbox" ng-model="item.isChecked" ng-click="checkItem(item)"/></td>
+		    		<td>{{item.name}}</td>
+		    		<td>{{item.typeName}}</td>
+		    		<td>{{item.lastUpdTime}}</td>
+		    		<!-- <td>{{item.createdTime}}</td> -->
+		    		<td class="text-center">
+		    			<div class="btn-group">
+		    				<button type="button" class="btn btn-default btn-sm" ng-click="replayRecycle(item._id)"><i class="fa fa-reply"></i> 还原</button>
+		    				<!-- <a type="button" class="btn btn-default btn-sm" target="_block" ng-href="/pccms/proj/Recycle/{{item._id}}/view"><i class="fa fa-eye"></i> 预览</a> -->
+		    				<button type="button" class="btn btn-default btn-sm" ng-click="delRecycle(item._id)"><i class="fa fa-trash-o"></i> 彻底删除</button>
+		    			</div>
+		    		</td>
+		    	</tr>
+		    </tbody>
+		    <!--分页条-->
+            <tfoot class="hide-if-no-paging">
+                <tr class="c-channel-tfoot">
+                  <td colspan="5" class="text-center" style="width:100%;">
+                      <uib-pagination total-items="totalItems" ng-model="currentPage" items-Per-Page="pageSize" max-size="maxSize"  class="pagination-sm m-t-none m-b" boundary-links="true" rotate="false"  ng-change="pageChanged()" previous-text="上一页" next-text="下一页" first-text="首页" last-text="末页"></uib-pagination>
+                  </td>
+                </tr>
+            </tfoot>
+            <!--分页条end-->  
+		</table>
+	</div>
+</div>

@@ -1,0 +1,82 @@
+<div class="row">
+  	<div class="col-md-12">
+    	<ol class="breadcrumb">
+		  <li class="active">按钮示例</li>
+		</ol>
+  	</div>
+</div>
+<div class="row">
+  	<div class="col-md-12">
+        <h2>按钮类型</h2>
+        <a class="btn btn-default" href="#">（a）Link</a>
+        <button class="btn btn-default" type="submit">（button）Button</button>
+        <hr />
+        <h2>按钮颜色</h2>
+        <!-- Standard button -->
+		<button type="button" class="btn btn-default">（默认样式）Default</button>
+		<!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+		<button type="button" class="btn btn-primary">（首选项）Primary</button>
+		<!-- Indicates a successful or positive action -->
+		<button type="button" class="btn btn-success">（成功）Success</button>
+		<!-- Contextual button for informational alert messages -->
+		<button type="button" class="btn btn-info">（一般信息）Info</button>
+		<!-- Indicates caution should be taken with this action -->
+		<button type="button" class="btn btn-warning">（警告）Warning</button>
+		<!-- Indicates a dangerous or potentially negative action -->
+		<button type="button" class="btn btn-danger">（危险）Danger</button>
+		<!-- Deemphasize a button by making it look like a link while maintaining button behavior -->
+		<button type="button" class="btn btn-link">（链接）Link</button>
+        <h2>按钮大小</h2>
+        <hr />
+        <p>
+		  <button type="button" class="btn btn-primary btn-lg">（大按钮）Large button</button>
+		  <button type="button" class="btn btn-default btn-lg">（大按钮）Large button</button>
+		</p>
+		<p>
+		  <button type="button" class="btn btn-primary">（默认尺寸）Default button</button>
+		  <button type="button" class="btn btn-default">（默认尺寸）Default button</button>
+		</p>
+		<p>
+		  <button type="button" class="btn btn-primary btn-sm">（小按钮）Small button</button>
+		  <button type="button" class="btn btn-default btn-sm">（小按钮）Small button</button>
+		</p>
+		<p>
+		  <button type="button" class="btn btn-primary btn-xs">（超小尺寸）Extra small button</button>
+		  <button type="button" class="btn btn-default btn-xs">（超小尺寸）Extra small button</button>
+		</p>
+        <hr />
+        <h2>块级按钮：添加 .btn-block 类可以将其拉伸至父元素100%的宽度</h2>
+        <button type="button" class="btn btn-primary btn-lg btn-block">（块级元素）Block level button</button>
+        <button type="button" class="btn btn-default btn-lg btn-block">（块级元素）Block level button</button>
+        <hr />
+        <h2>angular 实例应用</h2>
+	    <h4>Single toggle</h4>
+	    <pre>{{singleModel}}</pre>
+	    <button type="button" class="btn btn-primary" ng-model="singleModel" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
+	        Single Toggle
+	    </button>
+        <hr />
+	    <h4  ng-show="status">Checkbox</h4>
+	    <pre ng-show="status">Model: {{checkModel}}</pre>
+	    <pre ng-show="status">Results: {{checkResults}}</pre>
+	    <div class="btn-group" ng-show="status">
+	        <label class="btn btn-primary" ng-model="checkModel.left" btn-checkbox>Left</label>
+	        <label class="btn btn-primary" ng-model="checkModel.middle" btn-checkbox>Middle</label>
+	        <label class="btn btn-primary" ng-model="checkModel.right" btn-checkbox>Right</label>
+	    </div>
+        <hr ng-show="status"/>
+        <h4>按钮组</h4>
+	    <h4 ng-show="status">Radio &amp; Uncheckable Radio</h4>
+	    <pre ng-show="status">{{radioModel || 'null'}}</pre>
+	    <div class="btn-group">
+	        <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Left'">Left</label>
+	        <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Middle'">Middle</label>
+	        <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Right'">Right</label>
+	    </div>
+	    <div class="btn-group">
+	        <label class="btn btn-success" ng-model="radioModel" btn-radio="'Left'" uncheckable>Left</label>
+	        <label class="btn btn-success" ng-model="radioModel" btn-radio="'Middle'" uncheckable>Middle</label>
+	        <label class="btn btn-success" ng-model="radioModel" btn-radio="'Right'" uncheckable>Right</label>
+	    </div>
+  	</div>
+</div>

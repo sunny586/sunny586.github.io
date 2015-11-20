@@ -1,0 +1,25 @@
+<form class="form-horizontal">
+    <div class="modal-header">
+        <h4 class="modal-title">网站操作信息提示 <button aria-label="Close" ng-click="cancel()" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button></h4>
+        
+    </div>
+    <div class="modal-body">
+        <div class="row">
+              <div class=" col-md-3">
+                
+                  <i class="glyphicon glyphicon-user" style="font-size:120px;"></i>
+                
+              </div>
+               <div class=" col-md-9">
+                
+                 <p>确定要关闭当前页面吗？关闭后，后台编辑人员将不能访问这个模块。</p>
+                
+              </div>
+                  
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="updModule()">确定</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">取消</button>
+    </div>
+</form>

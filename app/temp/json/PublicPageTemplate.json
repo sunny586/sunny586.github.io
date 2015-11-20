@@ -1,0 +1,98 @@
+{
+    "model": "PublicPageTemplate",
+    "_id": "singlePage1",
+    "imgSm": "/img/img1.jpg",
+    "imgMd": "../images/3.jpg",
+    "imgLg": "../images/3.jpg",
+    "imgFr": "../images/frm.jpg",
+    "tags": [
+        {
+            "id": "PAGETPLTAG001-01-01"
+        },
+        {
+            "id": "PAGETPLTAG001-02-01"
+        }
+    ],
+    "trucData": [
+        {
+            "publicBlkTplId": "PROJBLKTPL10000000",
+            "blkName": "版块1",
+            "type": "NAV",
+            "htmlContent": "<div>模板VM文件内容${}</div>",
+            "tplDs": [
+                {
+                    "name": "datasource1",
+                    "value": "ds001",
+                    "label": "数据源1"
+                }
+            ],
+            "confData": [
+                {
+                    "name": "var01",
+                    "value": "test00",
+                    "verify": "",
+                    "type": "",
+                    "label": ""
+                },
+                {
+                    "name": "var02",
+                    "value": "test00",
+                    "verify": "",
+                    "type": "",
+                    "label": ""
+                }
+            ]
+        },
+        {
+            "publicBlkTplId": "BLKTPL10000001",
+            "blkName": "版块2",
+            "type": "AD",
+            "htmlContent": "<div>模板VM文件内容2</div>",
+            "tplDs": [
+                {
+                    "name": "datasource3",
+                    "value": "ds003",
+                    "label": "数据源3"
+                }
+            ],
+            "confData": [
+                {
+                    "name": "var03",
+                    "value": "test00",
+                    "verify": "",
+                    "type": "",
+                    "label": ""
+                },
+                {
+                    "name": "var04",
+                    "value": "test00",
+                    "verify": "",
+                    "type": "",
+                    "label": ""
+                }
+            ]
+        }
+    ],
+    "htmlContent": "<html><div></div></html>",
+    "confData": [
+        {
+            "name": "var01",
+            "value": "test00",
+            "verify": "",
+            "type": "",
+            "label": ""
+        },
+        {
+            "name": "var02",
+            "value": "test00",
+            "verify": "",
+            "type": "",
+            "label": ""
+        }
+    ],
+    "name": "page template seser",
+    "lastUpdatedTime": 0,
+    "createdTime": 0,
+    "owner": "USER_10000000",
+    "site": "COMPANY10000000"
+}

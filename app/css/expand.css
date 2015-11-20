@@ -1,0 +1,4 @@
+/*****expand*****/
+.dtbox .xxtext{ width:80px !important; float:left; margin-right:10px;}
+.fr{ float:right;}
+.c-mkname{ white-space:  nowrap; text-overflow:ellipsis; overflow: hidden;}

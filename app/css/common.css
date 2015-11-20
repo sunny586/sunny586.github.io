@@ -1,0 +1,66 @@
+/*通用样式*/
+.c-list-col{overflow:hidden;display:table;width:100%;word-spacing:-6px;margin:0;padding:0;}
+.c-list-col > li{display:inline-table;*display:inline-block;display:inline\9;float:left\9;word-spacing:0;zoom:1;overflow:hidden;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+.c-list-col1 > li{width:100%;}
+.c-list-col2 > li{width:50%;}
+.c-list-col3 > li{width:33.333333%;}
+.c-list-col4 > li{width:25%;}
+.c-list-col5 > li{width:20%;}
+
+/*页面框架样式*/
+.c-header{height:114px;border-bottom:2px solid #f18d14;background: url(../img/hd_bg.jpg) no-repeat center top / cover;}
+.c-header .c-logo{float:left;margin-top:26px;width:334px;height:64px;background: url(../img/logo.png) no-repeat;}
+.c-header .c-manager{float:right;margin-right:-10px;text-align:right;padding-top:22px;}
+.c-header .c-manager > div{padding-top:15px;}
+.c-header .c-manager a{padding:0px 10px;}
+.c-header .c-manager .c-user-name{color:#f08300;cursor:default;}
+.c-footer{height:50px;line-height:50px;text-align:center;background-color:#fffaf4;border-top:2px solid #f18d14;}
+
+.c-menu-div{width:205px;min-height:300px;float:right;margin-right:-205px;}
+.c-menu-div .c-menu-title{height:50px;line-height:50px;color:#fff;font-size:18px;font-weight:bolder;text-align:center;background-color:#f08300;border:1px solid #f08300;}
+.c-menu-div .c-menu-box{border-top:none;background-color:#f6f6f6;font-size:14px;border-left:1px solid #e6e6e6;}
+.c-menu-div .c-menu{position:relative;color:#f08300;border-bottom:1px solid #e6e6e6;}
+.c-menu-div .c-menu,
+.c-menu-div .c-menu-item{display:block;height:40px;line-height:40px;padding:0 15px 0 80px;border-left:4px solid #f6f6f6;border-right:1px solid #e6e6e6;border-top:1px solid #f6f6f6;border-bottom:1px solid #e6e6e6;cursor:pointer;}
+.c-menu-div .c-menu:hover,
+.c-menu-div .c-menu.selected{border-left:4px solid #f08300;background-color:#fefefe;}
+.c-menu-div .c-menu-item{border-bottom:1px solid #f6f6f6;}
+.c-menu-div .c-menu-item:hover,
+.c-menu-div .c-menu-item.selected{border-left:4px solid #f08300;border-right:1px solid #fefefe;border-bottom:1px solid #e6e6e6;border-top:1px solid #e6e6e6;background-color:#fefefe;}
+.c-menu-div .c-menu .glyphicon{position:absolute;left:45px;top:7px;color:#fefefe;padding:6px;font-size:14px;background-color:#f08300;border-radius:100%;}
+.c-menu-div .c-menu-list{border-bottom:1px solid #e6e6e6;display:none;}
+.c-menu-div .expend + .c-menu-list{display:block;}
+
+.c-main{min-height:300px;margin-bottom:40px;float:right;width:100%;}
+.c-main .c-main-box{margin-left:220px;}
+
+/*模板筛选页样式*/
+.c-page-filter{height:50px;line-height:50px;text-align:right;}
+.c-page-filter .total{font-size:12px;margin-left:5px;}
+.c-page-filter .count{color:red;}
+.c-page-filter .fa-question-circle{color:#286090;font-size:18px;vertical-align:middle;}
+
+.c-tag-table td.tag-label{width:120px;text-align:right;vertical-align:middle;font-weight:bolder;}
+.c-tag-table td .radio{margin:5px 0;}
+.c-tag-table td .radio label{margin-left:28px;}
+.c-tag-table td.tag-items{padding-top:0;padding-bottom:4px;}
+.c-tag-table ul{margin:0;padding:0;display:block;overflow:hidden;}
+.c-tag-table ul li{padding:3px 6px;float:left;list-style:none;border:1px solid #fefefe;margin:4px 0 0 4px;cursor:pointer;}
+.c-tag-table ul li.selected{border:1px solid #f08300;}
+.c-tag-table ul li.disabled{color:#bbb;cursor:default;}
+
+.c-tpl-list{display:block;overflow:hidden;margin:0;padding:0;}
+.c-tpl-list li{list-style:none;padding:5px 5px 10px;}
+.c-tpl-list li .img{width:100%;}
+.c-tpl-list li .item{padding:5px 5px 10px;border:1px solid #ccc;}
+.c-tpl-list li .desc{margin-top:6px;font-size:12px;}
+.c-tpl-list li .action-btn{text-align:center;}
+.c-tpl-list li .action-btn .btn{width:80px;margin-right:10px;}
+.c-tpl-list li .action-btn .btn:last-child{margin-right:0px;}
+
+.c-row{margin-top:15px;}
+
+/*全局图片预览弹窗样式*/
+.c-dialog-img-preview{height:500px;line-height:500px;text-align:center;}
+.c-dialog-img-preview i{position:absolute;top:4px;right:4px;font-size:20px;color:#ff4242;border:1px solid #ccc;width:30px;height:30px;line-height:28px;text-align:center;-moz-border-radius:15px;-webkit-border-radius:15px;border-radius:15px;-webkit-box-shadow:0 0 10px #ccc;-moz-box-shadow:0 0 10px #ccc;box-shadow:0 0 10px #ccc;}
+.c-dialog-img-preview img{max-width:100%;max-height:100%;}

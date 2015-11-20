@@ -1,0 +1,219 @@
+{
+	"isSuccess": true,
+	"data": {
+		"blk001": {
+			"tplId": "BLKTPL10000001",
+			"conf": [
+				{"name":"width","value":"100","label":"图片宽度","type":"0","verify":""},
+				{"name":"height","value":"200","label":"图片高度","type":"0","verify":""}
+			],
+			"tplDs":[{
+					"name": "datasource1",
+					"value": "ds001",
+					"label": "产品频道",
+					"dsList": [{
+						"name": "datasource01",
+						"value": "ds001",
+						"label": "推荐产品"
+					},
+					{
+						"name": "datasource02",
+						"value": "ds002",
+						"label": "热销产品"
+					},
+					{
+						"name": "datasource03",
+						"value": "ds003",
+						"label": "最新产品"
+					}]
+				},{
+					"name": "datasource2",
+					"value": "ds012",
+					"label": "资讯频道",
+					"dsList": [{
+						"name": "datasource01",
+						"value": "ds011",
+						"label": "推荐文章"
+					},
+					{
+						"name": "datasource02",
+						"value": "ds012",
+						"label": "热销文章"
+					},
+					{
+						"name": "datasource03",
+						"value": "ds013",
+						"label": "最新文章"
+					}]
+				}
+			],
+			"tplList": {
+				"BLKTPL10000001" : {
+					"img": "../img/tpl/tpl_blk1.png",
+					"conf": [
+						{"name":"width","value":"100","label":"图片宽度","type":"0","verify":""},
+						{"name":"height","value":"200","label":"图片高度","type":"0","verify":""}
+					],
+					"tplDs": [{
+							"name": "datasource1",
+							"value": "ds001",
+							"label": "产品频道",
+							"dsList": [{
+								"name": "datasource01",
+								"value": "ds001",
+								"label": "推荐产品"
+							},
+							{
+								"name": "datasource02",
+								"value": "ds002",
+								"label": "热销产品"
+							},
+							{
+								"name": "datasource03",
+								"value": "ds003",
+								"label": "最新产品"
+							}]
+						},{
+							"name": "datasource2",
+							"value": "ds012",
+							"label": "资讯频道",
+							"dsList": [{
+								"name": "datasource01",
+								"value": "ds011",
+								"label": "推荐文章"
+							},
+							{
+								"name": "datasource02",
+								"value": "ds012",
+								"label": "热销文章"
+							},
+							{
+								"name": "datasource03",
+								"value": "ds013",
+								"label": "最新文章"
+							}]
+						}
+					]
+				},
+				"BLKTPL10000002" : {
+					"img": "../img/tpl/tpl_blk2.png",
+					"conf": [
+						{"name":"width","value":"100","label":"宽度","type":"0","verify":""},
+						{"name":"height","value":"200","label":"高度","type":"0","verify":""}
+					],
+					"tplDs": [{
+							"name": "datasource1",
+							"value": "ds001",
+							"label": "产品频道",
+							"dsList": [{
+								"name": "datasource01",
+								"value": "ds001",
+								"label": "推荐产品"
+							},
+							{
+								"name": "datasource02",
+								"value": "ds002",
+								"label": "热销产品"
+							},
+							{
+								"name": "datasource03",
+								"value": "ds003",
+								"label": "最新产品"
+							}]
+						}
+					]
+				}
+			}
+		},
+		"blk002": {
+			"tplId": "BLKTPL10000002",
+			"conf": [
+				{"name":"width","value":"100","label":"图片宽度","type":"0","verify":""},
+				{"name":"height","value":"200","label":"图片高度","type":"0","verify":""}
+			],
+			"tplDs":[{
+					"name": "datasource1",
+					"value": "ds001",
+					"label": "产品频道"
+				}
+			],
+			"tplList": {
+				"BLKTPL10000001" : {
+					"img": "../img/tpl/tpl_blk1.png",
+					"conf": [
+						{"name":"width","value":"100","label":"图片宽度","type":"0","verify":""},
+						{"name":"height","value":"200","label":"图片高度","type":"0","verify":""}
+					],
+					"tplDs": [{
+							"name": "datasource1",
+							"value": "ds001",
+							"label": "产品频道",
+							"dsList": [{
+								"name": "datasource01",
+								"value": "ds001",
+								"label": "推荐产品"
+							},
+							{
+								"name": "datasource02",
+								"value": "ds002",
+								"label": "热销产品"
+							},
+							{
+								"name": "datasource03",
+								"value": "ds003",
+								"label": "最新产品"
+							}]
+						},{
+							"name": "datasource2",
+							"value": "ds012",
+							"label": "资讯频道",
+							"dsList": [{
+								"name": "datasource01",
+								"value": "ds011",
+								"label": "推荐文章"
+							},
+							{
+								"name": "datasource02",
+								"value": "ds012",
+								"label": "热销文章"
+							},
+							{
+								"name": "datasource03",
+								"value": "ds013",
+								"label": "最新文章"
+							}]
+						}
+					]
+				},
+				"BLKTPL10000002" : {
+					"img": "../img/tpl/tpl_blk2.png",
+					"conf": [
+						{"name":"width","value":"100","label":"宽度","type":"0","verify":""},
+						{"name":"height","value":"200","label":"高度","type":"0","verify":""}
+					],
+					"tplDs": [{
+							"name": "datasource1",
+							"value": "ds001",
+							"label": "产品频道",
+							"dsList": [{
+								"name": "datasource01",
+								"value": "ds001",
+								"label": "推荐产品"
+							},
+							{
+								"name": "datasource02",
+								"value": "ds002",
+								"label": "热销产品"
+							},
+							{
+								"name": "datasource03",
+								"value": "ds003",
+								"label": "最新产品"
+							}]
+						}
+					]
+				}
+			}
+		}
+	}
+}

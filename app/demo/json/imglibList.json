@@ -1,0 +1,25 @@
+{
+    "isSuccess": true,
+    "data": [
+        {"_id":"001","fileName":"图片001","path":"http://127.0.0.1:8083/pccms/img/tpl/temp01.jpg"},
+        {"_id":"002","fileName":"图片002","path":"http://127.0.0.1:8083/pccms/img/tpl/temp02.jpg"},
+        {"_id":"003","fileName":"图片003","path":"http://127.0.0.1:8083/pccms/img/tpl/temp03.jpg"},
+        {"_id":"004","fileName":"图片004","path":"http://127.0.0.1:8083/pccms/img/tpl/temp04.jpg"},
+        {"_id":"005","fileName":"图片005","path":"http://127.0.0.1:8083/pccms/img/tpl/test1.png"},
+        {"_id":"006","fileName":"图片006","path":"http://127.0.0.1:8083/pccms/img/tpl/test2.png"},
+        {"_id":"007","fileName":"图片007","path":"http://127.0.0.1:8083/pccms/img/tpl/temp01.jpg"},
+        {"_id":"008","fileName":"图片008","path":"http://127.0.0.1:8083/pccms/img/tpl/temp02.jpg"},
+        {"_id":"009","fileName":"图片009","path":"http://127.0.0.1:8083/pccms/img/tpl/temp03.jpg"},
+        {"_id":"010","fileName":"图片010","path":"http://127.0.0.1:8083/pccms/img/tpl/temp04.jpg"},
+        {"_id":"011","fileName":"图片011","path":"http://127.0.0.1:8083/pccms/img/tpl/test1.png"},
+        {"_id":"012","fileName":"图片012","path":"http://127.0.0.1:8083/pccms/img/tpl/test2.png"},
+        {"_id":"013","fileName":"图片013","path":"http://127.0.0.1:8083/pccms/img/tpl/temp01.jpg"},
+        {"_id":"014","fileName":"图片014","path":"http://127.0.0.1:8083/pccms/img/tpl/temp02.jpg"},
+        {"_id":"015","fileName":"图片015","path":"http://127.0.0.1:8083/pccms/img/tpl/temp03.jpg"},
+        {"_id":"016","fileName":"图片016","path":"http://127.0.0.1:8083/pccms/img/tpl/temp04.jpg"},
+        {"_id":"017","fileName":"图片017","path":"http://127.0.0.1:8083/pccms/img/tpl/test1.png"},
+        {"_id":"018","fileName":"图片018","path":"http://127.0.0.1:8083/pccms/img/tpl/test2.png"}
+    ]
+}
+
+

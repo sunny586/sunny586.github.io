@@ -1,0 +1,77 @@
+<style type="text/css">
+	.c-channel-li{border:1px solid #ddd;height:180px;width:150px!important;text-align: center;float: left;margin-left: 36px;margin-bottom: 10px;}
+	.c-relative{position:relative;}
+	.c-add{font-size:20px;margin-top: 30px;margin-bottom: 10px;}
+	.c-inline-font{font-family: 'Microsoft YaHei';display: inline-block;}
+	.c-left{position: absolute;bottom: 10px;left:20px;}
+	.c-right{position: absolute; bottom: 10px;right: 20px;}
+	.c-list-col li:hover{border:1px solid #f08300;}
+	.c-underline{text-decoration:underline;color:#f08300;margin-right: 8px;}
+	.c-mt-one{margin-top: 28px;margin-bottom: 20px;}
+	.c-lock{position: absolute;top: 68px; left: 68px;font-size: 31px;}	
+	.c-lock-color{color:#AB9797;}
+	.c-unlock-color{color: rgba(243, 160, 4, 0.9);}
+	.c-list-col .lockstyle:hover { border-color:#ab9797; opcity:0.8;}
+	.lockstyle{ background:#e4e4e4 ;}
+	
+	.c-mkwidth{ width:138px;  display: block;  height: 70px}
+
+</style>
+<div class="row">
+        <div class="col-md-12">
+            <ol class="breadcrumb">
+                <li><a href="../index.html">首页</a></li>
+		    	<li><a href="index.html">全局配置</a></li>
+                <li class="active">频道扩展</li>
+            </ol>
+        </div>       
+</div>
+<div class="modal-body">
+	<div class="form-group mt20">                
+        <div class="col-sm-12">
+            <ul class="c-list-col c-list-col4 c-tpl-list">
+                <li class="c-channel-li">
+	                <a href="javascript:void(0)" ng-click="addChannel()">
+	                    <i class="fa fa-plus c-add" style="margin-top: 50px;"></i>
+	                    <h4>添加频道</h4>
+	                </a>
+                </li>
+
+                <li class="c-channel-li c-relative {{true == module.isDisabled ? ' lockstyle' : ' unlockstyle'}}" ng-repeat="module in modules">	               
+	                    <span class="c-add c-mkwidth c-inline-font c-mt-one" alt="{{module.name}}">{{module.name}}</span>
+	                    <p>
+	                    	<a class="c-underline" href="#/category?moduleId={{module._id}}&page=ctg" >分类配置</a>
+	                    	<a class="c-underline" href="#/category?moduleId={{module._id}}&page=info">文章配置</a>
+	                    </p>
+	                    <a href="javascript:void(0)" ng-click="copyModule(module)" class="c-left">复制</a>	  
+	                    <a href="javascript:void(0)" class="c-right" ng-click="deletebox(module)">删除</a>     
+	              	<i class="fa  c-lock  {{true == module.isDisabled ? 'fa-unlock-alt c-lock-color lockstyle' : 'fa-unlock c-unlock-color unlockstyle'}}" ng-click="lockinfo(module)"></i> 
+                </li> 			
+
+                <li class="c-channel-li c-relative">	               
+	                    <span class="c-add c-inline-font c-mt-one c-mkwidth">咨询模块</span>
+	                    <p><a class="c-underline" href="#/category">分类配置</a>
+	                    	<a class="c-underline" href="#/airticle">文章配置</a></p>
+	                    <a href="javascript:void(0)" class="c-left">复制</a> 	               
+                </li>
+
+                <li class="c-channel-li c-relative">	                
+	                    <span class="c-add c-inline-font c-mkwidth">解决方案模块</span>
+	                    <p>	<a class="c-underline">分类配置</a>
+	                    	<a class="c-underline">文章配置</a></p>
+	                    <a href="javascript:void(0)" class="c-left">复制</a>
+	                    <a href="javascript:void(0)" class="c-right">删除</a>	             
+	               <i class="fa fa-unlock-alt c-lock c-lock-color"></i> 	              
+                </li>
+				<li class="c-channel-li c-relative">	               
+	                    <span class="c-add c-inline-font c-mkwidth">招商加盟模块</span>
+	                    <p><a class="c-underline">分类配置</a>
+	                    	<a class="c-underline">文章配置</a></p>
+	                    <a href="javascript:void(0)" class="c-left">复制</a>
+	                    <a href="javascript:void(0)" class="c-right">删除</a>	                              
+	               <i class="fa fa-unlock c-lock c-unlock-color"></i>
+                </li>
+            </ul>
+        </div>
+	</div>
+</div>

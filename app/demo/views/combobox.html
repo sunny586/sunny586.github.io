@@ -1,0 +1,24 @@
+<div class="row">
+  	<div class="col-md-12">
+    	<ol class="breadcrumb">
+		  <li class="active">树型下拉列表</li>
+		</ol>
+  	</div>
+</div>
+<div class="row">
+  	<div class="col-md-12">
+  		<div ng-show="status">github地址（已修改原始代码）：<a href="https://github.com/matjas/angular-nested-combobox" target="_block">https://github.com/matjas/angular-nested-combobox</a></div>
+  		<h2>树型下拉列表</h2>
+  	</div>
+  	<div class="col-md-3">
+  		<nested-combo-box control-class="col-md-12" control-disabled="false" change-event="itemChanged()" collection="collection" ng-model="activeItem" ></nested-combo-box>
+    </div>   
+  	<div class="col-md-6" ng-show="status">
+        <p>Selected item:</p>
+        <pre>{{activeItem | json}}</pre>
+  	</div>
+  	<div class="col-md-12" ng-show="status">
+        <p>collection data:</p>
+        <pre>{{collection | json}}</pre>
+  	</div>
+</div>

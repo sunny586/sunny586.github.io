@@ -1,0 +1,72 @@
+{
+    "imgSm": "/img/img1.jpg",
+    "imgMd": "/img/img2.jpg",
+    "imgLg": "/img/img3.jpg",
+    "imgFr": "/img/img4.jpg",
+    "tags": [
+        {
+            "id": "TAG004"
+        },
+        {
+            "id": "TAG008"
+        }
+    ],
+    "pageTplTree": {
+        "id": "0",
+        "name": "项目根",
+        "path": "",
+        "isLeaf": false,
+        "children": [
+            {
+                "id": "CTG001",
+                "name": "网站首页",
+                "path": "",
+                "isLeaf": false,
+                "children": [
+                    {
+                        "id": "PAGEFRAME001",
+                        "name": "首页",
+                        "path": "",
+                        "isLeaf": true
+                    },
+                    {
+                        "id": "PAGEFRAME002",
+                        "name": "404页",
+                        "path": "",
+                        "isLeaf": true
+                    }
+                ]
+            },
+            {
+                "id": "CTG002",
+                "name": "产品",
+                "path": "",
+                "isLeaf": false,
+                "children": [
+                    {
+                        "id": "PAGEFRAME003",
+                        "name": "产品首页",
+                        "path": "",
+                        "isLeaf": true
+                    },
+                    {
+                        "id": "PAGEFRAME004",
+                        "name": "产品列表页",
+                        "path": "",
+                        "isLeaf": true
+                    },
+                    {
+                        "id": "PAGEFRAME005",
+                        "name": "产品详情页",
+                        "path": "",
+                        "isLeaf": true
+                    }
+                ]
+            }
+        ]
+    },
+    "name": "",
+    "desc": "",
+    "lastUpdatedTime": 0,
+    "createdTime": 0,
+    "owner": "USR1001",

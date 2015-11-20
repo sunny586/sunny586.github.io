@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9" />
+    <title>页面设计</title>
+    
+    <link rel="stylesheet" href="../../plugin/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../plugin/bootstrap/css/bootstrap-exp.min.css" />
+    <link rel="stylesheet" href="../../plugin/bootstrap/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="../../plugin/jquery/css/jquery-ui.css" />
+    <link rel="stylesheet" href="../../plugin/jquery/css/jquery-ui-timepicker-addon.css" />
+    
+    
+    <!-- 文件上传组件 -->
+    <link rel="stylesheet" href="../../plugin/ueditor/third-party/webuploader/webuploader.css" />
+    
+    <link rel="stylesheet" href="../../css/init.css" />
+    <link rel="stylesheet" href="../../css/common.css" />
+    <link rel="stylesheet" href="../../css/pageEdit.css" />
+</head>
+
+<body ng-app="pageEditApp" ng-controller="pageCtrl">
+	<div class="c-edit-toolbar">
+        <div class="container">
+        	<div class="pull-left">
+        		<div class="compare-type">
+        			<label>对比模式：</label>
+        			<label><input type="radio" name="compareType" value="same" ng-model="projPageData.bakConf.type"/> 同屏</label>
+        			<label><input type="radio" name="compareType" value="wide" ng-model="projPageData.bakConf.type"/> 宽屏</label>
+        		</div>
+        	</div>
+        	<div class="pull-left">
+        		<button class="btn btn-default btn-lg backup-btn" ng-disabled="disabled" ng-click="backup()"> 备份效果 >></button>
+        	</div>
+        	<div class="pull-left effect" ng-repeat="item in projPageData.bakConf.bak">
+        		<span>效果{{$index+1}}</span>
+        		<i class="fa fa-times" ng-click="delBackup($index,item)"></i>
+        	</div>
+        	<div class="pull-left effect-btn">
+        		<button class="btn btn-primary btn-sm" ng-click="compare()" ng-if="projPageData.bakConf.bak.length == 2"> 开始对比</button>
+        	</div>
+        	<div class="pull-right">
+        		<button class="btn btn-primary btn-lg" ng-click="savePageDesign()"> 保存</button>
+        		<button class="btn btn-default btn-lg" ng-click="outPageDesign()"> 退出</button>
+        	</div>
+        </div>
+	</div>
+	<div class="c-edit-page">
+	    <div class="tpl-blk">
+	        <button class="btn btn-success blk-edit-btn" ng-click="edit('blk001')"><span class="glyphicon glyphicon-pencil"></span> 编辑</button>
+	        <div ng-bind-html="projPageData.conf['blk001']"></div>
+	    </div>
+	    <div class="tpl-blk">
+	        <button class="btn btn-success blk-edit-btn" ng-click="edit('blk002')"><span class="glyphicon glyphicon-pencil"></span> 编辑</button>
+	        <div ng-bind-html="projPageData.conf['blk002']"></div>
+	    </div>
+    </div>
+    
+    <div ui-view="blkEdit"></div>
+
+	<!--[if lte IE 9]>
+        <script src="../../js/respond.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/es5-shim/3.4.0/es5-shim.min.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript" src="../../plugin/jquery/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="../../plugin/jquery/jquery-ui.js"></script>
+    <script type="text/javascript" src="../../plugin/jquery/jquery-ui-timepicker-addon.js"></script>
+    <script type="text/javascript" src="../../plugin/angular/angular.js"></script>
+    <script type="text/javascript" src="../../plugin/angular/angular-locale_zh-cn.js"></script>
+    <script type="text/javascript" src="../../plugin/angular/angular-sanitize.js"></script>
+    <script type="text/javascript" src="../../plugin/angular/angular-ui-router.js"></script>
+    <script type="text/javascript" src="../../plugin/bootstrap/ui-bootstrap-tpls-0.12.1.js"></script>
+    
+    <script type="text/javascript" src="../../js/common-jquery.js"></script>
+    <script type="text/javascript" src="../../js/common.js"></script>
+    <script type="text/javascript" src="../../js/constant.js"></script>
+    <script type="text/javascript" src="../js/pageEdit.js"></script>
+    <script>
+    	var blkHtml1 = [];
+    	blkHtml1[blkHtml1.length] = '<ul class="c-list-col c-list-col1 c-list-blk">';
+	    blkHtml1[blkHtml1.length] = '    <li>';
+	    blkHtml1[blkHtml1.length] = '        <a href="#">';
+	    blkHtml1[blkHtml1.length] = '            <img class="img" src="../../img/tpl/temp01.jpg" alt="产品1" style="width:80px;height:60px;">';
+	    blkHtml1[blkHtml1.length] = '        </a>';
+	    blkHtml1[blkHtml1.length] = '        <p class="name">产品1</p>';
+	    blkHtml1[blkHtml1.length] = '        <p class="desc">产品描述产品描述产描述产产</p>';
+	    blkHtml1[blkHtml1.length] = '    </li>';
+	    blkHtml1[blkHtml1.length] = '    <li>';
+	    blkHtml1[blkHtml1.length] = '        <a href="#">';
+	    blkHtml1[blkHtml1.length] = '            <img class="img" src="../../img/tpl/temp02.jpg" alt="产品1" style="width:80px;height:60px;">';
+	    blkHtml1[blkHtml1.length] = '        </a>';
+	    blkHtml1[blkHtml1.length] = '        <p class="name">产品1</p>';
+	    blkHtml1[blkHtml1.length] = '        <p class="desc">产品描述产品描述产描述产产</p>';
+	    blkHtml1[blkHtml1.length] = '    </li>';
+	    blkHtml1[blkHtml1.length] = '    <li>';
+	    blkHtml1[blkHtml1.length] = '        <a href="#">';
+	    blkHtml1[blkHtml1.length] = '            <img class="img" src="../../img/tpl/temp03.jpg" alt="产品1" style="width:80px;height:60px;">';
+	    blkHtml1[blkHtml1.length] = '        </a>';
+	    blkHtml1[blkHtml1.length] = '        <p class="name">产品1</p>';
+	    blkHtml1[blkHtml1.length] = '        <p class="desc">产品描述产品描述产描述产产</p>';
+	    blkHtml1[blkHtml1.length] = '    </li>';
+	    blkHtml1[blkHtml1.length] = '</ul>';
+	    var blkHtmlStr1 = blkHtml1.join("");
+	    
+    	var blkHtml2 = blkHtml1;
+    	blkHtml2[0] = '<ul class="c-list-col c-list-col1 c-list-blk tpl-img-right">';
+	    var blkHtmlStr2 = blkHtml2.join("");
+	    
+	    var projPageData = {
+	    	id: "projPageTplId001",
+	    	conf: {
+	    		"blk001": blkHtmlStr1,
+	    		"blk002": blkHtmlStr2
+	    	},
+	    	bakConf: {
+	    		"bak": [],
+	    		"type": "same"
+	    	}
+	    }
+    </script>
+</body>
+</html>

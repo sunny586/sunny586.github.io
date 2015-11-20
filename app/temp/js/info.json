@@ -1,0 +1,83 @@
+{
+"infoBase": [
+{
+  "_id" : "563842cc0cd44a0fe4b7fd40",
+  "site" : "",
+  "lastUpdTime" : "2015-10-21 16:02:23",
+  "index" : 1,
+  "moduleId" : "0000",
+  "desc" : "标题名称",
+  "comptentType" : "input_base_bt",
+  "projId" : "PROJ1004",
+  "createdTime" : "2015-10-21 16:02:23",
+  "data" : "{}",
+  "page" : "info",
+  "owner" : "",
+  "group" : "infoBase",
+  "parentId" : "",
+  "isShow" : "true"
+}
+
+],
+"infoSEO": [
+{
+  "_id" : "5638432d0cd44a0fe4b7fd47",
+  "site" : "",
+  "lastUpdTime" : "2015-10-21 16:07:31",
+  "index" : 8,
+  "moduleId" : "0000",
+  "desc" : "详细内容",
+  "comptentType" : "input_base_xqnr",
+  "projId" : "PROJ1004",
+  "createdTime" : "2015-10-21 16:07:31",
+  "data" : {
+    "label" : "详情内容",
+    "name" : "content",
+    "config" : "configContent"
+  },
+  "page" : "info",
+  "owner" : "",
+  "group" : "infoBase",
+  "parentId" : "",
+  "isShow" : "true"
+}
+,
+{
+  "_id" : "563842e20cd44a0fe4b7fd41",
+  "site" : "",
+  "lastUpdTime" : "2015-10-21 16:02:23",
+  "index" : 2,
+  "moduleId" : "0000",
+  "desc" : "短标题",
+  "comptentType" : "input_base_dbt",
+  "projId" : "PROJ1004",
+  "createdTime" : "2015-10-21 16:02:23",
+  "data" : "{}",
+  "page" : "info",
+  "owner" : "",
+  "group" : "infoBase",
+  "parentId" : "",
+  "isShow" : "true",
+  "isConfig" : "false",
+  "isExtraLink" : "true"
+},{
+  "_id" : "563842e20cd44a0fe4b7fd41",
+  "site" : "",
+  "lastUpdTime" : "2015-10-21 16:02:23",
+  "index" : 2,
+  "moduleId" : "0000",
+  "desc" : "短标题",
+  "comptentType" : "input_base_dbt",
+  "projId" : "PROJ1004",
+  "createdTime" : "2015-10-21 16:02:23",
+  "data" : "{}",
+  "page" : "info",
+  "owner" : "",
+  "group" : "infoBase",
+  "parentId" : "",
+  "isShow" : "true",
+  "isConfig" : "true",
+  "isExtraLink" : "true"
+}
+]
+}

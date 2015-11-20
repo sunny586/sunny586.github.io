@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+    <sitemesh:write property='title' />
+</title>
+<sitemesh:write property='head' />
+</head>
+<body>
+    <!-- 
+    <header>header</header>
+    <hr />
+    cms global title in here：
+    <sitemesh:write property='title' /><br />
+    cms global body in here：
+    -->
+    <sitemesh:write property='body' />
+   <!-- 
+    <hr />
+    <footer>footer</footer>-->
+</body>
+</html>
