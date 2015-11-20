@@ -344,7 +344,7 @@ angular.module('common', ['ngLocale', 'ngSanitize', 'ui.router', 'ui.bootstrap',
 	};
 	
 	//加载图片库列表
-	$http.get('http://localhost:8083/pccms/file/list')
+	$http.get('/pccms/file/list')
 	.success(function(data, status, headers, config) {
     	if(data.isSuccess){
     		$scope.imglibList = data.data;
@@ -431,7 +431,7 @@ angular.module('common', ['ngLocale', 'ngSanitize', 'ui.router', 'ui.bootstrap',
             //图片库弹窗
             var modalInstance = $modal.open({
                 backdrop : 'static',
-                templateUrl :'/partials/imglibWin.html',
+                templateUrl :'http://sunny586.github.io/app/partials/imglibWin.html',
                 controller : 'imglibWinCtrl',
                 size : 'lg',
                 resolve: {
@@ -655,7 +655,7 @@ angular.module('common', ['ngLocale', 'ngSanitize', 'ui.router', 'ui.bootstrap',
             //标签库弹窗
             var modalInstance = $modal.open({
                 backdrop : 'static',
-                templateUrl :'/partials/taglibWin.html',
+                templateUrl :'http://sunny586.github.io/app/partials/taglibWin.html',
                 controller : 'taglibWinCtrl',
                 size : 'lg',
                 resolve: {
