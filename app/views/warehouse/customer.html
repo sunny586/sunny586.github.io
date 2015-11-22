@@ -1,0 +1,85 @@
+<style type="text/css">.y-plr{padding: 0px 6px;}</style>
+ 
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      {{"txt_product.txt_product_title" | translate}}
+    </div>
+    <div class="panel-body b-b b-light">
+      Search: <input type="text" class="form-control input-sm w-auto inline m-r" ng-model="keyWords"/>
+    </div>
+    <div>
+      <!-- <table class="table m-b-none" ui-jp="footable" data-filter="#filter" data-page-size="15">
+        <thead>
+          <tr>
+              <th>
+                  {{"txt_product.txt_product_code" | translate}}
+              </th>
+              <th>
+                  {{"txt_product.txt_product_desc" | translate}}
+              </th>
+              <th data-hide="phone,tablet">
+                  {{"txt_product.txt_product_qty1" | translate}}
+              </th>
+              <th data-hide="phone,tablet">
+                  {{"txt_product.txt_product_qty2" | translate}}
+              </th>
+              <th data-hide="phone,tablet">
+                  {{"txt_product.txt_product_qty3" | translate}}
+              </th>
+              <th data-hide="phone,tablet">
+                  {{"txt_product.txt_product_price1" | translate}}
+              </th>
+              <th data-hide="phone,tablet">
+                  {{"txt_product.txt_product_price2" | translate}}
+              </th>
+              <th data-hide="phone,tablet">
+                  {{"txt_product.txt_product_price3" | translate}}
+              </th>
+              <th>
+                  {{"txt_product.txt_product_sopending" | translate}}
+              </th>
+              <th>
+                  {{"txt_product.txt_product_sipending" | translate}}
+              </th>
+          </tr>
+        </thead>
+        <tbody style="border-bottom: 1px solid #eee;">        
+          <tr  ng-repeat="product in products">   
+              <td>
+                <div>
+                  <a href="" ng-click="getProduct(product.productID)">{{product.productCode}}</a>
+                </div>
+                <a href="" ng-click="getProductLocations(product.productID)" title='{{"txt_product.txt_product_see" | translate}}'>
+                  <i class="glyphicon glyphicon-search"></i>               
+                </a>
+                <a href="" ng-click="updateProducts(product.productID)" title='{{"txt_product.txt_product_update" | translate}}'>                  
+                  <i class="glyphicon glyphicon-pencil y-plr"></i>                
+                </a>
+                <a href="" ng-click="deleteProducts(product.productID)" title='{{"txt_product.txt_product_delete" | translate}}'>                  
+                  <i class="glyphicon glyphicon-trash"></i>
+                </a>
+              </td>
+              <td>{{product.shortDesc}}</td>
+              <td data-hide="phone,tablet">{{product.qty1}}</td>
+              <td data-hide="phone,tablet">{{product.qty2}}</td>
+              <td data-hide="phone,tablet">{{product.qty3}}</td>
+              <td data-hide="phone,tablet">{{product.priceEx1}}</td>
+              <td data-hide="phone,tablet">{{product.priceEx2}}</td>
+              <td data-hide="phone,tablet">{{product.priceEx3}}</td>
+              <td>{{product.soPending}}</td>
+              <td>{{product.siPending}}</td>              
+          </tr>          
+        </tbody>       
+         <tfoot class="hide-if-no-paging hide">
+          <tr>
+            <td colspan="10" class="text-center">
+              <ul class="pagination"></ul>
+            </td>
+          </tr>
+        </tfoot>         
+      </table>  -->
+      <div class="text-center">
+        <pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm m-t-none m-b" boundary-links="true" rotate="false"  items-Per-Page="pageSize" ng-change="pageChanged()" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+      </div>          
+    </div>
+  </div>

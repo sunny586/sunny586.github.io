@@ -1,0 +1,16 @@
+<style type="text/css">.y-bg{background-color: #ddd;margin-bottom: 4px;}.y-bg:hover{background-color: #8C9EFF;color:#fff;}</style>
+<div class="modal-header">
+  <h4 class="modal-title">
+    {{"txt_product.txt_suppliers" | translate}}
+  </h4>
+</div>
+<div class="modal-body"> 
+    <ul class="list-group">
+      <li class="list-group-item text-center y-bg" ng-repeat="item in suppliers" ng-click="ok(item)">
+          <a href="javascript:void(0)">{{item.companyName}}</a>
+      </li>
+    </ul> 
+</div>
+<div class="modal-footer">
+  <button class="btn btn-default" type="button" ng-click="cancle()">{{"txt_product.txt_cancle" | translate}}</button> 
+</div>
