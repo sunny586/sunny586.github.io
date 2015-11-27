@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery.js"></script>
+    <script src="js/underscore.js"></script>
+    <script src="js/backbone.js"></script>
+</head>
+<body>
+<div>
+    <a href="">首页</a>
+    <a href="#search">查询列表</a>
+    <a href="#search/abc">关键字查询</a>
+    <a href="#search/abc/p2">页码关键字查询</a>
+    <a href="#error">其他页</a>
+</div>
+<div id="divShow"></div>
+<script>
+    var $divShow = $("#divShow");
+    var TestRoute = Backbone.Router.extend({
+        routes : {
+            '' : 'main',
+            'search' : 'search_list',
+            'search/:key' : 'search_key',
+            'search/:key/p:page' : 'search_key_page',
+            '*search' : 'search_defaul'
+        },
+        initialize : function () {
+            this.route("search", 'search_list', function () {
+                $divShow.html("初始化时，查询列表");
+            });
+        },
+        main : function () {
+            $divShow.html("首页");
+        },
+        search_list : function () {
+            $divShow.html("查询列表");
+        },
+        search_key : function (key) {
+            $divShow.html("查询关键字" + key + "记录");
+        },
+        search_key_page : function (key, page) {
+            $divShow.html("查询列表" + key + "记录,页码为" + page);
+        },
+        search_defaul : function () {
+            $divShow.html("其他页");
+        }
+    });
+    /* 一定要实例化这个类,才能实现url改变时执行routes绑定的方法
+     * 因为在实例化过程中,会把routes的方法依次放进Backbone.history.handlers数组里面
+     */
+    var router = new TestRoute();
+    /* 为路由对象手动创建路由,route参数可以是routing string(路由字符串)或正则表达式.
+     * 会覆盖上面的绑定的方法
+     * */
+    router.route('search/:key/p:page', 'search_key_page', function (key, page) {
+        $divShow.html("实例化后，查询关键字为" + key + "记录，页码为" + page);
+    });
+    /* 如果匹配一个路由,此时会触发一个基于动作名称的event,
+     * 其它对象可以监听这个路由并接收到通知。
+     * 注意:会先执行,路由绑定的方法.即上面的方法.
+     */
+    router.on("route:search_key", function (key) {
+        console.info("You click 关键字查询：" + key);
+    });
+    Backbone.history.start();
+</script>
+</body>
+</html>
