@@ -1,0 +1,44 @@
+<div class="ui-cities" style="z-index:10;">
+	<div class="col" ng-show="provincesIsShow">
+		<div class="title">省/直辖市</div>
+		<ul class="list">
+			<li data-value="{{item.id}}" ng-repeat="item in provinces">
+				<span class="check" ng-class="{true: 'u-bg-red', false: 'u-bg-white'}[item.isChecked]" ng-click="provincesChecked(item)">.</span>
+				<span class="name">{{item.name}}</span>
+				<span class="expend" ng-class="{true: 'u-ricon', false: ''}[item.isChecked]" ng-click="showCities(item)">.</span>
+			</li>
+		</ul>
+		<div class="extra">
+			<a class="checkall" href="javascript:;" ng-click="checkedAll('provinces')">全选</a>
+			<a class="clearall" href="javascript:;" ng-click="removeAll('provinces')">清空</a>
+		</div>
+	</div>
+	<div class="col" ng-show="citiesIsShow">
+		<div class="title">市/区县</div>
+		<ul class="list">
+			<li data-value="{{item.id}}" ng-repeat="item in cities">
+				<span class="check" ng-class="{true: 'u-bg-red', false: 'u-bg-white'}[item.isChecked]" ng-click="citiesChecked(item)">.</span>
+				<span class="name">{{item.name}}</span>
+				<span class="expend" ng-class="{true: 'u-ricon', false: ''}[item.isChecked]" ng-click="showTowns(item)">.</span>
+			</li>
+		</ul>
+		<div class="extra">
+			<a class="checkall" href="javascript:;" ng-click="checkedAll('cities')">全选</a>
+			<a class="clearall" href="javascript:;" ng-click="removeAll('cities')">清空</a>
+		</div>
+	</div>
+	<div class="col" ng-show="townsIsShow">
+		<div class="title">区县/乡镇</div>
+		<ul class="list">
+			<li data-value="{{item.id}}" ng-repeat="item in towns">
+				<span class="check" ng-class="{true: 'u-bg-red', false: 'u-bg-white'}[item.isChecked]" ng-click="item.isChecked=!item.isChecked">.</span>
+				<span class="name">{{item.name}}</span>
+				<span class="expend">.</span>
+			</li>
+		</ul>
+		<div class="extra">
+			<a class="checkall" href="javascript:;" ng-click="checkedAll('towns')">全选</a>
+			<a class="clearall" href="javascript:;" ng-click="removeAll('towns')">清空</a>
+		</div>
+	</div>
+</div>

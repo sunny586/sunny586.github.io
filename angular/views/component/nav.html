@@ -1,0 +1,79 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading bg-white">tab(Bootstrap自带)</div>
+      <div class="panel-heading bg-white text-center">
+        <button class="btn btn-default" ng-click="btab1()">tab1</button>
+        <button class="btn btn-default" ng-click="btab2()">tab2</button>
+        <button class="btn btn-default" ng-click="btab3()">tab3</button>
+        <button class="btn btn-default" ng-click="btab4()">tab4</button>
+      </div>
+      <div class="panel-body">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li  class="active">
+            <a href data-toggle="tab" data-target="#home">Home</a>
+          </li>
+          <li>
+            <a  href data-toggle="tab" data-target="#profile">Profile</a>
+          </li>
+          <li>
+            <a href data-toggle="tab" data-target="#messages">Messages</a>
+          </li>
+          <li>
+            <a href data-toggle="tab" data-target="#settings">Settings</a>
+          </li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="home">Hello AngularJS</div>
+          <div role="tabpanel" class="tab-pane" id="profile">Hello Bootstrap</div>
+          <div role="tabpanel" class="tab-pane" id="messages">Hello React</div>
+          <div role="tabpanel" class="tab-pane" id="settings">Hello Webpack</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading bg-white">tab2(tabset指令)</div>
+      <div class="panel-heading bg-white text-center">
+        <button class="btn btn-default" ng-click="tab1()">tab1</button>
+        <button class="btn btn-default" ng-click="tab2()">tab2</button>
+        <button class="btn btn-default" ng-click="tab3()">tab3</button>
+        <button class="btn btn-default" ng-click="tab4()">tab4</button>
+      </div>
+      <div class="panel-body">
+        <tabset>
+          <tab heading="test1" active="tab.active[0]">test1</tab>
+          <tab heading="test2" active="tab.active[1]">test2</tab>
+          <tab heading="test3" active="tab.active[2]">test3</tab>
+          <tab heading="test4" active="tab.active[3]">test4</tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading bg-white">提示消息位置</div>
+      <div class="panel-heading bg-white">            
+          <input type="text" value="Click me!" popover="I appeared on focus! Click away and I'll vanish..." popover-trigger="focus" class="form-control">          
+      </div>
+      <div class="panel-body">
+        <button popover-placement="top" popover="On the Top!" class="btn btn-default">Top</button>
+        <button popover-placement="left" popover="On the Left!" class="btn btn-default">Left</button>
+        <button popover-placement="right" popover="On the Right!" class="btn btn-default">Right</button>
+        <button popover-placement="bottom" popover="On the Bottom!" class="btn btn-default">Bottom</button>
+        <button popover="I have a title!" popover-title="The title." class="btn btn-default">title</button> 
+        <button popover="I appeared on mouse enter!" popover-trigger="mouseenter" class="btn btn-success">Mouseenter</button> 
+      </div>
+    </div>
+  </div>
+
+  
+</div>
+
+

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AngularJS组件示例</title>
+   <link rel="stylesheet" href="./libs/app.min.css"/>   
+</head>
+<body class="body" ng-app="app">
+  <ui-view></ui-view>
+  <div class="u-loading-modal u-modal" ng-if="loading">
+    <div class="u-loading">
+        <img src="./img/loading.gif" alt=""/>&nbsp;&nbsp;&nbsp;<span>正在加载...</span>       
+    </div>
+  </div>  
+    <script type="text/javascript" src="./libs/app.min.js"></script>
+</body>
+</html>
