@@ -65,6 +65,11 @@ demoApp.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider
 		url: '/taglib',
 		templateUrl: 'views/taglib.html',
 		controller: 'taglibCtrl'
+	})
+	.state('parse', {
+		url: '/parse',
+		templateUrl: 'views/parse.html',
+		controller: 'parseCtrl'
 	});
 
 }]);
