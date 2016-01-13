@@ -1,1 +1,107 @@
-<div>table</div>
+<div class="panel panel-default">
+	<div class="panel-heading">表格示例</div>
+	<div class="panel-body b-b b-light">
+		<div class="row">
+			<div class="col-xs-12">
+				<h2>普通表格</h2>
+			</div>
+		</div>
+		<div class="row m-b-s">
+			<div class="col-xs-5">
+				<div class="input-group">
+					<input type="text" class="form-control">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button"> <i class="fa fa-search"></i>
+						</button>
+					</span>
+				</div>
+			</div>
+			<div class="col-xs-7 text-right">
+				<button type="button" class="btn btn-primary"> <i class="fa fa-plus"></i>
+					添加
+				</button>
+				<button type="button" class="btn btn-default">
+					<i class="fa fa-refresh"></i>
+					刷新
+				</button>
+			</div>
+		</div>
+		<div class="row c-row">
+			<div class="col-xs-12">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>标题</th>
+							<th>分类</th>
+							<th>是否显示</th>
+							<th>时间</th>
+							<th class="text-right">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in dataList">
+							<td>{{item.title}}</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td class="text-right">
+								<div class="btn-group">
+									<button type="button" class="btn btn-default btn-sm">
+										<i class="fa fa-eye"></i>
+										预览
+									</button>
+									<button type="button" class="btn btn-default btn-sm">
+										<i class="fa fa-trash-o"></i>
+										删除
+									</button>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<hr />
+		<div class="row c-row">
+			<div class="col-xs-12">
+				<h2>树型表格</h2>
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>标题</th>
+							<th>分类</th>
+							<th>是否显示</th>
+							<th>时间</th>
+							<th class="text-right">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in treeDataList" ng-show="showData(item)">
+							<td>
+								{{item.title}}
+								<span class="glyphicon" ng-class="{'glyphicon-chevron-down': collapsed, 'glyphicon-chevron-right': !collapsed}"  
+		    				ng-if="item.pid == 0" ng-click="collapsed = !collapsed;toggleData(item,collapsed)"></span>
+							</td>
+							<td>{{item.category}}</td>
+							<td>{{item.isDisable}}</td>
+							<td>{{item.time}}</td>
+							<td class="text-right">
+								<div class="btn-group">
+									<button type="button" class="btn btn-default btn-sm">
+										<i class="fa fa-eye"></i>
+										预览
+									</button>
+									<button type="button" class="btn btn-default btn-sm">
+										<i class="fa fa-trash-o"></i>
+										删除
+									</button>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+	</div>
+</div>

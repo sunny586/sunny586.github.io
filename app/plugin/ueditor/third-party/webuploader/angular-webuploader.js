@@ -58,30 +58,34 @@ angular.module('ng.webuploader', []).directive('webuploader', function() {
                 button: element,
                 formData: option.formData
             });
+
             // 当添加文件前
             _uploader.on("beforeFileQueued", function(file) {
-                if(typeof(option.beforeFileQueued) == "function"){
-                    return option.beforeFileQueued.apply(this, [_uploader, file]);
+                if(typeof(option.beforeFileQueued) == "function"){ 
+                   //option.beforeFileQueued.apply({hello:'test'}, [_uploader, file]);                                                  
+                   option.beforeFileQueued.apply(this, [_uploader, file]);
+                   //option.beforeFileQueued(_uploader,file);
                 }
             });
             
             // 当有文件添加进来的时候
 			_uploader.on("fileQueued", function(file) {
-                if(typeof(option.fileQueued) == "function"){
-                    option.fileQueued.apply(this, [_uploader, file]);
+                if(typeof(option.fileQueued) == "function"){                    
+                   option.fileQueued.apply(this, [_uploader, file]);
+                    //option.fileQueued(_uploader, file);
                 }
             });
             
             // 当有文件添加进来的时候
 			_uploader.on("uploadStart", function(file) {
-                if(typeof(option.uploadStart) == "function"){
+                if(typeof(option.uploadStart) == "function"){                   
                     option.uploadStart.apply(this, [_uploader, file]);
                 }
             });
 			
             // 文件上传过程中创建进度条实时显示。
 			_uploader.on("uploadProgress", function(file, percentage) {
-                if(typeof(option.uploadProgress) == "function"){
+                if(typeof(option.uploadProgress) == "function"){                    
                     option.uploadProgress.apply(this, [_uploader, file, percentage]);
                 }
             });

@@ -3,6 +3,7 @@ demoApp.controller('imglibCtrl', ['$scope', '$modal', 'utils', function ($scope,
 
 	localStorage.getItem('isdev') == 'true' ? $scope.status = true : $scope.status = false;
 	
+	console.log('hahaha')
 
 	//图片预览
 	$scope.showImg = function(image){
@@ -49,6 +50,8 @@ demoApp.controller('imglibWinCtrl',['$scope', '$modalInstance', '$http', '$modal
 	//获取上传组件实例
 	var imgUploader;
 	$scope.getUploader = function(uploader){
+		
+		console.log(uploader);
 		imgUploader = uploader;
 	};
 	
@@ -67,7 +70,10 @@ demoApp.controller('imglibWinCtrl',['$scope', '$modalInstance', '$http', '$modal
         multiple: multiple,//是否多图片上传
         extensions: imgConfig.ext,
         beforeFileQueued: function(uploader, file){//当图片添加前回调
-        	console.info(file);
+        	console.log('********');
+        	console.log(this)
+        	console.log('********');
+        	//console.info(file);
         	//验证可上传图片的张数
         	var len = uploader.getFiles('queued').length;//查询上传队列中的文件数
         	if(len >= imgConfig.count){
