@@ -34998,7 +34998,7 @@
 
 
 	// module
-	exports.push([module.id, ".intro {\r\n    display: table;\r\n    width: 100%;\r\n    height: 100%;\r\n    padding: 100px 0;\r\n    text-align: center;\r\n    color: #fff;\r\n    background: url(/react/app/images/intro-bg.jpg) no-repeat center center;\r\n /*   background: url(/app/images/intro-bg.jpg) no-repeat center center;*/\r\n    background-color: #000;\r\n    -webkit-background-size: cover;\r\n    -moz-background-size: cover;\r\n    background-size: cover;\r\n    -o-background-size: cover;\r\n}\r\n.intro .intro-body {\r\n    display: table-cell;\r\n    vertical-align: middle;\r\n    color: #fff;\r\n}\r\n\r\n.intro .intro-body .intro-text {\r\n    font-size: 18px;\r\n}\r\n\r\n.btn-home {\r\n    color: #fff;\r\n    background-color: transparent;\r\n    border-color: #fff;\r\n    margin: 0 10px;\r\n    font-size: 16px;\r\n}\r\n\r\n.btn-home:hover{\r\n    background-color: #616e7c;\r\n    color: #fff;\r\n    border: none;\r\n}", ""]);
+	exports.push([module.id, ".intro {\r\n    display: table;\r\n    width: 100%;\r\n    height: 100%;\r\n    padding: 100px 0;\r\n    text-align: center;\r\n    color: #fff;\r\n    background: url(/react/app/images/intro-bg.jpg) no-repeat center center;\r\n    /*background: url(/app/images/intro-bg.jpg) no-repeat center center;*/\r\n    background-color: #000;\r\n    -webkit-background-size: cover;\r\n    -moz-background-size: cover;\r\n    background-size: cover;\r\n    -o-background-size: cover;\r\n}\r\n.intro .intro-body {\r\n    display: table-cell;\r\n    vertical-align: middle;\r\n    color: #fff;\r\n}\r\n\r\n.intro .intro-body .intro-text {\r\n    font-size: 18px;\r\n}\r\n\r\n.btn-home {\r\n    color: #fff;\r\n    background-color: transparent;\r\n    border-color: #fff;\r\n    margin: 0 10px;\r\n    font-size: 16px;\r\n}\r\n\r\n.btn-home:hover{\r\n    background-color: #616e7c;\r\n    color: #fff;\r\n    border: none;\r\n}", ""]);
 
 	// exports
 
@@ -36055,37 +36055,31 @@
 		url: 'http://www.xiaopiaoyun.com',
 		name: '小票去哪儿了',
 		images: './app/images/product/01.jpg',
-		//images: '/react/app/images/product/01.jpg',
 		type: 'angular-pc'
 	}, {
-		url: 'http://www.xiaopiaoyun.com',
+		url: 'http://www.dzyouting.com',
 		name: '大众游艇PC端',
 		images: './app/images/product/02.jpg',
-		//images: '/react/app/images/product/02.jpg',
 		type: 'pc'
 	}, {
-		url: 'http://www.xiaopiaoyun.com',
+		url: 'http://m.dzyouting.com',
 		name: '大众游艇移动端',
 		images: './app/images/product/04.jpg',
-		//images: '/react/app/images/product/04.jpg',
 		type: 'app'
 	}, {
 		url: 'http://weixin.jslife.com.cn:8500/jspsn/sy_html/map.html?from=JTC&openid=okhYWw-CnQ7Jq6lbBrqSKxevJttI&unionid=oUjGnjlozBRu4KIMKglbfZJdxnxY',
 		name: '捷停车',
 		images: './app/images/product/07.jpg',
-		//images: '/react/app/images/product/07.jpg',
 		type: 'app'
 	}, {
 		url: 'http://www.viewmywarehouse.com/app/#/access/signin',
 		name: 'warehouse',
 		images: './app/images/product/08.jpg',
-		//images: '/react/app/images/product/08.jpg',
 		type: 'angular-pc'
 	}, {
 		url: 'http://sunny586.github.io/angular/index.html',
 		name: 'AngularJS组件库',
 		images: './app/images/product/05.jpg',
-		//images: '/react/app/images/product/05.jpg',
 		type: 'angular-pc'
 	}];
 
