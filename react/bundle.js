@@ -34765,6 +34765,8 @@
 
 	var _reactRouter = __webpack_require__(185);
 
+	var __items = [{ url: '/app/dashboard/home', name: '首页', cname: 'fa fa-home' }, { url: '/app/dashboard/about', name: '关于我', cname: 'fa fa-mortar-board' }, { url: '/app/dashboard/product', name: '作品集', cname: 'fa fa-tags' }, { url: '/app/dashboard/skills', name: '技能', cname: 'fa fa-wrench' }, { url: '/app/dashboard/resume', name: '经历', cname: 'fa fa-calendar' }, { url: '/app/dashboard/contact', name: '联系我', cname: 'fa fa-phone' }];
+
 	var Toolbar = (function (_React$Component) {
 	  _inherits(Toolbar, _React$Component);
 
@@ -34777,93 +34779,28 @@
 	  _createClass(Toolbar, [{
 	    key: 'render',
 	    value: function render() {
+
+	      var items = __items.map(function (item, i) {
+	        return _react2['default'].createElement(
+	          'div',
+	          { className: 'u-toolbar-tab', key: item.url },
+	          _react2['default'].createElement(
+	            _reactRouter.Link,
+	            { to: item.url, style: { color: '#fff' } },
+	            _react2['default'].createElement('i', { className: item.cname }),
+	            _react2['default'].createElement(
+	              'em',
+	              { className: 'u-tab-text' },
+	              item.name
+	            )
+	          )
+	        );
+	      });
+
 	      return _react2['default'].createElement(
 	        'div',
 	        { className: 'u-toolbar-tabs' },
-	        _react2['default'].createElement(
-	          'div',
-	          { className: 'u-toolbar-tab' },
-	          _react2['default'].createElement(
-	            _reactRouter.Link,
-	            { to: '/app/dashboard/home', style: { color: '#fff' } },
-	            _react2['default'].createElement('i', { className: 'fa fa-home' }),
-	            _react2['default'].createElement(
-	              'em',
-	              { className: 'u-tab-text' },
-	              '首页'
-	            )
-	          )
-	        ),
-	        _react2['default'].createElement(
-	          'div',
-	          { className: 'u-toolbar-tab' },
-	          _react2['default'].createElement(
-	            _reactRouter.Link,
-	            { to: '/app/dashboard/about', style: { color: '#fff' } },
-	            _react2['default'].createElement('i', { className: 'fa fa-mortar-board' }),
-	            _react2['default'].createElement(
-	              'em',
-	              { className: 'u-tab-text' },
-	              '关于我'
-	            )
-	          )
-	        ),
-	        _react2['default'].createElement(
-	          'div',
-	          { className: 'u-toolbar-tab' },
-	          _react2['default'].createElement(
-	            _reactRouter.Link,
-	            { to: '/app/dashboard/product', style: { color: '#fff' } },
-	            _react2['default'].createElement('i', { className: 'fa fa-tags' }),
-	            _react2['default'].createElement(
-	              'em',
-	              { className: 'u-tab-text' },
-	              '作品集'
-	            )
-	          )
-	        ),
-	        _react2['default'].createElement(
-	          'div',
-	          { className: 'u-toolbar-tab' },
-	          _react2['default'].createElement(
-	            _reactRouter.Link,
-	            { to: '/app/dashboard/skills', style: { color: '#fff' } },
-	            _react2['default'].createElement('i', { className: 'fa fa-wrench' }),
-	            _react2['default'].createElement(
-	              'em',
-	              { className: 'u-tab-text' },
-	              '技能'
-	            )
-	          )
-	        ),
-	        _react2['default'].createElement(
-	          'div',
-	          { className: 'u-toolbar-tab' },
-	          _react2['default'].createElement(
-	            _reactRouter.Link,
-	            { to: '/app/dashboard/resume', style: { color: '#fff' } },
-	            _react2['default'].createElement('i', { className: 'fa fa-calendar' }),
-	            _react2['default'].createElement(
-	              'em',
-	              { className: 'u-tab-text' },
-	              '经历'
-	            )
-	          )
-	        ),
-	        _react2['default'].createElement(
-	          'div',
-	          { className: 'u-toolbar-tab' },
-	          _react2['default'].createElement(
-	            _reactRouter.Link,
-	            { to: '/app/dashboard/contact', style: { color: '#fff' } },
-	            _react2['default'].createElement('i', { className: 'fa fa-phone' }),
-	            _react2['default'].createElement(
-	              'em',
-	              { className: 'u-tab-text' },
-	              '联系我'
-	            )
-	          )
-	        )
+	        items
 	      );
 	    }
 	  }]);
@@ -34998,7 +34935,7 @@
 
 
 	// module
-	exports.push([module.id, ".intro {\r\n    display: table;\r\n    width: 100%;\r\n    height: 100%;\r\n    padding: 100px 0;\r\n    text-align: center;\r\n    color: #fff;\r\n    background: url(/react/app/images/intro-bg.jpg) no-repeat center center;\r\n    /*background: url(/app/images/intro-bg.jpg) no-repeat center center;*/\r\n    background-color: #000;\r\n    -webkit-background-size: cover;\r\n    -moz-background-size: cover;\r\n    background-size: cover;\r\n    -o-background-size: cover;\r\n}\r\n.intro .intro-body {\r\n    display: table-cell;\r\n    vertical-align: middle;\r\n    color: #fff;\r\n}\r\n\r\n.intro .intro-body .intro-text {\r\n    font-size: 18px;\r\n}\r\n\r\n.btn-home {\r\n    color: #fff;\r\n    background-color: transparent;\r\n    border-color: #fff;\r\n    margin: 0 10px;\r\n    font-size: 16px;\r\n}\r\n\r\n.btn-home:hover{\r\n    background-color: #616e7c;\r\n    color: #fff;\r\n    border: none;\r\n}", ""]);
+	exports.push([module.id, ".intro {\r\n    display: table;\r\n    width: 100%;\r\n    height: 100%;\r\n    padding: 100px 0;\r\n    text-align: center;\r\n    color: #fff;\r\n    background: url(/react/app/images/intro-bg.jpg) no-repeat center center;\r\n   /* background: url(/app/images/intro-bg.jpg) no-repeat center center;*/\r\n    background-color: #000;\r\n    -webkit-background-size: cover;\r\n    -moz-background-size: cover;\r\n    background-size: cover;\r\n    -o-background-size: cover;\r\n}\r\n.intro .intro-body {\r\n    display: table-cell;\r\n    vertical-align: middle;\r\n    color: #fff;\r\n}\r\n\r\n.intro .intro-body .intro-text {\r\n    font-size: 18px;\r\n}\r\n\r\n.btn-home {\r\n    color: #fff;\r\n    background-color: transparent;\r\n    border-color: #fff;\r\n    margin: 0 10px;\r\n    font-size: 16px;\r\n}\r\n\r\n.btn-home:hover{\r\n    background-color: #616e7c;\r\n    color: #fff;\r\n    border: none;\r\n}", ""]);
 
 	// exports
 
@@ -37143,7 +37080,7 @@
 		_createClass(Skills, [{
 			key: 'render',
 			value: function render() {
-				var self = this;
+
 				var items = circleList.map(function (item, i) {
 					return _react2['default'].createElement(
 						'div',
