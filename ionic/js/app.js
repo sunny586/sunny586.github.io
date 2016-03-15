@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('app', ['ionic', 'app.controllers', 'app.services','chart.js'])
+angular.module('app', ['ionic', 'app.controllers', 'app.services', 'chart.js','ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -23,7 +23,7 @@ angular.module('app', ['ionic', 'app.controllers', 'app.services','chart.js'])
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider,$ionicConfigProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
   $ionicConfigProvider.platform.ios.tabs.style('standard');
   $ionicConfigProvider.platform.ios.tabs.position('bottom');
@@ -45,10 +45,10 @@ angular.module('app', ['ionic', 'app.controllers', 'app.services','chart.js'])
   // Each state's controller can be found in controllers.js
   $stateProvider
 
-  .state('app', {
+    .state('app', {
     abstract: true,
-    url: '/app',    
-    templateUrl: 'templates/apps.html'    
+    url: '/app',
+    templateUrl: 'templates/apps.html'
   })
 
   // Each tab has its own nav history stack:
@@ -76,6 +76,15 @@ angular.module('app', ['ionic', 'app.controllers', 'app.services','chart.js'])
       views: {
         'app-dash': {
           templateUrl: 'templates/dashboard/dash-form.html'
+        }
+      }
+    })
+    .state('app.dash-camera', {
+      url: '/dash/camera',
+      views: {
+        'app-dash': {
+          templateUrl: 'templates/dashboard/dash-camera.html',
+          controller:'CameraCtrl'
         }
       }
     })
@@ -133,18 +142,18 @@ angular.module('app', ['ionic', 'app.controllers', 'app.services','chart.js'])
 
   //access.
   .state('access', {
-    url: '/access',
-    template: '<ion-nav-view></ion-nav-view>'
-  })
-  .state('access.signin', {
-      url: '/signin',      
+      url: '/access',
+      template: '<ion-nav-view></ion-nav-view>'
+    })
+    .state('access.signin', {
+      url: '/signin',
       template: '<div>hello signin</div>'
-      
+
     })
     .state('access.signup', {
-      url: '/signup',      
+      url: '/signup',
       template: '<div>hello signup</div>'
-      
+
     })
 
   ;
