@@ -34,7 +34,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/__build__/";
+/******/ 	__webpack_require__.p = "/react/";
 
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
@@ -34935,7 +34935,7 @@
 
 
 	// module
-	exports.push([module.id, ".intro {\r\n    display: table;\r\n    width: 100%;\r\n    height: 100%;\r\n    padding: 100px 0;\r\n    text-align: center;\r\n    color: #fff;\r\n/*    background: url(/react/app/images/intro-bg.jpg) no-repeat center center;*/\r\n    background: url(/app/images/intro-bg.jpg) no-repeat center center;\r\n    background-color: #000;\r\n    -webkit-background-size: cover;\r\n    -moz-background-size: cover;\r\n    background-size: cover;\r\n    -o-background-size: cover;\r\n}\r\n.intro .intro-body {\r\n    display: table-cell;\r\n    vertical-align: middle;\r\n    color: #fff;\r\n}\r\n\r\n.intro .intro-body .intro-text {\r\n    font-size: 18px;\r\n}\r\n\r\n.btn-home {\r\n    color: #fff;\r\n    background-color: transparent;\r\n    border-color: #fff;\r\n    margin: 0 10px;\r\n    font-size: 16px;\r\n}\r\n\r\n.btn-home:hover{\r\n    background-color: #616e7c;\r\n    color: #fff;\r\n    border: none;\r\n}", ""]);
+	exports.push([module.id, ".intro {\r\n    display: table;\r\n    width: 100%;\r\n    height: 100%;\r\n    padding: 100px 0;\r\n    text-align: center;\r\n    color: #fff;\r\n    background: url(/react/app/images/intro-bg.jpg) no-repeat center center;\r\n    /*background: url(/app/images/intro-bg.jpg) no-repeat center center;*/\r\n    background-color: #000;\r\n    -webkit-background-size: cover;\r\n    -moz-background-size: cover;\r\n    background-size: cover;\r\n    -o-background-size: cover;\r\n}\r\n.intro .intro-body {\r\n    display: table-cell;\r\n    vertical-align: middle;\r\n    color: #fff;\r\n}\r\n\r\n.intro .intro-body .intro-text {\r\n    font-size: 18px;\r\n}\r\n\r\n.btn-home {\r\n    color: #fff;\r\n    background-color: transparent;\r\n    border-color: #fff;\r\n    margin: 0 10px;\r\n    font-size: 16px;\r\n}\r\n\r\n.btn-home:hover{\r\n    background-color: #616e7c;\r\n    color: #fff;\r\n    border: none;\r\n}", ""]);
 
 	// exports
 
