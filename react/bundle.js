@@ -34,7 +34,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/react/";
+/******/ 	__webpack_require__.p = "/__build__/";
 
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
@@ -34935,7 +34935,7 @@
 
 
 	// module
-	exports.push([module.id, ".intro {\r\n    display: table;\r\n    width: 100%;\r\n    height: 100%;\r\n    padding: 100px 0;\r\n    text-align: center;\r\n    color: #fff;\r\n    background: url(/react/app/images/intro-bg.jpg) no-repeat center center;\r\n   /* background: url(/app/images/intro-bg.jpg) no-repeat center center;*/\r\n    background-color: #000;\r\n    -webkit-background-size: cover;\r\n    -moz-background-size: cover;\r\n    background-size: cover;\r\n    -o-background-size: cover;\r\n}\r\n.intro .intro-body {\r\n    display: table-cell;\r\n    vertical-align: middle;\r\n    color: #fff;\r\n}\r\n\r\n.intro .intro-body .intro-text {\r\n    font-size: 18px;\r\n}\r\n\r\n.btn-home {\r\n    color: #fff;\r\n    background-color: transparent;\r\n    border-color: #fff;\r\n    margin: 0 10px;\r\n    font-size: 16px;\r\n}\r\n\r\n.btn-home:hover{\r\n    background-color: #616e7c;\r\n    color: #fff;\r\n    border: none;\r\n}", ""]);
+	exports.push([module.id, ".intro {\r\n    display: table;\r\n    width: 100%;\r\n    height: 100%;\r\n    padding: 100px 0;\r\n    text-align: center;\r\n    color: #fff;\r\n/*    background: url(/react/app/images/intro-bg.jpg) no-repeat center center;*/\r\n    background: url(/app/images/intro-bg.jpg) no-repeat center center;\r\n    background-color: #000;\r\n    -webkit-background-size: cover;\r\n    -moz-background-size: cover;\r\n    background-size: cover;\r\n    -o-background-size: cover;\r\n}\r\n.intro .intro-body {\r\n    display: table-cell;\r\n    vertical-align: middle;\r\n    color: #fff;\r\n}\r\n\r\n.intro .intro-body .intro-text {\r\n    font-size: 18px;\r\n}\r\n\r\n.btn-home {\r\n    color: #fff;\r\n    background-color: transparent;\r\n    border-color: #fff;\r\n    margin: 0 10px;\r\n    font-size: 16px;\r\n}\r\n\r\n.btn-home:hover{\r\n    background-color: #616e7c;\r\n    color: #fff;\r\n    border: none;\r\n}", ""]);
 
 	// exports
 
@@ -35213,7 +35213,7 @@
 						_react2['default'].createElement(
 							'h3',
 							null,
-							'Bootstrap示例'
+							'Bootstrap示例    '
 						),
 						_react2['default'].createElement(
 							'ul',
@@ -35879,22 +35879,37 @@
 															_react2['default'].createElement(
 																	'p',
 																	null,
-																	'2.熟练掌握javaScript,jquery,jquery mobile,zepto.js,ajax等前端技术。以及Angular，React等前端框架，并且可以用Angular构建一个前端项目'
+																	'2.熟练掌握javaScript,jquery,jquery mobile,ajax等前端技术。'
 															),
 															_react2['default'].createElement(
 																	'p',
 																	null,
-																	'3.擅于使用前端调试工具，项目管理工具。如git,github,sourceTree,bitbucket,jira,svn等，以及gulp、webpack等。'
+																	'3.能够独立的运用AngularJS +Bootstrap+Gulp搭建一套前端开发环境框架，以及嵌套路由配 置，并已积累一些常用的指令，基本可以满足一般的开发需求。'
 															),
 															_react2['default'].createElement(
 																	'p',
 																	null,
-																	'4.熟悉d3.js数据可视化。'
+																	'4.熟练使用React+ES6+Webpack，可以完成React项目的开发工作，可以独立的运用React编写常用的组件'
 															),
 															_react2['default'].createElement(
 																	'p',
 																	null,
-																	'5.对web前端有着强烈的兴趣，能到web前沿技术研究和新技术调研，有良好的学习能力和团队合作精神。'
+																	'5.能够使用Ionic开发APP，可以独立配置Android 的SDK+ADT的环境配置，能够将项目打包apk。'
+															),
+															_react2['default'].createElement(
+																	'p',
+																	null,
+																	'6.擅于使用前端的基本调试工具以及Git,GitLab，Github ,sourceTree,bitbucket,jira项目管理工具。'
+															),
+															_react2['default'].createElement(
+																	'p',
+																	null,
+																	'7.熟悉d3.js数据可视化。'
+															),
+															_react2['default'].createElement(
+																	'p',
+																	null,
+																	'8.对web前端有着强烈的兴趣，能到web前沿技术研究和新技术调研，有良好的学习能力和团队合作精神。'
 															),
 															_react2['default'].createElement(
 																	'p',
@@ -37157,21 +37172,21 @@
 
 	var items = [{
 		cname: 'timeline-inverted',
-		startTime: '2015.12',
+		startTime: '2015.11',
 		end: '至今',
 		company: '深圳百分点',
 		job: 'web前端开发工程师',
 		work: '负责公司后台管理系统以及组件开发'
 	}, {
-		startTime: '2015.06',
-		end: '2015.12',
+		startTime: '2015.04',
+		end: '2015.11',
 		company: '中软国际',
 		job: 'web前端开发工程师',
 		work: '负责公司的微信服务号的开发以及PC的后台管理系统'
 	}, {
 		cname: 'timeline-inverted',
 		startTime: '2014.09 ',
-		end: '2015.06',
+		end: '2015.04',
 		company: '深圳海外国际旅行社',
 		job: 'web前端开发工程师',
 		work: '负责公司的官网以及微信公众号开发'
