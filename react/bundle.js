@@ -837,7 +837,7 @@
 	exports.i(__webpack_require__(24), "");
 
 	// module
-	exports.push([module.id, "body{margin:0;font-family:sans-serif;}\r\na{color:hsl(200,50%,40%);text-decoration:none;}\r\na:hover{color:#F40;}\r\na:link,a:visited,a:hover,a:active{text-decoration:none;}\r\n.fr{float:right;}\r\n.fl{float:left;}\r\n.c-w{color:#fff;}\r\n.animation-transition > *{-webkit-animation:in .4s;-moz-animation:in .4s;animation:in .4s;}\r\n@-webkit-keyframes in{\r\n\tfrom{opacity:0.2;margin-top:-500px;}\r\n\tto{opacity:1;}\r\n}\r\n\r\n.row{margin-right: 0!important;}\r\npre{border: none!important;}\r\nhr{border-top: 2px solid #ddd!important;}\r\n\r\n/*access*/\r\n.form-access{max-width:330px;padding:15px;margin:0 auto;background-color:#fff;}\r\n.form-access .form-access-heading,.form-access .checkbox{margin-bottom:10px;}\r\n.form-access .checkbox{font-weight:normal;}\r\n.form-access .form-control{position:relative;height:auto;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;padding:10px;font-size:16px;}\r\n.form-access .form-control:focus{z-index:2;}\r\n.form-access input[type=\"email\"]{margin-bottom:-1px;border-bottom-right-radius:0;border-bottom-left-radius:0;}\r\n.form-access input[type=\"password\"]{margin-bottom:10px;border-top-left-radius:0;border-top-right-radius:0;}\r\n\r\n/*Toolbar*/\r\n.u-toolbar-tabs{position:fixed;top:40%;right:14px;width:40px;margin-top:-126px;z-index: 999;}\r\n.u-toolbar-tab,.u-tab-text{background:#7a6e6e;text-align:center;height:40px;line-height:40px;border-radius:2px;font-size:16px;color:#fff;cursor:pointer;margin-bottom:2px;}\r\n.u-toolbar-tab{position:relative;}\r\n.u-tab-text{position:absolute;left:0;width:0;opacity:0;font-size:14px;font-style:normal;}\r\n.u-toolbar-tab:hover .u-tab-text{width:60px;left:-58px;opacity:1;-webkit-transition:all .2s ease-in;-moz-transition:all .2s ease-in;-ms-transition:all .2s ease-in;-o-transition:all .2s ease-in;transition:all .2s ease-in;}\r\n.u-toolbar-tab:hover,.u-toolbar-tab:hover .u-tab-text{background-color:#c81623;}", ""]);
+	exports.push([module.id, "body{margin:0;font-family:sans-serif;}\r\na{color:hsl(200,50%,40%);text-decoration:none;}\r\na:hover{color:#F40;}\r\na:link,a:visited,a:hover,a:active{text-decoration:none;}\r\n.fr{float:right;}\r\n.fl{float:left;}\r\n.c-w{color:#fff;}\r\n.animation-transition > *{-webkit-animation:in .4s;-moz-animation:in .4s;animation:in .4s;}\r\n@-webkit-keyframes in{\r\n\tfrom{opacity:0.2;margin-top:-500px;}\r\n\tto{opacity:1;}\r\n}\r\n\r\n.row{margin-right: 0!important;}\r\npre{border: none!important;}\r\nhr{border-top: 2px solid #ddd!important;}\r\n\r\n/*access*/\r\n.form-access{max-width:330px;padding:15px;margin:0 auto;background-color:#fff;}\r\n.form-access .form-access-heading,.form-access .checkbox{margin-bottom:10px;}\r\n.form-access .checkbox{font-weight:normal;}\r\n.form-access .form-control{position:relative;height:auto;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;padding:10px;font-size:16px;}\r\n.form-access .form-control:focus{z-index:2;}\r\n.form-access input[type=\"email\"]{margin-bottom:-1px;border-bottom-right-radius:0;border-bottom-left-radius:0;}\r\n.form-access input[type=\"password\"]{margin-bottom:10px;border-top-left-radius:0;border-top-right-radius:0;}\r\n\r\n/*Toolbar*/\r\n.u-toolbar-tabs{position:fixed;top:40%;right:14px;width:40px;margin-top:-126px;z-index: 999;}\r\n.u-toolbar-tab,.u-tab-text{background:#7a6e6e;text-align:center;height:40px;line-height:40px;border-radius:2px;font-size:16px;color:#fff;cursor:pointer;margin-bottom:2px;}\r\n.u-toolbar-tab{position:relative;}\r\n.u-tab-text{position:absolute;left:0;width:0;opacity:0;font-size:14px;font-style:normal;}\r\n.u-toolbar-tab:hover .u-tab-text{width:60px;left:-58px;opacity:1;-webkit-transition:all .2s ease-in;-moz-transition:all .2s ease-in;-ms-transition:all .2s ease-in;-o-transition:all .2s ease-in;transition:all .2s ease-in;}\r\n.u-toolbar-tab:hover,.u-toolbar-tab:hover .u-tab-text{background-color:#c81623;}\r\n\r\n*{\r\nmargin: 0;\r\npadding: 0;\r\n}\r\nhtml,body{\r\nheight: 100%;\r\n}", ""]);
 
 	// exports
 
@@ -35110,7 +35110,7 @@
 /* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	'use strict';
 
 	Object.defineProperty(exports, '__esModule', {
 	  value: true
@@ -35133,12 +35133,6 @@
 	var Dashboard = _react2['default'].createClass({
 	  displayName: 'Dashboard',
 
-	  getInitialState: function getInitialState() {
-	    var h = $(document).height() - 50;
-	    return {
-	      height: h + 'px'
-	    };
-	  },
 	  render: function render() {
 	    return _react2['default'].createElement(
 	      'div',
@@ -35146,7 +35140,7 @@
 	      _react2['default'].createElement(_Toolbar2['default'], null),
 	      _react2['default'].createElement(
 	        'div',
-	        { style: { height: this.state.height } },
+	        null,
 	        this.props.children || _react2['default'].createElement(_componentsHome2['default'], null)
 	      )
 	    );
@@ -35154,7 +35148,6 @@
 	});
 	exports['default'] = Dashboard;
 	module.exports = exports['default'];
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(26)))
 
 /***/ },
 /* 239 */
@@ -35232,21 +35225,13 @@
 /* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/* WEBPACK VAR INJECTION */(function(jQuery) {'use strict';
 
 	Object.defineProperty(exports, '__esModule', {
 			value: true
 	});
 
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	__webpack_require__(241);
 
@@ -35256,66 +35241,59 @@
 
 	var _reactRouter = __webpack_require__(185);
 
-	var Home = (function (_React$Component) {
-			_inherits(Home, _React$Component);
+	var Home = _react2['default'].createClass({
+			displayName: 'Home',
 
-			function Home() {
-					_classCallCheck(this, Home);
-
-					_get(Object.getPrototypeOf(Home.prototype), 'constructor', this).apply(this, arguments);
-			}
-
-			_createClass(Home, [{
-					key: 'render',
-					value: function render() {
-							return _react2['default'].createElement(
+			render: function render() {
+					return _react2['default'].createElement(
+							'div',
+							{ className: 'intro' },
+							_react2['default'].createElement(
 									'div',
-									{ className: 'intro' },
+									{ className: 'intro-body' },
 									_react2['default'].createElement(
 											'div',
-											{ className: 'intro-body' },
+											{ className: 'container' },
 											_react2['default'].createElement(
 													'div',
-													{ className: 'container' },
+													{ className: 'row' },
 													_react2['default'].createElement(
 															'div',
-															{ className: 'row' },
+															{ className: 'intro-text' },
 															_react2['default'].createElement(
-																	'div',
-																	{ className: 'intro-text' },
-																	_react2['default'].createElement(
-																			'h1',
-																			null,
-																			'Hello, 我叫张宇'
-																	),
-																	_react2['default'].createElement(
-																			'p',
-																			null,
-																			'前端开发工程师，热爱前端开发，敢于尝试新技术，新挑战。'
-																	),
-																	_react2['default'].createElement(
-																			_reactRouter.Link,
-																			{ to: '/app/dashboard/about', className: 'btn btn-default btn-lg  btn-home' },
-																			'关于我'
-																	),
-																	_react2['default'].createElement(
-																			_reactRouter.Link,
-																			{ to: '/app/dashboard/product', className: 'btn btn-default btn-lg  btn-home' },
-																			'我的作品'
-																	)
+																	'h1',
+																	null,
+																	'Hello, 我叫张宇'
+															),
+															_react2['default'].createElement(
+																	'p',
+																	null,
+																	'前端开发工程师，热爱前端开发，敢于尝试新技术，新挑战。'
+															),
+															_react2['default'].createElement(
+																	_reactRouter.Link,
+																	{ to: '/app/dashboard/about', className: 'btn btn-default btn-lg  btn-home' },
+																	'关于我'
+															),
+															_react2['default'].createElement(
+																	_reactRouter.Link,
+																	{ to: '/app/dashboard/product', className: 'btn btn-default btn-lg  btn-home' },
+																	'我的作品'
 															)
 													)
 											)
 									)
-							);
-					}
-			}]);
-
-			return Home;
-	})(_react2['default'].Component);
+							)
+					);
+			},
+			componentDidMount: function componentDidMount() {
+					jQuery('.intro').css('height', jQuery('body').height() - 50 + 'px');
+			}
+	});
 
 	exports['default'] = Home;
 	module.exports = exports['default'];
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(26)))
 
 /***/ },
 /* 241 */
@@ -35418,7 +35396,7 @@
 	          ),
 	          _react2['default'].createElement(
 	            _reactRouter.Link,
-	            { to: '/app', className: 'navbar-brand' },
+	            { to: 'app', className: 'navbar-brand' },
 	            '首页'
 	          )
 	        ),
