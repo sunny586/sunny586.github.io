@@ -295,22 +295,30 @@
 
 	var _homeRoutesComponentLineBarExampleLineBarExample2 = _interopRequireDefault(_homeRoutesComponentLineBarExampleLineBarExample);
 
-	var _homeRoutesGradesComponentsGrades = __webpack_require__(727);
+	var _homeRoutesComponentPieExamplePieExample = __webpack_require__(727);
+
+	var _homeRoutesComponentPieExamplePieExample2 = _interopRequireDefault(_homeRoutesComponentPieExamplePieExample);
+
+	var _homeRoutesComponentBubbleExampleBubbleExample = __webpack_require__(728);
+
+	var _homeRoutesComponentBubbleExampleBubbleExample2 = _interopRequireDefault(_homeRoutesComponentBubbleExampleBubbleExample);
+
+	var _homeRoutesGradesComponentsGrades = __webpack_require__(729);
 
 	var _homeRoutesGradesComponentsGrades2 = _interopRequireDefault(_homeRoutesGradesComponentsGrades);
 
-	var _homeRoutesMessagesComponentsMessages = __webpack_require__(728);
+	var _homeRoutesMessagesComponentsMessages = __webpack_require__(730);
 
 	var _homeRoutesMessagesComponentsMessages2 = _interopRequireDefault(_homeRoutesMessagesComponentsMessages);
 
-	var _homeRoutesProfileComponentsProfile = __webpack_require__(729);
+	var _homeRoutesProfileComponentsProfile = __webpack_require__(731);
 
 	var _homeRoutesProfileComponentsProfile2 = _interopRequireDefault(_homeRoutesProfileComponentsProfile);
 
 	// 此处用于添加根路径
 	var history = (0, _history.useBasename)(_history.createHashHistory)({
-	    queryKey: '',
-	    basename: ''
+	    queryKey: 'react',
+	    basename: false
 	});
 
 	(0, _reactDom.render)(_react2['default'].createElement(
@@ -352,7 +360,9 @@
 	            _reactRouter.Route,
 	            { path: 'component', component: _homeRoutesComponentComponent2['default'] },
 	            _react2['default'].createElement(_reactRouter.IndexRoute, { component: _homeRoutesComponentDesc2['default'] }),
-	            _react2['default'].createElement(_reactRouter.Route, { path: 'lineBarExample', component: _homeRoutesComponentLineBarExampleLineBarExample2['default'] })
+	            _react2['default'].createElement(_reactRouter.Route, { path: 'lineBarExample', component: _homeRoutesComponentLineBarExampleLineBarExample2['default'] }),
+	            _react2['default'].createElement(_reactRouter.Route, { path: 'pieExample', component: _homeRoutesComponentPieExamplePieExample2['default'] }),
+	            _react2['default'].createElement(_reactRouter.Route, { path: 'bubbleExample', component: _homeRoutesComponentBubbleExampleBubbleExample2['default'] })
 	        ),
 	        _react2['default'].createElement(_reactRouter.Route, { path: 'grades', component: _homeRoutesGradesComponentsGrades2['default'] }),
 	        _react2['default'].createElement(_reactRouter.Route, { path: 'messages', component: _homeRoutesMessagesComponentsMessages2['default'] }),
@@ -36570,15 +36580,20 @@
 				}]
 			};
 		},
-		componentDidMount: function componentDidMount() {
+		componentWillMount: function componentWillMount() {
 			var _this = this;
 
-			if (this.props.children) {
+			if (this.props) {
 				(function () {
-					var pathname = _this.props.children.props.location.pathname;
-					_this.state.items.map(function (item) {
-						item.active && delete item.active;
+					var pathname = _this.props.location.pathname;
+					var _items = _this.state.items;
+					if (pathname == '/app/bootstrap') pathname = '/app/bootstrap/btn';
+					_items.map(function (item) {
+						if (item.active) delete item.active;
 						if (item.url === pathname) item['active'] = checked;
+					});
+					_this.setState({
+						items: _items
 					});
 				})();
 			}
@@ -38051,8 +38066,8 @@
 	            _bfdNav.NavItem,
 	            { key: 0, href: 'app', icon: 'hand-right', title: '数据可视化' },
 	            _react2['default'].createElement(_bfdNav.NavItem, { href: 'app/component/lineBarExample', title: '折线柱状图' }),
-	            _react2['default'].createElement(_bfdNav.NavItem, { href: 'app/component', title: '饼图' }),
-	            _react2['default'].createElement(_bfdNav.NavItem, { href: 'app/component', title: '汽包图' })
+	            _react2['default'].createElement(_bfdNav.NavItem, { href: 'app/component/pieExample', title: '饼图' }),
+	            _react2['default'].createElement(_bfdNav.NavItem, { href: 'app/component/bubbleExample', title: '汽包图' })
 	          )]
 	        )
 	      ),
@@ -102814,6 +102829,84 @@
 
 	'use strict';
 
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _react = __webpack_require__(27);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _history = __webpack_require__(232);
+
+	var _history2 = _interopRequireDefault(_history);
+
+	var PieExample = _react2['default'].createClass({
+	  displayName: 'PieExample',
+
+	  handleClick: function handleClick() {
+	    this.props.history.replaceState(null, '/app/component/bubbleExample', { id: 123, name: 'zhangsan' });
+	  },
+	  render: function render() {
+	    return _react2['default'].createElement(
+	      'div',
+	      { className: 'box u-desc' },
+	      'PieExample',
+	      _react2['default'].createElement(
+	        'button',
+	        { className: 'btn btn-default', onClick: this.handleClick },
+	        '确定'
+	      )
+	    );
+	  }
+	});
+
+	exports['default'] = PieExample;
+	module.exports = exports['default'];
+
+/***/ },
+/* 728 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+	var _react = __webpack_require__(27);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var BubbleExample = _react2["default"].createClass({
+	  displayName: "BubbleExample",
+
+	  componentDidMount: function componentDidMount() {
+
+	    console.log(this.props.location.query);
+	  },
+	  render: function render() {
+	    return _react2["default"].createElement(
+	      "div",
+	      { className: "box u-desc" },
+	      "BubbleExample"
+	    );
+	  }
+	});
+
+	exports["default"] = BubbleExample;
+	module.exports = exports["default"];
+
+/***/ },
+/* 729 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
 	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
@@ -102858,7 +102951,7 @@
 	module.exports = Grades;
 
 /***/ },
-/* 728 */
+/* 730 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -102907,7 +103000,7 @@
 	module.exports = Messages;
 
 /***/ },
-/* 729 */
+/* 731 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
