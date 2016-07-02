@@ -37032,8 +37032,8 @@
 	            _bfdNav.NavItem,
 	            { key: 0, href: 'app', icon: 'hand-right', title: '数据可视化' },
 	            _react2['default'].createElement(_bfdNav.NavItem, { href: 'app/component/lineBarExample', title: '折线柱状图' }),
-	            _react2['default'].createElement(_bfdNav.NavItem, { href: 'data/moduleB', title: '饼图' }),
-	            _react2['default'].createElement(_bfdNav.NavItem, { href: 'data/moduleC', title: '汽包图' })
+	            _react2['default'].createElement(_bfdNav.NavItem, { href: 'app/component', title: '饼图' }),
+	            _react2['default'].createElement(_bfdNav.NavItem, { href: 'app/component', title: '汽包图' })
 	          )]
 	        )
 	      ),
