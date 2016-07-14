@@ -44,7 +44,7 @@
 				<input class="form-control" type="password" ng-model="user.pwd" name="pwd" ng-minlength="8" ng-pattern="/^(?!([a-zA-Z]+|\d+)$)[a-zA-Z\d]+$/" required/>
 			</div>
 			<div class="col-md-4" ng-show="form.pwd.$dirty && form.pwd.$invalid">
-				<span class="error" ng-show="form.pwd.$error.required">新密码不能为空</span>
+				<span class="error" ng-show="form.pwd.$error.required">密码不能为空</span>
 				<span class="error" ng-show="!form.pwd.$error.required&&form.pwd.$error">密码至少8位以上,大、小写字母和数字的2种组合</span>
 			</div>
 		</div>

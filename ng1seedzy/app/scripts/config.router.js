@@ -18,7 +18,7 @@ angular.module('app')
 
           $rootScope.toStateName = toState.name;
           $rootScope.fromStateName = fromState.name;
-                    
+
           $timeout(function() {
             if (angular.element('.mdi-content-clear').length > 0) {
               angular.element('.mdi-content-clear').click()
@@ -98,7 +98,16 @@ angular.module('app')
             controller: 'formCtrl',
             resolve: load(['scripts/controllers/component/formCtrl.js'])
           })
-
+          .state('app.component-tabs', {
+            url: '/component/tabs',
+            templateUrl: 'views/app/component/tabs.html'
+          })
+          .state('app.component-modal', {
+            url: '/component/modal',
+            templateUrl: 'views/app/component/modal.html',
+            controller: 'modalCtrl',
+            resolve: load(['scripts/controllers/component/modalCtrl.js'])
+          })
         .state('404', {
             url: '/404',
             templateUrl: 'views/pages/404.html'
