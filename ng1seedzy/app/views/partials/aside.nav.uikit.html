@@ -39,6 +39,15 @@
 				<li ng-class="{true: 'bfd-select', false: ''}[{{toStateName.indexOf('app.component-datePicker')!=-1}}]">
 					<a md-ink-ripple ui-sref="app.component-datePicker">日期选择</a>
 				</li>
+				<li ng-class="{true: 'bfd-select', false: ''}[{{toStateName.indexOf('app.component-pager')!=-1}}]">
+					<a md-ink-ripple ui-sref="app.component-pager">分页</a>
+				</li>
+				<li ng-class="{true: 'bfd-select', false: ''}[{{toStateName.indexOf('app.component-confirm')!=-1}}]">
+					<a md-ink-ripple ui-sref="app.component-confirm">确认提示</a>
+				</li>
+				<li ng-class="{true: 'bfd-select', false: ''}[{{toStateName.indexOf('app.component-message')!=-1}}]">
+					<a md-ink-ripple ui-sref="app.component-message">全局提示</a>
+				</li>
 			</ul>
 		</li>
 		<li>
