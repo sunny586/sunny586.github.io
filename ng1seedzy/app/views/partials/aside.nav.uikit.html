@@ -51,9 +51,12 @@
 				<li ng-class="{true: 'bfd-select', false: ''}[{{toStateName.indexOf('app.component-switch')!=-1}}]">
 					<a md-ink-ripple ui-sref="app.component-switch">开关</a>
 				</li>
+				<li ng-class="{true: 'bfd-select', false: ''}[{{toStateName.indexOf('app.component-upload')!=-1}}]">
+					<a md-ink-ripple ui-sref="app.component-upload">文件上传</a>
+				</li>
 			</ul>
 		</li>
-		<li>
+		<!-- <li>
 			<a md-ink-ripple>
 				<span class="pull-right text-muted"></span>
 				<i class="icon fa fa-hand-o-right i-16"></i>
@@ -67,6 +70,6 @@
 				<span class="font-normal">更新日志</span>
 			</a>
 		
-		</li>
+		</li> -->
 	</ul>
 </nav>
