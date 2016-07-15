@@ -9,22 +9,18 @@ angular.module('app')
 		var uploader = $scope.uploader = new FileUploader({
 			url: 'scripts/controllers/upload.php'
 		});
-
-
+		
 		// FILTERS
 		uploader.filters.push({
 			name: 'customFilter',
 			fn: function(item /*{File|FileLikeObject}*/ , options) {
-
 				//去重。
 				var isReapet = false;
 				angular.forEach(this.queue, function(_item, i) {
 					if (_item._file.name === item.name) isReapet = true;
 				});
-
 				//上传文件数量，不能超过10个。
 				var isMaxLength = this.queue.length < 10;
-
 				return isMaxLength && !isReapet;
 			}
 		});
