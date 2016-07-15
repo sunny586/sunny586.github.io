@@ -24,4 +24,9 @@ angular.module('app')
 				utils.message('这是警告信息', 'warning');
 		}
 
+
+		$scope.ok = function(){
+			console.log('ok')
+		}
+
 	}]);

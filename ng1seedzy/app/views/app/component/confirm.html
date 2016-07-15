@@ -1,12 +1,22 @@
 <div class="bfd-content">
 	<h3>确认提示</h3>
-	<pre>
+	<h5>方式一：</h5>
+<pre>
 1.注入utils服务。
 2.调用confirmBox函数。
   utils.confirmBox('提示', '确认删除吗？', function() {
 	alert('点击了确定')
   }, function() {
 	alert('点击了取消')
-  }, 'sm');</pre>
-	<button type="button" class="btn btn-primary" ng-click="ok()">删除</button>
+  }, 'sm');
+</pre>	
+<button type="button" class="btn btn-primary" ng-click="ok()">删除</button>
+
+<h5>方式二：</h5>
+<pre>
+&lt;button class="btn btn-default" confirm-click="ok2()" confirm-msg="是否删除？"&gt;ok&lt;/button&gt;
+1.confirmMsg string 提示信息。
+2.confirmClick func 回调函数。
+</pre>
+<button class="btn btn-default" confirm-click="ok2()" confirm-msg="是否删除？">删除</button>
 </div>

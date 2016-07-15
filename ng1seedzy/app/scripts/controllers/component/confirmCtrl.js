@@ -15,4 +15,10 @@ angular.module('app')
 			}, 'sm');
 		};
 
+		$scope.ok2 = function() {
+			
+			alert('点击了确定');
+		};
+
+
 	}]);

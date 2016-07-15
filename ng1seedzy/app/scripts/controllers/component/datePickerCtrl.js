@@ -7,18 +7,19 @@ angular.module('app')
 	.controller('datePickerCtrl', ['$scope', 'utils', function($scope, utils) {
 
 		$scope.dateChanged = function() {
+
 			if (new Date($scope.startTime).getTime() > new Date($scope.endTime).getTime()) {
-				utils.popup('开始时间不能大于结束时间', 'warning');
+				utils.message('开始时间不能大于结束时间', 'warning');
 				return;
 			}
 
-			if (!$scope.startTime && $scope.endTime) {
-				utils.popup('请选择开始时间', 'warning');
+			if (!$scope.startTime && !!$scope.endTime) {
+				utils.message('请选择开始时间', 'warning');
 				return;
 			}
 
-			if ($scope.startTime && !$scope.endTime) {
-				utils.popup('请选择结束时间', 'warning');
+			if (!!$scope.startTime && !$scope.endTime) {
+				utils.message('请选择结束时间', 'warning');
 				return;
 			}
 		}
