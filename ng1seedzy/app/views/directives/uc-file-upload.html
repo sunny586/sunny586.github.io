@@ -1,0 +1,27 @@
+<div class="u-bfd-upload" nv-file-drop uploader="uploader" filters="filter">
+	<div class="u-upload" uc-upload>
+		<input type="file" nv-file-select uploader="uploader" multiple style="display: none;" />
+		<button class="btn btn-primary bfd-btn">文件上传</button>
+	</div>
+	<div class="list-group">
+		<div class="list-group-item" ng-repeat="item in uploader.queue">
+			<span class="m-h-xs">{{ item.file.name }}</span>
+			<span class="m-h-xs" ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</span>
+			<span class="m-h-xs" ng-show="uploader.isHTML5">{{item.progress}}%</span>
+			<span class="text-center m-h-xs">
+				<span ng-show="item.isSuccess" class="text-success"> <i class="fa fa-check"></i>
+				</span>
+				<span ng-show="item.isCancel" class="text-warning"> <i class="fa fa-ban"></i>
+				</span>
+				<span ng-show="item.isError" class="text-danger">
+					<i class="fa fa-close"></i>
+				</span>
+			</span>
+			<span class="m-h-xs" nowrap>
+				<button type="button" class="btn btn-default btn-xs"  ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">上传</button>
+				<button type="button" class="btn btn-default btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">取消</button>
+				<button type="button" class="btn btn-default btn-xs" ng-click="item.remove()">删除</button>
+			</span>
+		</div>
+	</div>
+</div>
