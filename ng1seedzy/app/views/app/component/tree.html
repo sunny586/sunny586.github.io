@@ -1,0 +1,46 @@
+<div class="bfd-content">
+	<h3>树</h3>
+	<pre>基于Angular Tree Control，修改相关样式并整理。</pre>
+	<h5><a href="http://wix.github.io/angular-tree-control/" target="_blank">更多请查看官方API</a></h5>
+	<h5>基础展示</h5>
+	<treecontrol class="tree-light"
+		   tree-model="dataForTheTree"
+		   options="treeOptions"
+		   on-selection="showSelected(node)"
+		   selected-node="node1">
+		{{node.name}} 
+	</treecontrol>
+	<h5>节点勾选</h5>
+	<treecontrol class="tree-light"
+	   tree-model="dataForTheTree"
+	   options="treeOptions"
+	   on-selection="showSelected(node)"
+	   selected-node="node1">
+		<label class="md-check">
+			<input type="checkbox"> <i></i>
+			{{node.name}} 
+		</label> 
+	</treecontrol>
+
+	<h5>自定义图标</h5>
+	<treecontrol class="tree-light"
+	   tree-model="dataForTheTree"
+	   options="treeOptions"
+	   on-selection="showSelected(node)"
+	   selected-node="node1" folder-toggle>
+	  <i class="fa fa-folder bfd-icon"></i>{{node.name}} 	 
+	</treecontrol>
+	<hr/>
+	<treecontrol class="tree-light" tree-model="treedata" options="treeOptions" on-selection="showSelected(node)" selected-node="node1" on-node-toggle="onNodeToggle(node)" folder-toggle>
+         <span ng-switch="" on="node.type">
+             <span ng-switch-when="folder" class="fa fa-folder bfd-icon" aria-hidden="true"></span>
+             <span ng-switch-when="pic" class="fa fa-image bfd-icon" aria-hidden="true"></span>
+             <span ng-switch-when="doc" class="fa fa-file bfd-icon" aria-hidden="true"></span>
+             <span ng-switch-when="file" class="fa fa-file-text bfd-icon" aria-hidden="true"></span>
+             <span ng-switch-when="movie" class="fa fa-film bfd-icon" aria-hidden="true"></span>
+             <span ng-switch-when="email" class="fa fa-envelope bfd-icon" aria-hidden="true"></span>
+             <span ng-switch-when="home" class="fa fa-home bfd-icon" aria-hidden="true"></span>
+             <span ng-switch-when="trash" class="fa fa-trash bfd-icon" aria-hidden="true"></span>
+         </span>{{node.label}}
+    </treecontrol>
+</div>
