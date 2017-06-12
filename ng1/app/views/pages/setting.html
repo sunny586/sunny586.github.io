@@ -1,0 +1,57 @@
+<style type="text/css">
+	.form-validation .form-control.ng-dirty.ng-invalid {
+	    border-color: #f44336!important;
+	}
+</style>
+<form class="form-horizontal bfd-form form-validation" name="setting" novalidate ng-submit="ok()">
+	<div class="modal-header">
+		<h3 class="modal-title">
+			个人设置 <i ng-click="cancel()" class="mdi-content-clear text-lg m-t-sm pull-left"></i>
+		</h3>
+	</div>
+	<div class="modal-body">
+		<div class="form-group">
+			<label class="col-sm-3 control-label bfd-required">旧密码</label>
+			<div class="col-sm-6">
+				<input class="form-control" type="password" ng-model="user.oldpwd" name="oldpwd" mark="bps-input" required/>
+			</div>			
+			<div class="col-md-3" ng-show="setting.oldpwd.$dirty && setting.oldpwd.$invalid">				
+				<span class="error" ng-show="setting.oldpwd.$error.required">旧密码不能为空</span>
+			</div>
+		</div>	
+		<div class="form-group">
+			<label class="col-sm-3 control-label bfd-required">新密码</label>
+			<div class="col-sm-6">
+				<input class="form-control" type="password" ng-model="user.newpwd" name="newpwd" ng-style="error" ng-keyup="compare()" ng-minlength="8" ng-pattern="/^(?!([a-zA-Z]+|\d+)$)[a-zA-Z\d]+$/" mark="bps-input" required/>
+			</div>	
+			<div class="col-md-3" ng-show="setting.newpwd.$dirty && setting.newpwd.$invalid">				
+				<span class="error" ng-show="setting.newpwd.$error.required">新密码不能为空</span>	
+				<span class="error" ng-show="!setting.newpwd.$error.required&&setting.newpwd.$error">密码至少8位以上,大、小写字母和数字的2种组合</span>			
+				<!-- <span class="error" ng-show="!setting.newpwd.$error.required&&!setting.newpwd.$error.minlength&&setting.newpwd.$error.pattern">大、小写字母和数字的2种组合</span> -->
+			</div>
+
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label bfd-required">再次输入新密码</label>
+			<div class="col-sm-6">
+				<input class="form-control" type="password" ng-model="user.newpwd_c" name="newpwd_c" ng-style="error" ng-keyup="compare()" mark="bps-input"/>
+			</div>			
+			<div class="col-md-3">				
+				<span class="error" ng-show="isDifference">2次输入的密码不一致</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label">邮箱</label>
+			<div class="col-sm-6">
+				<input class="form-control" type="email" ng-model="user.email" name="email"/>
+			</div>			
+			<div class="col-md-3" ng-show="setting.email.$dirty && setting.email.$invalid">	
+				<span class="error" ng-show="setting.email.$error">请填写正确的邮箱</span>
+			</div>
+		</div>		
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary bfd-btn" type="submit"  ng-disabled="setting.$invalid||isDifference">保存</button>
+		<button class="btn btn-default bfd-btn" type="button" ng-click="cancel()">取消</button>
+	</div>
+</form>

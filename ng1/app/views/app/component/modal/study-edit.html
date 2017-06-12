@@ -1,0 +1,49 @@
+<form class="form-horizontal bfd-form form-validation" name="form" novalidate>
+
+	<div class="modal-header">
+		<h3 class="modal-title">
+			资料编辑 <i ng-click="cancel()" class="mdi-content-clear text-lg m-t-sm pull-left"></i>
+		</h3>
+	</div>
+	<div class="modal-body">
+		<div class="form-group">
+			<label class="col-sm-2 control-label bfd-required">名称：</label>
+			<div class="col-sm-6">
+				<input class="form-control" ng-model="study.host_name" name="name" required/>
+			</div>
+			<div class="col-md-4" ng-show="form.name.$dirty && form.name.$invalid">
+				<span class="error" ng-show="form.name.$error.required">名称不能为空</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label bfd-required">Url：</label>
+			<div class="col-sm-6">
+				<input class="form-control" ng-model="study.url" name="url" ng-pattern="/(((^https?:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)$/" required/>
+			</div>			
+			<div class="col-md-4" ng-show="form.url.$dirty && form.url.$invalid">	
+				<span class="error" ng-show="form.url.$error.required">url不能为空</span>			
+				<span class="error" ng-show="!form.url.$error.required&&form.url.$error">url格式不正确</span>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label">描述：</label>
+			<div class="col-sm-6">
+				<textarea class="form-control" ng-model="study.desc" rows="4"></textarea>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label bfd-required">类型：</label>
+			<div class="col-sm-6">
+				<md-select ng-model="study.genre" placeholder="请选择" ng-change="changed()" required>
+					<md-option ng-value="opt.value" ng-repeat="opt in genres">{{ opt.name }}</md-option>
+				</md-select>
+			</div>
+		</div>
+		
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary bfd-btn" type="button" ng-disabled="form.$invalid" ng-click="ok()">保存</button>
+	<button class="btn btn-default bfd-btn" type="button" ng-click="cancel()">取消</button>
+</div>
+</form>

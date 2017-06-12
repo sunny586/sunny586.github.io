@@ -1,0 +1,59 @@
+<div class="bfd-content">
+	<h3>表单</h3>
+	<pre>
+&lt;form class="form-horizontal bfd-form form-validation" name="form" novalidate&gt;
+	&lt;div class="form-group"&gt;
+		&lt;label class="col-sm-2 control-label bfd-required"&gt;用户名：&lt;/label&gt;
+		&lt;div class="col-sm-6"&gt;
+		&lt;input class="form-control" ng-model="user.name" name="name" required/&gt;
+		&lt;/div&gt;
+		&lt;div class="col-md-4" ng-show="form.name.$dirty && form.name.$invalid"&gt;
+		&lt;span class="error" ng-show="form.name.$error.required"&gt;用户名不能为空&lt;/span&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class="form-group"&gt;
+		&lt;label class="col-sm-2 control-label bfd-required"&gt;密码：&lt;/label&gt;
+		&lt;div class="col-sm-6"&gt;
+			&lt;input class="form-control" type="password" ng-model="user.pwd" name="pwd" ng-minlength="8" ng-pattern="/^(?!([a-zA-Z]+|\d+)$)[a-zA-Z\d]+$/" required/&gt;
+		&lt;/div&gt;
+		&lt;div class="col-md-4" ng-show="form.pwd.$dirty && form.pwd.$invalid"&gt;
+			&lt;span class="error" ng-show="form.pwd.$error.required"&gt;新密码不能为空&lt;/span&gt;	
+			&lt;span class="error" ng-show="!form.pwd.$error.required&&form.pwd.$error"&gt;密码至少8位以上,大、小写字母和数字的2种组合&lt;/span&gt;	
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class="form-group"&gt;
+		&lt;div class="col-sm-offset-2 col-sm-10"&gt;
+			&lt;button type="submit" class="btn btn-primary bfd-btn" ng-disabled="form.$invalid"&gt;确定&lt;/button&gt;
+			&lt;button class="btn btn-default bfd-btn" type="button"&gt;取消&lt;/button&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/form&gt;</pre>
+	<form class="form-horizontal bfd-form form-validation" name="form" novalidate>
+		<div class="form-group">
+			<label class="col-sm-2 control-label bfd-required">用户名：</label>
+			<div class="col-sm-6">
+				<input class="form-control" ng-model="user.name" name="name" required/>
+			</div>
+			<div class="col-md-4" ng-show="form.name.$dirty && form.name.$invalid">
+				<span class="error" ng-show="form.name.$error.required">用户名不能为空</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label bfd-required">密码：</label>
+			<div class="col-sm-6">
+				<input class="form-control" type="password" ng-model="user.pwd" name="pwd" ng-minlength="8" ng-pattern="/^(?!([a-zA-Z]+|\d+)$)[a-zA-Z\d]+$/" required/>
+			</div>
+			<div class="col-md-4" ng-show="form.pwd.$dirty && form.pwd.$invalid">
+				<span class="error" ng-show="form.pwd.$error.required">密码不能为空</span>
+				<span class="error" ng-show="!form.pwd.$error.required&&form.pwd.$error">密码至少8位以上,大、小写字母和数字的2种组合</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button type="submit" class="btn btn-primary bfd-btn" ng-disabled="form.$invalid" ng-click="ok()">确定</button>
+				<button class="btn btn-default bfd-btn" type="button">取消</button>
+			</div>
+		</div>
+	</form>
+	<a href="http://www.runoob.com/angularjs/angularjs-validation.html" target="_blank">更多请查看Angular表单验证的API</a>
+</div>

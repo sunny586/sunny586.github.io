@@ -1,0 +1,12 @@
+<div class="row bfd-pager" ng-show="isHasPagination">
+	<div class="col-md-2" style="padding-left: 10px;">共有<span>{{totalItems}}</span>条记录</div>
+	<div class="col-md-8 bfd-isrl">
+		<pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm m-t-none m-b" boundary-links="false" rotate="false"  items-Per-Page="pageSize" ng-change="changePaged()" previous-text="上一页" next-text="下一页" first-text="首页" last-text="末页" ></pagination>
+	</div>
+	<div class="col-md-2 bfd-isrl">
+		<label style="vertical-align: middle;">跳转到：</label>
+		<input ng-model="goPage" ng-keyup="keyUp()" class="form-control" style="display: inline-block;padding: 0 4px;vertical-align: middle;text-align: center;">
+		<button class="btn btn-primary"  ng-click="go()">GO</button>
+	</div>
+</div>
+
