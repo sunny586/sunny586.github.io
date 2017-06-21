@@ -503,7 +503,7 @@ E：服务端收到回调
 
 服务器下单完成后会返回签名参数
 
-```json
+```js
 {
   'timeStamp': '',
   'nonceStr': '',
@@ -513,7 +513,7 @@ E：服务端收到回调
 }
 ```
 
-前端拿到签名参数后发起支付
+> 前端拿到签名参数后发起支付
 
 ```js
 wx.requestPayment({
@@ -524,7 +524,7 @@ wx.requestPayment({
   'paySign': '',
   'success':function(res){
     wx.showToast({
-      title:'支付成功'
+      title: '支付成功'
     })
   },
   'fail':function(res){},
