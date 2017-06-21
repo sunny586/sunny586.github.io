@@ -410,4 +410,124 @@ tabBar
 > tabBar的样式是固定的。上边为图标，下边为文字说明。
 
 ### 10 常用组件
+
 + [见官方文档。](https://mp.weixin.qq.com/debug/wxadoc/dev/component/)
+
+### 11 搜索小程序
+
++ 小程序又增新流量入口，支持自定义关键词搜索。6月3日凌晨3点多，微信小程序后台新增推广功能，支持开发者添加与业务相关的自定义关键词，搜索策略将于6月9日正式生效。开发者可在小程序后台的 “推广” 模块中，配置与小程序业务相关的关键词
+
+> 值得注意的是，小程序可配置最多10个与业务相关的关键词，关键词在审核通过后，会和小程序的服务质量、用户使用情况等因素，共同影响搜索结果。每30天可以修改3次。
+
+> 关键词设置 可配置最多10个与业务相关的关键词，关键词在审核通过后，会和小程序的服务质量、用户使用情况等因素，共同影响搜索结果。
+
+[相关链接](http://www.sohu.com/a/146095199_282116)
+
+### 12 wx.login(OBJECT)
+
++ 调用接口获取登录凭证（code）进而换取用户登录态信息，包括用户的唯一标识（openid） 及本次登录的 会话密钥（session_key）。用户数据的加解密通讯需要依赖会话密钥完成。
+
+```js
+//app.js
+App({
+  onLaunch: function() {
+    wx.login({
+      success: function(res) {
+        if (res.code) {
+          //发起网络请求
+          wx.request({
+            url: 'https://test.com/onLogin',
+            data: {
+              code: res.code
+            }
+          })
+        } else {
+          console.log('获取用户登录态失败！' + res.errMsg)
+        }
+      }
+    });
+  }
+})
+```
+
+code 换取 session_key
+
+> ​ 这是一个 HTTPS 接口，开发者服务器使用登录凭证 code 获取 session_key 和 openid。其中 session_key 是对用户数据进行加密签名的密钥。为了自身应用安全，session_key 不应该在网络上传输。
+
+接口地址：
++ https://api.weixin.qq.com/sns/jscode2session?appid=APPID&secret=SECRET&js_code=JSCODE&grant_type=authorization_code
+
+```js
+//正常返回的JSON数据包
+{
+      "openid": "OPENID",
+      "session_key": "SESSIONKEY"
+}
+//错误时返回JSON数据包(示例为Code无效)
+{
+    "errcode": 40029,
+    "errmsg": "invalid code"
+}
+```
+
+### 13 微信小程序支付
+
+要先到微信公众平台开通微信支付，绑定微信支付商户号
+
+步骤
+
+A：小程序向服务端发送商品详情、金额、openid
+
+B：服务端向微信统一下单
+
+C：服务器收到返回信息二次签名发回给小程序
+
+D：小程序发起支付
+
+E：服务端收到回调
+
+小程序向服务端发送商品详情、金额、openid
+
+```js
+  wx.request({
+    url:'test.php',
+    data:{
+      openid:'',     //openid
+      tatal_free:'', //商品金额
+      wx_body:''     //商品描述
+    }
+  })
+```
+
+> 然后服务端接收小程序发来的信息后 [会发起统一下单](https://pay.weixin.qq.com/wiki/doc/api/wxa/wxa_api.php?chapter=9_1)
+
+服务器下单完成后会返回签名参数
+
+```json
+{
+  'timeStamp': '',
+  'nonceStr': '',
+  'package': '',
+  'signType': 'MD5',
+  'paySign': ''
+}
+```
+
+前端拿到签名参数后发起支付
+
+```js
+wx.requestPayment({
+  'timeStamp': '',
+  'nonceStr': '',
+  'package': '',
+  'signType': 'MD5',
+  'paySign': '',
+  'success':function(res){
+    wx.showToast({
+      title:'支付成功'
+    })
+  },
+  'fail':function(res){},
+  'complete':function(res){}
+})
+```
