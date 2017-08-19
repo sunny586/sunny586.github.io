@@ -531,3 +531,21 @@ wx.requestPayment({
   'complete':function(res){}
 })
 ```
+
+### 几点注意
+
++ 如果有需要，建议只在项目目录中放置少量icon类的小图片，其他大图片可以上传到自己的服务器或者网盘中，然后在src中设置图片的网络资源地址。
+
++ wx.request(object)中method的请求方式默认为GET。有效值: OPTIONS,GET,HEAD,POST,PUT,DELETE,TRACE,CONNECT。经过测试，若使用小写，在安卓中会导致无法发起请求，而在开发者工具和ios中则正常。
+
++ 小程序执行wx.request(object)发送请求并收到success（成功）的消息后，会自动收到这样的回调参数：
+
+```js
+  {
+    data:'服务器返回的数据',
+    errMsg:'错误信息',
+    statusCode:HTTP状态码
+  }
+```
+
+> 特别注意，在开发者工具和ios中，res.statusCode的数据类型是一个数值，而在Android中的数据类型是一个字符串，所以在判断res.statusCode时不能直接使用===操作符，而应该使用==操作符。
