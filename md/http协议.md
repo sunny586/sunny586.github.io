@@ -113,3 +113,59 @@
 * 1，通过 Access-Control-Allow-Origin 响应头 来实现跨域请求
 * 2，通过JSONP来实现跨域请求
 
+### CORS跨域请求的限制及预请求限制
+
+#### 在跨域的时候
+    1.默认允许的方法只有GET、HEAD、POST ，其余 PUT 、DELETE 都是默认不允许的，浏览器会预请求去验证的。
+    2.默认允许的 Content-Type 有 text/plain、multipart/form-data、application/x-www-form-urlencoded 其余Content-Type 都需要 预请求验证
+    3.其他限制：请求头限制、XMLHttpRequestUpload 对象均没有注册任何事件监听器、请求中没有使用 ReadableStream 对象
+
+### Cache-Control的含义和使用
+
+#### 有max-age，服务端内容更新后，希望客户端能获取新的静态资源
+    解决：加上hash码，内容不变，hash码不变，内容变了，hash码变了，请求的url变化，就可以获取更新的文件
+
+#### 重新验证：
+    must-revalidate：缓存过期后，必须去原服务端发送这个请求，重新获取这部分数据，验证是否真的过期
+    procy-revalidate：和上面的差不多，用在缓存服务器（？
+    其他：
+    no-store： 不能缓存，只能每次从服务器拿
+    no-transform：不压缩、转换返回内容
+    这些声明都没有强制效应
+
+#### 可缓存性：
+    public：http返回的内容经过的任何路径都可以对返回内容进行缓存
+    private：发起请求的浏览器才可以缓存
+    no-cache：可以在发起端进行缓存，要服务器验证才可以使用缓存
+    到期：
+    max-age=seconds 到期多少秒，再次请求
+    s-maxage=seconds 代替max-age 在代理服务器内生效
+    max-stale=seconds 返回的资源有这个属性，即便缓存已经过期，在这个时间内还可以继续使用已经过期的缓存
+
+#### 静态资源解决方案：把实际打包完成的js文件上的文件名上加上一串hash码，如果内容没有变化，hash码不会变化，如果内容有变化，则hash码也会变化。这样可以达到更新缓存的目的
+
+    no-cache:本地可以用使用缓存，但需要服务器验证后才能使用
+    no-store:本地和代理服务器都不能存储缓存，都需要从服务器端重新请求
+    no-transform：告诉代理服务器不能随便改变返回的内容
+    must-revalidate:当缓存到期后，不能直接使用本地缓存数据而需要重新验证
+    proxy-revalidate：缓存服务器上，必须去原服务器重新请求一遍，不能使用本地缓存
+
+
+#### 到期：
+    max-age=<seconds> 服务器缓存到期时间
+    s-maxage=<seconds> 代理服务器缓存的到期时间
+    max-stale=<seconds> 到期后，即便缓存过期，只要在max-stale时间内，依然有缓存
+
+#### 其他
+    1，no-store 本地和代理服务器都不可以存缓存
+    2，no-transform 代理服务器不要去改动返回内容
+    no-store（本地和代理服务器都不可以缓存），no-transform(主要用在代理服务器，不允许改动服务器返回的内容)
+
+* 可缓存性，因为数据传输过程中可能存在多个代理服务器，则数据缓存中的public表示路径上所有（包括代理服务器）都可以对数据进行缓存；而private则代表只有发起请求的浏览器才能进行缓存；no-cache表任何不能缓存
+
+* Cache-Control是客户端的缓存。虽然服务端的文件变了但是url没有变，所以客户端依旧使用缓存的文件。前端常见的解决策略是，生成文件的hash码。
+
+#### 缓存头Cache-Control:
+    一、可缓存性(哪些地方可以缓存)：public（任何地方都可以）， private（发起请求的浏览器可以进行缓存）,  no-cache（任何地方都不可以）
+    二：时间限制：max-age = <seconds>, s-max-age = <seconds>（专用在代理服务器中)，max-stale = <seconds>(发起请求端设置的)
+    三：重新验证：must-revalidate(时间过期必须去原服务端重新获取数据)，proxy-revalidate(和must-revalidate类似,用于缓存服务器中)
