@@ -7,6 +7,7 @@
 * 传输层：主要有两个协议 TCPIP 和 UDP ，它向用户提供了可靠的端到端的服务。 
 * 建立起了自己电脑到百度服务器的链接，它们两端如何去传输数据，它的传输数据的方式 ，都是在这层定义，传输层向高层屏蔽了下层数据通信的细节 
 * 应用层： 为应用软件提供了服务 http / ftp 是构建于TCP 协议之上，屏蔽了网络传输相关细节
+
 > 解析：
 * 经典五层模型：
 * 1.物理层：一些硬件之类
@@ -127,7 +128,7 @@
 
 #### 重新验证：
     must-revalidate：缓存过期后，必须去原服务端发送这个请求，重新获取这部分数据，验证是否真的过期
-    procy-revalidate：和上面的差不多，用在缓存服务器（？
+    procy-revalidate：和上面的差不多，用在缓存服务器
     其他：
     no-store： 不能缓存，只能每次从服务器拿
     no-transform：不压缩、转换返回内容
@@ -169,3 +170,7 @@
     一、可缓存性(哪些地方可以缓存)：public（任何地方都可以）， private（发起请求的浏览器可以进行缓存）,  no-cache（任何地方都不可以）
     二：时间限制：max-age = <seconds>, s-max-age = <seconds>（专用在代理服务器中)，max-stale = <seconds>(发起请求端设置的)
     三：重新验证：must-revalidate(时间过期必须去原服务端重新获取数据)，proxy-revalidate(和must-revalidate类似,用于缓存服务器中)
+
+
+### 缓存验证Last-Modified和Etag的使用
+![avatar](../images/cache.png)
