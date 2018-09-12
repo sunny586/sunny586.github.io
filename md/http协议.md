@@ -174,3 +174,21 @@
 
 ### 缓存验证Last-Modified和Etag的使用
 ![avatar](../images/cache.png)
+* 设置了etag、last-modified后，浏览器在第二次发起请求后就会把if-none-match和if-modified-since带上
+####  HTTP验证头：
+    1，Last-Modified 上次修改时间
+    配合If-Modified-Since使用
+    对比上次修改时间以验证资源是否需要更新
+    2，Etag
+    数据签名，对响应内容产生一个唯一的字符串。
+    配合If-Non-Match使用
+    对比资源的签名判断是否使用缓存
+* 304 :
+如果客户端发送了一个带条件的GET 请求且该请求已被允许，而文档的内容（自上次访问以来或者根据请求的条件）并没有改变，则服务器应当返回这个304状态码。简单的表达就是：客户端已经执行了GET，但文件未变化。
+![avatar](../images/304.png)
+
+* etag,数据签名.数据修改，资源的数据签名就会修改.例如hash两个属性：if-match,if-non-match里面放的etag值，对比服务端和客户端判断是否使用缓存
+
+* Cache-control：nocache 可以在发起端缓存但要在服务端进行验证是否可以缓存;last-modified：上次修改时间;if-modified-since,in-unmodified-since:服务器读取这两个值，看资源是否重新修改，服务器告诉客户端是否可以用缓存的资源
+
+* Cache-Control: nocache,每次浏览器发起对一个已经设置了Cache-Control资源的请求时，都会要到服务器端进行资源的验证。验证之后确定资源可以使用缓存，确定该资源可以使用缓存，才会读取本地缓存
