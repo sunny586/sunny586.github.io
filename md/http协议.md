@@ -215,3 +215,19 @@
     'Set-cookie': ['id=123; max-age=30', 'name=lin'] : id=123->30s后失效
 
     设置test.com以及test.com的所有二级域名享受到cookie
+
+### HTTP长连接
+
+    Connection：keep-alive（长）、close（短）
+    http2:信道复用 tcp并发发送http请求
+    http请求是在tcp上发送的，一个tcp可以发送多个http，http1.1是阻塞的
+
+    现在保持长链接比较多
+    应为多次建立tcp链接可能比长链接的开销更大
+    长链接可以设置timeout
+    同个tcp内是有先后顺序的
+    浏览器可以并发6个tcp
+
+    session
+    用cookie保存sesion将用户登陆key保存到cookie，每次用户请求时读取cookie值，定位用户信息
+    session：定位到用户
