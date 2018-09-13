@@ -15,7 +15,8 @@
 * 3.网络层：
 * 4.传输层：为用户提供end-to-end服务,向高层屏蔽了下层数据通信的细节
 * 5.应用层（http）:构建于TCP之上
-### 2-2 HTTP协议的发展历史
+
+### HTTP协议的发展历史
 
 #### 第一个版本 HTTP / 0.9
 * 只有一个命令 GET
@@ -192,3 +193,25 @@
 * Cache-control：nocache 可以在发起端缓存但要在服务端进行验证是否可以缓存;last-modified：上次修改时间;if-modified-since,in-unmodified-since:服务器读取这两个值，看资源是否重新修改，服务器告诉客户端是否可以用缓存的资源
 
 * Cache-Control: nocache,每次浏览器发起对一个已经设置了Cache-Control资源的请求时，都会要到服务器端进行资源的验证。验证之后确定资源可以使用缓存，确定该资源可以使用缓存，才会读取本地缓存
+
+### cookie
+
+    domain
+    访问域设定
+    cookie只能一个域访问
+    a.com的cookie b.com不能访问
+    domain让a.test.com能访问test.com的cookie
+    不能跨域设置cookie，只能一级通过domain设置二级等
+
+    max-age：有效期多长
+    expires：到期的具体时间
+    服务端返回数据时通过set-Cookie设置到浏览器内，浏览器保存cookie后，在同域的访问内下次请求会自动带上
+
+    max-age 和 expires 设置过期时间
+    Secure 只在https的时候发送
+    httpOnly无法通过js访问,浏览器中还是有的。
+    cookie时效
+    如果没有设置时间，浏览器关闭失效。
+    'Set-cookie': ['id=123; max-age=30', 'name=lin'] : id=123->30s后失效
+
+    设置test.com以及test.com的所有二级域名享受到cookie
