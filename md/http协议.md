@@ -231,3 +231,31 @@
     session
     用cookie保存sesion将用户登陆key保存到cookie，每次用户请求时读取cookie值，定位用户信息
     session：定位到用户
+
+### 数据协商
+
+    服务端返回
+    X-Content-Type-Options ： nosniff
+    服务端不接受contnettype的数据类型或没设置type，不主动预测类型
+
+    浏览器端会自动加上，也可以在ajax时设置
+    Accept：浏览器能展示的数据格式
+    Accept-Encoding：能接受的数据压缩格式
+    Accept-Language：希望接受的语言
+    User-Agent：系统名 内核 浏览器版本
+
+
+    数据协商：
+    根据客户端发来的要求，服务端返回对应的数据
+    Accept 属性
+    Accept（什么数据类型） Accept-Encoding（编码方式，压缩） Accept-Language（使用的语言） User-Agent（处于哪种系统环境）
+    Content属性
+    Content-Type Content-Encoding Content-Language
+
+### redirect
+
+    通过url去访问资源，资源不在原来的位置，服务器要告诉浏览器，请求的资源在哪里，浏览器再重新请求
+    Lacation：新url
+    302:临时跳转 每一次都要通过服务器跳转
+    301:永久跳转 第二次访问后，就不需要再通过服务器去跳转，是通过浏览器跳转的，被缓存了新url
+
