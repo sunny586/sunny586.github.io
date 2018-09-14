@@ -123,6 +123,22 @@
 
 ### Cache-Control的含义和使用
 
+    客户端从服务器请求数据经历如下基本步骤:
+    1、如果请求命中本地缓存则从本地缓存中获取一个对应资源的"copy"；
+    2、检查这个"copy"是否fresh,是则直接返回，否则继续向服务器转发请求。
+    3、服务器接收到请求，然后判断资源是否变更，是则返回新内容，否则返回304，未变更。
+    4、客户端更新本地缓存。
+    
+    no-cache的作用是：强制客户端跳过步骤2，直接向服务器发送请求。也就是说每次请求都必须向服务器发送。
+
+    must-revalidate:作用与no-cache相同，但更严格，强制意味更明显。但这只是理论上的描述，根据我在ff6上的测试，它几乎不起作用：只要请求的频率加快到一定程度，服务器就接收不到请求。
+
+    no-store:缓存将不存储response,包括header和body。测试结果表明，除每次请求都必发送到服务器外，响应代码均是200，且request并没有发送"If-Modified-Since"和"If-None-Match"头，这意味着缓存的确没有存储response。
+
+    以上三者都是要求客户端每次请求都必须到服务器进行revalidate，此功能还可以通过max-age实现: Cache-Control:max-age=100
+
+
+
 #### 有max-age，服务端内容更新后，希望客户端能获取新的静态资源
     解决：加上hash码，内容不变，hash码不变，内容变了，hash码变了，请求的url变化，就可以获取更新的文件
 
@@ -174,3 +190,90 @@
 
 ### 缓存验证Last-Modified和Etag的使用
 ![avatar](../images/cache.png)
+* 设置了etag、last-modified后，浏览器在第二次发起请求后就会把if-none-match和if-modified-since带上
+####  HTTP验证头：
+    1，Last-Modified 上次修改时间
+    配合If-Modified-Since使用
+    对比上次修改时间以验证资源是否需要更新
+    2，Etag
+    数据签名，对响应内容产生一个唯一的字符串。
+    配合If-Non-Match使用
+    对比资源的签名判断是否使用缓存
+* 304 :
+如果客户端发送了一个带条件的GET 请求且该请求已被允许，而文档的内容（自上次访问以来或者根据请求的条件）并没有改变，则服务器应当返回这个304状态码。简单的表达就是：客户端已经执行了GET，但文件未变化。
+![avatar](../images/304.png)
+
+* etag,数据签名.数据修改，资源的数据签名就会修改.例如hash两个属性：if-match,if-non-match里面放的etag值，对比服务端和客户端判断是否使用缓存
+
+* Cache-control：nocache 可以在发起端缓存但要在服务端进行验证是否可以缓存;last-modified：上次修改时间;if-modified-since,in-unmodified-since:服务器读取这两个值，看资源是否重新修改，服务器告诉客户端是否可以用缓存的资源
+
+* Cache-Control: nocache,每次浏览器发起对一个已经设置了Cache-Control资源的请求时，都会要到服务器端进行资源的验证。验证之后确定资源可以使用缓存，确定该资源可以使用缓存，才会读取本地缓存
+
+### cookie
+
+    domain
+    访问域设定
+    cookie只能一个域访问
+    a.com的cookie b.com不能访问
+    domain让a.test.com能访问test.com的cookie
+    不能跨域设置cookie，只能一级通过domain设置二级等
+
+    max-age：有效期多长
+    expires：到期的具体时间
+    服务端返回数据时通过set-Cookie设置到浏览器内，浏览器保存cookie后，在同域的访问内下次请求会自动带上
+
+    max-age 和 expires 设置过期时间
+    Secure 只在https的时候发送
+    httpOnly无法通过js访问,浏览器中还是有的。
+    cookie时效
+    如果没有设置时间，浏览器关闭失效。
+    'Set-cookie': ['id=123; max-age=30', 'name=lin'] : id=123->30s后失效
+
+    设置test.com以及test.com的所有二级域名享受到cookie
+
+### HTTP长连接
+
+    Connection：keep-alive（长）、close（短）
+    http2:信道复用 tcp并发发送http请求
+    http请求是在tcp上发送的，一个tcp可以发送多个http，http1.1是阻塞的
+
+    现在保持长链接比较多
+    应为多次建立tcp链接可能比长链接的开销更大
+    长链接可以设置timeout
+    同个tcp内是有先后顺序的
+    浏览器可以并发6个tcp
+
+    session
+    用cookie保存sesion将用户登陆key保存到cookie，每次用户请求时读取cookie值，定位用户信息
+    session：定位到用户
+
+### 数据协商
+
+    服务端返回
+    X-Content-Type-Options ： nosniff
+    服务端不接受contnettype的数据类型或没设置type，不主动预测类型
+
+    浏览器端会自动加上，也可以在ajax时设置
+    Accept：浏览器能展示的数据格式
+    Accept-Encoding：能接受的数据压缩格式
+    Accept-Language：希望接受的语言
+    User-Agent：系统名 内核 浏览器版本
+
+
+    数据协商：
+    根据客户端发来的要求，服务端返回对应的数据
+    Accept 属性
+    Accept（什么数据类型） Accept-Encoding（编码方式，压缩） Accept-Language（使用的语言） User-Agent（处于哪种系统环境）
+    Content属性
+    Content-Type Content-Encoding Content-Language
+
+### redirect
+
+    通过url去访问资源，资源不在原来的位置，服务器要告诉浏览器，请求的资源在哪里，浏览器再重新请求
+    Lacation：新url
+    302:临时跳转 每一次都要通过服务器跳转
+    301:永久跳转 第二次访问后，就不需要再通过服务器去跳转，是通过浏览器跳转的，被缓存了新url
+
+### 总结
+
+![avatar](../images/zj.jpg)
