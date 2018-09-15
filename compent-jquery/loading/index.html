@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<title>demo</title>
+	<link rel="stylesheet" type="text/css" href="./loading.css">
+	<style>
+		.button{
+			display: block;
+			width: 100%;
+			text-align: center;
+			color: #fff;
+			background: #0c92fd;
+			padding: 10px 0px;
+			border-radius: 4px;
+			outline: none;
+			cursor: pointer;
+		}
+	</style>
+</head>
+
+<body>
+
+	<button id="test" class="button">特殊loading</button>
+
+	<button id="test2" class="button">普通loading</button>
+
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript" src="tagcanvas.min.js"></script>
+	<script type="text/javascript" src="./loading.js"></script>
+	<script type="text/javascript">
+		$(function () {
+
+			$('#test').on('click', function () {
+				var loading = new Loading();
+				loading.show(1);
+				setTimeout(function () {
+					loading.hide();
+				}, 2000)
+			});
+
+
+			$('#test2').on('click', function () {
+				var loading = new Loading();
+				loading.show(2);
+				setTimeout(function () {
+					loading.hide();
+				}, 2000)
+			});
+
+		})
+	</script>
+</body>
+
+</html>

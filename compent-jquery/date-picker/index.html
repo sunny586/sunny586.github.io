@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <script type="text/javascript" src="./zepto.min.js"></script>
+  <script type="text/javascript" src="./yuPicker.js"></script>
+  <link rel="stylesheet" type="text/css" href="./yuui.css">
+  <style>
+    .input{
+      height: 40px;
+      width: 100%; 
+      border: 1px solid;
+      border-radius: 4px;
+      text-indent: 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <h5>YYMMDD</h5>
+
+  <input id="test" class="input" readonly>
+  <h5>YYMMDD HH:mm</h5>
+  <input id="test2" class="input" readonly>
+  <script type="text/javascript">
+    $(function () {
+      $('#test').on('click', function () {
+        var self = this;
+        new YuPicker({
+          dom: $(self),
+          picker: 'datePicker',
+          start: 1990,
+          size: 200,
+          onConfirm: function (data) {
+            console.log(data, 'onConfirm');
+          },
+          onChange: function (data) {
+            console.log(data, 'onChange');
+          }
+        });
+      });
+      $('#test2').on('click', function () {
+        var self = this;
+        new YuPicker({
+          dom: $(self),
+          size: 30,
+          onConfirm: function (data) {
+            console.log(data, 'onConfirm');
+          },
+          onChange: function (data) {
+            console.log(data, 'onChange');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>
