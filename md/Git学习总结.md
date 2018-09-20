@@ -205,7 +205,6 @@ Git支持多种协议，包括https，但通过ssh支持的原生git协议速度
 
 每次提交，master分支都会向前移动一步，这样，随着你不断提交，master分支的线也越来越长
 
-
-<video id="video" controls="" preload="none">
-    <source id="mp4" src="http://liaoxuefeng.gitee.io/git-resources/master-and-dev-ff.mp4" type="video/mp4"></source>
+<video src="http://liaoxuefeng.gitee.io/git-resources/master-and-dev-ff.mp4" controls="controls">
+您的浏览器不支持 video 标签。
 </video>
