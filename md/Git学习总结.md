@@ -159,11 +159,22 @@ $ git remote add origin git@github.com:<GitHub账户名>/learngit.git
 ```
 $ git push -u origin master
 ```
+    由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。
 
-    在推送内容到github的仓库时，先git pull origin master 
+    在推送内容到github仓库时，先git pull origin master 
     如果报错：fatal: refusing to merge unrelated histories
     这是因为在Github新建一个仓库，本地也写了一个仓库，他们是两个不同的项目;
     要把两个不同的项目合并，git需要添加一句代码：
     git pull origin master --allow-unrelated-histories
+```
+小结:
+要关联一个远程库，使用命令git remote add origin git@server-name:path/repo-name.git；
+
+关联后，使用命令git push -u origin master第一次推送master分支的所有内容；
+
+此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；
+
+分布式版本系统的最大好处之一是在本地工作完全不需要考虑远程库的存在，也就是有没有联网都可以正常工作，而SVN在没有联网的时候是拒绝干活的！当有网络的时候，再把本地提交推送一下就完成了同步，真是太方便了！
+```
 
 
