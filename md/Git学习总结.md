@@ -202,3 +202,8 @@ Git支持多种协议，包括https，但通过ssh支持的原生git协议速度
 一开始的时候，master分支是一条线，Git用master指向最新的提交，再用HEAD指向master，就能确定当前分支，以及当前分支的提交点：
 
 ![](../images/git/fz.png)
+
+每次提交，master分支都会向前移动一步，这样，随着你不断提交，master分支的线也越来越长
+
+
+<iframe width="560" height="315" src="http://liaoxuefeng.gitee.io/git-resources/master-and-dev-ff.mp4" frameborder="0" allowfullscreen></iframe>
