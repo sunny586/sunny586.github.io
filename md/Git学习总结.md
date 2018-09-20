@@ -130,12 +130,12 @@ $ git checkout -- test.txt
 ```
 git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。
 
-####  小结：
+小结
+```
 命令git rm用于删除一个文件。如果一个文件已经被提交到版本库，那么你永远不用担心误删，但是要小心，你只能恢复文件到最新版本，你会丢失最近一次提交后你修改的内容。
-
+```
 
 ### 添加远程库
-
 
 #### 现在的情景是，你已经在本地创建了一个Git仓库后，又想在GitHub创建一个Git仓库，并且让这两个仓库进行远程同步，这样，GitHub上的仓库既可以作为备份，又可以让其他人通过该仓库来协作，真是一举多得。
 
@@ -166,15 +166,39 @@ $ git push -u origin master
     这是因为在Github新建一个仓库，本地也写了一个仓库，他们是两个不同的项目;
     要把两个不同的项目合并，git需要添加一句代码：
     git pull origin master --allow-unrelated-histories
+小结
 ```
-小结:
 要关联一个远程库，使用命令git remote add origin git@server-name:path/repo-name.git；
-
 关联后，使用命令git push -u origin master第一次推送master分支的所有内容；
-
 此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；
-
 分布式版本系统的最大好处之一是在本地工作完全不需要考虑远程库的存在，也就是有没有联网都可以正常工作，而SVN在没有联网的时候是拒绝干活的！当有网络的时候，再把本地提交推送一下就完成了同步，真是太方便了！
 ```
+ ### 从远程库克隆
 
+* 假设我们从零开发，那么最好的方式是先创建远程库，然后，从远程库克隆
+* 下一步是用命令git clone克隆一个本地库
+```
+$ git clone git@github.com:michaelliao/gitskills.git
+Cloning into 'gitskills'...
+remote: Counting objects: 3, done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 3
+Receiving objects: 100% (3/3), done.
+```
+```
+你也许还注意到，GitHub给出的地址不止一个，还可以用https://github.com/michaelliao/gitskills.git这样的地址。实际上，Git支持多种协议，默认的git://使用ssh，但也可以使用https等其他协议。
 
+使用https除了速度慢以外，还有个最大的麻烦是每次推送都必须输入口令，但是在某些只开放http端口的公司内部就无法使用ssh协议而只能用https
+```
+小结
+```
+要克隆一个仓库，首先必须知道仓库的地址，然后使用git clone命令克隆。
+Git支持多种协议，包括https，但通过ssh支持的原生git协议速度最快。
+```
+
+### 创建与合并分支
+
+在版本回退里，你已经知道，每次提交，Git都把它们串成一条时间线，这条时间线就是一个分支。截止到目前，只有一条时间线，在Git里，这个分支叫主分支，即master分支。HEAD严格来说不是指向提交，而是指向master，master才是指向提交的，所以，HEAD指向的就是当前分支。
+
+一开始的时候，master分支是一条线，Git用master指向最新的提交，再用HEAD指向master，就能确定当前分支，以及当前分支的提交点：
+
+![](../images/git/fz.png)
