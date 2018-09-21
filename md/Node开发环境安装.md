@@ -50,7 +50,7 @@ tar -zxvf <压缩包位置>
 4.添加db存储和日志存储文件夹
 ```s
 # 创建mongodb文件夹
-mkdir mongodb  
+mkdir mongodb  
 # 将解压缩后的文件移动到mongodb文件夹里
 mv <解压缩后的文件> mongodb
 # 创建一个data文件夹
