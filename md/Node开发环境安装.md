@@ -32,4 +32,81 @@ ln -s /node-v6.10.3-linux-x64/bin/npm /usr/local/bin/npm
 添加db存储和日志存储文件夹
 添加服务，配置环境变量，启动MongoDB
 ```
-##### [详细安装过程](https://www.imooc.com/article/18438 "百度一下")
+###### [详细安装过程](https://www.imooc.com/article/18438 "详细安装过程")
+
+### Linux下MongoDB安装
+
+
+1.下载安装包或者压缩包
+
+2.上传服务器
+```
+scp [-r] <压缩包的地址> <服务器用户名>@<服务器ip>:<服务器要存放的目录>
+其中如果加-r表示传文件夹，不加则传文件
+```
+3.解压缩
+```
+tar -zxvf <压缩包位置>
+```
+4.添加db存储和日志存储文件夹
+```s
+# 创建mongodb文件夹
+mkdir mongodb  
+# 将解压缩后的文件移动到mongodb文件夹里
+mv <解压缩后的文件> mongodb
+# 创建一个data文件夹
+mkdir data
+# 创建一个logs文件夹
+mkdir logs
+# 进到logs文件夹里
+cd logs/
+# 创建一个mongo.log的文件
+touch mongo.log
+#  推出logs文件夹
+cd ..
+# 创建一个配置文件夹etc
+mkdir etc
+# 进到etc文件夹里
+cd etc/
+# 创建mongo.conf配置文件，并编辑
+vi mongo.conf
+    dbpath=/mongodb/data
+    logpath=/mongodb/logs/mongo.log
+    logappend=true
+    journal=true
+    quiet=true
+    port=27017
+# 建mongo软连接
+ln -s <mongodb文件夹>/bin/mongo /usr/local/bin/mongo
+#建mongod软连接
+ln -s <mongodb文件夹>/bin/mongod /usr/local/bin/mongod
+# 启动mongo(/mongodb/etc/mongon.conf，是mongon.conf所在的路径)
+mongod -f /mongodb/etc/mongon.conf
+```
+
+mongo.conf配置文件说明
+```s
+# 数据库数据存放目录
+dbpath=/usr/local/mongodb304/data
+# 数据库日志存放目录
+logpath=/usr/local/mongodb304/logs/mongodb.log 
+#以追加的方式记录日志
+logappend = true
+#端口号 默认为27017
+port=27017 
+#以后台方式运行进程
+fork=true 
+ #开启用户认证
+auth=true
+#关闭http接口，默认关闭http端口访问
+nohttpinterface=true
+#mongodb所绑定的ip地址
+bind_ip = 127.0.0.1 
+#启用日志文件，默认启用
+journal=true 
+#这个选项可以过滤掉一些无用的日志信息，若需要调试使用请设置为false
+quiet=true 
+```
+
+
+
