@@ -36,7 +36,6 @@ ln -s /node-v6.10.3-linux-x64/bin/npm /usr/local/bin/npm
 
 ### Linux下MongoDB安装
 
-
 1.下载安装包或者压缩包
 
 2.上传服务器
@@ -62,11 +61,11 @@ mkdir logs
 cd logs/
 # 创建一个mongo.log的文件
 touch mongo.log
-#  推出logs文件夹
+# 推出logs文件夹
 cd ..
 # 创建一个配置文件夹etc
 mkdir etc
-# 进到etc文件夹里
+# 进到etc文件夹里
 cd etc/
 # 创建mongo.conf配置文件，并编辑
 vi mongo.conf
