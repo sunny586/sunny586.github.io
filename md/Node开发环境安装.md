@@ -25,3 +25,11 @@ ln -s /node-v6.10.3-linux-x64/bin/node /usr/local/bin/node
 # 建立npm软连接
 ln -s /node-v6.10.3-linux-x64/bin/npm /usr/local/bin/npm
 ```
+### MongoDB安装
+### windows下MongoDB安装
+```
+下载安装包或者压缩包
+添加db存储和日志存储文件夹
+添加服务，配置环境变量，启动MongoDB
+```
+[详细安装过程](https://www.imooc.com/article/18438)
