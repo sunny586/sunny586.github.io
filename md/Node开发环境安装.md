@@ -41,7 +41,7 @@ ln -s /node-v6.10.3-linux-x64/bin/npm /usr/local/bin/npm
 2.上传服务器
 ```
 scp [-r] <压缩包的地址> <服务器用户名>@<服务器ip>:<服务器要存放的目录>
-其中如果加-r表示传文件夹，不加则传文件
+其中如果加-r表示传文件夹，不加则传文件。这里是文件，不需要加-r。
 ```
 3.解压缩
 ```
@@ -61,7 +61,7 @@ mkdir logs
 cd logs/
 # 创建一个mongo.log的文件
 touch mongo.log
-# 推出logs文件夹
+# 退出logs文件夹
 cd ..
 # 创建一个配置文件夹etc
 mkdir etc
@@ -89,23 +89,27 @@ mongo.conf配置文件说明
 dbpath=/usr/local/mongodb304/data
 # 数据库日志存放目录
 logpath=/usr/local/mongodb304/logs/mongodb.log 
-#以追加的方式记录日志
+# 以追加的方式记录日志
 logappend = true
-#端口号 默认为27017
+# 端口号 默认为27017
 port=27017 
-#以后台方式运行进程
+# 以后台方式运行进程
 fork=true 
- #开启用户认证
+# 开启用户认证
 auth=true
-#关闭http接口，默认关闭http端口访问
+# 关闭http接口，默认关闭http端口访问
 nohttpinterface=true
-#mongodb所绑定的ip地址
+# mongodb所绑定的ip地址
 bind_ip = 127.0.0.1 
-#启用日志文件，默认启用
+# 启用日志文件，默认启用
 journal=true 
-#这个选项可以过滤掉一些无用的日志信息，若需要调试使用请设置为false
+# 这个选项可以过滤掉一些无用的日志信息，若需要调试使用请设置为false
 quiet=true 
 ```
 
+### Mac下MongoDB安装
+```
+和Linux类似
+```
 
 
