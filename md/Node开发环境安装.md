@@ -36,7 +36,7 @@ ln -s /node-v6.10.3-linux-x64/bin/npm /usr/local/bin/npm
 
 ### Linux下MongoDB安装
 
-1.下载安装包或者压缩包
+1.下载安装包或者压缩包
 
 2.上传服务器
 ```
