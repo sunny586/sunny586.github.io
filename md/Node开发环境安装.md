@@ -13,7 +13,7 @@ windows和mac安装
 去nodejs官网直接傻瓜式安装即可(.msi或.pkg安装)，https://nodejs.org/en/download/
 ```
 Linux下安装node环境
-```
+```s
 # 使用wget下载linux的nodejs的压缩包
 wget https://npm.taobao.org/mirrors/node/v6.10.3/node-v6.10.3-linux-x64.tar.xz
 #  解压缩会生产一个tar包
