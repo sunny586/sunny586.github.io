@@ -161,7 +161,7 @@ $ git push -u origin master
 ```
     由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。
 
-    在推送内容到github仓库时，先git pull origin master 
+    在推送内容到github仓库时，先git pull origin master 
     如果报错：fatal: refusing to merge unrelated histories
     这是因为在Github新建一个仓库，本地也写了一个仓库，他们是两个不同的项目;
     要把两个不同的项目合并，git需要添加一句代码：
