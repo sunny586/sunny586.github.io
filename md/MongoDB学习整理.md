@@ -45,7 +45,7 @@ db.users.insert({id:123,name:"hello"})
 db.user.drop()
 # 查看集合（表）
 show conllections
-# 删除数据库
+# 删除数据库
 db.dropDatabase()
 # 查看数据库
 db.user.find() # db.user.find().pretty() (格式化)
@@ -57,7 +57,7 @@ db.user.update({userName:"jack"},{$set:{userAge:30}})
 db.user.update({userName:"jack"},{$set:{"class.name":'baidu-test'}})
 # 查询文档
 db.user.find({userName:'jack'})
-# 查询子文档
+# 查询子文档
 db.user.find({'class.name':'baidu'})
 # 查询年龄大于40的文档
 db.user.find({userAge:{$gt:40}})
