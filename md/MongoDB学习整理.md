@@ -70,6 +70,29 @@ db.user.find({userAge:{$gte:40}})
 # 删除一条文档
 db.user.remove({userId:101})
 ```
+### 表数据设计和插入
+
+1.手动插入
+```s
+# 创建数据库db_demo
+use db_demo
+# 创建goods集合（表），并插入一条数据
+db.goods.insert({"id":'1001',name:'zhangsan',address:'深圳'})
+```
+2.文件导入
+```s
+# 创建一个空集合
+db.createCollection("users")
+# 用客户端工具将数据文件导入即可
+用mongohub客户端导入数据
+```
+3.用MongoDB终端进行导入
+```s
+# db_demo是数据库名称
+# users是集合名称（表）
+# /Users/zhangyu/Desktop/dumall-users.是要导入的文件的目录
+mongoimport -d db_demo -c users --file /Users/zhangyu/Desktop/dumall-users.
+```
 
 
 
