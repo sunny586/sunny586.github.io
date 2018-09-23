@@ -88,7 +88,7 @@ db.createCollection("users")
 ```
 3.用MongoDB终端进行导入
 ```s
-# db_demo是数据库名称
+# db_demo是数据库名称
 # users是集合名称（表）
 # /Users/zhangyu/Desktop/dumall-users.是要导入的文件的目录
 mongoimport -d db_demo -c users --file /Users/zhangyu/Desktop/dumall-users.
