@@ -12,9 +12,6 @@ angular.module('app')
 			$scope.pageSize = 10; //每页条数。
 
 			$scope.genres = [{
-				value: 'life',
-				name: '生活'
-			}, {
 				value: 'css',
 				name: 'CSS'
 			}, {
@@ -74,12 +71,27 @@ angular.module('app')
 					.error(function(err, code) {
 						console.log(err);
 					});
+
+					// $.ajax({
+					//     type: 'GET',
+					//     url: 'http://10.12.8.138:8080/doc/getDocs',
+					//     data: {
+					//     	pageCurrent:1,
+					//     	pageSize:10,
+					//     	searchType:''
+					//     },
+					//     success: function(response){
+
+					//     } 
+					// });
 			}
 
 			//init
 			$scope.loadData();
 
 			$scope.edit = function(item) {
+
+
 				$modal.open({
 					templateUrl: 'views/app/component/modal/study-edit.html',
 					controller: 'editStudyItemCtrl',

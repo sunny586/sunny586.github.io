@@ -5,7 +5,7 @@
 	<h1>学习网站资料管理</h1>	
 	<div class="row mt-20">
 		<div class="col-md-4">
-			<button class="btn btn-primary" ng-click="add()" disabled>添加</button>
+			<button class="btn btn-primary" ng-click="add()">添加</button>
 		</div>
 		<div class="col-md-4">
 			<div class="form-group form-horizontal">
@@ -54,8 +54,8 @@
 								<span popover="{{item.desc}}" popover-trigger="mouseenter" popover-placement="bottom">{{item.desc||'-'}}</span>
 							</td>															
 							<td class="edit text-left">
-								<a href ="javascript:volid(0);" class="fa fa-pencil-square-o i-16" title="编辑" ng-click="edit(item)" style="pointer-events: none;"></a>
-								<a href="javascript:;" class="fa fa-trash i-16" title="删除" confirm-click="delete(item)" confirm-msg="是否删除？" style="pointer-events: none;"></a>
+								<a href ="javascript:volid(0);" class="fa fa-pencil-square-o i-16" title="编辑" ng-click="edit(item)"></a>
+								<a href="javascript:;" class="fa fa-trash i-16" title="删除" confirm-click="delete(item)" confirm-msg="是否删除？"></a>
 								<a href="{{item.url}}" target="_blank" class="fa fa-eye i-16" title="查看"></a>
 							</td>
 						</tr>
