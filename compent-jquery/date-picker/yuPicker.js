@@ -227,7 +227,7 @@
                 //记录刚刚开始按下的时间
                 self.startTime = new Date() * 1;
                 //记录手指按下的坐标
-                self.startY = evt.targetTouches[0].pageY;
+                self.startY = evt.targetTouches[0].pageY || evt.pageY;
                 //清除偏移量
                 self.offsetY = 0;
                 //事件对象
@@ -239,7 +239,7 @@
                 var _self = $(this),
                     $content = _self.find('.yuui-picker__content');
                 //计算手指的偏移量
-                self.offsetY = evt.targetTouches[0].pageY - self.startY;
+                self.offsetY = evt.targetTouches[0].pageY || evt.pageY - self.startY;
                 //设置transform的值
                 $content.css({
                     'transform': 'translate3d(0px, ' + (self.transformY + self.offsetY) + 'px, 0px)',
@@ -331,6 +331,9 @@
         cancelBtn.on('click', removeWrap);
         self.mask.on('click', removeWrap);
     };
+
+  
+
 
     Date.prototype.Format = function (fmt) {
         var o = {
