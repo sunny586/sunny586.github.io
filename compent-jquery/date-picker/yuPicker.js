@@ -324,9 +324,9 @@
         // drop.on('touchstart', startHandler);
         // drop.on('touchmove', moveHandler);
         // drop.on('touchend', endHandler);
-        drop.get(0).addEventListener('touchstart', startHandler, false);
-        drop.get(0).addEventListener('touchmove', moveHandler, false);
-        drop.get(0).addEventListener('touchend', endHandler, false);
+        drop.get(0).addEventListener('mousedown', startHandler, false);
+        drop.get(0).addEventListener('mousemove', moveHandler, false);
+        drop.get(0).addEventListener('mouseup', endHandler, false);
         confirmBtn.on('click', confirmHandler);
         cancelBtn.on('click', removeWrap);
         self.mask.on('click', removeWrap);
