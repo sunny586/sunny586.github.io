@@ -3,6 +3,21 @@
  * @description 基于Zepto封装的移动端日期选择组件,可以精确的yyyy - MM - dd hh: mm
  * 2017-02-23
  */
+
+function is_mobile() {
+    var regex_match = /(nokia|iphone|android|motorola|^mot-|softbank|foma|docomo|kddi|up.browser|up.link|htc|dopod|blazer|netfront|helio|hosin|huawei|novarra|CoolPad|webos|techfaith|palmsource|blackberry|alcatel|amoi|ktouch|nexian|samsung|^sam-|s[cg]h|^lge|ericsson|philips|sagem|wellcom|bunjalloo|maui|symbian|smartphone|midp|wap|phone|windows ce|iemobile|^spice|^bird|^zte-|longcos|pantech|gionee|^sie-|portalmmm|jigs browser|hiptop|^benq|haier|^lct|operas*mobi|opera*mini|320x320|240x320|176x220)/i;
+    var u = navigator.userAgent;
+    if (null == u) {
+        return true;
+    }
+    var result = regex_match.exec(u);
+    if (null == result) {
+        return false
+    } else {
+        return true
+    }
+}
+
 (function ($, w) {
 
     //构造函数
@@ -216,6 +231,11 @@
             //手指按下的处理事件
             startHandler = function (evt) {
                 evt.preventDefault();
+                if (!is_mobile()) {
+                    drop.get(0).addEventListener('mousemove', moveHandler, false);
+                    drop.get(1).addEventListener('mousemove', moveHandler, false);
+                    drop.get(2).addEventListener('mousemove', moveHandler, false);
+                }
                 var _self = $(this),
                     $content = _self.find('.yuui-picker__content');
                 //记录刚刚开始按下的transform位置
@@ -227,7 +247,8 @@
                 //记录刚刚开始按下的时间
                 self.startTime = new Date() * 1;
                 //记录手指按下的坐标
-                self.startY = evt.targetTouches[0].pageY || evt.pageY;
+
+                self.startY = is_mobile() ? evt.targetTouches[0].pageY : evt.offsetY;
                 //清除偏移量
                 self.offsetY = 0;
                 //事件对象
@@ -239,7 +260,7 @@
                 var _self = $(this),
                     $content = _self.find('.yuui-picker__content');
                 //计算手指的偏移量
-                self.offsetY = evt.targetTouches[0].pageY || evt.pageY - self.startY;
+                self.offsetY = (is_mobile() ? evt.targetTouches[0].pageY : evt.offsetY) - self.startY;
                 //设置transform的值
                 $content.css({
                     'transform': 'translate3d(0px, ' + (self.transformY + self.offsetY) + 'px, 0px)',
@@ -248,6 +269,11 @@
             },
             //手指抬起的处理事件
             endHandler = function (evt) {
+                if (!is_mobile()) {
+                    drop.get(0).removeEventListener('mousemove', moveHandler, false);
+                    drop.get(1).removeEventListener('mousemove', moveHandler, false);
+                    drop.get(2).removeEventListener('mousemove', moveHandler, false);
+                }
                 evt.preventDefault();
                 var _self = $(this),
                     type = _self.data('type'),
@@ -321,20 +347,25 @@
                 self.wrap.remove();
             };
         //绑定事件
-        // drop.on('touchstart', startHandler);
-        // drop.on('touchmove', moveHandler);
-        // drop.on('touchend', endHandler);
-        drop.get(0).addEventListener('mousedown', startHandler, false);
-        drop.get(0).addEventListener('mousemove', moveHandler, false);
-        drop.get(0).addEventListener('mouseup', endHandler, false);
+        //手机端
+        if (is_mobile()) {
+            drop.on('touchstart', startHandler);
+            drop.on('touchmove', moveHandler);
+            drop.on('touchend', endHandler);
+        } else {
+            // PC端
+            drop.get(0).addEventListener('mousedown', startHandler, false);
+            drop.get(1).addEventListener('mousedown', startHandler, false);
+            drop.get(2).addEventListener('mousedown', startHandler, false);
+            drop.get(0).addEventListener('mouseup', endHandler, false);
+            drop.get(1).addEventListener('mouseup', endHandler, false);
+            drop.get(2).addEventListener('mouseup', endHandler, false);
+        }
         confirmBtn.on('click', confirmHandler);
         cancelBtn.on('click', removeWrap);
         self.mask.on('click', removeWrap);
     };
-
-  
-
-
+    
     Date.prototype.Format = function (fmt) {
         var o = {
             "M+": this.getMonth() + 1,
