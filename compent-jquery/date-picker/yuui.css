@@ -178,6 +178,9 @@ body {
   -webkit-animation: slideUp ease .3s forwards;
           animation: slideUp ease .3s forwards;
 }
+.yuui-picker__hd a {
+  text-decoration: none;
+}
 @-webkit-keyframes slideDown {
   from {
     -webkit-transform: translate3d(0, 0, 0);
