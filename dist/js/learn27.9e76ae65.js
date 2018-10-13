@@ -1,1 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["learn27"],{"4f84":function(e,n){e.exports="py"},ece6:function(e,n,t){"use strict";t.r(n);var o=function(){var e=this,n=e.$createElement,o=e._self._c||n;return o("markdown",{attrs:{source:t("4f84")}})},r=[],s=t("2877"),u={},c=Object(s["a"])(u,o,r,!1,null,null,null);c.options.__file="python.vue";n["default"]=c.exports}}]);
