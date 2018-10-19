@@ -1,8 +1,9 @@
 ## 欢乐谷
+![](http://n1-q.mafengwo.net/s9/M00/EE/7B/wKgBs1fvyMiAHlWkAB0SBpWXYuo555.png?imageView2%2F2%2Fw%2F700%2Fh%2F600%2Fq%2F90%7CimageMogr2%2Fstrip%2Fquality%2F90)
 
 12点半看：
 ```
-思维电影
+四维电影
 UfO
 发现者
 尖峰时刻
