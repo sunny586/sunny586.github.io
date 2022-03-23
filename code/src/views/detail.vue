@@ -97,7 +97,9 @@ import axios from "axios";
     };
   },
   async created() {
-    axios.get("/mark-down/test.md").then((res) => {
+    console.log(process.env.NODE_ENV)
+    const baseUrl = process.env.NODE_ENV === 'development'? '': 'https://sunny586.github.io/code/dist'
+    axios.get(`${baseUrl}/mark-down/test.md`).then((res) => {
       console.log(res.data);
       this.testMd = res.data;
     });
