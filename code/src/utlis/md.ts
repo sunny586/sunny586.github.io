@@ -5,7 +5,7 @@ async function getMdTemplate(id: number) {
   const target = MD_PATH.find(item => item.id === id)
   const { data } = await axios.get(target!.url);
   if (!data) {
-    throw new Error('markdown模版不存在，请检查')
+    throw new Error('markdown模版不存在, 请检查!')
   }
   return data
 }

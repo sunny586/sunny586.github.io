@@ -1,63 +1,61 @@
+<script lang="ts" setup>
+import { defineProps, toRefs } from "vue";
+import { useRouter } from "vue-router";
+let router = useRouter();
+// 定义属性
+const props = defineProps({
+  article: Object,
+});
+
+const { article } = toRefs(props);
+
+const gotoSearch = (type: string, data: any) => {
+  router.push({
+    path: "/search",
+    query: {
+      [type]: data,
+    },
+  });
+};
+</script>
 <template>
   <router-link
     class="article-link shadow"
-    :to="`${'/article/' + article.id}`"
+    :to="`${'/article/' + article!.id}`"
     target="_blank"
   >
     <div class="info-row">
-      <div class="article-title">{{ article.title }}</div>
+      <div class="article-title">{{ article!.title }}</div>
     </div>
     <div class="info-row">
-      <div class="time">{{ new Date(article.time).toLocaleString() }}</div>
+      <div class="time">{{ new Date(article!.time).toLocaleString() }}</div>
     </div>
     <div class="info-row">
       <div class="label">简介：</div>
       <div class="description">
-        {{ article.description }}
+        {{ article!.description }}
       </div>
     </div>
     <div class="info-row">
       <div class="label">分区：</div>
-      <div class="field" @click.prevent="gotoSearch('field', article.field)">
-        {{ article.field }}
+      <div class="field" @click.prevent="gotoSearch('field', article!.field)">
+        {{ article!.field }}
       </div>
       <div class="label" style="margin-left: 1vw">标签：</div>
       <div class="tags">
         <div
           class="tag"
-          v-for="(tag, index) in article.tags"
+          v-for="(tag, index) in article!.tags"
           :key="index"
           @click.prevent="gotoSearch('tag', tag)"
         >
           {{ tag }}
-          <span class="comma" v-if="index != article.tags.length - 1">、</span>
+          <span class="comma" v-if="index != article!.tags.length - 1">、</span>
         </div>
       </div>
     </div>
   </router-link>
 </template>
-
-<script lang='ts'>
-import { componentSize } from "element-plus/es/utils/props";
-import { Options, Vue } from "vue-class-component";
-@Options({
-  props: {
-    article: {},
-  },
-  methods: {
-    gotoSearch(type: string, data: any) {
-      // console.log('点击标签')
-      this.$router.push({
-        name: "search",
-        query: {
-          [type]: data,
-        },
-      });
-    },
-  },
-})
-export default class ArticleCard extends Vue {}
-</script>
 
 <style lang="less" scoped>
 .article-link {
@@ -124,7 +122,7 @@ export default class ArticleCard extends Vue {}
           cursor: pointer;
         }
         .comma {
-            color: #707070;
+          color: #707070;
         }
       }
     }

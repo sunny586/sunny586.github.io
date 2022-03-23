@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+import NaviBar from "@/components/navi-bar.vue";
+</script>
+
 <template>
   <div class="app-container">
     <div class="my-header">
@@ -6,25 +10,9 @@
     <div class="my-main">
       <router-view />
     </div>
-    <div class="my-footer">
-      <footer-bar></footer-bar>
-    </div>
   </div>
 </template>
-
-<script lang='ts'>
-import { Options, Vue } from "vue-class-component";
-import NaviBar from "@/components/NaviBar.vue";
-import FooterBar from "@/components/FooterBar.vue";
-@Options({
-  components: {
-    NaviBar,
-    FooterBar,
-  },
-})
-export default class App extends Vue {}
-</script>
-<style lang="less" >
+<style lang="less">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -39,7 +27,6 @@ export default class App extends Vue {}
   flex-direction: column;
   justify-content: space-between;
   align-content: center;
-  // background-color: #cacaca;
   .my-header {
     min-width: 100%;
   }

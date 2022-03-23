@@ -1,4 +1,4 @@
-const BACKEND_URL = 'https://admin.leoyiblog.cn/';
+const BACKEND_URL = 'https://admin.sunny586blog.cn/';
 // const BACKEND_PORT = '3000';
 
 export const NET_CONFIG: {
