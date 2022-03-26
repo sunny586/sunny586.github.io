@@ -1,12 +1,15 @@
 <script lang="ts" setup>
-import NaviBar from "@/components/navi-bar.vue";
+import NaviBar from '@/components/navi-bar.vue'
 </script>
 
 <template>
   <div class="app-container">
-    <div class="my-header">
-      <navi-bar></navi-bar>
-    </div>
+    <el-affix>
+      <div class="my-header">
+        <navi-bar></navi-bar>
+      </div>
+    </el-affix>
+
     <div class="my-main">
       <router-view />
     </div>
@@ -32,7 +35,6 @@ import NaviBar from "@/components/navi-bar.vue";
   }
   .my-main {
     flex-grow: 1;
-    padding-top: 20px;
     padding-bottom: 20px;
     min-width: 100%;
     display: flex;
@@ -151,5 +153,10 @@ import NaviBar from "@/components/navi-bar.vue";
   .v-md-pre-wrapper {
     max-width: 53vw !important;
   }
+}
+</style>
+<style>
+.el-affix--fixed {
+  background-color: #fff;
 }
 </style>

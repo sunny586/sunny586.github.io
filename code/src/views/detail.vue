@@ -1,3 +1,110 @@
+<script lang="ts" setup>
+import { ref, reactive, toRefs, onMounted, nextTick, onBeforeMount } from 'vue'
+import { useRoute } from 'vue-router'
+import { getMdTemplate } from '@md/index'
+
+const route = useRoute()
+
+let {
+  article_list,
+  articleId,
+  titles,
+  useToc,
+  toc_title,
+  showBackTopIcon,
+  testMd,
+}: any = toRefs(
+  reactive({
+    article_list: [{ title: 'hahah', id: 1 }],
+    articleId: '',
+    titles: [],
+    useToc: true,
+    toc_title: '目录导航',
+    showBackTopIcon: false,
+    testMd: '',
+  })
+)
+
+const preview = ref()
+
+onBeforeMount(async () => {
+  articleId.value = route.params.articleId as string
+  if (articleId.value && typeof +articleId.value == 'number') {
+    testMd.value = await getMdTemplate(articleId.value)
+  }
+  nextTick(() => {
+    const anchors = preview.value.$el.querySelectorAll('h1,h2,h3,h4,h5,h6')
+    const _titles = Array.from(anchors).filter(
+      (title: any) => !!title.innerText.trim()
+    )
+
+    if (!_titles.length) {
+      titles.value = []
+      return
+    }
+
+    const hTags = Array.from(
+      new Set(titles.value.map((title: any) => title.tagName))
+    ).sort()
+
+    titles.value = _titles.map((el: any) => ({
+      title: el.innerText,
+      lineIndex: el.getAttribute('data-v-md-line'),
+      indent: hTags.indexOf(el.tagName),
+    }))
+  })
+})
+
+onMounted(() => {
+  window.onscroll = () => {
+    if (window.scrollY > 200) {
+      showBackTopIcon.value = true
+    } else {
+      showBackTopIcon.value = false
+    }
+  }
+})
+
+const handleAnchorClick = (anchor: any) => {
+  const { lineIndex } = anchor
+  const heading = preview.value.$el.querySelector(
+    `[data-v-md-line="${lineIndex}"]`
+  )
+  if (heading) {
+    preview.value.scrollToTarget({
+      target: heading,
+      scrollContainer: window,
+      top: 60,
+    })
+  }
+}
+
+const setToc = () => {
+  if (useToc.value == false) {
+    // 开启toc
+    let _titles = [...titles.value]
+    toc_title.value = ''
+    titles.value = []
+    setTimeout(() => {
+      titles.value = [..._titles]
+      toc_title.value = '目录导航'
+    }, 300)
+  }
+  useToc.value = !useToc.value
+}
+
+// 跳转到顶部
+const backtop = () => {
+  // console.log("backtop");
+  window.scrollTo(0, 0)
+}
+// 打开页面
+const openPage = (articleId: number) => {
+  // // console.log(this.$router)
+  window.open(window.location.origin + `/article/${articleId}`, '_blank')
+}
+</script>
+
 <template>
   <div class="out-container slide-in">
     <div class="left-side-container"></div>
@@ -21,7 +128,10 @@
           d="M508.4 547.8l1.8-1.8-1.8 1.8zM508.2 545.8l2.2 2.2c-0.7-0.8-1.4-1.5-2.2-2.2zM511.1 508.7l1.8 1.8-1.8-1.8z"
           p-id="3021"
         ></path>
-        <path d="M510.9 510.7l2.2-2.2c-0.8 0.7-1.5 1.4-2.2 2.2z" p-id="3022"></path>
+        <path
+          d="M510.9 510.7l2.2-2.2c-0.8 0.7-1.5 1.4-2.2 2.2z"
+          p-id="3022"
+        ></path>
         <path
           d="M544 472.4v246c0 17.6-14.4 32-32 32s-32-14.4-32-32v-246c0-17.6 14.4-32 32-32s32 14.4 32 32z"
           p-id="3023"
@@ -79,114 +189,6 @@
     </div>
   </div>
 </template>
-<script lang="ts">
-import { Options, Vue } from "vue-class-component";
-import axios from "axios";
-
-@Options({
-  components: {},
-  data() {
-    return {
-      article_list: [{ title: "hahah", id: 1 }],
-      articleId: "",
-      titles: [],
-      useToc: true,
-      toc_title: "目录导航",
-      showBackTopIcon: false,
-      testMd: "",
-    };
-  },
-  async created() {
-    console.log(process.env.NODE_ENV)
-    const baseUrl = process.env.NODE_ENV === 'development'? '': 'https://sunny586.github.io/code/dist'
-    axios.get(`${baseUrl}/mark-down/test.md`).then((res) => {
-      console.log(res.data);
-      this.testMd = res.data;
-    });
-
-    this.articleId = this.$route.params.articleId;
-    if (this.articleId && typeof +this.articleId == "number") {
-      console.log(this.articleId);
-    }
-
-    this.$nextTick(() => {
-      const anchors = this.$refs.preview.$el.querySelectorAll("h1,h2,h3,h4,h5,h6");
-      // console.log("anchors:", anchors);
-      const titles = Array.from(anchors).filter((title: any) => !!title.innerText.trim());
-
-      if (!titles.length) {
-        this.titles = [];
-        return;
-      }
-
-      const hTags = Array.from(new Set(titles.map((title: any) => title.tagName))).sort();
-
-      this.titles = titles.map((el: any) => ({
-        title: el.innerText,
-        lineIndex: el.getAttribute("data-v-md-line"),
-        indent: hTags.indexOf(el.tagName),
-      }));
-    });
-  },
-  mounted() {
-    window.onscroll = () => {
-      if (window.scrollY > 200) {
-        this.showBackTopIcon = true;
-      } else {
-        this.showBackTopIcon = false;
-      }
-    };
-  },
-  methods: {
-    handleAnchorClick(anchor: any) {
-      const { preview } = this.$refs;
-      const { lineIndex } = anchor;
-
-      const heading = preview.$el.querySelector(`[data-v-md-line="${lineIndex}"]`);
-
-      if (heading) {
-        preview.scrollToTarget({
-          target: heading,
-          scrollContainer: window,
-          top: 60,
-        });
-      }
-    },
-    gotoSearch(type: string, data: any) {
-      this.$router.push({
-        name: "search",
-        query: {
-          [type]: data,
-        },
-      });
-    },
-    setToc() {
-      if (this.useToc == false) {
-        // 开启toc
-        let _titles = [...this.titles];
-        this.toc_title = "";
-        this.titles = [];
-        setTimeout(() => {
-          this.titles = [..._titles];
-          this.toc_title = "目录导航";
-        }, 300);
-      }
-      this.useToc = this.useToc ? false : true;
-    },
-    // 跳转到顶部
-    backtop() {
-      // console.log("backtop");
-      window.scrollTo(0, 0);
-    },
-    // 打开页面
-    openPage(articleId: number) {
-      // // console.log(this.$router)
-      window.open(window.location.origin + `/article/${articleId}`, "_blank");
-    },
-  },
-})
-export default class ArticleDetail extends Vue {}
-</script>
 
 <style lang="less" scoped>
 .out-container {
@@ -202,7 +204,6 @@ export default class ArticleDetail extends Vue {}
   // 左边侧边栏容器
   margin-left: 2%;
   width: 15%;
-
   .meta-container {
     width: 100%;
     background-color: white;
@@ -373,8 +374,6 @@ export default class ArticleDetail extends Vue {}
       line-height: 2em;
       height: 2em;
     }
-    .anchor {
-    }
     &.close {
       width: 0;
       min-width: 0;
@@ -395,8 +394,6 @@ export default class ArticleDetail extends Vue {}
     border-left: 1px solid #99999935;
     position: relative;
     font-size: 1.2em;
-  }
-  .preview {
   }
 }
 </style>

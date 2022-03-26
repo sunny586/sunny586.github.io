@@ -4,7 +4,6 @@ import router from './router'
 import store from './store'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
-import './api/api.interceptors'  // 导入axios http请求守卫
 import './router/router.interceptor' // 导入路由守卫
 import VueMarkdownEditor from '@kangc/v-md-editor';
 import '@kangc/v-md-editor/lib/style/base-editor.css';
