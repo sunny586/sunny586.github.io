@@ -94,20 +94,6 @@ const handleAnchorClick = (anchor: any) => {
   }
 }
 
-const setToc = () => {
-  if (useToc.value == false) {
-    // 开启toc
-    let _titles = [...titles.value]
-    toc_title.value = ''
-    titles.value = []
-    setTimeout(() => {
-      titles.value = [..._titles]
-      toc_title.value = '目录导航'
-    }, 300)
-  }
-  useToc.value = !useToc.value
-}
-
 // 跳转到顶部
 const backtop = () => {
   window.scrollTo(0, 0)
@@ -159,36 +145,19 @@ const updatePage = async (id: string) => {
           d="M511.9 379c-8.3 0-15.8 3.1-21.5 8.3l-2.2 2.2-21.5 21.5L311 566.7c-12.4 12.4-12.4 32.8 0 45.3 12.4 12.4 32.8 12.4 45.3 0L512 456.2l155.8 155.7c12.4 12.4 32.8 12.4 45.3 0 12.4-12.4 12.4-32.8-0.1-45.2L557.3 411l-21.8-21.8-1.8-1.8c-5.7-5.3-13.4-8.5-21.8-8.4z"
           p-id="3024"
         ></path>
-      </svg>
-      <!-- 目录导航按钮  -->
-      <svg
-        t="1644667623063"
-        :class="`toc-icon ${useToc ? 'active' : ''}`"
-        viewBox="0 0 1024 1024"
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg"
-        p-id="2032"
-        @click="setToc"
-      >
-        <path
-          d="M149.333333 704c35.413333 0 64 29.013333 64 64s-29.013333 64-64 64S85.333333 802.986667 85.333333 768s28.586667-64 64-64zM896 725.333333a42.666667 42.666667 0 0 1 0 85.333334H341.333333a42.666667 42.666667 0 0 1 0-85.333334zM149.333333 448c35.413333 0 64 28.586667 64 64s-28.586667 64-64 64S85.333333 547.413333 85.333333 512s28.586667-64 64-64zM896 469.333333a42.666667 42.666667 0 0 1 0 85.333334H341.333333a42.666667 42.666667 0 0 1 0-85.333334zM149.333333 192C184.746667 192 213.333333 220.586667 213.333333 256s-28.586667 64-64 64S85.333333 291.413333 85.333333 256s28.586667-64 64-64zM896 213.333333a42.666667 42.666667 0 0 1 0 85.333334H341.333333a42.666667 42.666667 0 1 1 0-85.333334z"
-          p-id="2033"
-        ></path>
-      </svg>
-      <el-affix :offset="60" position="top">
-        <div :class="`toc ${useToc ? '' : 'close '}`">
-          <div class="title">{{ toc_title }}</div>
-          <div
-            class="anchor"
-            v-for="(anchor, index) in titles"
-            :style="{ padding: `8px 0 8px ${anchor.indent * 13}px` }"
-            @click="handleAnchorClick(anchor)"
-            :key="`anchor_${index}`"
-          >
-             <a class="a-tag" style="cursor: pointer">{{ anchor.title }}</a>
-          </div>
+      </svg>      
+      <div :class="`toc ${useToc ? '' : 'close '}`">
+        <div class="title">{{ toc_title }}</div>
+        <div
+          class="anchor"
+          v-for="(anchor, index) in titles"
+          :style="{ padding: `8px 0 8px ${anchor.indent * 13}px` }"
+          @click="handleAnchorClick(anchor)"
+          :key="`anchor_${index}`"
+        >
+          <a class="a-tag" style="cursor: pointer">{{ anchor.title }}</a>
         </div>
-      </el-affix>
+      </div>
 
       <!-- <div class="block-line"></div> -->
       <div :class="`preview ${useToc ? 'toc-open' : 'toc-close '}`">
@@ -219,7 +188,6 @@ const updatePage = async (id: string) => {
   width: 100%;
   display: flex;
   flex-direction: row;
-  // align-items: center;
   justify-content: space-between;
   align-items: flex-start;
   margin-top: 2%;
@@ -269,13 +237,14 @@ const updatePage = async (id: string) => {
 }
 .md-container {
   width: 960px;
-  // height: 80vh;
   display: flex;
   flex-direction: row;
   position: relative;
   background-color: white;
   .preview {
     width: 100%;
+    position: relative;
+    bottom: 4px;
   }
   .toc-icon {
     width: 1.3em;
@@ -315,12 +284,16 @@ const updatePage = async (id: string) => {
     }
   }
   .toc {
-    background: white;
+    background: #fff;
     padding-right: 1.4vw;
     padding-left: 0.6vw;
     transition: all 0.25s;
-    width: 150px;
+    width: 220px;
     user-select: none;
+    position: fixed;
+    left: 50%;
+    // top: 97px;
+    transform: translate(-746px, -4px);
     .title {
       font-weight: 500;
       padding: 12px 0;
@@ -370,8 +343,8 @@ const updatePage = async (id: string) => {
     left: 50%;
     transform: translate(-746px, -4px);
     background-color: #f4f5f7;
-    .toc{
-      width: 220px!important;
+    .toc {
+      width: 220px !important;
     }
   }
   .el-affix {
