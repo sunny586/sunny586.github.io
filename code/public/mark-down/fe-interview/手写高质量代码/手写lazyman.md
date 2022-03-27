@@ -40,7 +40,7 @@ class LazyMan {
 
 初始化一个任务队列，执行 `eat` 和 `sleep` 是都往队列插入一个函数。依次执行队列的任务，遇到 `sleep` 就延迟触发 `next` 。
 
-![](./img/sleep.png)
+![](https://sunny586.github.io/code/dist/mark-down/fe-interview/%E6%89%8B%E5%86%99%E9%AB%98%E8%B4%A8%E9%87%8F%E4%BB%A3%E7%A0%81/img/sleep.png)
 
 代码参考 
 ```ts
