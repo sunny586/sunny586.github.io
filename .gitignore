@@ -1,5 +1,7 @@
 .DS_Store
 node_modules
+fe-interview-100
+fe-interview-100-wiki
 
 # local env files
 .env.local
