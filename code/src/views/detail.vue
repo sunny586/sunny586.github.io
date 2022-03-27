@@ -175,36 +175,41 @@ const updatePage = async (id: string) => {
           p-id="2033"
         ></path>
       </svg>
-
-      <div :class="`toc ${useToc ? '' : 'close '}`">
-        <div class="title">{{ toc_title }}</div>
-        <div
-          class="anchor"
-          v-for="(anchor, index) in titles"
-          :style="{ padding: `8px 0 8px ${anchor.indent * 13}px` }"
-          @click="handleAnchorClick(anchor)"
-          :key="`anchor_${index}`"
-        >
-          <a class="a-tag" style="cursor: pointer">{{ anchor.title }}</a>
+      <el-affix :offset="60" position="top">
+        <div :class="`toc ${useToc ? '' : 'close '}`">
+          <div class="title">{{ toc_title }}</div>
+          <div
+            class="anchor"
+            v-for="(anchor, index) in titles"
+            :style="{ padding: `8px 0 8px ${anchor.indent * 13}px` }"
+            @click="handleAnchorClick(anchor)"
+            :key="`anchor_${index}`"
+          >
+             <a class="a-tag" style="cursor: pointer">{{ anchor.title }}</a>
+          </div>
         </div>
-      </div>
-      <div class="block-line"></div>
+      </el-affix>
+
+      <!-- <div class="block-line"></div> -->
       <div :class="`preview ${useToc ? 'toc-open' : 'toc-close '}`">
         <v-md-preview :text="articleMd" ref="preview" />
       </div>
     </div>
+
     <div class="right-side-container">
-      <div class="article-list-container shadow">
-        <div class="field-title">近期文章</div>
-        <div
-          class="article-title"
-          v-for="item in article_list"
-          :key="item.id"
-          @click="updatePage(item.id)"
-        >
-          {{ item.title }}
+      <el-affix :offset="60">
+        <div class="article-list-container shadow">
+          <div class="field-title">近期文章</div>
+          <div
+            class="article-title"
+            v-for="item in article_list"
+            :key="item.id"
+            @click="updatePage(item.id)"
+          >
+            {{ item.title }}
+          </div>
         </div>
-      </div>
+      </el-affix>
     </div>
   </div>
 </template>
@@ -314,8 +319,7 @@ const updatePage = async (id: string) => {
     padding-right: 1.4vw;
     padding-left: 0.6vw;
     transition: all 0.25s;
-    min-width: 10vw;
-    max-width: 14vw;
+    width: 150px;
     user-select: none;
     .title {
       font-weight: 500;
@@ -355,9 +359,23 @@ const updatePage = async (id: string) => {
   .block-line {
     display: inline-block;
     width: 1px;
-    border-left: 1px solid #99999935;
+    border-left: 1px solid #eee;
     position: relative;
-    font-size: 1.2em;
+  }
+}
+</style>
+<style lang="scss">
+.md-container {
+  .el-affix--fixed {
+    left: 50%;
+    transform: translate(-746px, -4px);
+    background-color: #f4f5f7;
+    .toc{
+      width: 220px!important;
+    }
+  }
+  .el-affix {
+    border: none;
   }
 }
 </style>

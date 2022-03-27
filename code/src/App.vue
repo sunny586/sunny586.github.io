@@ -20,7 +20,6 @@ import NaviBar from '@/components/navi-bar.vue'
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100%;
-  // width: 100vw;
 }
 .app-container {
   display: flex;
@@ -34,13 +33,11 @@ import NaviBar from '@/components/navi-bar.vue'
   }
   .my-main {
     flex-grow: 1;
-    // padding-bottom: 20px;
     min-width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
     background-color: #f4f5f7;
-    // display: none;
   }
   .my-footer {
     min-width: 100%;
@@ -63,83 +60,6 @@ import NaviBar from '@/components/navi-bar.vue'
 .shadow {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
 }
-
-// 修改element-plus默认样式
-
-// 修改选择框的边框颜色
-// .el-select .el-input.is-focus .el-input__inner {
-//   border-color: #333333 !important;
-// }
-// .el-select .el-input__inner:focus {
-//   border-color: #333333 !important;
-// }
-// // 选择选择框当前选中选项字体颜色
-// .el-select-dropdown__item.selected {
-//   color: #333333 !important;
-// }
-// // 修改文本输入框的边框颜色
-// .el-input {
-//   --el-input-focus-border: #333333 !important;
-// }
-// .el-textarea {
-//   --el-input-focus-border: #333333 !important;
-// }
-// .el-button {
-//   background-color: #444444 !important;
-//   color: white !important;
-// }
-// .el-button:focus,
-// .el-button:hover {
-//   background-color: #333333 !important;
-//   border-color: #ffa801 !important;
-// }
-// .el-button.el-button--primary.el-button--mini {
-//   background-color: white !important;
-//   color: #333 !important;
-//   border: none;
-//   &:hover {
-//     color: #ffa801 !important;
-//   }
-// }
-// .el-button.el-button--text.el-button--mini {
-//   background-color: white !important;
-//   color: #333 !important;
-//   border: none;
-//   &:hover {
-//     color: #ffa801 !important;
-//   }
-// }
-// .el-button.el-button--text {
-//   background-color: white !important;
-//   color: #333 !important;
-//   border: none;
-//   &:hover {
-//     color: #ffa801 !important;
-//   }
-// }
-// // 修改多选框颜色
-// .el-checkbox__inner {
-//   border-color: #3337 !important;
-// }
-// .el-checkbox__inner:hover {
-//   border-color: #333 !important;
-// }
-// .el-checkbox__input.is-checked + .el-checkbox__label {
-//   color: #333 !important;
-// }
-// .el-checkbox__input.is-checked .el-checkbox__inner {
-//   background-color: #333 !important;
-// }
-// // 分页器颜色
-// .el-pagination.is-background .el-pager li.number.active {
-//   background-color: #333333 !important;
-// }
-// .el-pagination.is-background .el-pager li.number:hover {
-//   color: #333333 !important;
-// }
-// .el-pagination.is-background .el-pager li.number.active:hover {
-//   color: white !important;
-// }
 
 // md预览组件中的代码行最长长度
 // 超过长度开启横向滚动
@@ -197,6 +117,9 @@ import NaviBar from '@/components/navi-bar.vue'
   }
   .vuepress-markdown-body{
     padding: 12px!important;
+  }
+  .backtop-icon{
+    display: none;
   }
 }
 </style>
