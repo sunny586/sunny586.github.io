@@ -1,10 +1,20 @@
 <script lang="ts" setup>
-import { ref, reactive, toRefs, onMounted, nextTick, onBeforeMount } from 'vue'
+import {
+  ref,
+  reactive,
+  toRefs,
+  onMounted,
+  nextTick,
+  computed,
+  onBeforeMount,
+} from 'vue'
 import { useRoute } from 'vue-router'
-import { getMdTemplate } from '@md/index'
+import { useStore } from 'vuex'
+import { MD_PATH } from '@md/path'
 
 const route = useRoute()
-
+const store = useStore()
+const preview = ref()
 let {
   article_list,
   articleId,
@@ -12,10 +22,9 @@ let {
   useToc,
   toc_title,
   showBackTopIcon,
-  testMd,
 }: any = toRefs(
   reactive({
-    article_list: [{ title: 'hahah', id: 1 }],
+    article_list: MD_PATH.slice(0, 10),
     articleId: '',
     titles: [],
     useToc: true,
@@ -25,34 +34,40 @@ let {
   })
 )
 
-const preview = ref()
+const articleMd = computed(() => store.state.articleMd)
 
-onBeforeMount(async () => {
-  articleId.value = route.params.articleId as string
-  if (articleId.value && typeof +articleId.value == 'number') {
-    testMd.value = await getMdTemplate(articleId.value)
-  }
+const updateTitles = () => {
   nextTick(() => {
     const anchors = preview.value.$el.querySelectorAll('h1,h2,h3,h4,h5,h6')
     const _titles = Array.from(anchors).filter(
       (title: any) => !!title.innerText.trim()
     )
-
     if (!_titles.length) {
       titles.value = []
       return
     }
-
     const hTags = Array.from(
-      new Set(titles.value.map((title: any) => title.tagName))
+      new Set(_titles.map((title: any) => title.tagName))
     ).sort()
-
     titles.value = _titles.map((el: any) => ({
       title: el.innerText,
       lineIndex: el.getAttribute('data-v-md-line'),
       indent: hTags.indexOf(el.tagName),
     }))
   })
+}
+
+const loadData = async () => {
+  articleId.value = route.params.articleId as string
+  if (!articleId.value) {
+    return
+  }
+  await store.dispatch('updateArticleMd', { id: articleId.value })
+  updateTitles()
+}
+
+onBeforeMount(async () => {
+  await loadData()
 })
 
 onMounted(() => {
@@ -95,13 +110,17 @@ const setToc = () => {
 
 // 跳转到顶部
 const backtop = () => {
-  // console.log("backtop");
   window.scrollTo(0, 0)
 }
-// 打开页面
-const openPage = (articleId: number) => {
-  // // console.log(this.$router)
-  window.open(window.location.origin + `/article/${articleId}`, '_blank')
+
+const updatePage = async (id: string) => {
+  if (articleId.value === id) {
+    return
+  }
+  articleId.value = id
+  await store.dispatch('updateArticleMd', { id })
+  updateTitles()
+  backtop()
 }
 </script>
 
@@ -164,14 +183,14 @@ const openPage = (articleId: number) => {
           v-for="(anchor, index) in titles"
           :style="{ padding: `8px 0 8px ${anchor.indent * 13}px` }"
           @click="handleAnchorClick(anchor)"
-          :key="index"
+          :key="`anchor_${index}`"
         >
-          <a style="cursor: pointer">{{ anchor.title }}</a>
+          <a class="a-tag" style="cursor: pointer">{{ anchor.title }}</a>
         </div>
       </div>
       <div class="block-line"></div>
       <div :class="`preview ${useToc ? 'toc-open' : 'toc-close '}`">
-        <v-md-preview :text="testMd" ref="preview" />
+        <v-md-preview :text="articleMd" ref="preview" />
       </div>
     </div>
     <div class="right-side-container">
@@ -179,9 +198,9 @@ const openPage = (articleId: number) => {
         <div class="field-title">近期文章</div>
         <div
           class="article-title"
-          v-for="(item, index) in article_list"
-          :key="index"
-          @click="openPage(item.id)"
+          v-for="item in article_list"
+          :key="item.id"
+          @click="updatePage(item.id)"
         >
           {{ item.title }}
         </div>
@@ -204,72 +223,6 @@ const openPage = (articleId: number) => {
   // 左边侧边栏容器
   margin-left: 2%;
   width: 15%;
-  .meta-container {
-    width: 100%;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    .meta-title {
-      width: 85%;
-      margin-left: 4%;
-      // text-align: center;
-      font-size: 1.4em;
-      font-weight: bold;
-      border-bottom: 1px solid #99999960;
-      line-height: 2em;
-      height: 2em;
-      margin-bottom: 0.3em;
-      .edit-btn {
-        font-size: 0.6em;
-        margin-left: 5%;
-        font-weight: normal;
-        color: #707070;
-        &:hover {
-          color: #ffa801;
-          cursor: pointer;
-        }
-      }
-    }
-    .info-row {
-      font-size: 0.9em;
-      display: flex;
-      flex-direction: row;
-      width: 85%;
-      margin-left: 4%;
-      line-height: 2em;
-      min-height: 2em;
-      color: #707070;
-      .label {
-        min-width: 25%;
-      }
-      .description {
-      }
-      .field {
-        font-style: italic;
-        &:hover {
-          color: #ffa801;
-          cursor: pointer;
-        }
-      }
-      .tags {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        .tag {
-          color: #707070;
-          margin-right: 0.2em;
-          font-style: italic;
-          &:hover {
-            color: #ffa801;
-            cursor: pointer;
-          }
-          .comma {
-            color: #707070;
-          }
-        }
-      }
-    }
-  }
 }
 .right-side-container {
   // 右边侧边栏容器
@@ -280,46 +233,45 @@ const openPage = (articleId: number) => {
     background-color: white;
     display: flex;
     flex-direction: column;
-    // align-items: center;
+    padding-bottom: 8px;
     .field-title {
-      width: 85%;
-      margin-left: 4%;
-      // text-align: center;
-      font-size: 1.4em;
-      font-weight: bold;
-      border-bottom: 1px solid #99999960;
-      line-height: 2em;
-      height: 2em;
-      margin-bottom: 0.3em;
+      font-weight: 500;
+      padding: 12px 0;
+      font-size: 16px;
+      line-height: 2rem;
+      color: #1d2129;
+      border-bottom: 1px solid #e4e6eb;
+      margin: 0 1.667rem;
+      margin-bottom: 8px;
     }
     .article-title {
-      width: 85%;
-      margin-left: 4%;
-      font-size: 1em;
-      line-height: 1.5em;
-      min-height: 1.5em;
-      margin-bottom: 0.5em;
-      color: #707070;
-      font-style: italic;
+      color: inherit;
+      display: inline-block;
+      margin: 0px 28px;
+      padding: 8px;
+      border-radius: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 14px;
       &:hover {
         cursor: pointer;
-        color: #ffa801;
-      }
-      &.now-open {
-        color: #ffa801;
-        font-weight: bold;
+        color: #007fff;
+        background-color: rgb(246, 246, 255);
       }
     }
   }
 }
 .md-container {
-  width: 60%;
-  max-width: 60%;
+  width: 960px;
   // height: 80vh;
   display: flex;
   flex-direction: row;
   position: relative;
   background-color: white;
+  .preview {
+    width: 100%;
+  }
   .toc-icon {
     width: 1.3em;
     fill: #707070;
@@ -366,13 +318,12 @@ const openPage = (articleId: number) => {
     max-width: 14vw;
     user-select: none;
     .title {
-      width: 99%;
-      // text-align: center;
-      font-size: 1.4em;
-      font-weight: bold;
-      border-bottom: 1px solid #99999960;
-      line-height: 2em;
-      height: 2em;
+      font-weight: 500;
+      padding: 12px 0;
+      font-size: 16px;
+      line-height: 2rem;
+      color: #1d2129;
+      border-bottom: 1px solid #e4e6eb;
     }
     &.close {
       width: 0;
@@ -385,6 +336,19 @@ const openPage = (articleId: number) => {
       }
       .anchor {
         display: none;
+      }
+    }
+    .a-tag {
+      color: inherit;
+      display: inline-block;
+      padding: 8px;
+      width: 90%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 14px;
+      &:hover {
+        background-color: rgb(246, 246, 255);
       }
     }
   }

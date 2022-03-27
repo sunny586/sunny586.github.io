@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { defineProps, toRefs } from 'vue'
-import { useRouter } from 'vue-router'
-let router = useRouter()
+
 // 定义属性
 const props = defineProps({
   article: Object,
@@ -12,7 +11,6 @@ const { article } = toRefs(props)
   <router-link
     class="article-link"
     :to="`${'/article/' + article!.id}`"
-    target="_blank"
   >
     <div class="card">
       <div class="info-row">

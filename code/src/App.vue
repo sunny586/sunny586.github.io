@@ -9,7 +9,6 @@ import NaviBar from '@/components/navi-bar.vue'
         <navi-bar></navi-bar>
       </div>
     </el-affix>
-
     <div class="my-main">
       <router-view />
     </div>
@@ -35,7 +34,7 @@ import NaviBar from '@/components/navi-bar.vue'
   }
   .my-main {
     flex-grow: 1;
-    padding-bottom: 20px;
+    // padding-bottom: 20px;
     min-width: 100%;
     display: flex;
     flex-direction: row;
@@ -68,79 +67,79 @@ import NaviBar from '@/components/navi-bar.vue'
 // 修改element-plus默认样式
 
 // 修改选择框的边框颜色
-.el-select .el-input.is-focus .el-input__inner {
-  border-color: #333333 !important;
-}
-.el-select .el-input__inner:focus {
-  border-color: #333333 !important;
-}
-// 选择选择框当前选中选项字体颜色
-.el-select-dropdown__item.selected {
-  color: #333333 !important;
-}
-// 修改文本输入框的边框颜色
-.el-input {
-  --el-input-focus-border: #333333 !important;
-}
-.el-textarea {
-  --el-input-focus-border: #333333 !important;
-}
-.el-button {
-  background-color: #444444 !important;
-  color: white !important;
-}
-.el-button:focus,
-.el-button:hover {
-  background-color: #333333 !important;
-  border-color: #ffa801 !important;
-}
-.el-button.el-button--primary.el-button--mini {
-  background-color: white !important;
-  color: #333 !important;
-  border: none;
-  &:hover {
-    color: #ffa801 !important;
-  }
-}
-.el-button.el-button--text.el-button--mini {
-  background-color: white !important;
-  color: #333 !important;
-  border: none;
-  &:hover {
-    color: #ffa801 !important;
-  }
-}
-.el-button.el-button--text {
-  background-color: white !important;
-  color: #333 !important;
-  border: none;
-  &:hover {
-    color: #ffa801 !important;
-  }
-}
-// 修改多选框颜色
-.el-checkbox__inner {
-  border-color: #3337 !important;
-}
-.el-checkbox__inner:hover {
-  border-color: #333 !important;
-}
-.el-checkbox__input.is-checked + .el-checkbox__label {
-  color: #333 !important;
-}
-.el-checkbox__input.is-checked .el-checkbox__inner {
-  background-color: #333 !important;
-}
-// 分页器颜色
-.el-pagination.is-background .el-pager li.number.active {
-  background-color: #333333 !important;
-}
-.el-pagination.is-background .el-pager li.number:hover {
-  color: #333333 !important;
-}
-.el-pagination.is-background .el-pager li.number.active:hover {
-  color: white !important;
-}
+// .el-select .el-input.is-focus .el-input__inner {
+//   border-color: #333333 !important;
+// }
+// .el-select .el-input__inner:focus {
+//   border-color: #333333 !important;
+// }
+// // 选择选择框当前选中选项字体颜色
+// .el-select-dropdown__item.selected {
+//   color: #333333 !important;
+// }
+// // 修改文本输入框的边框颜色
+// .el-input {
+//   --el-input-focus-border: #333333 !important;
+// }
+// .el-textarea {
+//   --el-input-focus-border: #333333 !important;
+// }
+// .el-button {
+//   background-color: #444444 !important;
+//   color: white !important;
+// }
+// .el-button:focus,
+// .el-button:hover {
+//   background-color: #333333 !important;
+//   border-color: #ffa801 !important;
+// }
+// .el-button.el-button--primary.el-button--mini {
+//   background-color: white !important;
+//   color: #333 !important;
+//   border: none;
+//   &:hover {
+//     color: #ffa801 !important;
+//   }
+// }
+// .el-button.el-button--text.el-button--mini {
+//   background-color: white !important;
+//   color: #333 !important;
+//   border: none;
+//   &:hover {
+//     color: #ffa801 !important;
+//   }
+// }
+// .el-button.el-button--text {
+//   background-color: white !important;
+//   color: #333 !important;
+//   border: none;
+//   &:hover {
+//     color: #ffa801 !important;
+//   }
+// }
+// // 修改多选框颜色
+// .el-checkbox__inner {
+//   border-color: #3337 !important;
+// }
+// .el-checkbox__inner:hover {
+//   border-color: #333 !important;
+// }
+// .el-checkbox__input.is-checked + .el-checkbox__label {
+//   color: #333 !important;
+// }
+// .el-checkbox__input.is-checked .el-checkbox__inner {
+//   background-color: #333 !important;
+// }
+// // 分页器颜色
+// .el-pagination.is-background .el-pager li.number.active {
+//   background-color: #333333 !important;
+// }
+// .el-pagination.is-background .el-pager li.number:hover {
+//   color: #333333 !important;
+// }
+// .el-pagination.is-background .el-pager li.number.active:hover {
+//   color: white !important;
+// }
 
 // md预览组件中的代码行最长长度
 // 超过长度开启横向滚动
@@ -158,5 +157,46 @@ import NaviBar from '@/components/navi-bar.vue'
 <style>
 .el-affix--fixed {
   background-color: #fff;
+}
+@media (max-width: 767px) {
+  .app-container {
+    overflow: hidden;
+  }
+  .app-container .my-header {
+    overflow: hidden;
+  }
+  .navibar {
+    width: 96% !important;
+  }
+  .right-side-container {
+    display: none;
+  }
+  .md-container .toc {
+    display: none;
+  }
+  .md-container {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .toc-open .v-md-pre-wrapper {
+    max-width: 100% !important;
+  }
+  .v-md-pre-wrapper {
+    margin: 0 !important;
+  }
+  .md-container .toc-icon {
+    display: none !important;
+  }
+  .out-container {
+    width: 96% !important;
+    display: block !important;
+  }
+  .container {
+    width: 100% !important;
+    padding: 0 6px !important;
+  }
+  .vuepress-markdown-body{
+    padding: 12px!important;
+  }
 }
 </style>

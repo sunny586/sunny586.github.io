@@ -1,7 +1,32 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { Search } from '@element-plus/icons-vue'
-const keyword = ref('')
+import { useRouter, useRoute } from 'vue-router'
+import { useStore } from 'vuex'
+import { MD_PATH } from '@md/path'
+const router = useRouter()
+const route = useRoute()
+const store = useStore()
+const reg = /^\/article\/\d+$/
+
+const goHome = () => {
+  store.dispatch('updateArticleId', { id: '' })
+  router.push({
+    path: '/',
+  })
+}
+
+const keywordChange = (id: string) => {
+  store.dispatch('updateArticleId', { id })
+  if (!id) {
+    return
+  }
+  if (reg.test(route.path)) {
+    store.dispatch('updateArticleMd', { id })
+  } else {
+    router.push({
+      path: '/article/' + id,
+    })
+  }
+}
 </script>
 <template>
   <div class="navibar">
@@ -10,15 +35,26 @@ const keyword = ref('')
     </div>
 
     <div class="nav-input">
-      <el-input
-        class="input"
+      <el-select
+        v-if="route.path === '/'"
+        v-model="store.state.articleId"
+        class="m-2 input"
         placeholder="Search or jump to…"
-        v-model="keyword"
         size="small"
-        :suffix-icon="Search"
-      />
+        clearable
+        filterable
+        suffix-icon
+        @change="keywordChange"
+      >
+        <el-option
+          v-for="item in MD_PATH"
+          :key="item.id"
+          :label="item.title"
+          :value="item.id"
+        />
+      </el-select>
     </div>
-    <i class="el-icon home-icom">
+    <i class="el-icon home-icom" @click="goHome()">
       <svg viewBox="0 0 1024 1024">
         <path
           fill="currentColor"
@@ -53,8 +89,4 @@ div.navibar {
   }
 }
 </style>
-<style lang="scss">
-input:focus {
-  border: 1px solid #007fff !important;
-}
-</style>
+<style lang="scss"></style>

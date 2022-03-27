@@ -13,7 +13,7 @@ onMounted(async () => {
   const listPromose = list.value.map(async (item) => {
     const str = await getMdTemplate(item.id)
     const reg = /#|```|```js|```html|```ts|```json/g
-    item.desc = str.replace(reg, '')
+    item.desc = str && str.replace(reg, '')
     return item
   })
   list.value = await Promise.all(listPromose)
