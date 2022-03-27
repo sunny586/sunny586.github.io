@@ -59,8 +59,7 @@ const { article } = toRefs(props)
       color: #86909c;
     }
     .article-title {
-      font-weight: 700;
-      font-size: 16px;
+      font-size: 14px;
       line-height: 24px;
       color: #1d2129;
       width: 100%;
