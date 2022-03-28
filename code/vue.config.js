@@ -6,10 +6,10 @@ const resolve = (dir) => path.join(__dirname, '.', dir);
 module.exports = {
   productionSourceMap: false,
 
-  outputDir: resolve('../dist'),
+  outputDir: 'dist',
   assetsDir: 'assets',
 
-  publicPath: process.env.NODE_ENV === 'production' ? 'https://sunny586.github.io/dist' : './',
+  publicPath: process.env.NODE_ENV === 'production' ? 'https://sunny586.github.io/code/dist' : './',
   devServer: {
     port: 9999,
     host: '0.0.0.0',

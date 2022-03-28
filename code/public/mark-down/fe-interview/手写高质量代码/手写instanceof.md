@@ -6,7 +6,7 @@ instanceof 的原理是什么，请用代码来表示
 
 ## 原型链
 
-![](https://sunny586.github.io/dist/mark-down/fe-interview/手写高质量代码/img/原型链.png)
+![](https://sunny586.github.io/code/dist/mark-down/fe-interview/手写高质量代码/img/原型链.png)
 
 ## instanceof 原理
 

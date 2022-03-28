@@ -19,7 +19,7 @@ function normalize(list: string[], idPrefix: string, urlPrefix: string, type: st
     }
   })
 }
-// https://sunny586.github.io/dist/mark-down/fe-interview/手写高质量代码
+// https://sunny586.github.io/code/dist/mark-down/fe-interview/手写高质量代码
 
 
 // fe-interview  start -------
