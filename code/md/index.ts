@@ -5,7 +5,7 @@ const baseUrl =
   // @ts-ignore
   process.env.NODE_ENV === 'development'
     ? ''
-    : 'https://sunny586.github.io/code/dist'
+    : 'https://sunny586.github.io/dist'
 
 export async function getMdTemplate(id: string) {
   const target = MD_PATH.find((item) => item.id === id)
