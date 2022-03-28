@@ -1,23 +1,23 @@
 <script lang="ts" setup>
-import { reactive, toRefs, onMounted } from 'vue'
-import ArticleCard from '@/components/article-card.vue'
-import { getMdTemplate } from '@md/index'
-import { MD_PATH, MESSAGE } from '@md/path'
+import { reactive, toRefs, onMounted } from "vue";
+import ArticleCard from "@/components/article-card.vue";
+import { getMdTemplate } from "@md/index";
+import { MD_PATH, MESSAGE } from "@md/path";
 
 let { list } = toRefs(
   reactive({
     list: MD_PATH,
   })
-)
+);
 onMounted(async () => {
   const listPromose = list.value.map(async (item) => {
-    const str = await getMdTemplate(item.id)
-    const reg = /#|```|```js|```html|```ts|```json/g
-    item.desc = str && str.replace(reg, '')
-    return item
-  })
-  list.value = await Promise.all(listPromose)
-})
+    const str = await getMdTemplate(item.id);
+    const reg = /#|```|```js|```html|```ts|```json/g;
+    item.desc = str && str.replace(reg, "");
+    return item;
+  });
+  list.value = await Promise.all(listPromose);
+});
 </script>
 <template>
   <div class="slide-in container">
@@ -42,6 +42,7 @@ onMounted(async () => {
   justify-content: flex-start;
   margin-top: 5vh;
   color: #007fff;
+  margin-bottom: 40px;
   .title {
     border-bottom: 1px solid #ccc;
     height: 36px;

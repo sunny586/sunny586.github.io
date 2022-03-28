@@ -1,17 +1,14 @@
 <script lang="ts" setup>
-import { defineProps, toRefs } from 'vue'
+import { defineProps, toRefs } from "vue";
 
 // 定义属性
 const props = defineProps({
   article: Object,
-})
-const { article } = toRefs(props)
+});
+const { article } = toRefs(props);
 </script>
 <template>
-  <router-link
-    class="article-link"
-    :to="`${'/article/' + article!.id}`"
-  >
+  <router-link class="article-link" :to="`${'/article/' + article!.id}`">
     <div class="card">
       <div class="info-row">
         <div class="tag-name">{{ article!.tag_name }}</div>
@@ -49,8 +46,7 @@ const { article } = toRefs(props)
     width: 100%;
     display: flex;
     flex-direction: row;
-    line-height: 1.5em;
-    min-height: 1.5em;
+    padding-top: 6px;
     &:last-child {
       margin-bottom: 0.3em;
     }
@@ -60,7 +56,6 @@ const { article } = toRefs(props)
     }
     .article-title {
       font-size: 14px;
-      line-height: 24px;
       color: #1d2129;
       width: 100%;
       display: -webkit-box;
@@ -72,7 +67,6 @@ const { article } = toRefs(props)
     .desc {
       color: #86909c;
       font-size: 13px;
-      line-height: 22px;
       display: -webkit-box;
       overflow: hidden;
       text-overflow: ellipsis;
