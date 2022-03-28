@@ -28,7 +28,7 @@ const feInterviewFrameArray = ['微服务通信']
 const feInterviewFrame = normalize(feInterviewFrameArray, 'fe-interview_frame', '/mark-down/fe-interview/框架', 'fe-interview', '前端')
 // 手写高质量代码
 const feInterviewWriteCodeArray = ['类型判断', '手写new', 'curry-add', '遍历DOM树', '手写event-bus', 'array-flatten', 'dom转vdom', '手写instanceof', '手写LRU', '深拷贝', '手写lazyman', '手写bind函数']
-const feInterviewWriteCode = normalize(feInterviewWriteCodeArray, 'fe-interview_write_code', 'mark-down/fe-interview/手写高质量代码', 'fe-interview', '前端')
+const feInterviewWriteCode = normalize(feInterviewWriteCodeArray, 'fe-interview_write_code', '/mark-down/fe-interview/手写高质量代码', 'fe-interview', '前端')
 // fe-interview  end -------
 
 
