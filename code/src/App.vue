@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import NaviBar from '@/components/navi-bar.vue'
+import NaviBar from "@/components/navi-bar.vue";
 </script>
 
 <template>
@@ -115,10 +115,10 @@ import NaviBar from '@/components/navi-bar.vue'
     width: 100% !important;
     padding: 0 6px !important;
   }
-  .vuepress-markdown-body{
-    padding: 12px!important;
+  .vuepress-markdown-body {
+    padding: 12px !important;
   }
-  .backtop-icon{
+  .backtop-icon {
     display: none;
   }
 }
