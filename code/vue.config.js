@@ -9,7 +9,7 @@ module.exports = {
   outputDir: resolve('../dist'),
   assetsDir: 'assets',
 
-  publicPath: process.env.NODE_ENV === 'production' ? 'https://sunny586.github.io/code/dist/' : './',
+  publicPath: process.env.NODE_ENV === 'production' ? 'https://sunny586.github.io/dist/' : './',
   devServer: {
     port: 9999,
     host: '0.0.0.0',
