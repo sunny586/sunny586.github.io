@@ -6,7 +6,7 @@ const resolve = (dir) => path.join(__dirname, '.', dir);
 module.exports = {
   productionSourceMap: false,
 
-  outputDir: 'dist',
+  outputDir: resolve('../dist'),
   assetsDir: 'assets',
 
   publicPath: process.env.NODE_ENV === 'production' ? 'https://sunny586.github.io/code/dist/' : './',
