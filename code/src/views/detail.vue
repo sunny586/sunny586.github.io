@@ -71,6 +71,7 @@ onBeforeMount(async () => {
 })
 
 onMounted(() => {
+  window.scrollTo(0, 0)
   window.onscroll = () => {
     if (window.scrollY > 200) {
       showBackTopIcon.value = true
@@ -145,7 +146,7 @@ const updatePage = async (id: string) => {
           d="M511.9 379c-8.3 0-15.8 3.1-21.5 8.3l-2.2 2.2-21.5 21.5L311 566.7c-12.4 12.4-12.4 32.8 0 45.3 12.4 12.4 32.8 12.4 45.3 0L512 456.2l155.8 155.7c12.4 12.4 32.8 12.4 45.3 0 12.4-12.4 12.4-32.8-0.1-45.2L557.3 411l-21.8-21.8-1.8-1.8c-5.7-5.3-13.4-8.5-21.8-8.4z"
           p-id="3024"
         ></path>
-      </svg>      
+      </svg>
       <div :class="`toc ${useToc ? '' : 'close '}`">
         <div class="title">{{ toc_title }}</div>
         <div

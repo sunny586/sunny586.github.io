@@ -17,16 +17,7 @@ module.exports = {
     open: true
   },
 
-  chainWebpack: (config) => {
-    const types = ['vue-modules', 'vue', 'normal-modules', 'normal'];
-    types.forEach(type => {
-      let rule = config.module.rule('less').oneOf(type)
-      rule.use('style-resource')
-        .loader('style-resources-loader')
-        .options({
-          patterns: [path.resolve(__dirname, './lessVariates.less')]
-        });
-    });
+  chainWebpack: (config) => {  
 
     config.resolve.alias
       .set('@', resolve('src'))
