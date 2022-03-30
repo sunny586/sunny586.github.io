@@ -64,14 +64,14 @@ import NaviBar from "@/components/navi-bar.vue";
 // md预览组件中的代码行最长长度
 // 超过长度开启横向滚动
 .toc-open {
-  .v-md-pre-wrapper {
-    max-width: 43vw !important;
-  }
+  // .v-md-pre-wrapper {
+  //   max-width: 43vw !important;
+  // }
 }
 .toc-close {
-  .v-md-pre-wrapper {
-    max-width: 53vw !important;
-  }
+  // .v-md-pre-wrapper {
+  //   max-width: 53vw !important;
+  // }
 }
 </style>
 <style>

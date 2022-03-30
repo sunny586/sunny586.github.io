@@ -18,7 +18,7 @@ class Foo {
         return this.name
     }
 }
-const f = new Foo('双越')
+const f = new Foo('张三')
 ```
 
 其实 class 就是一个语法糖，它本质上和构造函数是一样的
@@ -31,7 +31,7 @@ function Foo(name) {
 Foo.prototype.getName = function () { // 注意，这里不可以用箭头函数
     return this.name
 }
-const f = new Foo('双越')
+const f = new Foo('张三')
 ```
 
 ## new 一个对象的过程
@@ -70,8 +70,8 @@ export function customNew<T>(constructor: Function, ...args: any[]): T {
 //     }
 // }
 
-// const f = new Foo('双越', 100)
-// // const f = customNew<Foo>(Foo, '双越', 100)
+// const f = new Foo('张三', 100)
+// // const f = customNew<Foo>(Foo, '张三', 100)
 // console.info(f)
 // console.info(f.getName())
 ```

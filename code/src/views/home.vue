@@ -1,23 +1,47 @@
 <script lang="ts" setup>
-import { reactive, toRefs, onMounted } from "vue";
+import { reactive, ref, toRefs, onMounted } from "vue";
 import ArticleCard from "@/components/article-card.vue";
 import { getMdTemplate } from "@md/index";
 import { MD_PATH, MESSAGE } from "@md/path";
 
+const pageSize = 10;
+const pageNum = ref(1);
+
+const totalCount = MD_PATH.length;
+
 let { list } = toRefs(
   reactive({
-    list: MD_PATH,
+    list: [],
   })
 );
-onMounted(async () => {
-  const listPromose = list.value.map(async (item) => {
-    const str = await getMdTemplate(item.id);
-    const reg = /#|```|```js|```html|```ts|```json/g;
-    item.desc = str && str.replace(reg, "");
-    return item;
-  });
-  list.value = await Promise.all(listPromose);
+
+const getData = (pageNum) => {
+  return MD_PATH.slice((pageNum - 1) * pageSize, pageNum * pageSize);
+};
+
+const loadData = async () => {
+  // 请求数据
+  const res = getData(pageNum.value);
+  if (res && res.length > 0) {
+    const listPromose = res.map(async (item) => {
+      const str = await getMdTemplate(item.id);
+      const reg = /#|```|```js|```html|```ts|```json/g;
+      item.desc = str && str.replace(reg, "");
+      return item;
+    });
+    list.value = await Promise.all(listPromose);
+  }
+};
+
+onMounted(() => {
+  loadData();
 });
+
+const handleCurrentChange = (val: number) => {
+  console.log(`current page: ${val}`);
+  pageNum.value = val;
+  loadData();
+};
 </script>
 <template>
   <div class="slide-in container">
@@ -32,6 +56,15 @@ onMounted(async () => {
         :article="article"
       ></article-card>
     </div>
+    <el-pagination
+      background
+      layout="prev, pager, next, jumper"
+      :total="totalCount"
+      class="mt-4 page"
+      prev-text="上一页"
+      next-text="下一页"
+      @current-change="handleCurrentChange"
+    />
   </div>
 </template>
 <style lang="less" scoped>
@@ -64,6 +97,11 @@ onMounted(async () => {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+  }
+  .page {
+    background: #fff;
+    text-align: center;
+    padding: 18px 0px;
   }
 }
 </style>
