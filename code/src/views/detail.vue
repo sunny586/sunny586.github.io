@@ -244,7 +244,7 @@ const updatePage = async (id: string) => {
   .backtop-icon {
     width: 2.3em;
     position: fixed;
-    left: 17%;
+    right: 17%;
     bottom: 7%;
     border-radius: 50%;
     padding: 5px;
