@@ -1,47 +1,56 @@
 <script lang="ts" setup>
-import { reactive, ref, toRefs, onMounted } from "vue";
-import ArticleCard from "@/components/article-card.vue";
-import { getMdTemplate } from "@md/index";
-import { MD_PATH, MESSAGE } from "@md/path";
+import { reactive, ref, toRefs, onMounted } from 'vue'
+import { ElLoading } from 'element-plus'
+import ArticleCard from '@/components/article-card.vue'
+import { getMdTemplate } from '@md/index'
+import { MD_PATH, MESSAGE, IMdPath } from '@md/path'
 
-const pageSize = 10;
-const pageNum = ref(1);
+const pageSize = 8
+const pageNum = ref(1)
+const fullscreenLoading = ref(false)
 
-const totalCount = MD_PATH.length;
+const totalCount = MD_PATH.length
 
 let { list } = toRefs(
   reactive({
-    list: [],
+    list: [] as IMdPath[],
   })
-);
+)
 
-const getData = (pageNum) => {
-  return MD_PATH.slice((pageNum - 1) * pageSize, pageNum * pageSize);
-};
+const getData = (pageNum: number) => {
+  return MD_PATH.slice((pageNum - 1) * pageSize, pageNum * pageSize)
+}
 
 const loadData = async () => {
+  const loading = ElLoading.service({
+    lock: true,
+    text: 'Loading',
+    background: 'rgba(255, 255, 255, 0.7)',
+  })
+  setTimeout(async() => {
+    const res = getData(pageNum.value)
+    if (res && res.length > 0) {
+      const listPromose = res.map(async (item) => {
+        const str = await getMdTemplate(item.id)
+        const reg = /#|```|```js|```html|```ts|```json/g
+        item.desc = str && str.replace(reg, '')
+        return item
+      })
+      list.value = await Promise.all(listPromose)
+    }
+    loading.close()
+  }, 500)
   // 请求数据
-  const res = getData(pageNum.value);
-  if (res && res.length > 0) {
-    const listPromose = res.map(async (item) => {
-      const str = await getMdTemplate(item.id);
-      const reg = /#|```|```js|```html|```ts|```json/g;
-      item.desc = str && str.replace(reg, "");
-      return item;
-    });
-    list.value = await Promise.all(listPromose);
-  }
-};
+}
 
 onMounted(() => {
-  loadData();
-});
+  loadData()
+})
 
 const handleCurrentChange = (val: number) => {
-  console.log(`current page: ${val}`);
-  pageNum.value = val;
-  loadData();
-};
+  pageNum.value = val
+  loadData()
+}
 </script>
 <template>
   <div class="slide-in container">
@@ -102,6 +111,14 @@ const handleCurrentChange = (val: number) => {
     background: #fff;
     text-align: center;
     padding: 18px 0px;
+  }
+}
+</style>
+<style lang="scss">
+.page {
+  .btn-prev,
+  .btn-next {
+    padding: 0 10px !important;
   }
 }
 </style>
