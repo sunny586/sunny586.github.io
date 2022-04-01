@@ -1,3 +1,6 @@
+const path = require('path')
+const fs = require('fs')
+
 export interface IMdPath {
   id: string
   url: string
@@ -25,6 +28,30 @@ function normalize(
     }
   })
 }
+
+// 批量注册最新创建的html页面
+// function getFileNames(_path: string) {
+//   const tmp: string[] = []
+
+//   const files = fs.readdirSync(
+//     // @ts-ignore
+//     path.resolve(__dirname, '../public/mark-down/fe-interview/移动端')
+//   )
+//   files.forEach(function (item: any, index: number) {
+//     // 压缩或者bese文件是没有相对应的页面的,这里做排除
+//     if (item.indexOf('.css') == -1) {
+//       tmp.push(item)
+//     }
+//   })
+//   const HtmlPages = tmp.map((item) => {
+//     return item.substring(0, item.indexOf('.'))
+//   })
+//   return HtmlPages
+// }
+
+// const test = getFileNames('')
+
+console.log(fs.readdirSync, 'fs....', path)
 
 /**
  *  https://sunny586.github.io/dist/mark-down/fe-interview/手写高质量代码
