@@ -1,90 +1,104 @@
 <script lang="ts" setup>
-import { ref, reactive, toRefs, nextTick, computed, onActivated } from "vue";
-import { useRoute } from "vue-router";
-import { useStore } from "vuex";
-import { MD_PATH } from "@md/path";
+import { ref, reactive, toRefs, nextTick, computed, onActivated } from 'vue'
+import { useRoute } from 'vue-router'
+import { useStore } from 'vuex'
+// @ts-ignore
+import { MD_PATH } from '@md/path'
 
-const route = useRoute();
-const store = useStore();
-const preview = ref();
-let { article_list, articleId, titles, useToc, toc_title, showBackTopIcon }: any = toRefs(
+const route = useRoute()
+const store = useStore()
+const preview = ref()
+let {
+  article_list,
+  articleId,
+  titles,
+  useToc,
+  toc_title,
+  showBackTopIcon,
+}: any = toRefs(
   reactive({
     article_list: MD_PATH.slice(0, 10),
-    articleId: "",
+    articleId: '',
     titles: [],
     useToc: true,
-    toc_title: "目录导航",
+    toc_title: '目录导航',
     showBackTopIcon: false,
-    testMd: "",
+    testMd: '',
   })
-);
+)
 
-const articleMd = computed(() => store.state.articleMd);
+const articleMd = computed(() => store.state.articleMd)
 
 const updateTitles = () => {
   nextTick(() => {
-    const anchors = preview.value.$el.querySelectorAll("h1,h2,h3,h4,h5,h6");
-    const _titles = Array.from(anchors).filter((title: any) => !!title.innerText.trim());
+    const anchors = preview.value.$el.querySelectorAll('h1,h2,h3,h4,h5,h6')
+    const _titles = Array.from(anchors).filter(
+      (title: any) => !!title.innerText.trim()
+    )
     if (!_titles.length) {
-      titles.value = [];
-      return;
+      titles.value = []
+      return
     }
-    const hTags = Array.from(new Set(_titles.map((title: any) => title.tagName))).sort();
+    const hTags = Array.from(
+      new Set(_titles.map((title: any) => title.tagName))
+    ).sort()
     titles.value = _titles.map((el: any) => ({
       title: el.innerText,
-      lineIndex: el.getAttribute("data-v-md-line"),
+      lineIndex: el.getAttribute('data-v-md-line'),
       indent: hTags.indexOf(el.tagName),
-    }));
-  });
-};
+    }))
+  })
+}
 
 const loadData = async () => {
-  articleId.value = route.params.articleId as string;
+  articleId.value = route.params.articleId as string
   if (!articleId.value) {
-    return;
+    return
   }
-  await store.dispatch("updateArticleMd", { id: articleId.value });
-  updateTitles();
-};
+  await store.dispatch('updateArticleMd', { id: articleId.value })
+  updateTitles()
+}
 
 onActivated(async () => {
-  await loadData();
-  window.scrollTo(0, 0);
+  await loadData()
+  window.scrollTo(0, 0)
   window.onscroll = () => {
     if (window.scrollY > 200) {
-      showBackTopIcon.value = true;
+      showBackTopIcon.value = true
     } else {
-      showBackTopIcon.value = false;
+      showBackTopIcon.value = false
     }
-  };
-});
+  }
+})
 
 const handleAnchorClick = (anchor: any) => {
-  const { lineIndex } = anchor;
-  const heading = preview.value.$el.querySelector(`[data-v-md-line="${lineIndex}"]`);
+  const { lineIndex } = anchor
+  const heading = preview.value.$el.querySelector(
+    `[data-v-md-line="${lineIndex}"]`
+  )
   if (heading) {
     preview.value.scrollToTarget({
       target: heading,
       scrollContainer: window,
       top: 60,
-    });
+    })
   }
-};
+}
 
 // 跳转到顶部
 const backtop = () => {
-  window.scrollTo(0, 0);
-};
+  window.scrollTo(0, 0)
+}
 
 const updatePage = async (id: string) => {
   if (articleId.value === id) {
-    return;
+    return
   }
-  articleId.value = id;
-  await store.dispatch("updateArticleMd", { id });
-  updateTitles();
-  backtop();
-};
+  articleId.value = id
+  await store.dispatch('updateArticleMd', { id })
+  updateTitles()
+  backtop()
+}
 </script>
 
 <template>
@@ -110,7 +124,10 @@ const updatePage = async (id: string) => {
           d="M508.4 547.8l1.8-1.8-1.8 1.8zM508.2 545.8l2.2 2.2c-0.7-0.8-1.4-1.5-2.2-2.2zM511.1 508.7l1.8 1.8-1.8-1.8z"
           p-id="3021"
         ></path>
-        <path d="M510.9 510.7l2.2-2.2c-0.8 0.7-1.5 1.4-2.2 2.2z" p-id="3022"></path>
+        <path
+          d="M510.9 510.7l2.2-2.2c-0.8 0.7-1.5 1.4-2.2 2.2z"
+          p-id="3022"
+        ></path>
         <path
           d="M544 472.4v246c0 17.6-14.4 32-32 32s-32-14.4-32-32v-246c0-17.6 14.4-32 32-32s32 14.4 32 32z"
           p-id="3023"
