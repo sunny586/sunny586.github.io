@@ -2,6 +2,7 @@
 node_modules
 fe-interview-100
 fe-interview-100-wiki
+coding-190
 
 # local env files
 .env.local

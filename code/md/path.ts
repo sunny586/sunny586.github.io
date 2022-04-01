@@ -1,13 +1,19 @@
 export interface IMdPath {
   id: string
   url: string
-  title?: string
+  title: string
   desc?: string
   tag_name?: string
   type?: string
 }
 
-function normalize(list: string[], idPrefix: string, urlPrefix: string, type: string, tagType: string) {
+function normalize(
+  list: string[],
+  idPrefix: string,
+  urlPrefix: string,
+  type: string,
+  tagType: string
+) {
   return list.map((item, index) => {
     const [title, tagName] = item.split('@')
     return {
@@ -22,30 +28,61 @@ function normalize(list: string[], idPrefix: string, urlPrefix: string, type: st
 
 /**
  *  https://sunny586.github.io/dist/mark-down/fe-interview/手写高质量代码
- * 
+ *
  * id: fe-interview_write_code_1
  * url: /mark-down/fe-interview/手写高质量代码/类型判断.md
  * title: 类型判断
  * tag_name: 前端 · JavaScript
  * type: fe-interview
- * 
+ *
  */
 // fe-interview  start -------
+// 移动端
+const feInterviewHybridArray = ['h5和客户端']
+const feInterviewHybrid = normalize(
+  feInterviewHybridArray,
+  'fe-interview_hybrid',
+  '/mark-down/fe-interview/移动端',
+  'fe-interview',
+  '前端'
+)
 // 框架
 const feInterviewFrameArray = ['微服务通信']
-const feInterviewFrame = normalize(feInterviewFrameArray, 'fe-interview_frame', '/mark-down/fe-interview/框架', 'fe-interview', '前端')
+const feInterviewFrame = normalize(
+  feInterviewFrameArray,
+  'fe-interview_frame',
+  '/mark-down/fe-interview/框架',
+  'fe-interview',
+  '前端'
+)
 // 手写高质量代码
 const feInterviewWriteCodeArray = [
-  '类型判断', '手写new', 'curry-add',
-  '遍历DOM树', '手写event-bus', 'array-flatten',
-  'dom转vdom', '手写instanceof', '手写LRU',
-  '深拷贝', '手写lazyman', '手写bind函数'
+  '类型判断',
+  '手写new',
+  'curry-add',
+  '遍历DOM树',
+  '手写event-bus',
+  'array-flatten',
+  'dom转vdom',
+  '手写instanceof',
+  '手写LRU',
+  '深拷贝',
+  '手写lazyman',
+  '手写bind函数',
 ]
-const feInterviewWriteCode = normalize(feInterviewWriteCodeArray, 'fe-interview_write_code', '/mark-down/fe-interview/手写高质量代码', 'fe-interview', '前端')
+const feInterviewWriteCode = normalize(
+  feInterviewWriteCodeArray,
+  'fe-interview_write_code',
+  '/mark-down/fe-interview/手写高质量代码',
+  'fe-interview',
+  '前端'
+)
 // fe-interview  end -------
-
 
 export const MESSAGE = '最近在学习js基础'
 
-export const MD_PATH: IMdPath[] = [...feInterviewFrame, ...feInterviewWriteCode]
-
+export const MD_PATH: IMdPath[] = [
+  ...feInterviewHybrid,
+  ...feInterviewFrame,
+  ...feInterviewWriteCode,
+]

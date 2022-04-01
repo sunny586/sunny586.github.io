@@ -17,18 +17,16 @@ const totalCount = ref(0)
 
 let { list } = toRefs(
   reactive({
-    list: [] as IMdPath[],
+    list: null as unknown as IMdPath[],
   })
 )
 
-const fliterData = (data, keyword) => {
+const fliterData = (data: IMdPath[], keyword: string) => {
   return data.filter((item) => item.title.indexOf(keyword) !== -1)
 }
 
 const getData = () => {
-  // debugger;
   const mdData = fliterData(MD_PATH, keyword.value.trim())
-  console.log(mdData.length)
   totalCount.value = mdData.length
   return mdData.slice((pageNum.value - 1) * pageSize, pageNum.value * pageSize)
 }
@@ -49,6 +47,8 @@ const loadData = async () => {
         return item
       })
       list.value = await Promise.all(listPromose)
+    } else {
+      list.value = []
     }
     loading.close()
   }, 150)
@@ -64,8 +64,8 @@ const handleCurrentChange = (val: number) => {
   loadData()
 }
 
-const keywordChange = (value) => {
-  console.log(value)
+const keywordChange = (value: string) => {
+  pageNum.value = 1
   loadData()
 }
 </script>
@@ -83,24 +83,27 @@ const keywordChange = (value) => {
         @change="keywordChange"
       />
     </div>
-    <div class="article-list">
-      <article-card
-        class="item"
-        v-for="article in list"
-        :key="article.id"
-        :article="article"
-      ></article-card>
-    </div>
-    <el-pagination
-      background
-      layout="total, prev, pager, next, jumper"
-      :total="totalCount"
-      :page-size="pageSize"
-      class="mt-4 page"
-      prev-text="上一页"
-      next-text="下一页"
-      @current-change="handleCurrentChange"
-    />
+    <template v-if="list === null || (list && list.length > 0)">
+      <div class="article-list">
+        <article-card
+          class="item"
+          v-for="article in list"
+          :key="article.id"
+          :article="article"
+        ></article-card>
+      </div>
+      <el-pagination
+        background
+        layout="total, prev, pager, next, jumper"
+        :total="totalCount"
+        :page-size="pageSize"
+        class="mt-4 page"
+        prev-text="上一页"
+        next-text="下一页"
+        @current-change="handleCurrentChange"
+      />
+    </template>
+    <div v-else class="no-data">无匹配数据</div>
   </div>
 </template>
 <style lang="less" scoped>
@@ -147,6 +150,13 @@ const keywordChange = (value) => {
     background: #fff;
     text-align: center;
     padding: 18px 0px;
+  }
+  .no-data {
+    background: #fff;
+    text-align: center;
+    color: #999;
+    font-size: 14px;
+    padding: 50px 0px;
   }
 }
 </style>
