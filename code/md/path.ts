@@ -21,7 +21,14 @@ function normalize(list: string[], idPrefix: string, urlPrefix: string, type: st
 }
 // https://sunny586.github.io/dist/mark-down/fe-interview/手写高质量代码
 
-
+/**
+ * id: fe-interview_write_code_1
+ * url: /mark-down/fe-interview/手写高质量代码/类型判断.md
+ * title: 类型判断
+ * tag_name: 前端 · JavaScript
+ * type: fe-interview
+ * 
+ */
 // fe-interview  start -------
 // 框架
 const feInterviewFrameArray = ['微服务通信']

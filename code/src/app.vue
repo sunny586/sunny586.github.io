@@ -10,7 +10,12 @@ import NaviBar from "@/components/navi-bar.vue";
       </div>
     </el-affix>
     <div class="my-main">
-      <router-view />
+      <router-view v-slot="{ Component }">
+        <keep-alive v-if="$route.meta.keepAlive">
+          <component :is="Component" />
+        </keep-alive>
+        <component :is="Component" v-else />
+      </router-view>
     </div>
   </div>
 </template>

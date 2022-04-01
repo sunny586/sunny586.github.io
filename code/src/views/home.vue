@@ -1,15 +1,19 @@
 <script lang="ts" setup>
 import { reactive, ref, toRefs, onMounted } from 'vue'
+import { Search } from '@element-plus/icons-vue'
 import { ElLoading } from 'element-plus'
 import ArticleCard from '@/components/article-card.vue'
+// @ts-ignore
 import { getMdTemplate } from '@md/index'
+// @ts-ignore
 import { MD_PATH, MESSAGE, IMdPath } from '@md/path'
 
 const pageSize = 8
 const pageNum = ref(1)
-const fullscreenLoading = ref(false)
 
-const totalCount = MD_PATH.length
+const keyword = ref('')
+
+const totalCount = ref(0)
 
 let { list } = toRefs(
   reactive({
@@ -17,8 +21,16 @@ let { list } = toRefs(
   })
 )
 
-const getData = (pageNum: number) => {
-  return MD_PATH.slice((pageNum - 1) * pageSize, pageNum * pageSize)
+const fliterData = (data, keyword) => {
+  return data.filter((item) => item.title.indexOf(keyword) !== -1)
+}
+
+const getData = () => {
+  // debugger;
+  const mdData = fliterData(MD_PATH, keyword.value.trim())
+  console.log(mdData.length)
+  totalCount.value = mdData.length
+  return mdData.slice((pageNum.value - 1) * pageSize, pageNum.value * pageSize)
 }
 
 const loadData = async () => {
@@ -27,8 +39,8 @@ const loadData = async () => {
     text: 'Loading',
     background: 'rgba(255, 255, 255, 0.7)',
   })
-  setTimeout(async() => {
-    const res = getData(pageNum.value)
+  setTimeout(async () => {
+    const res = getData()
     if (res && res.length > 0) {
       const listPromose = res.map(async (item) => {
         const str = await getMdTemplate(item.id)
@@ -39,7 +51,7 @@ const loadData = async () => {
       list.value = await Promise.all(listPromose)
     }
     loading.close()
-  }, 500)
+  }, 150)
   // 请求数据
 }
 
@@ -51,12 +63,26 @@ const handleCurrentChange = (val: number) => {
   pageNum.value = val
   loadData()
 }
+
+const keywordChange = (value) => {
+  console.log(value)
+  loadData()
+}
 </script>
 <template>
   <div class="slide-in container">
     <div class="title">博主留言</div>
     <div class="message-box">{{ MESSAGE }}</div>
-    <div class="title white">最新文章</div>
+    <div class="title white">
+      <div class="name">最新文章</div>
+      <el-input
+        :prefix-icon="Search"
+        class="home-keyword"
+        v-model="keyword"
+        placeholder="Please search"
+        @change="keywordChange"
+      />
+    </div>
     <div class="article-list">
       <article-card
         class="item"
@@ -67,8 +93,9 @@ const handleCurrentChange = (val: number) => {
     </div>
     <el-pagination
       background
-      layout="prev, pager, next, jumper"
+      layout="total, prev, pager, next, jumper"
       :total="totalCount"
+      :page-size="pageSize"
       class="mt-4 page"
       prev-text="上一页"
       next-text="下一页"
@@ -92,9 +119,18 @@ const handleCurrentChange = (val: number) => {
     font-size: 14px;
   }
   .white {
+    display: flex;
     background-color: #fff;
-    padding: 0 16px;
+    height: 40px;
+    line-height: 40px;
     border-bottom: 1px solid hsla(0, 0%, 59.2%, 0.1);
+    .name {
+      flex: 1;
+      padding-left: 12px;
+    }
+    .home-keyword {
+      width: 220px;
+    }
   }
   .message-box {
     font-size: 12px;
@@ -119,6 +155,11 @@ const handleCurrentChange = (val: number) => {
   .btn-prev,
   .btn-next {
     padding: 0 10px !important;
+  }
+}
+.home-keyword {
+  input {
+    border: none !important;
   }
 }
 </style>

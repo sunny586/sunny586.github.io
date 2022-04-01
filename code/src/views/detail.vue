@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, reactive, toRefs, onMounted, nextTick, computed, onBeforeMount } from "vue";
+import { ref, reactive, toRefs, nextTick, computed, onActivated } from "vue";
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 import { MD_PATH } from "@md/path";
@@ -47,11 +47,8 @@ const loadData = async () => {
   updateTitles();
 };
 
-onBeforeMount(async () => {
+onActivated(async () => {
   await loadData();
-});
-
-onMounted(() => {
   window.scrollTo(0, 0);
   window.onscroll = () => {
     if (window.scrollY > 200) {

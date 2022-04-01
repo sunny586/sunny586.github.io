@@ -3,6 +3,7 @@ import App from './app.vue'
 import router from './router'
 import store from './store'
 import ElementPlus from 'element-plus'
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import 'element-plus/dist/index.css'
 import './router/router.interceptor' // 导入路由守卫
 import VueMarkdownEditor from '@kangc/v-md-editor';
@@ -45,7 +46,9 @@ VMdPreview.use(createAlignPlugin());
 const app = createApp(App);
 app.use(store);
 app.use(router);
-app.use(ElementPlus);
+app.use(ElementPlus, {
+  locale: zhCn,
+});
 app.use(VueMarkdownEditor);
 app.use(VMdPreview);
 app.mount('#app')

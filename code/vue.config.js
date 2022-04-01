@@ -17,7 +17,7 @@ module.exports = {
     open: true
   },
 
-  chainWebpack: (config) => {  
+  chainWebpack: (config) => {
 
     config.resolve.alias
       .set('@', resolve('src'))
