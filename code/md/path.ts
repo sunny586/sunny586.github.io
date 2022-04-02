@@ -7,13 +7,28 @@ export interface IMdPath {
   type?: string
 }
 
+function getMdFilesName() {
+  const requireModule = require.context('../public/mark-down', true, /\.md$/)
+  const keys = requireModule.keys()
+  const result: string[] = []
+  if (keys && keys.length > 0) {
+    keys.forEach((str) => {
+      const substr = str.match(/\.\/(\S*)\.md/)
+      if (substr && substr[1]) {
+        result.push(substr[1])
+      }
+    })
+  }
+  return result
+}
+
 /**
  * https://sunny586.github.io/dist/mark-down/fe-interview/手写高质量代码
  * fe-interview/手写高质量代码/手写new
  * @param list 
  * @returns 
  */
-function normalize(list: string[]): IMdPath[] {
+function normalize(list: string[]) {
   return list.map((item, index) => {
     const [a, b, c] = item.split('/')
     return ({
@@ -26,21 +41,7 @@ function normalize(list: string[]): IMdPath[] {
   })
 }
 
-function getMdFilesName() {
-  const requireModule = require.context('../public/mark-down', true, /\.md$/)
-  const keys = requireModule.keys()
-  const result: string[] = []
-  if (keys && keys.length > 0) {
-    keys.forEach((str) => {
-      const substr = str.match(/\.\/(\S*)\.md/)
-      // console.log(substr && substr[1])
-      if (substr && substr[1]) {
-        result.push(substr[1])
-      }
-    })
-  }
-  return result
-}
+
 
 export const MESSAGE = '最近在学习js基础'
 

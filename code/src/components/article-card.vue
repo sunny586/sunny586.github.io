@@ -36,12 +36,7 @@ const { article } = toRefs(props);
   }
   &:hover {
     background-color: #fafafa;
-  }
-  &:last-child {
-    .card {
-      border: none;
-    }
-  }
+  } 
   .info-row {
     width: 100%;
     display: flex;
