@@ -65,6 +65,7 @@ const handleCurrentChange = (val: number) => {
 }
 
 const keywordChange = (value: string) => {
+  console.log(value)
   pageNum.value = 1
   loadData()
 }

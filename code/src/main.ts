@@ -24,7 +24,7 @@ import createAlignPlugin from '@kangc/v-md-editor/lib/plugins/align';
 VueMarkdownEditor.use(vuepressTheme, {
   Prism,
   extend(md: any) {
-    //
+    console.log(md)
   }
 });
 VueMarkdownEditor.use(createTodoListPlugin());
@@ -35,7 +35,7 @@ VueMarkdownEditor.use(createAlignPlugin());
 VMdPreview.use(vuepressTheme, {
   Prism,
   extend(md: any) {
-    //
+    console.log(md)
   }
 });
 VMdPreview.use(createTodoListPlugin());

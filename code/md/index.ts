@@ -7,8 +7,8 @@ const baseUrl =
     ? ''
     : 'https://sunny586.github.io/dist'
 
-export async function getMdTemplate(id: string) {
-  const target = MD_PATH.find((item) => item.id === id)
+export async function getMdTemplate(id: number) {
+  const target = MD_PATH.find((item) => item.id === +id)
   if (!target) {
     return new Error('模板id不存在，请检查')
   }

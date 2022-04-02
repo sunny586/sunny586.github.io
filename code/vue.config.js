@@ -40,6 +40,19 @@ module.exports = {
       .use('svg-sprite-loader')
       .loader('svg-sprite-loader');
 
+    // 解析markdown文件
+    config.module.rule('md')
+      .test(/\.md$/)
+      .use('vue-loader')
+      .loader('vue-loader')
+      .end()
+      .use('vue-markdown-loader')
+      .loader('vue-markdown-loader/lib/markdown-compiler')
+      .options({
+        raw: true
+      })
+
+
     config.plugin('define').tap(args => [{
       ...args,
       "window.isDefine": JSON.stringify(true)
@@ -53,7 +66,7 @@ module.exports = {
         filename: 'css/[name].[contenthash:8].css',
         chunkFilename: 'css/[name].[contenthash:8].css'
       }]);
-      config.plugin('hotHash').use(HotHashWebpackPlugin, [{ version: '1.0.0' }]);
+      // config.plugin('hotHash').use(HotHashWebpackPlugin, [{ version: '1.0.0' }]);
       config.plugin('webpackBar').use(WebpackBar);
 
       config.optimization.minimize(true)
