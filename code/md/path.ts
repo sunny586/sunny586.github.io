@@ -30,13 +30,13 @@ function getMdFilesName() {
  */
 function normalize(list: string[]) {
   return list.map((item, index) => {
-    const [a, b, c] = item.split('/')
+    const arr = item.split('/')
     return ({
       id: index + 1,
       url: `/mark-down/${item}.md`,
-      title: c,
-      tag_name: `${a} · ${b || 'JavaScript'}`,
-      type: a,
+      title: arr[arr.length - 1],
+      tag_name: `${arr[0]} · ${arr[1] || 'JavaScript'}`,
+      type: arr[0],
     } as IMdPath)
   })
 }
