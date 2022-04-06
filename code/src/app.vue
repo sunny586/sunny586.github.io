@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import NaviBar from "@/components/navi-bar.vue";
+import NaviBar from '@/components/navi-bar.vue'
 </script>
 
 <template>
@@ -65,18 +65,29 @@ import NaviBar from "@/components/navi-bar.vue";
 .shadow {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
 }
-
-// md预览组件中的代码行最长长度
-// 超过长度开启横向滚动
-.toc-open {
-  // .v-md-pre-wrapper {
-  //   max-width: 43vw !important;
-  // }
+.vuepress-markdown-body h1 {
+  margin: 0.4em 0!important;
+  font-size: 1.6rem!important;
 }
-.toc-close {
-  // .v-md-pre-wrapper {
-  //   max-width: 53vw !important;
-  // }
+.vuepress-markdown-body h2 {
+  margin: 0.4em 0!important;
+  font-size: 1.35rem!important;
+}
+.vuepress-markdown-body h3 {
+  margin: 0.4em 0!important;
+  font-size: 1.35rem!important;
+}
+.vuepress-markdown-body h4 {
+  margin: 0.4em 0!important;
+  font-size: 1.35rem!important;
+}
+.vuepress-markdown-body h5 {
+  margin: 0.4em 0!important;
+  font-size: 1.2rem!important;
+}
+.vuepress-markdown-body h6 {
+  margin: 0.4em 0!important;
+  font-size: 1.2rem!important;
 }
 </style>
 <style>
