@@ -4,7 +4,7 @@
 
 讲以下 DOM 结构转换为 vnode 数据
 
-```html
+``` html
 <div id="div1" style="border: 1px solid #ccc; padding: 10px;">
     <p>一行文字<a href="xxx.html" target="_blank">链接</a></p>
     <img src="xxx.png" alt="图片" class="image"/>
