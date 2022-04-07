@@ -36,23 +36,22 @@ const loadData = async () => {
     lock: true,
     text: 'Loading',
     background: 'rgba(255, 255, 255, 0.7)',
-  })
-  setTimeout(async () => {
-    const res = getData()
-    if (res && res.length > 0) {
-      const listPromose = res.map(async (item) => {
-        const str = await getMdTemplate(item.id)
-        const reg = /#|```|```js|```html|```ts|```json/g
-        item.desc = str && str.replace(reg, '')
-        return item
-      })
-      list.value = await Promise.all(listPromose)
-    } else {
-      list.value = []
-    }
+  })  
+  const res = getData()
+  if (res && res.length > 0) {
+    const listPromose = res.map(async (item) => {
+      const str = await getMdTemplate(item.id)
+      const reg = /#|```|```js|```html|```ts|```json/g
+      item.desc = str && str.replace(reg, '')
+      return item
+    })
+    list.value = await Promise.all(listPromose)
+  } else {
+    list.value = []
+  }
+  setTimeout(() =>{
     loading.close()
-  }, 150)
-  // 请求数据
+  }, 100)  
 }
 
 onMounted(() => {
