@@ -14,7 +14,7 @@ function filterMdFilesName(filesName: string[]) {
 
 function getMdFilesName() {
   console.time('testForEach')
-  const requireModule = require.context('../public/mark-down', true, /\.md$/)
+  const requireModule = require.context('../public/doc', true, /\.md$/)
   const keys = requireModule.keys()
   const result: string[] = []
   if (keys && keys.length > 0) {
@@ -30,7 +30,7 @@ function getMdFilesName() {
 }
 
 /**
- * https://sunny586.github.io/dist/mark-down/fe-interview/手写高质量代码
+ * https://sunny586.github.io/dist/doc/fe-interview/手写高质量代码
  * fe-interview/手写高质量代码/手写new
  * @param list 
  * @returns 
@@ -40,7 +40,7 @@ function normalize(list: string[]) {
     const arr = item.split('/')
     return ({
       id: index + 1,
-      url: `/mark-down/${item}.md`,
+      url: `/doc/${item}.md`,
       title: arr[arr.length - 1],
       tag_name: `${arr[0]} · ${arr[1] || 'JavaScript'}`,
       type: arr[0],

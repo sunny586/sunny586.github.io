@@ -8,7 +8,7 @@ PS：注意回顾 “Node 和 Element 和区别”
 
 ## 深度优先 vs 广度优先
 
-![](https://sunny586.github.io/dist/mark-down/fe-interview/手写高质量代码/img/dom-tree.png)
+![](https://sunny586.github.io/dist/doc/fe-interview/手写高质量代码/img/dom-tree.png)
 
 深度优先的结果 `<div> <p> "hello" <b> "world" <img> 注释 <ul> <li> "a" <li> "b"`
 
