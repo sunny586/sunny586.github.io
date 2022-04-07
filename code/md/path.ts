@@ -13,6 +13,7 @@ function filterMdFilesName(filesName: string[]) {
 
 
 function getMdFilesName() {
+  console.time('testForEach')
   const requireModule = require.context('../public/mark-down', true, /\.md$/)
   const keys = requireModule.keys()
   const result: string[] = []
@@ -24,6 +25,7 @@ function getMdFilesName() {
       }
     })
   }
+  console.timeEnd('testForEach');
   return filterMdFilesName(result)
 }
 
