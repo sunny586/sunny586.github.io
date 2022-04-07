@@ -16,6 +16,7 @@ module.exports = {
     https: false,
     open: true
   },
+  parallel: false,
 
   chainWebpack: (config) => {
 
