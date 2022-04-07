@@ -80,7 +80,7 @@ const keywordChange = (value: string) => {
         :prefix-icon="Search"
         class="home-keyword"
         v-model="keyword"
-        placeholder="Please search"
+        placeholder="please search"
         @change="keywordChange"
       />
     </div>
