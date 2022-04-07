@@ -24,7 +24,6 @@ function getMdFilesName() {
       }
     })
   }
-  console.log(result)
   return filterMdFilesName(result)
 }
 
