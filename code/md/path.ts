@@ -7,6 +7,11 @@ export interface IMdPath {
   type?: string
 }
 
+function filterMdFilesName(filesName: string[]) {
+  return filesName.filter(m => m.indexOf('hide') === -1)
+}
+
+
 function getMdFilesName() {
   const requireModule = require.context('../public/mark-down', true, /\.md$/)
   const keys = requireModule.keys()
@@ -19,7 +24,8 @@ function getMdFilesName() {
       }
     })
   }
-  return result
+  console.log(result)
+  return filterMdFilesName(result)
 }
 
 /**
@@ -40,6 +46,7 @@ function normalize(list: string[]) {
     } as IMdPath)
   })
 }
+
 
 
 
