@@ -2,6 +2,7 @@
 import { ref, reactive, toRefs, nextTick, computed, onActivated } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
+import ebus from '@/utils/event-bus'
 // @ts-ignore
 import { MD_PATH } from '@md/path'
 
@@ -69,6 +70,10 @@ onActivated(async () => {
       showBackTopIcon.value = false
     }
   }
+  ebus.on('updateLeftCatalogue', () => {
+    updateTitles()
+    backtop()
+  })
 })
 
 const handleAnchorClick = (anchor: any) => {
@@ -97,6 +102,7 @@ const updatePage = async (id: string) => {
   articleId.value = id
   await store.dispatch('updateArticleMd', { id })
   updateTitles()
+  store.dispatch('updateActiveIndex', { index: '' })
   backtop()
 }
 </script>

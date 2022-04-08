@@ -66,28 +66,28 @@ import NaviBar from '@/components/navi-bar.vue'
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
 }
 .vuepress-markdown-body h1 {
-  margin: 0.4em 0!important;
-  font-size: 1.6rem!important;
+  margin: 0.4em 0 !important;
+  font-size: 1.6rem !important;
 }
 .vuepress-markdown-body h2 {
-  margin: 0.4em 0!important;
-  font-size: 1.35rem!important;
+  margin: 0.4em 0 !important;
+  font-size: 1.35rem !important;
 }
 .vuepress-markdown-body h3 {
-  margin: 0.4em 0!important;
-  font-size: 1.35rem!important;
+  margin: 0.4em 0 !important;
+  font-size: 1.35rem !important;
 }
 .vuepress-markdown-body h4 {
-  margin: 0.4em 0!important;
-  font-size: 1.35rem!important;
+  margin: 0.4em 0 !important;
+  font-size: 1.35rem !important;
 }
 .vuepress-markdown-body h5 {
-  margin: 0.4em 0!important;
-  font-size: 1.2rem!important;
+  margin: 0.4em 0 !important;
+  font-size: 1.2rem !important;
 }
 .vuepress-markdown-body h6 {
-  margin: 0.4em 0!important;
-  font-size: 1.2rem!important;
+  margin: 0.4em 0 !important;
+  font-size: 1.2rem !important;
 }
 </style>
 <style>
@@ -135,6 +135,9 @@ import NaviBar from '@/components/navi-bar.vue'
     padding: 12px !important;
   }
   .backtop-icon {
+    display: none;
+  }
+  .blog-menu {
     display: none;
   }
 }
