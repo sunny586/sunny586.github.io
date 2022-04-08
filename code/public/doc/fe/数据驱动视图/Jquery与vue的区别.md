@@ -1,6 +1,6 @@
 # 从 jQuery 到框架
 
-一个 to-do-list 的 demo ，分别用 jquery vue 和 React 实现 。也照顾一下对 vue react 不熟悉的同学。
+一个 to-do-list 的 demo ，分别用 jquery vue 和 React 实现 。
 
 ## jquery 实现 to-do-list
 

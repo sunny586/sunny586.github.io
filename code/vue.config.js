@@ -1,5 +1,5 @@
 const path = require('path');
-const HotHashWebpackPlugin = require('hot-hash-webpack-plugin');
+// const HotHashWebpackPlugin = require('hot-hash-webpack-plugin');
 const WebpackBar = require('webpackbar');
 const resolve = (dir) => path.join(__dirname, '.', dir);
 
@@ -44,15 +44,9 @@ module.exports = {
     // 解析markdown文件
     config.module.rule('md')
       .test(/\.md$/)
-      .use('vue-loader')
-      .loader('vue-loader')
+      .use('file-loader')
+      .loader('file-loader')
       .end()
-      .use('vue-markdown-loader')
-      .loader('vue-markdown-loader/lib/markdown-compiler')
-      .options({
-        raw: true
-      })
-
 
     config.plugin('define').tap(args => [{
       ...args,
