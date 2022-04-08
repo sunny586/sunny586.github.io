@@ -134,11 +134,11 @@ Interface INode {
 
 双向链表可以快速移动元素。末尾新增元素 D 很简单，开头删除 A 元素也很简单。
 
-![](https://sunny586.github.io/dist/doc/fe-interview/手写高质量代码/img/双向链表-1.png)
+![](https://sunny586.github.io/dist/doc/fe/手写高质量代码/img/双向链表-1.png)
 
 要把中间的元素 B 移动到最后（如 LRU `set` `get` 时移动数据位置），只需要修改前后的指针即可，效率很高。
 
-![](https://sunny586.github.io/dist/doc/fe-interview/手写高质量代码/img/双向链表-2.png)
+![](https://sunny586.github.io/dist/doc/fe/手写高质量代码/img/双向链表-2.png)
 
 ### 实现
 
