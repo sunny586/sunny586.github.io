@@ -41,12 +41,13 @@ module.exports = {
       .use('svg-sprite-loader')
       .loader('svg-sprite-loader');
 
-    // 解析markdown文件
-    config.module.rule('md')
-      .test(/\.md$/)
-      .use('file-loader')
-      .loader('file-loader')
-      .end()
+    if (process.env.NODE_ENV !== 'production') {
+      config.module.rule('md')
+        .test(/\.md$/)
+        .use('file-loader')
+        .loader('file-loader')
+        .end()
+    }
 
     config.plugin('define').tap(args => [{
       ...args,
