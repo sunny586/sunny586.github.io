@@ -50,4 +50,4 @@ HTTP 协议是一个应用层的协议，它只规定了 req 和 res 的数据�
 
 ## 图示
 
-![](https://sunny586.github.io/dist/doc/fe-interview/基础知识/img/TCP三次握手和四次挥手.png)
+![](https://sunny586.github.io/dist/doc/fe/基础知识/img/TCP三次握手和四次挥手.png)

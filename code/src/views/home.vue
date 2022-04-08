@@ -36,7 +36,7 @@ const loadData = async () => {
     lock: true,
     text: 'Loading',
     background: 'rgba(255, 255, 255, 0.7)',
-  })  
+  })
   const res = getData()
   if (res && res.length > 0) {
     const listPromose = res.map(async (item) => {
@@ -49,9 +49,9 @@ const loadData = async () => {
   } else {
     list.value = []
   }
-  setTimeout(() =>{
+  setTimeout(() => {
     loading.close()
-  }, 100)  
+  }, 100)
 }
 
 onMounted(() => {
@@ -79,7 +79,7 @@ const keywordChange = (value: string) => {
         :prefix-icon="Search"
         class="home-keyword"
         v-model="keyword"
-        placeholder="please search"
+        placeholder="Please search"
         @change="keywordChange"
       />
     </div>
@@ -100,6 +100,7 @@ const keywordChange = (value: string) => {
         class="mt-4 page"
         prev-text="上一页"
         next-text="下一页"
+        :pager-count="6"
         @current-change="handleCurrentChange"
       />
     </template>

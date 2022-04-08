@@ -49,6 +49,6 @@ function normalize(list: string[]) {
 
 
 
-export const MESSAGE = '最近在学习js基础'
+export const MESSAGE = '最近在学习js基础～'
 
 export const MD_PATH: IMdPath[] = normalize(getMdFilesName()) 
