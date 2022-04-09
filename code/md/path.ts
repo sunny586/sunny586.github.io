@@ -1,5 +1,5 @@
 export interface IMdPath {
-  id: number
+  id: number | string
   url: string
   title: string
   desc?: string
@@ -16,9 +16,8 @@ export interface IMenuItem {
 }
 
 function filterMdFilesName(filesName: string[]) {
-  return filesName.filter(m => m.indexOf('hide') === -1)
+  return filesName.filter((m) => m.indexOf('hide') === -1)
 }
-
 
 function getMdFilesName() {
   const requireModule = require.context('../public/doc', true, /\.md$/)
@@ -56,18 +55,22 @@ function getMenuData() {
         if (idx2 >= 0) {
           result[idx1].children![idx2].children?.push({
             title: last,
-            index: `${idx1 + 1}-${idx2 + 1}-${(result[idx1].children![idx2].children?.length || 0) + 1}`,
-            href: item
+            index: `${idx1 + 1}-${idx2 + 1}-${
+              (result[idx1].children![idx2].children?.length || 0) + 1
+            }`,
+            href: item,
           })
         } else {
           result[idx1].children?.push({
             title: second,
             index: `${idx1 + 1}-${child1.length + 1}`,
-            children: [{
-              title: last,
-              href: item,
-              index: `${idx1 + 1}-${child1.length + 1}-1`,
-            }]
+            children: [
+              {
+                title: last,
+                href: item,
+                index: `${idx1 + 1}-${child1.length + 1}-1`,
+              },
+            ],
           })
         }
       }
@@ -75,44 +78,43 @@ function getMenuData() {
       result.push({
         title: first,
         index: `${length + 1}`,
-        children: [{
-          title: second,
-          index: `${length + 1}-1`,
-          children: [{
-            title: last,
-            index: `${length + 1}-1-1`,
-            href: item
-          }]
-        }]
+        children: [
+          {
+            title: second,
+            index: `${length + 1}-1`,
+            children: [
+              {
+                title: last,
+                index: `${length + 1}-1-1`,
+                href: item,
+              },
+            ],
+          },
+        ],
       })
     }
   }
-  console.log(result)
   return result
 }
-
 
 /**
  * https://sunny586.github.io/dist/doc/fe-interview/手写高质量代码
  * fe-interview/手写高质量代码/手写new
- * @param list 
- * @returns 
+ * @param list
+ * @returns
  */
 function normalize(list: string[]) {
   return list.map((item, index) => {
     const arr = item.split('/')
-    return ({
+    return {
       id: index + 1,
       url: `/doc/${item}.md`,
       title: arr[arr.length - 1],
       tag_name: `${arr[0]} · ${arr[1] || 'JavaScript'}`,
       type: arr[0],
-    } as IMdPath)
+    } as IMdPath
   })
 }
-
-
-
 
 export const MESSAGE = '最近在学习js基础～'
 

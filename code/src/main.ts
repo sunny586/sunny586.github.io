@@ -2,10 +2,15 @@ import { createApp } from 'vue'
 import App from './app.vue'
 import router from './router'
 import store from './store'
+// element-plus
 import ElementPlus from 'element-plus'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import 'element-plus/dist/index.css'
-import './router/router.interceptor' // 导入路由守卫
+import "element-plus/theme-chalk/src/index.scss";
+import '@/css/theme.scss'
+// 导入路由守卫
+import './router/router.interceptor' 
+// VueMarkdownEditor
 import VueMarkdownEditor from '@kangc/v-md-editor';
 import '@kangc/v-md-editor/lib/style/base-editor.css';
 import VMdPreview from '@kangc/v-md-editor/lib/preview';
@@ -21,6 +26,13 @@ import '@kangc/v-md-editor/lib/plugins/mermaid/mermaid.css';
 import createTodoListPlugin from '@kangc/v-md-editor/lib/plugins/todo-list/index';
 import '@kangc/v-md-editor/lib/plugins/todo-list/todo-list.css';
 import createAlignPlugin from '@kangc/v-md-editor/lib/plugins/align';
+// index.css
+import '@/css/index.scss'
+
+
+
+
+
 VueMarkdownEditor.use(vuepressTheme, {
   Prism,
   extend(md: any) {
@@ -51,4 +63,5 @@ app.use(ElementPlus, {
 });
 app.use(VueMarkdownEditor);
 app.use(VMdPreview);
+
 app.mount('#app')

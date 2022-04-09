@@ -114,7 +114,7 @@ const keywordChange = (value: string) => {
   flex-direction: column;
   justify-content: flex-start;
   margin-top: 5vh;
-  color: #007fff;
+  color: var(--el-color-primary);
   margin-bottom: 40px;
   .title {
     border-bottom: 1px solid #ccc;
@@ -171,6 +171,7 @@ const keywordChange = (value: string) => {
 .home-keyword {
   input {
     border: none !important;
+    height: 39px;
   }
 }
 </style>

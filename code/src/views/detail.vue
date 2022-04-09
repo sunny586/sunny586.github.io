@@ -3,53 +3,47 @@ import { ref, reactive, toRefs, nextTick, computed, onActivated } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 import ebus from '@/utils/event-bus'
-// @ts-ignore
+import { getScrollTop, debounce } from '@/utils/index'
 import { MD_PATH } from '@md/path'
 
 const route = useRoute()
 const store = useStore()
 const preview = ref()
-let {
-  article_list,
-  articleId,
-  titles,
-  useToc,
-  toc_title,
-  showBackTopIcon,
-}: any = toRefs(
-  reactive({
-    article_list: MD_PATH.slice(0, 10),
-    articleId: '',
-    titles: [],
-    useToc: true,
-    toc_title: '目录导航',
-    showBackTopIcon: false,
-    testMd: '',
-  })
-)
+let { article_list, articleId, titles, useToc, toc_title, showBackTopIcon } =
+  toRefs(
+    reactive({
+      article_list: MD_PATH.slice(0, 10),
+      articleId: '',
+      titles: [] as Array<{ title: string; lineIndex: string; indent: number }>,
+      useToc: true,
+      toc_title: '目录导航',
+      showBackTopIcon: false,
+      testMd: '',
+    })
+  )
 
 const articleMd = computed(() => store.state.articleMd)
 
-const updateTitles = () => {
-  nextTick(() => {
-    const anchors = preview.value.$el.querySelectorAll('h1,h2,h3,h4,h5,h6')
-    const _titles = Array.from(anchors).filter(
-      (title: any) => !!title.innerText.trim()
-    )
-    if (!_titles.length) {
-      titles.value = []
-      return
+onActivated(async () => {
+  // 滚动条滚动到顶部
+  window.scrollTo(0, 0)
+  // 返回顶部按钮显示
+  window.onscroll = () => {
+    if (window.scrollY > 200) {
+      showBackTopIcon.value = true
+    } else {
+      showBackTopIcon.value = false
     }
-    const hTags = Array.from(
-      new Set(_titles.map((title: any) => title.tagName))
-    ).sort()
-    titles.value = _titles.map((el: any) => ({
-      title: el.innerText,
-      lineIndex: el.getAttribute('data-v-md-line'),
-      indent: hTags.indexOf(el.tagName),
-    }))
+  }
+  // 设置左侧导航样式
+  window.onscroll = debounce(autoLeftNavActive, 0)
+  ebus.on('updateLeftCatalogue', () => {
+    updateTitles()
+    backtop()
   })
-}
+  // loadData
+  await loadData()
+})
 
 const loadData = async () => {
   articleId.value = route.params.articleId as string
@@ -60,24 +54,10 @@ const loadData = async () => {
   updateTitles()
 }
 
-onActivated(async () => {
-  await loadData()
-  window.scrollTo(0, 0)
-  window.onscroll = () => {
-    if (window.scrollY > 200) {
-      showBackTopIcon.value = true
-    } else {
-      showBackTopIcon.value = false
-    }
-  }
-  ebus.on('updateLeftCatalogue', () => {
-    updateTitles()
-    backtop()
-  })
-})
-
-const handleAnchorClick = (anchor: any) => {
+const activeLineIndex = ref('')
+const handleAnchorClick = (anchor: { title: string; lineIndex: string; indent: number }) => {
   const { lineIndex } = anchor
+  activeLineIndex.value = lineIndex
   const heading = preview.value.$el.querySelector(
     `[data-v-md-line="${lineIndex}"]`
   )
@@ -88,6 +68,44 @@ const handleAnchorClick = (anchor: any) => {
       top: 60,
     })
   }
+}
+
+const autoLeftNavActive = () => {
+  nextTick(() => {
+    const anchors = preview.value.$el.querySelectorAll('h1,h2,h3,h4,h5,h6') as  HTMLElement[]
+    const _titles = Array.from(anchors).filter(
+      (el) => !!el.innerHTML.trim()  
+    )
+    _titles.forEach((el) => {
+      const lineIndex = el.getAttribute('data-v-md-line')
+      const scrollTop = getScrollTop()
+      const offsetTop = el.offsetTop
+      if (Math.abs(scrollTop - offsetTop) < 100) {
+        activeLineIndex.value = lineIndex as string
+      }
+    })
+  })
+}
+
+const updateTitles = () => {
+  nextTick(() => {
+    const anchors = preview.value.$el.querySelectorAll('h1,h2,h3,h4,h5,h6') as  HTMLElement[]
+    const _titles = Array.from(anchors).filter(
+      (title) => !!title.innerText.trim()
+    )
+    if (!_titles.length) {
+      titles.value = []
+      return
+    }
+    const hTags = Array.from(
+      new Set(_titles.map((title) => title.tagName))
+    ).sort()
+    titles.value = _titles.map((el) => ({
+      title: el.innerText,
+      lineIndex: el.getAttribute('data-v-md-line') as string,
+      indent: hTags.indexOf(el.tagName),
+    }))
+  })
 }
 
 // 跳转到顶部
@@ -108,7 +126,7 @@ const updatePage = async (id: string) => {
 </script>
 
 <template>
-  <div class="out-container slide-in">
+  <div class="out-container">
     <div class="left-side-container"></div>
 
     <div class="md-container shadow">
@@ -145,15 +163,27 @@ const updatePage = async (id: string) => {
       </svg>
       <div :class="`toc ${useToc ? '' : 'close '}`">
         <div class="title">{{ toc_title }}</div>
-        <div
+        <ul
           class="anchor"
           v-for="(anchor, index) in titles"
-          :style="{ padding: `8px 0 8px ${anchor.indent * 13}px` }"
+          :style="{
+            padding: `3px 0 3px ${anchor.indent * 13}px`,
+            fontSize: `${anchor.indent ? '13px' : '14px'}`,
+          }"
           @click="handleAnchorClick(anchor)"
           :key="`anchor_${index}`"
         >
-          <a class="a-tag" style="cursor: pointer">{{ anchor.title }}</a>
-        </div>
+          <li
+            class="a-tag"
+            :style="`cursor: pointer;color: ${
+              anchor.lineIndex === activeLineIndex
+                ? 'var(--el-color-primary)'
+                : ''
+            };`"
+          >
+            {{ anchor.title }}
+          </li>
+        </ul>
       </div>
 
       <!-- <div class="block-line"></div> -->
@@ -163,14 +193,14 @@ const updatePage = async (id: string) => {
     </div>
 
     <div class="right-side-container">
-      <el-affix :offset="60">
+      <el-affix :offset="48">
         <div class="article-list-container shadow">
           <div class="field-title">近期文章</div>
           <div
             class="article-title"
             v-for="item in article_list"
             :key="item.id"
-            @click="updatePage(item.id)"
+            @click="updatePage(item.id as string)"
           >
             {{ item.title }}
           </div>
@@ -187,7 +217,7 @@ const updatePage = async (id: string) => {
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  margin-top: 2%;
+  margin-top: 0;
 }
 .left-side-container {
   // 左边侧边栏容器
@@ -226,8 +256,7 @@ const updatePage = async (id: string) => {
       font-size: 14px;
       &:hover {
         cursor: pointer;
-        color: #007fff;
-        background-color: rgb(246, 246, 255);
+        color: var(--el-color-primary);
       }
     }
   }
@@ -238,10 +267,9 @@ const updatePage = async (id: string) => {
   flex-direction: row;
   position: relative;
   background-color: white;
+  margin-top: 2px;
   .preview {
     width: 100%;
-    position: relative;
-    bottom: 4px;
   }
   .toc-icon {
     width: 1.3em;
@@ -289,10 +317,11 @@ const updatePage = async (id: string) => {
     user-select: none;
     position: fixed;
     left: 50%;
-    max-height: 480px;
+    max-height: calc(100% - 48px - 60px - 2px);
+    top: 50px;
     overflow: auto;
-    // top: 97px;
-    transform: translate(-746px, -4px);
+    transform: translate(-702px, 0px);
+    color: #40485b;
     .title {
       font-weight: 500;
       padding: 12px 0;
@@ -316,15 +345,14 @@ const updatePage = async (id: string) => {
     }
     .a-tag {
       color: inherit;
-      display: inline-block;
-      padding: 8px;
+      padding: 0 8px;
       width: 90%;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      font-size: 14px;
+      list-style-position: inside;
       &:hover {
-        background-color: rgb(246, 246, 255);
+        color: var(--el-color-primary);
       }
     }
   }

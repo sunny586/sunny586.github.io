@@ -1,4 +1,3 @@
-
 class EventBus {
   /**
    * {
@@ -14,7 +13,7 @@ class EventBus {
   private events: {
     [key: string]: Array<{ fn: any; isOnce: boolean }>
   }
-  static instance: any;
+  static instance: EventBus
 
   constructor() {
     this.events = {}
@@ -22,9 +21,9 @@ class EventBus {
 
   static getInstance() {
     if (!this.instance) {
-      this.instance = new EventBus();
+      this.instance = new EventBus()
     }
-    return this.instance;
+    return this.instance
   }
 
   on(type: string, fn: any, isOnce: boolean = false) {
@@ -47,7 +46,7 @@ class EventBus {
       // 解绑单个 fn
       const fnList = this.events[type]
       if (fnList) {
-        this.events[type] = fnList.filter(item => item.fn !== fn)
+        this.events[type] = fnList.filter((item) => item.fn !== fn)
       }
     }
   }
@@ -57,7 +56,7 @@ class EventBus {
     if (fnList == null) return
 
     // 注意
-    this.events[type] = fnList.filter(item => {
+    this.events[type] = fnList.filter((item) => {
       const { fn, isOnce } = item
       fn(...args)
 

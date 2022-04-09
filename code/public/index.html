@@ -33,6 +33,13 @@
     <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
         Please enable it to continue.</strong>
   </noscript>
+  <script>
+    // 立即执行函数，直接在这里读取本地样式并应用
+    (() => {
+      const style = localStorage.getItem("style");
+      document.documentElement.style.cssText = style && style;
+    })();
+  </script>
   <div id="app"></div>
   <!-- built files will be auto injected -->
 </body>

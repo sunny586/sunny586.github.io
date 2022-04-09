@@ -3,17 +3,16 @@ import { useRouter, useRoute } from 'vue-router'
 import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
 import { MD_PATH, MENU_LIST } from '@md/path'
+import { mix } from '@/utils/index'
 import SubMenuList from './blog-sub-menu.vue'
 
+// 定义变量
 const router = useRouter()
 const route = useRoute()
 const store = useStore()
 const reg = /^\/article\/\d+$/
 
-// const activeIndex = ref('')
-
-const activeIndex = computed(() => store.state.activeIndex)
-
+// 顶部右侧图标点击
 const goHome = () => {
   store.dispatch('updateArticleId', { id: '' })
   router.push({
@@ -21,6 +20,7 @@ const goHome = () => {
   })
 }
 
+// 搜索input
 const keywordChange = (id: string) => {
   store.dispatch('updateArticleId', { id })
   if (!id) {
@@ -35,9 +35,56 @@ const keywordChange = (id: string) => {
   }
 }
 
+// 顶部菜单选中activeIndex
+const activeIndex = computed(() => store.state.activeIndex)
 const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath, activeIndex.value)
   store.dispatch('updateActiveIndex', { index: key })
+}
+
+// 主题颜色切换
+// 变量前缀
+const pre = '--el-color-primary'
+// 白色混合色
+const mixWhite = '#ffffff'
+// 黑色混合色
+const mixBlack = '#000000'
+// 默认主题
+const defaultTheme =  '#fe7300' // '#409eff'
+const node = document.documentElement
+
+const color = ref(localStorage.getItem('primaryColor') || defaultTheme)
+
+// 改变主题颜色
+const changeTheme = (activeColor: string = color.value) => {
+  console.log(activeColor, 'color....')
+  if (!activeColor) {
+    resetTheme()
+    return
+  }
+  node.style.setProperty(pre, activeColor)
+  localStorage.setItem('primaryColor', activeColor)
+  // 这里是覆盖原有颜色的核心代码
+  for (let i = 1; i < 10; i += 1) {
+    node.style.setProperty(
+      `${pre}-light-${i}`,
+      mix(activeColor, mixWhite, i * 0.1)
+    )
+  }
+  node.style.setProperty(
+    '--el-color-primary-dark',
+    mix(activeColor, mixBlack, 0.1)
+  )
+  // 本地缓存style，样式持久化，你也可以存在后端
+  localStorage.setItem('style', node.style.cssText)
+}
+
+//  重置主题颜色
+const resetTheme = () => {
+  localStorage.removeItem('style')
+  localStorage.removeItem('primaryColor')
+  node.style.cssText = ''
+  color.value = defaultTheme
 }
 </script>
 <template>
@@ -50,6 +97,17 @@ const handleSelect = (key: string, keyPath: string[]) => {
     </div>
 
     <div class="nav-input">
+      <div class="fix-color-pick">
+        <el-space>
+          <span>主题切换</span>
+          <el-color-picker
+            v-model="color"
+            @change="changeTheme"
+         
+            size="small"
+          ></el-color-picker>
+        </el-space>
+      </div>
       <el-select
         v-if="route.path === '/'"
         v-model="store.state.articleId"
@@ -123,11 +181,19 @@ div.navibar {
       position: absolute;
       right: 0px;
     }
+    .fix-color-pick {
+      position: fixed;
+      top: 5px;
+      right: 20px;
+      z-index: 10;
+      font-size: 12px;
+      color: var(--el-color-primary);
+    }
   }
   .home-icom {
     margin: auto;
     cursor: pointer;
-    color: #007fff;
+    color: var(--el-color-primary);
   }
 }
 .blog-menu {

@@ -6,7 +6,7 @@
       :index="item.index"
       >{{ item.title }}</el-menu-item
     >
-    <el-sub-menu v-else :index="item.index" style="font-weight: bold">
+    <el-sub-menu v-else :index="item.index">
       <template #title>{{ item.title.toLocaleUpperCase() }}</template>
       <blog-sub-menu
         v-if="item.children && item.children.length > 0"
