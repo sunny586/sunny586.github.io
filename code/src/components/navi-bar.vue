@@ -10,7 +10,6 @@ import SubMenuList from './blog-sub-menu.vue'
 const router = useRouter()
 const route = useRoute()
 const store = useStore()
-const reg = /^\/article\/\d+$/
 
 // 顶部右侧图标点击
 const goHome = () => {
@@ -26,6 +25,7 @@ const keywordChange = (id: string) => {
   if (!id) {
     return
   }
+  const reg = /^\/article\/\d+$/
   if (reg.test(route.path)) {
     store.dispatch('updateArticleMd', { id })
   } else {
@@ -57,7 +57,6 @@ const color = ref(localStorage.getItem('primaryColor') || defaultTheme)
 
 // 改变主题颜色
 const changeTheme = (activeColor: string = color.value) => {
-  console.log(activeColor, 'color....')
   if (!activeColor) {
     resetTheme()
     return
