@@ -3,9 +3,6 @@ const HotHashWebpackPlugin = require('hot-hash-webpack-plugin')
 const WebpackBar = require('webpackbar')
 const resolve = (dir) => path.join(__dirname, '.', dir)
 
-
-console.log(process.env.BASE_URL, 'BASE_URL')
-
 module.exports = {
   productionSourceMap: false,
 
