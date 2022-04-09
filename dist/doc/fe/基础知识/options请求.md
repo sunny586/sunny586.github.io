@@ -21,8 +21,6 @@ response.setHeader("Access-Control-Allow-Credentials", "true") // 允许跨域�
 使用 CORS 跨域请求时，经常会看到一个“多余”的 options 请求，之后才发送了实际的请求。
 
 
-![](<%= BASE_URL %>/doc/fe/基础知识/img/options.png)
-
 ![](https://sunny586.github.io/dist/doc/fe/基础知识/img/options.png)
 
 该请求就是为了检查服务端的 headers 信息，是否符合客户端的预期。所以它没有 body 的返回。

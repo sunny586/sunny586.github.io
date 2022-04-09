@@ -23,8 +23,6 @@ response.setHeader("Access-Control-Allow-Credentials", "true") // 允许跨域�
 
 ![](<%= BASE_URL %>/doc/fe/基础知识/img/options.png)
 
-![](https://sunny586.github.io/dist/doc/fe/基础知识/img/options.png)
-
 该请求就是为了检查服务端的 headers 信息，是否符合客户端的预期。所以它没有 body 的返回。
 
 > 规范要求，对那些可能对服务器数据产生副作用的 HTTP 请求方法（特别是 GET 以外的 HTTP 请求，或者搭配某些 MIME 类型的 POST 请求），浏览器必须首先使用 OPTIONS 方法发起一个预检请求（preflight request），从而获知服务端是否允许该跨域请求。—— MDN

@@ -3,16 +3,21 @@ const path = require('path')
 const WebpackBar = require('webpackbar')
 const resolve = (dir) => path.join(__dirname, '.', dir)
 
+function getPublicPath() {
+  const argv = process.argv[process.argv.length - 1]
+  return process.env.NODE_ENV === 'production'
+    ? argv === '--gitee'
+      ? 'http://zhangyu586.gitee.io/dist/'
+      : 'https://sunny586.github.io/dist/'
+    : './'
+}
+
 module.exports = {
   productionSourceMap: false,
 
   outputDir: resolve('../dist'),
   assetsDir: 'assets',
-
-  publicPath:
-    process.env.NODE_ENV === 'production'
-      ? 'https://sunny586.github.io/dist/'
-      : './',
+  publicPath: getPublicPath(),
   devServer: {
     port: 9999,
     host: '0.0.0.0',
@@ -46,16 +51,17 @@ module.exports = {
       .use('svg-sprite-loader')
       .loader('svg-sprite-loader')
 
-
-    config.module
-      .rule('md')
-      .test(/\.md$/)
-      .use('file-loader')
-      .loader('file-loader')
-      .end()
-      .use(resolve('loader/blog-md-loader.js'))
-      .loader(resolve('loader/blog-md-loader.js'))
-      .end()   
+    if (process.env.NODE_ENV !== 'production') {
+      config.module
+        .rule('md')
+        .test(/\.md$/)
+        .use('file-loader')
+        .loader('file-loader')
+        .end()
+      // .use(resolve('loader/blog-md-loader.js'))
+      // .loader(resolve('loader/blog-md-loader.js'))
+      // .end()
+    }
 
     config.plugin('define').tap((args) => [
       {
