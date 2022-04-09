@@ -1,26 +1,13 @@
 const path = require('path')
-// const HotHashWebpackPlugin = require('hot-hash-webpack-plugin');
+const HotHashWebpackPlugin = require('hot-hash-webpack-plugin');
 const WebpackBar = require('webpackbar')
 const resolve = (dir) => path.join(__dirname, '.', dir)
-
-function getPublicPath() {
-  const argv = process.argv[process.argv.length - 1]
-  return process.env.NODE_ENV === 'production'
-    ? argv === '--gitee'
-      ? 'https://zhangyu586.gitee.io/dist/'
-      : 'https://sunny586.github.io/dist/'
-    : './'
-}
-
-
-console.log(getPublicPath(), 'getPublicPath()....')
 
 module.exports = {
   productionSourceMap: false,
 
   outputDir: resolve('../dist'),
   assetsDir: 'assets',
-  // publicPath: getPublicPath(),
   publicPath: './',
   devServer: {
     port: 9999,
@@ -62,9 +49,6 @@ module.exports = {
         .use('file-loader')
         .loader('file-loader')
         .end()
-      // .use(resolve('loader/blog-md-loader.js'))
-      // .loader(resolve('loader/blog-md-loader.js'))
-      // .end()
     }
 
     config.plugin('define').tap((args) => [
@@ -84,7 +68,7 @@ module.exports = {
           chunkFilename: 'css/[name].[contenthash:8].css',
         },
       ])
-      // config.plugin('hotHash').use(HotHashWebpackPlugin, [{ version: '1.0.0' }]);
+      config.plugin('hotHash').use(HotHashWebpackPlugin, [{ version: '1.0.0' }]);
       config.plugin('webpackBar').use(WebpackBar)
 
       config.optimization
