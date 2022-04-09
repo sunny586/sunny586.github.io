@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build && node pack.js",
-    "build:gitee": "vue-cli-service build && node pack.js --gitee",
+    "build:gitee": "vue-cli-service build --gitee && node pack.js --gitee",
     "lint": "vue-cli-service li=nt"
   },
   "dependencies": {

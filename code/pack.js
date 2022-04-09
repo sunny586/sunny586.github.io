@@ -28,7 +28,7 @@ function start() {
   const argv = process.argv[process.argv.length - 1]
   let url = 'https://sunny586.github.io/dist'
   if (argv === '--gitee') {
-    url = 'http://zhangyu586.gitee.io/dist'
+    url = 'https://zhangyu586.gitee.io/dist'
   }
   const allFiles = getAllFiles()
   allFiles.map((file) => {

@@ -7,17 +7,21 @@ function getPublicPath() {
   const argv = process.argv[process.argv.length - 1]
   return process.env.NODE_ENV === 'production'
     ? argv === '--gitee'
-      ? 'http://zhangyu586.gitee.io/dist/'
+      ? 'https://zhangyu586.gitee.io/dist/'
       : 'https://sunny586.github.io/dist/'
     : './'
 }
+
+
+console.log(getPublicPath(), 'getPublicPath()....')
 
 module.exports = {
   productionSourceMap: false,
 
   outputDir: resolve('../dist'),
   assetsDir: 'assets',
-  publicPath: getPublicPath(),
+  // publicPath: getPublicPath(),
+  publicPath: './',
   devServer: {
     port: 9999,
     host: '0.0.0.0',
