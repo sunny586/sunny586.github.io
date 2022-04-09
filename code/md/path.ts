@@ -98,8 +98,6 @@ function getMenuData() {
 }
 
 /**
- * https://sunny586.github.io/dist/doc/fe-interview/手写高质量代码
- * fe-interview/手写高质量代码/手写new
  * @param list
  * @returns
  */
