@@ -3,9 +3,15 @@ const path = require('path')
 const ejs = require('ejs')
 const fse = require('fs-extra')
 
+
+const lv = process.argv[process.argv.length - 1]
+
 function getAllFiles() {
   const arrFiles = []
-  const str = path.join(__dirname, '../dist/doc/')
+  let str = path.join(__dirname, '../dist/doc/')
+  if (lv === '--gitee') {
+    str = path.join(__dirname, '../../zhangyu586/dist/doc/')
+  }
   function load(val) {
     const files = fs.readdirSync(val)
     files.forEach(function (item) {
