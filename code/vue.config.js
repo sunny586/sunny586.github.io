@@ -1,12 +1,18 @@
 const path = require('path')
-const HotHashWebpackPlugin = require('hot-hash-webpack-plugin');
+const HotHashWebpackPlugin = require('hot-hash-webpack-plugin')
 const WebpackBar = require('webpackbar')
 const resolve = (dir) => path.join(__dirname, '.', dir)
+
+
+console.log(process.env.BASE_URL, 'BASE_URL')
 
 module.exports = {
   productionSourceMap: false,
 
-  outputDir: resolve('../dist'),
+  outputDir:
+    process.env.VUE_APP_TARGET === 'gitee'
+      ? resolve('../../zhangyu586/dist')
+      : resolve('../dist'),
   assetsDir: 'assets',
   publicPath: './',
   devServer: {
@@ -55,6 +61,10 @@ module.exports = {
       {
         ...args,
         'window.isDefine': JSON.stringify(true),
+        'process.env.VUE_APP_TITLE': JSON.stringify(process.env.VUE_APP_TITLE),
+        'process.env.VUE_APP_TARGET': JSON.stringify(
+          process.env.VUE_APP_TARGET
+        ),
       },
     ])
 
@@ -68,7 +78,7 @@ module.exports = {
           chunkFilename: 'css/[name].[contenthash:8].css',
         },
       ])
-      config.plugin('hotHash').use(HotHashWebpackPlugin, [{ version: '1.0.0' }]);
+      config.plugin('hotHash').use(HotHashWebpackPlugin, [{ version: '1.0.0' }])
       config.plugin('webpackBar').use(WebpackBar)
 
       config.optimization
