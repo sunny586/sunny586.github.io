@@ -3,7 +3,7 @@ import { ref, reactive, toRefs, nextTick, computed, onActivated } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 import ebus from '@/utils/event-bus'
-import { getScrollTop, debounce } from '@/utils/index'
+import { getScrollTop } from '@/utils/index'
 import { MD_PATH } from '@md/path'
 
 const route = useRoute()
@@ -34,9 +34,11 @@ onActivated(async () => {
     } else {
       showBackTopIcon.value = false
     }
+    // 设置左侧导航样式
+    autoLeftNavActive()
   }
-  // 设置左侧导航样式
-  window.onscroll = debounce(autoLeftNavActive, 0)
+  
+  // 监听左侧菜单更新
   ebus.on('updateLeftCatalogue', () => {
     updateTitles()
     backtop()
