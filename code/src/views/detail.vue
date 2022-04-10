@@ -9,18 +9,25 @@ import { MD_PATH } from '@md/path'
 const route = useRoute()
 const store = useStore()
 const preview = ref()
-let { article_list, articleId, titles, useToc, toc_title, showBackTopIcon } =
-  toRefs(
-    reactive({
-      article_list: MD_PATH.slice(0, 10),
-      articleId: '',
-      titles: [] as Array<{ title: string; lineIndex: string; indent: number }>,
-      useToc: true,
-      toc_title: '目录导航',
-      showBackTopIcon: false,
-      testMd: '',
-    })
-  )
+let {
+  article_list,
+  articleId,
+  titles,
+  useToc,
+  toc_title,
+  showBackTopIcon,
+  tagName,
+} = toRefs(
+  reactive({
+    article_list: MD_PATH.slice(0, 10),
+    articleId: '',
+    titles: [] as Array<{ title: string; lineIndex: string; indent: number }>,
+    useToc: true,
+    toc_title: '目录导航',
+    showBackTopIcon: false,
+    tagName: '',
+  })
+)
 
 const articleMd = computed(() => store.state.articleMd)
 
@@ -37,7 +44,7 @@ onActivated(async () => {
     // 设置左侧导航样式
     autoLeftNavActive()
   }
-  
+
   // 监听左侧菜单更新
   ebus.on('updateLeftCatalogue', () => {
     updateTitles()
@@ -57,7 +64,11 @@ const loadData = async () => {
 }
 
 const activeLineIndex = ref('')
-const handleAnchorClick = (anchor: { title: string; lineIndex: string; indent: number }) => {
+const handleAnchorClick = (anchor: {
+  title: string
+  lineIndex: string
+  indent: number
+}) => {
   const { lineIndex } = anchor
   activeLineIndex.value = lineIndex
   const heading = preview.value.$el.querySelector(
@@ -74,10 +85,10 @@ const handleAnchorClick = (anchor: { title: string; lineIndex: string; indent: n
 
 const autoLeftNavActive = () => {
   nextTick(() => {
-    const anchors = preview.value.$el.querySelectorAll('h1,h2,h3,h4,h5,h6') as  HTMLElement[]
-    const _titles = Array.from(anchors).filter(
-      (el) => !!el.innerHTML.trim()  
-    )
+    const anchors = preview.value.$el.querySelectorAll(
+      'h1,h2,h3,h4,h5,h6'
+    ) as HTMLElement[]
+    const _titles = Array.from(anchors).filter((el) => !!el.innerHTML.trim())
     _titles.forEach((el) => {
       const lineIndex = el.getAttribute('data-v-md-line')
       const scrollTop = getScrollTop()
@@ -91,7 +102,9 @@ const autoLeftNavActive = () => {
 
 const updateTitles = () => {
   nextTick(() => {
-    const anchors = preview.value.$el.querySelectorAll('h1,h2,h3,h4,h5,h6') as  HTMLElement[]
+    const anchors = preview.value.$el.querySelectorAll(
+      'h1,h2,h3,h4,h5,h6'
+    ) as HTMLElement[]
     const _titles = Array.from(anchors).filter(
       (title) => !!title.innerText.trim()
     )
@@ -108,6 +121,9 @@ const updateTitles = () => {
       indent: hTags.indexOf(el.tagName),
     }))
   })
+  const article = MD_PATH.find((m) => +m.id === +articleId.value)
+  tagName.value = article?.tag_name || ''
+  console.log(articleId.value, 'articleId.value...')
 }
 
 // 跳转到顶部
@@ -192,6 +208,7 @@ const updatePage = async (id: string) => {
       <div :class="`preview ${useToc ? 'toc-open' : 'toc-close '}`">
         <v-md-preview :text="articleMd" ref="preview" />
       </div>
+      <el-tag style="position: fixed; right: calc(50% - 594px); top: 60px;">{{tagName}}</el-tag>
     </div>
 
     <div class="right-side-container">
