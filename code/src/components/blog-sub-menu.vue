@@ -19,7 +19,7 @@
 <script lang="ts" setup name="blog-sub-menu">
 import { defineProps } from 'vue'
 import { useStore } from 'vuex'
-import { IMenuItem } from '@md/path'
+import { IMenuItem, MD_PATH } from '@md/path'
 import ebus from '@/utils/event-bus'
 
 const store = useStore()
@@ -32,7 +32,9 @@ const list = props.list as IMenuItem[]
 
 const menuItemClick = async (data: IMenuItem) => {
   await store.dispatch('updateArticleMd', { href: data.href + '.md' })
-  ebus.emit('updateLeftCatalogue')
+  const url = '/doc/' + data.href + '.md'
+  const obj = MD_PATH.find(m=> m.url === url)
+  ebus.emit('updateLeftCatalogue', obj?.id || '')
 }
 </script>
 

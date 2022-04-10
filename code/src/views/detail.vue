@@ -46,8 +46,8 @@ onActivated(async () => {
   }
 
   // 监听左侧菜单更新
-  ebus.on('updateLeftCatalogue', () => {
-    updateTitles()
+  ebus.on('updateLeftCatalogue', (id: any) => {
+    updateTitles(id)
     backtop()
   })
   // loadData
@@ -100,7 +100,7 @@ const autoLeftNavActive = () => {
   })
 }
 
-const updateTitles = () => {
+const updateTitles = (id = '') => {
   nextTick(() => {
     const anchors = preview.value.$el.querySelectorAll(
       'h1,h2,h3,h4,h5,h6'
@@ -121,9 +121,9 @@ const updateTitles = () => {
       indent: hTags.indexOf(el.tagName),
     }))
   })
-  const article = MD_PATH.find((m) => +m.id === +articleId.value)
+  const _id = id || articleId.value
+  const article = MD_PATH.find((m) => +m.id === +_id)
   tagName.value = article?.tag_name || ''
-  console.log(articleId.value, 'articleId.value...')
 }
 
 // 跳转到顶部
@@ -208,7 +208,9 @@ const updatePage = async (id: string) => {
       <div :class="`preview ${useToc ? 'toc-open' : 'toc-close '}`">
         <v-md-preview :text="articleMd" ref="preview" />
       </div>
-      <el-tag style="position: fixed; right: calc(50% - 594px); top: 60px;">{{tagName}}</el-tag>
+      <el-tag style="position: fixed; right: calc(50% - 594px); top: 60px">{{
+        tagName
+      }}</el-tag>
     </div>
 
     <div class="right-side-container">
