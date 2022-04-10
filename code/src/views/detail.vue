@@ -208,7 +208,7 @@ const updatePage = async (id: string) => {
       <div :class="`preview ${useToc ? 'toc-open' : 'toc-close '}`">
         <v-md-preview :text="articleMd" ref="preview" />
       </div>
-      <el-tag style="position: fixed; right: calc(50% - 594px); top: 60px">{{
+      <el-tag style="position: fixed; right: calc(50% - 594px); top: 60px; width: 100px; overflow: hidden; text-overflow: ellipsis;">{{
         tagName
       }}</el-tag>
     </div>
