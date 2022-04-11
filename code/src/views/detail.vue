@@ -208,9 +208,7 @@ const updatePage = async (id: string) => {
       <div :class="`preview ${useToc ? 'toc-open' : 'toc-close '}`">
         <v-md-preview :text="articleMd" ref="preview" />
       </div>
-      <el-tag style="position: fixed; right: calc(50% - 594px); top: 60px; width: 100px; overflow: hidden; text-overflow: ellipsis;">{{
-        tagName
-      }}</el-tag>
+      <el-tag class="tag-name">{{ tagName }}</el-tag>
     </div>
 
     <div class="right-side-container">
@@ -376,6 +374,14 @@ const updatePage = async (id: string) => {
         color: var(--el-color-primary);
       }
     }
+  }
+  .tag-name {
+    position: fixed;
+    left: calc(50% - 420px);
+    top: 8px;
+    z-index: 100;
+    background-color: #fff;
+    border: 1px solid;
   }
   .block-line {
     display: inline-block;
