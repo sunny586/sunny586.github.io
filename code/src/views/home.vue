@@ -40,7 +40,7 @@ const loadData = async () => {
   const res = getData()
   if (res && res.length > 0) {
     const listPromose = res.map(async (item) => {
-      const str = await getMdTemplate(item.id)
+      const str = await getMdTemplate(+item.id)
       const reg = /#|```|```js|```html|```ts|```json/g
       item.desc = str && str.replace(reg, '')
       return item

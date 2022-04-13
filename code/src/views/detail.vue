@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref, reactive, toRefs, nextTick, computed, onActivated } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import ebus from '@/utils/event-bus'
 import { getScrollTop } from '@/utils/index'
@@ -8,6 +8,9 @@ import { MD_PATH } from '@md/path'
 
 const route = useRoute()
 const store = useStore()
+// 定义变量
+const router = useRouter()
+
 const preview = ref()
 let {
   article_list,
@@ -124,6 +127,10 @@ const updateTitles = (id = '') => {
   const _id = id || articleId.value
   const article = MD_PATH.find((m) => +m.id === +_id)
   tagName.value = article?.tag_name || ''
+
+  router.push({
+    path: '/article/' + _id,
+  })
 }
 
 // 跳转到顶部

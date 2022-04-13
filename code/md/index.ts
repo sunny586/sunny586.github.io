@@ -10,7 +10,7 @@ function getPublicPath() {
     : ''
 }
 
-export async function getMdTemplate(id: string | number) {
+export async function getMdTemplate(id: number) {
   const baseUrl = getPublicPath()
   const target = MD_PATH.find((item) => item.id === +id)
   if (!target) {
