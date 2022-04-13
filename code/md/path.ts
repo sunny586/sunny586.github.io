@@ -19,6 +19,45 @@ function filterMdFilesName(filesName: string[]) {
   return filesName.filter((m) => m.indexOf('hide') === -1)
 }
 
+function arr2Tree(arr: string[]) {
+  let obj = {} as IMenuItem
+  // 指针
+  let v: any
+  const createIdx = (idx: number) => {
+    let str = ''
+    for (let i = 0; i < idx; i++) {
+      str += i === idx - 1 ? '1' : '1-'
+    }
+    return str
+  }
+  arr.forEach((m, i) => {
+    if (i === 0) {
+      obj = {
+        title: m,
+        index: createIdx(i + 1),
+        children: [],
+      }
+      v = obj.children
+    } else {
+      if (i === arr.length - 1) {
+        v.push({
+          title: m,
+          index: createIdx(i + 1),
+          href: arr.join('/'),
+        })
+      } else {
+        v.push({
+          title: m,
+          index: createIdx(i + 1),
+          children: [],
+        })
+        v = v[0].children
+      }
+    }
+  })
+  return obj
+}
+
 function getMdFilesName() {
   const requireModule = require.context('../public/doc', true, /\.md$/)
 
@@ -46,6 +85,7 @@ function getMenuData() {
   const result: IMenuItem[] = []
   for (const item of md) {
     const [first, second, last] = item.split('/')
+    // console.log(first, second, last)
     const idx1 = getIdxByValue(result, first)
     const length = result.length
     if (idx1 >= 0) {
@@ -96,6 +136,58 @@ function getMenuData() {
   }
   return result
 }
+
+function addMdItem(target: IMenuItem, item: IMenuItem) {
+  let t = target.children
+  while (true) {
+    if (t && t[0] && t[0].href) {
+      const idx = t[t.length - 1].index
+      const idxArr = idx?.split('-')
+      if (idxArr && idxArr.length > 0) {
+        idxArr[idxArr?.length - 1] = `${+idxArr[idxArr?.length - 1] + 1}`
+      }
+      t.push({
+        ...item,
+        index: idxArr?.join('-'),
+      })
+      break
+    } else {
+      t = t && t[0].children
+    }
+  }
+}
+
+function getMenuData2() {
+  const md = getMdFilesName()
+  const map = new Map()
+  const result: IMenuItem[] = []
+  md.forEach((item) => {
+    console.log(item)
+    const arr = item.split('/')
+    const key = arr.slice(0, arr.length - 1).join('/')
+    
+    const target = map.get(key)
+    if (target) {
+      // 从result里取出target
+      result.forEach((m) => {
+        if (m.index === target.index) {
+          addMdItem(m, {
+            title: arr[arr.length - 1],
+            href: item || '',
+          })
+        }
+      })
+    } else {
+      const tree = arr2Tree(arr)
+      result.push(tree)
+      map.set(key, tree)
+    }
+  })
+  console.log(result)
+  return result
+}
+
+
 
 /**
  * @param list
