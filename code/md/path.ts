@@ -11,7 +11,7 @@ export interface IMdPath {
 export interface IMenuItem {
   title: string
   href?: string
-  // index?: string
+  index?: string
   children?: IMenuItem[]
 }
 
@@ -19,59 +19,9 @@ function filterMdFilesName(filesName: string[]) {
   return filesName.filter((m) => m.indexOf('hide') === -1)
 }
 
-function arr2Tree(arr: string[], href: string) {
-  let obj = {} as IMenuItem
-  // 指针
-  let v: any
-  const createIdx = (idx: number) => {
-    let str = ''
-    for (let i = 0; i < idx; i++) {
-      str += i === idx - 1 ? '1' : '1-'
-    }
-    return str
-  }
-  arr.forEach((m, i) => {
-    if (i === 0 && arr.length > 1) {
-      obj = {
-        title: m,
-        // index: createIdx(i + 1),
-        children: [],
-      }
-      v = obj.children
-    } else {
-      if (i === arr.length - 1) {
-        if (arr.length === 1) {
-          obj = {
-            title: m,
-            // index: createIdx(i + 1),
-            href,
-          }
-        } else {
-          v.push({
-            title: m,
-            // index: createIdx(i + 1),
-            href,
-          })
-        }
-
-      } else {
-        v.push({
-          title: m,
-          // index: createIdx(i + 1),
-          children: [],
-        })
-        v = v[0].children
-      }
-    }
-  })
-  return obj
-}
-
 function getMdFilesName() {
   const requireModule = require.context('../public/doc', true, /\.md$/)
-
   const keys = requireModule.keys()
-
   const result: string[] = []
   if (keys && keys.length > 0) {
     keys.forEach((str) => {
@@ -84,12 +34,45 @@ function getMdFilesName() {
   return filterMdFilesName(result)
 }
 
-
+function arr2Tree(arr: string[], href: string) {
+  let obj = {} as IMenuItem
+  // 指针
+  let v: any
+  arr.forEach((m, i) => {
+    if (i === 0) {
+      if (arr.length > 1) {
+        obj = {
+          title: m,
+          children: [],
+        }
+        v = obj.children
+      } else {
+        obj = {
+          title: m,
+          href,
+        }
+      }
+    } else {
+      if (i === arr.length - 1) {
+        v.push({
+          title: m,
+          href,
+        })
+      } else {
+        v.push({
+          title: m,
+          children: [],
+        })
+        v = v[0].children
+      }
+    }
+  })
+  return obj
+}
 
 function findTarget(target: any, str: string) {
   let parent: any
   let idx = -1
-  debugger
   const _find = (target: any, str: string) => {
     if (str.indexOf(target.title) === -1) { // 没找到
     } else { // 找到了，在继续往下找
@@ -104,44 +87,50 @@ function findTarget(target: any, str: string) {
   return { parent, idx }
 }
 
-function addMdItem(target: IMenuItem, item: string) {
-  // console.log(target, item, 'item....', findTarget(target, item))
-  const { parent, idx } = findTarget(target, item)
-  const arr = item.split('/')
-
-  parent && parent.children && parent.children.push(arr2Tree(arr.slice(idx + 1), item))
-
-
+function addMdItem(target: IMenuItem, filePath: string) {
+  // 通过文件路径找到parent节点和idx
+  const { parent, idx } = findTarget(target, filePath)
+  const arr = filePath.split('/')
+  // 将文件路径转化为树节点，并添加到parent的children里
+  parent && parent.children && parent.children.push(arr2Tree(arr.slice(idx + 1), filePath))
 }
 
 // 初始化顶部菜单
-
 function getMenuData() {
-
+  // 获取md的路径，并排序处理
   const md = getMdFilesName().sort((a, b) => b.split('/').length - a.split('/').length)
-
-  // console.log(md)
-
+  // 创建map对象，用来存储树节点的数据。目的是为了更快的拿到树节点的数据。
   const map = new Map()
+  // 定义一个result 数组，用来存放处理的树节点数据
   const result: IMenuItem[] = []
-  md.forEach((item) => {
+  // 遍历md路径
+  md.forEach((item, index: number) => {
+    // 转化为数组的形式
     const arr = item.split('/')
+    // 取到第一个
     const key = arr[0]
-
+    // 通过key从map中获取树节点数据
     const target = map.get(key)
+    // 如果能取到数据
     if (target) {
       // 从result里取出target
       result.forEach((m) => {
+        // 找到树节点的target数据
         if (m.title === target.title) {
+          // 将文件路径转化为树节点，并添加到树节点上去
           addMdItem(m, item)
         }
       })
     } else {
+      // 取不到数据，则直接将文件路径转为树节点
       const tree = arr2Tree(arr, item)
+      // 存放到result数组中
       result.push(tree)
+      // 将key和树节点数据存到map中
       map.set(key, tree)
     }
   })
+  // 返回树
   return result
 }
 

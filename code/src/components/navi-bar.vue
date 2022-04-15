@@ -38,7 +38,7 @@ const keywordChange = (id: string) => {
 // 顶部菜单选中activeIndex
 const activeIndex = computed(() => store.state.activeIndex)
 const handleSelect = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath, activeIndex.value)
+  // console.log(key, keyPath, activeIndex.value)
   store.dispatch('updateActiveIndex', { index: key })
 }
 
@@ -50,7 +50,7 @@ const mixWhite = '#ffffff'
 // 黑色混合色
 const mixBlack = '#000000'
 // 默认主题
-const defaultTheme =  '#fe7300' // '#409eff'
+const defaultTheme = '#fe7300' // '#409eff'
 const node = document.documentElement
 
 const color = ref(localStorage.getItem('primaryColor') || defaultTheme)
@@ -102,7 +102,6 @@ const resetTheme = () => {
           <el-color-picker
             v-model="color"
             @change="changeTheme"
-         
             size="small"
           ></el-color-picker>
         </el-space>
