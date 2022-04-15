@@ -1,12 +1,12 @@
 <template>
-  <template v-for="item in list" :key="item.index">
+  <template v-for="item in list" :key="item.title">
     <el-menu-item
       @click="menuItemClick(item)"
       v-if="item.href"
-      :index="item.index"
+      :index="item.title"
       >{{ item.title }}</el-menu-item
     >
-    <el-sub-menu v-else :index="item.index">
+    <el-sub-menu v-else :index="item.title">
       <template #title>{{ item.title.toLocaleUpperCase() }}</template>
       <blog-sub-menu
         v-if="item.children && item.children.length > 0"
@@ -33,7 +33,7 @@ const list = props.list as IMenuItem[]
 const menuItemClick = async (data: IMenuItem) => {
   await store.dispatch('updateArticleMd', { href: data.href + '.md' })
   const url = '/doc/' + data.href + '.md'
-  const obj = MD_PATH.find(m=> m.url === url)
+  const obj = MD_PATH.find((m) => m.url === url)
   ebus.emit('updateLeftCatalogue', obj?.id || '')
 }
 </script>

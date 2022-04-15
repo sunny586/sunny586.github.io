@@ -11,7 +11,7 @@ export interface IMdPath {
 export interface IMenuItem {
   title: string
   href?: string
-  index?: string
+  // index?: string
   children?: IMenuItem[]
 }
 
@@ -19,7 +19,7 @@ function filterMdFilesName(filesName: string[]) {
   return filesName.filter((m) => m.indexOf('hide') === -1)
 }
 
-function arr2Tree(arr: string[]) {
+function arr2Tree(arr: string[], href: string) {
   let obj = {} as IMenuItem
   // 指针
   let v: any
@@ -31,24 +31,33 @@ function arr2Tree(arr: string[]) {
     return str
   }
   arr.forEach((m, i) => {
-    if (i === 0) {
+    if (i === 0 && arr.length > 1) {
       obj = {
         title: m,
-        index: createIdx(i + 1),
+        // index: createIdx(i + 1),
         children: [],
       }
       v = obj.children
     } else {
       if (i === arr.length - 1) {
-        v.push({
-          title: m,
-          index: createIdx(i + 1),
-          href: arr.join('/'),
-        })
+        if (arr.length === 1) {
+          obj = {
+            title: m,
+            // index: createIdx(i + 1),
+            href,
+          }
+        } else {
+          v.push({
+            title: m,
+            // index: createIdx(i + 1),
+            href,
+          })
+        }
+
       } else {
         v.push({
           title: m,
-          index: createIdx(i + 1),
+          // index: createIdx(i + 1),
           children: [],
         })
         v = v[0].children
@@ -75,119 +84,66 @@ function getMdFilesName() {
   return filterMdFilesName(result)
 }
 
-function getIdxByValue(list: IMenuItem[], value: string) {
-  return list.findIndex((item) => item.title === value)
+
+
+function findTarget(target: any, str: string) {
+  let parent: any
+  let idx = -1
+  debugger
+  const _find = (target: any, str: string) => {
+    if (str.indexOf(target.title) === -1) { // 没找到
+    } else { // 找到了，在继续往下找
+      parent = target
+      target.children.forEach((m: any) => {
+        _find(m, str)
+      })
+      idx++
+    }
+  }
+  _find(target, str)
+  return { parent, idx }
+}
+
+function addMdItem(target: IMenuItem, item: string) {
+  // console.log(target, item, 'item....', findTarget(target, item))
+  const { parent, idx } = findTarget(target, item)
+  const arr = item.split('/')
+
+  parent && parent.children && parent.children.push(arr2Tree(arr.slice(idx + 1), item))
+
+
 }
 
 // 初始化顶部菜单
+
 function getMenuData() {
-  const md = getMdFilesName()
-  const result: IMenuItem[] = []
-  for (const item of md) {
-    const [first, second, last] = item.split('/')
-    // console.log(first, second, last)
-    const idx1 = getIdxByValue(result, first)
-    const length = result.length
-    if (idx1 >= 0) {
-      const child1 = result[idx1].children
-      if (child1) {
-        const idx2 = getIdxByValue(child1, second)
-        if (idx2 >= 0) {
-          result[idx1].children![idx2].children?.push({
-            title: last,
-            index: `${idx1 + 1}-${idx2 + 1}-${
-              (result[idx1].children![idx2].children?.length || 0) + 1
-            }`,
-            href: item,
-          })
-        } else {
-          result[idx1].children?.push({
-            title: second,
-            index: `${idx1 + 1}-${child1.length + 1}`,
-            children: [
-              {
-                title: last,
-                href: item,
-                index: `${idx1 + 1}-${child1.length + 1}-1`,
-              },
-            ],
-          })
-        }
-      }
-    } else {
-      result.push({
-        title: first,
-        index: `${length + 1}`,
-        children: [
-          {
-            title: second,
-            index: `${length + 1}-1`,
-            children: [
-              {
-                title: last,
-                index: `${length + 1}-1-1`,
-                href: item,
-              },
-            ],
-          },
-        ],
-      })
-    }
-  }
-  return result
-}
 
-function addMdItem(target: IMenuItem, item: IMenuItem) {
-  let t = target.children
-  while (true) {
-    if (t && t[0] && t[0].href) {
-      const idx = t[t.length - 1].index
-      const idxArr = idx?.split('-')
-      if (idxArr && idxArr.length > 0) {
-        idxArr[idxArr?.length - 1] = `${+idxArr[idxArr?.length - 1] + 1}`
-      }
-      t.push({
-        ...item,
-        index: idxArr?.join('-'),
-      })
-      break
-    } else {
-      t = t && t[0].children
-    }
-  }
-}
+  const md = getMdFilesName().sort((a, b) => b.split('/').length - a.split('/').length)
 
-function getMenuData2() {
-  const md = getMdFilesName()
+  // console.log(md)
+
   const map = new Map()
   const result: IMenuItem[] = []
   md.forEach((item) => {
-    console.log(item)
     const arr = item.split('/')
-    const key = arr.slice(0, arr.length - 1).join('/')
-    
+    const key = arr[0]
+
     const target = map.get(key)
     if (target) {
       // 从result里取出target
       result.forEach((m) => {
-        if (m.index === target.index) {
-          addMdItem(m, {
-            title: arr[arr.length - 1],
-            href: item || '',
-          })
+        if (m.title === target.title) {
+          addMdItem(m, item)
         }
       })
     } else {
-      const tree = arr2Tree(arr)
+      const tree = arr2Tree(arr, item)
       result.push(tree)
       map.set(key, tree)
     }
   })
-  console.log(result)
   return result
 }
-
-
 
 /**
  * @param list
