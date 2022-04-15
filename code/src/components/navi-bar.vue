@@ -125,7 +125,7 @@ const resetTheme = () => {
           :value="item.id"
         />
       </el-select>
-      <div class="blog-menu" v-else>
+      <div class="blog-menu" v-if="route.path.indexOf('/article/') !== -1">
         <el-menu
           :default-active="activeIndex"
           class="blog-menu"

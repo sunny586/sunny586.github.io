@@ -18,6 +18,14 @@ const routes: Array<RouteRecordRaw> = [
     }
   },
   {
+    path: '/book/:articleId',
+    name: 'book',
+    component: () => import('@/views/book.vue'),
+    meta: {
+      keepAlive: true
+    }
+  },
+  {
     path: '/404',
     name: 'NotFound',
     component: () => import('@/views/404.vue'),
