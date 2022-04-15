@@ -37,7 +37,7 @@ function getMdFilesName() {
 function arr2Tree(arr: string[], href: string) {
   let obj = {} as IMenuItem
   // 指针
-  let v: any
+  let v: IMenuItem[]
   arr.forEach((m, i) => {
     if (i === 0) {
       if (arr.length > 1) {
@@ -45,7 +45,7 @@ function arr2Tree(arr: string[], href: string) {
           title: m,
           children: [],
         }
-        v = obj.children
+        v = obj.children as IMenuItem[]
       } else {
         obj = {
           title: m,
@@ -63,7 +63,7 @@ function arr2Tree(arr: string[], href: string) {
           title: m,
           children: [],
         })
-        v = v[0].children
+        v = v[0].children as IMenuItem[]
       }
     }
   })
