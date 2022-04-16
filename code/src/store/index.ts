@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-import { getMdTemplate, getMdTemplateByHref } from '@md/index'
+import { getMdTemplate, getMdTemplateByHref } from '@config/index'
 
 export interface State {
   articleMd: string

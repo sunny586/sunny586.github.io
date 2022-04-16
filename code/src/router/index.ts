@@ -8,15 +8,7 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       keepAlive: true
     }
-  },
-  {
-    path: '/article/:articleId',
-    name: 'article_detail',
-    component: () => import('@/views/detail.vue'),
-    meta: {
-      keepAlive: true
-    }
-  },
+  }, 
   {
     path: '/book/:articleId',
     name: 'book',

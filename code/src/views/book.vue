@@ -6,7 +6,7 @@ import ebus from '@/utils/event-bus'
 import { getScrollTop } from '@/utils/index'
 import SubMenuList from '@/components/blog-sub-menu.vue'
 
-import { MD_PATH, MENU_LIST } from '@md/path'
+import { MD_PATH, MENU_LIST } from '@config/path'
 
 const route = useRoute()
 const store = useStore()
@@ -117,8 +117,9 @@ const updateTitles = (id = '') => {
       indent: hTags.indexOf(el.tagName),
     }))
   })
+  
   const _id = id || articleId.value
-  const article = MD_PATH.find((m) => +m.id === +_id)
+  const article = MD_PATH.find((m) => +m.id === +_id)  
   tagName.value = article?.tag_name || ''
 
   router.push({
@@ -133,7 +134,7 @@ const backtop = () => {
 
 // 顶部菜单选中activeIndex
 const activeIndex = computed(() => store.state.activeIndex)
-const handleSelect = (key: string, keyPath: string[]) => {
+const handleSelect = (key: string) => {  
   store.dispatch('updateActiveIndex', { index: key })
 }
 </script>
@@ -145,7 +146,7 @@ const handleSelect = (key: string, keyPath: string[]) => {
       <el-menu
         :default-active="activeIndex"
         class="blog-menu"
-        unique-opened
+        unique-opened        
         @select="handleSelect"
       >
         <sub-menu-list :list="MENU_LIST" />
@@ -210,7 +211,6 @@ const handleSelect = (key: string, keyPath: string[]) => {
       <div class="preview">
         <v-md-preview :text="articleMd" ref="preview" />
       </div>
-      <el-tag class="tag-name">{{ tagName }}</el-tag>
     </div>
 
     <div class="right-side-container"></div>
@@ -305,11 +305,10 @@ const handleSelect = (key: string, keyPath: string[]) => {
     width: 220px;
     user-select: none;
     position: fixed;
-    left: 50%;
+    right: 50px;
     max-height: calc(100% - 48px - 60px - 2px);
     top: 50px;
     overflow: auto;
-    transform: translate(500px, 0px);
     color: #40485b;
     .title {
       font-weight: 500;
@@ -331,21 +330,7 @@ const handleSelect = (key: string, keyPath: string[]) => {
         color: var(--el-color-primary);
       }
     }
-  }
-  .tag-name {
-    position: fixed;
-    left: calc(50% - 420px);
-    top: 8px;
-    z-index: 100;
-    background-color: #fff;
-    border: 1px solid;
-  }
-  .block-line {
-    display: inline-block;
-    width: 1px;
-    border-left: 1px solid #eee;
-    position: relative;
-  }
+  }   
 }
 </style>
 <style lang="scss">

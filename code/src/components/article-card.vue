@@ -6,12 +6,19 @@ const props = defineProps({
   article: Object,
 });
 const { article } = toRefs(props);
+
+const filterTageName = (tageName: string) => { 
+  const [a, b] = tageName.split('·')
+  return a.split('@')[0] + ' · ' + b
+}
+
+
 </script>
 <template>
-  <router-link class="article-link" :to="`${'/article/' + article!.id}`">
+  <router-link class="article-link" :to="`${'/book/' + article!.id}`">
     <div class="card">
       <div class="info-row">
-        <div class="tag-name">{{ article!.tag_name }}</div>
+        <div class="tag-name">{{ filterTageName(article!.tag_name) }}</div>
       </div>
       <div class="info-row">
         <div class="article-title">{{ article!.title }}</div>
@@ -30,25 +37,31 @@ const { article } = toRefs(props);
   background-color: white;
   border-radius: 3px;
   transition: all 0.2s;
+
   .card {
     margin: 0 12px;
     border-bottom: 1px solid #e5e6eb;
   }
+
   &:hover {
     background-color: #fafafa;
-  } 
+  }
+
   .info-row {
     width: 100%;
     display: flex;
     flex-direction: row;
     padding-top: 6px;
+
     &:last-child {
       margin-bottom: 0.3em;
     }
+
     .tag-name {
       font-size: 12px;
       color: #86909c;
     }
+
     .article-title {
       font-size: 14px;
       color: #1d2129;
@@ -59,6 +72,7 @@ const { article } = toRefs(props);
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 1;
     }
+
     .desc {
       color: #86909c;
       font-size: 13px;

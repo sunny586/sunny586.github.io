@@ -11,7 +11,7 @@ export interface IMdPath {
 export interface IMenuItem {
   title: string
   href?: string
-  index?: string
+  idx?: string
   children?: IMenuItem[]
 }
 
@@ -39,17 +39,21 @@ function arr2Tree(arr: string[], href: string) {
   // 指针
   let v: IMenuItem[]
   arr.forEach((m, i) => {
+    const hrefArr = href.split('/')
+    const idx = hrefArr.slice(0, hrefArr.length - i).join('/')
     if (i === 0) {
       if (arr.length > 1) {
         obj = {
           title: m,
           children: [],
+          idx,
         }
         v = obj.children as IMenuItem[]
       } else {
         obj = {
           title: m,
           href,
+          idx,
         }
       }
     } else {
@@ -57,11 +61,13 @@ function arr2Tree(arr: string[], href: string) {
         v.push({
           title: m,
           href,
+          idx,
         })
       } else {
         v.push({
           title: m,
           children: [],
+          idx,
         })
         v = v[0].children as IMenuItem[]
       }
@@ -74,8 +80,8 @@ function findTarget(target: any, str: string) {
   let parent: any
   let idx = -1
   const _find = (target: any, str: string) => {
-    if (str.indexOf(target.title) === -1) { // 没找到
-    } else { // 找到了，在继续往下找
+    if (str.indexOf(target.title) !== -1) {
+      // 找到了，在继续往下找
       parent = target
       target.children.forEach((m: any) => {
         _find(m, str)
@@ -92,19 +98,23 @@ function addMdItem(target: IMenuItem, filePath: string) {
   const { parent, idx } = findTarget(target, filePath)
   const arr = filePath.split('/')
   // 将文件路径转化为树节点，并添加到parent的children里
-  parent && parent.children && parent.children.push(arr2Tree(arr.slice(idx + 1), filePath))
+  parent &&
+    parent.children &&
+    parent.children.push(arr2Tree(arr.slice(idx + 1), filePath))
 }
 
 // 初始化顶部菜单
 function getMenuData() {
   // 获取md的路径，并排序处理
-  const md = getMdFilesName().sort((a, b) => b.split('/').length - a.split('/').length)
+  const md = getMdFilesName().sort(
+    (a, b) => b.split('/').length - a.split('/').length
+  )
   // 创建map对象，用来存储树节点的数据。目的是为了更快的拿到树节点的数据。
   const map = new Map()
   // 定义一个result 数组，用来存放处理的树节点数据
   const result: IMenuItem[] = []
   // 遍历md路径
-  md.forEach((item, index: number) => {
+  md.forEach((item) => {
     // 转化为数组的形式
     const arr = item.split('/')
     // 取到第一个
@@ -130,8 +140,24 @@ function getMenuData() {
       map.set(key, tree)
     }
   })
+  // 排序处理
+  sortTreeArr(result)
   // 返回树
   return result
+}
+
+function sortTreeArr(treeArr: IMenuItem[]) {
+  const _sort = (treeArr: IMenuItem[]) => {
+    treeArr.forEach((tree) => {
+      if (tree.children && tree.children.length > 0) {
+        _sort(tree.children)
+      }
+    })
+    treeArr.sort((a: IMenuItem, b: IMenuItem) => {
+      return +a.title.split('@')[1] - +b.title.split('@')[1]
+    })
+  }
+  _sort(treeArr)
 }
 
 /**

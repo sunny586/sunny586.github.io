@@ -4,9 +4,9 @@ import { Search } from '@element-plus/icons-vue'
 import { ElLoading } from 'element-plus'
 import ArticleCard from '@/components/article-card.vue'
 // @ts-ignore
-import { getMdTemplate } from '@md/index'
+import { getMdTemplate } from '@config/index'
 // @ts-ignore
-import { MD_PATH, MESSAGE, IMdPath } from '@md/path'
+import { MD_PATH, MESSAGE, IMdPath } from '@config/path'
 
 const pageSize = 8
 const pageNum = ref(1)
@@ -116,6 +116,7 @@ const keywordChange = (value: string) => {
   margin-top: 5vh;
   color: var(--el-color-primary);
   margin-bottom: 40px;
+  padding: 0 2rem;
   .title {
     border-bottom: 1px solid #ccc;
     height: 36px;
