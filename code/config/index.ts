@@ -29,9 +29,22 @@ export async function getMdTemplateByHref(href: string) {
   if (!href) {
     return new Error('模板不存在，请检查')
   }
-  const { data } = await axios.get(baseUrl + '/doc/' + href)
+  const { data } = await axios.get(baseUrl + '/docs/zh-CN/' + href)
   if (!data) {
     throw new Error('根据模板找不到markdown, 请检查!')
   }
   return data
 }
+
+export async function getExmapleData(href: string) {
+  const baseUrl = getPublicPath()
+  if (!href) {
+    return new Error('例子demo模板不存在，请检查')
+  }
+  const { data } = await axios.get(baseUrl  + href)
+  if (!data) {
+    throw new Error('例子demo模板没有数据, 请检查!')
+  }
+  return data
+}
+

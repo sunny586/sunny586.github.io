@@ -3,9 +3,7 @@ import { reactive, ref, toRefs, onMounted } from 'vue'
 import { Search } from '@element-plus/icons-vue'
 import { ElLoading } from 'element-plus'
 import ArticleCard from '@/components/article-card.vue'
-// @ts-ignore
 import { getMdTemplate } from '@config/index'
-// @ts-ignore
 import { MD_PATH, MESSAGE, IMdPath } from '@config/path'
 
 const pageSize = 8
@@ -117,6 +115,7 @@ const keywordChange = (value: string) => {
   color: var(--el-color-primary);
   margin-bottom: 40px;
   padding: 0 2rem;
+  margin: 0 auto;
   .title {
     border-bottom: 1px solid #ccc;
     height: 36px;

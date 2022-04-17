@@ -1,3 +1,8 @@
+// commom css
+.m-0 {
+  margin: 0;
+}
+
 // app css    ------start
 #app {
   font-family: "Microsoft Yahei";
@@ -99,6 +104,9 @@
 // element plus css     -------start
 .el-affix--fixed {
   background-color: #fff;
+}
+.el-row{
+  margin-bottom: 20px;
 }
 
 // element plus css    ------end

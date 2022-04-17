@@ -32,7 +32,7 @@ const list = props.list as IMenuItem[]
 
 const menuItemClick = async (data: IMenuItem) => {
   await store.dispatch('updateArticleMd', { href: data.href + '.md' })
-  const url = '/doc/' + data.href + '.md'
+  const url = '/docs/zh-CN/' + data.href + '.md'
   const obj = MD_PATH.find((m) => m.url === url)
   ebus.emit('updateLeftCatalogue', obj?.id || '')
 }

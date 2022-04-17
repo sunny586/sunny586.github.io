@@ -20,7 +20,7 @@ function filterMdFilesName(filesName: string[]) {
 }
 
 function getMdFilesName() {
-  const requireModule = require.context('../public/doc', true, /\.md$/)
+  const requireModule = require.context('../public/docs/zh-CN', true, /\.md$/)
   const keys = requireModule.keys()
   const result: string[] = []
   if (keys && keys.length > 0) {
@@ -169,7 +169,7 @@ function normalize(list: string[]) {
     const arr = item.split('/')
     return {
       id: index + 1,
-      url: `/doc/${item}.md`,
+      url: `/docs/zh-CN/${item}.md`,
       title: arr[arr.length - 1],
       tag_name: `${arr[0]} · ${arr[1] || 'JavaScript'}`,
       type: arr[0],

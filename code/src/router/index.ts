@@ -27,6 +27,11 @@ const routes: Array<RouteRecordRaw> = [
     redirect: '/404',
     component: () => import('@/views/404.vue'),
   },
+  {
+    path: '/demo',
+    name: 'demo',
+    component: () => import('@/views/demo.vue'),
+  },
 ]
 
 const router = createRouter({
