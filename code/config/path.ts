@@ -15,6 +15,8 @@ export interface IMenuItem {
   children?: IMenuItem[]
 }
 
+const CONST_FG_SORT = '_'
+
 function filterMdFilesName(filesName: string[]) {
   return filesName.filter((m) => m.indexOf('hide') === -1)
 }
@@ -154,7 +156,7 @@ function sortTreeArr(treeArr: IMenuItem[]) {
       }
     })
     treeArr.sort((a: IMenuItem, b: IMenuItem) => {
-      return +a.title.split('@')[1] - +b.title.split('@')[1]
+      return +a.title.split(CONST_FG_SORT)[1] - +b.title.split(CONST_FG_SORT)[1]
     })
   }
   _sort(treeArr)

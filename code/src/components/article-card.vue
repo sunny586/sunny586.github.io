@@ -9,7 +9,7 @@ const { article } = toRefs(props);
 
 const filterTageName = (tageName: string) => { 
   const [a, b] = tageName.split('·')
-  return a.split('@')[0] + ' · ' + b
+  return a.split('_')[0] + ' · ' + b
 }
 
 

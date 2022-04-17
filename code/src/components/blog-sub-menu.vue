@@ -4,10 +4,10 @@
       @click="menuItemClick(item)"
       v-if="item.href"
       :index="item.idx"
-      >{{ item.title.split('@')[0] }}</el-menu-item
+      >{{ item.title.split('_')[0] }}</el-menu-item
     >
     <el-sub-menu v-else :index="item.idx">
-      <template #title>{{ item.title.split('@')[0].toLocaleUpperCase() }}</template>
+      <template #title>{{ item.title.split('_')[0].toLocaleUpperCase() }}</template>
       <blog-sub-menu
         v-if="item.children && item.children.length > 0"
         :list="item.children"
