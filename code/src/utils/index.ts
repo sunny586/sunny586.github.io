@@ -39,3 +39,9 @@ export function getScrollTop() {
     bodyScrollTop - documentScrollTop > 0 ? bodyScrollTop : documentScrollTop
   return scrollTop
 }
+
+export function GenNonDuplicateID(randomLength = 18) {
+  return Number(
+    Math.random().toString().substring(3, randomLength) + Date.now()
+  ).toString(36)
+}

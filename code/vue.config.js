@@ -25,7 +25,7 @@ module.exports = {
       .set('@', resolve('src'))
       .set('api', resolve('src/apis'))
       .set('common', resolve('src/common'))
-      .set('@md', resolve('md'))
+      .set('@config', resolve('config'))
 
     config.module
       .rule('images')

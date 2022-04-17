@@ -8,11 +8,11 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       keepAlive: true
     }
-  },
+  }, 
   {
-    path: '/article/:articleId',
-    name: 'article_detail',
-    component: () => import('@/views/detail.vue'),
+    path: '/book/:articleId',
+    name: 'book',
+    component: () => import('@/views/book.vue'),
     meta: {
       keepAlive: true
     }
@@ -26,6 +26,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/:pathMatch(.*)*',
     redirect: '/404',
     component: () => import('@/views/404.vue'),
+  },
+  {
+    path: '/demo',
+    name: 'demo',
+    component: () => import('@/views/demo.vue'),
   },
 ]
 

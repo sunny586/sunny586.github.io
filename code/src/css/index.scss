@@ -1,3 +1,8 @@
+// commom css
+.m-0 {
+  margin: 0;
+}
+
 // app css    ------start
 #app {
   font-family: "Microsoft Yahei";
@@ -12,6 +17,7 @@
   align-content: center;
   .my-header {
     min-width: 100%;
+    border-bottom: 1px solid #eee;
   }
   .my-main {
     flex-grow: 1;
@@ -20,7 +26,7 @@
     flex-direction: row;
     justify-content: center;
     background-color: #f4f5f7;
-    padding-bottom: 60px;
+    // padding-bottom: 60px;
   }
   .my-footer {
     min-width: 100%;
@@ -98,6 +104,9 @@
 // element plus css     -------start
 .el-affix--fixed {
   background-color: #fff;
+}
+.el-row{
+  margin-bottom: 20px;
 }
 
 // element plus css    ------end

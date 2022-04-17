@@ -1,13 +1,13 @@
 <template>
-  <template v-for="item in list" :key="item.title">
+  <template v-for="item in list" :key="item.idx">
     <el-menu-item
       @click="menuItemClick(item)"
       v-if="item.href"
-      :index="item.title"
-      >{{ item.title }}</el-menu-item
+      :index="item.idx"
+      >{{ item.title.split('@')[0] }}</el-menu-item
     >
-    <el-sub-menu v-else :index="item.title">
-      <template #title>{{ item.title.toLocaleUpperCase() }}</template>
+    <el-sub-menu v-else :index="item.idx">
+      <template #title>{{ item.title.split('@')[0].toLocaleUpperCase() }}</template>
       <blog-sub-menu
         v-if="item.children && item.children.length > 0"
         :list="item.children"
@@ -19,7 +19,7 @@
 <script lang="ts" setup name="blog-sub-menu">
 import { defineProps } from 'vue'
 import { useStore } from 'vuex'
-import { IMenuItem, MD_PATH } from '@md/path'
+import { IMenuItem, MD_PATH } from '@config/path'
 import ebus from '@/utils/event-bus'
 
 const store = useStore()
@@ -32,7 +32,7 @@ const list = props.list as IMenuItem[]
 
 const menuItemClick = async (data: IMenuItem) => {
   await store.dispatch('updateArticleMd', { href: data.href + '.md' })
-  const url = '/doc/' + data.href + '.md'
+  const url = '/docs/zh-CN/' + data.href + '.md'
   const obj = MD_PATH.find((m) => m.url === url)
   ebus.emit('updateLeftCatalogue', obj?.id || '')
 }

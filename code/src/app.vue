@@ -19,3 +19,11 @@ import NaviBar from '@/components/navi-bar.vue'
     </div>
   </div>
 </template>
+
+<style lang="less">
+.blog-menu {
+  .el-menu--horizontal > .el-menu-item {
+    height: 48px;
+  }
+}
+</style>

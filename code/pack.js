@@ -8,9 +8,9 @@ const lv = process.argv[process.argv.length - 1]
 
 function getAllFiles() {
   const arrFiles = []
-  let str = path.join(__dirname, '../dist/doc/')
+  let str = path.join(__dirname, '../dist/docs/zh-CN/')
   if (lv === '--gitee') {
-    str = path.join(__dirname, '../../zhangyu586/dist/doc/')
+    str = path.join(__dirname, '../../zhangyu586/dist/docs/zh-CN/')
   }
   function load(val) {
     const files = fs.readdirSync(val)
