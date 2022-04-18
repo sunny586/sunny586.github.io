@@ -3,20 +3,27 @@
 
   <div class="example">
     <div class="op-btns">
-      <document-copy class="op-btn" @click="copyCode" />
-      <i class="el-icon op-btn el-tooltip__trigger el-tooltip__trigger" @click="compactCode">
-        <svg preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="1.2em" height="1.2em">
-          <path fill="currentColor"
-            d="m23 12l-7.071 7.071l-1.414-1.414L20.172 12l-5.657-5.657l1.414-1.414L23 12zM3.828 12l5.657 5.657l-1.414 1.414L1 12l7.071-7.071l1.414 1.414L3.828 12z">
-          </path>
-        </svg>
-      </i>
+      <el-tooltip effect="customized" content="复制代码" placement="bottom">
+        <i class="el-icon op-btn el-tooltip__trigger el-tooltip__trigger" @click="copyCode">
+          <svg preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="1.2em" height="1.2em">
+            <path fill="currentColor"
+              d="M7 6V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-3v3c0 .552-.45 1-1.007 1H4.007A1.001 1.001 0 0 1 3 21l.003-14c0-.552.45-1 1.006-1H7zM5.002 8L5 20h10V8H5.002zM9 6h8v10h2V4H9v2zm-2 5h6v2H7v-2zm0 4h6v2H7v-2z">
+            </path>
+          </svg></i>
+      </el-tooltip>
+      <el-tooltip effect="customized" content="查看源代码" placement="bottom">
+        <i class="el-icon op-btn el-tooltip__trigger el-tooltip__trigger" @click="compactCode">
+          <svg preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="1.2em" height="1.2em">
+            <path fill="currentColor"
+              d="m23 12l-7.071 7.071l-1.414-1.414L20.172 12l-5.657-5.657l1.414-1.414L23 12zM3.828 12l5.657 5.657l-1.414 1.414L1 12l7.071-7.071l1.414 1.414L3.828 12z">
+            </path>
+          </svg></i>
+      </el-tooltip>
     </div>
     <div class="el-divider el-divider--horizontal m-0" style="--el-border-style: solid"></div>
     <div class="example-showcase">
       <component :is="toRaw(props.source)" v-if="props.source" v-bind="$attrs" />
     </div>
-
     <transition name="slide-fade" mode="out-in">
       <div v-if="isOpen" class="code-card">
         <div class="example-source-wrapper">
@@ -31,14 +38,10 @@
         </div>
       </div>
     </transition>
-
-
-
   </div>
 </template>
 <script setup lang="ts">
 import { computed, defineProps, toRaw, ref } from 'vue'
-import { DocumentCopy } from '@element-plus/icons-vue'
 
 const props = defineProps<{
   source: any
@@ -121,20 +124,20 @@ const hideCode = () => {
     &:hover {
       color: var(--el-color-primary);
     }
-  } 
+  }
 
-.slide-fade-enter-active {
-  transition: opacity .8s ease;
-}
-.slide-fade-leave-active {
-  transition: opacity .3s ease;
-}
+  .slide-fade-enter-active {
+    transition: opacity .8s ease;
+  }
 
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-  opacity: 0;
-}
+  .slide-fade-leave-active {
+    transition: opacity .3s ease;
+  }
 
+  .slide-fade-enter-from,
+  .slide-fade-leave-to {
+    opacity: 0;
+  }
 }
 </style>
 <style lang="scss">
@@ -147,5 +150,16 @@ const hideCode = () => {
   .vuepress-markdown-body pre {
     margin: 0 !important;
   }
+}
+
+.el-popper.is-customized {
+  background-color: #333;
+  color: #fff;
+}
+
+.el-popper.is-customized .el-popper__arrow::before {
+  height: 0;
+  background-color: #333;
+  right: 0;
 }
 </style>
