@@ -121,14 +121,7 @@ const hideCode = () => {
     &:hover {
       color: var(--el-color-primary);
     }
-  }
-
-  .code-card {
-    overflow: hidden;
-    height: 100%;
-  }
-
-
+  } 
 
 .slide-fade-enter-active {
   transition: opacity .8s ease;
