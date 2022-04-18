@@ -17,8 +17,8 @@
       <component :is="toRaw(props.source)" v-if="props.source" v-bind="$attrs" />
     </div>
 
-    <transition name="slide-fade">
-      <div v-if="isOpen">
+    <transition name="slide-fade" mode="out-in">
+      <div v-if="isOpen" class="code-card">
         <div class="example-source-wrapper">
           <v-md-preview :text="toRaw(decodedRawSource)" ref="preview" />
         </div>
@@ -123,22 +123,25 @@ const hideCode = () => {
     }
   }
 
-  .slide-fade-enter-active {
-    transition: all .25s ease;
+  .code-card {
+    overflow: hidden;
+    height: 100%;
   }
 
-  .slide-fade-leave-active {
-    transition: all .25s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-  }
 
-  .slide-fade-enter,
-  .slide-fade-leave-to
 
-  /* .slide-fade-leave-active for below version 2.1.8 */
-    {
-    transform: translateY(60px);
-    opacity: 0;
-  }
+.slide-fade-enter-active {
+  transition: opacity .8s ease;
+}
+.slide-fade-leave-active {
+  transition: opacity .3s ease;
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  opacity: 0;
+}
+
 }
 </style>
 <style lang="scss">
