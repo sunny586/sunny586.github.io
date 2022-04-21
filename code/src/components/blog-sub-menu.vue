@@ -5,7 +5,7 @@
       v-if="item.href"
       :index="item.idx"
       :class="`sidebar-link-${item.idx?.split('/').length}`"
-      >{{ item.title.split('@')[0] }}</el-menu-item
+      >{{ item.title.split('_')[0] }}</el-menu-item
     >
     <el-sub-menu
       v-else
@@ -14,8 +14,8 @@
       popper-class="haha"
     >
       <template #title>
-        {{ item.title.split('@')[0].toLocaleUpperCase() }}
-        <el-icon style="color: #ccc; font-size: 16px"><caret-right /></el-icon>
+        {{ item.title.split('_')[0].toLocaleUpperCase() }}
+        <el-icon style="color: #ccc; font-size: 13px"><caret-right /></el-icon>
       </template>
       <blog-sub-menu
         v-if="item.children && item.children.length > 0"
@@ -53,7 +53,7 @@ const menuItemClick = async (data: IMenuItem) => {
   .sidebar-link-1,
   .sidebar-link-1 .el-sub-menu__title {
     font-size: 16px !important;
-    font-weight: 700 !important;
+    font-weight: bold !important;
     color: #2c3e50;
     margin-top: 20px;
   }
@@ -66,7 +66,13 @@ const menuItemClick = async (data: IMenuItem) => {
     margin: 0;
   }
   .sidebar-link-3,
-  .sidebar-link-3 .el-sub-menu__title {
+  .sidebar-link-3 .el-sub-menu__title,
+  .sidebar-link-4,
+  .sidebar-link-4 .el-sub-menu__title ,
+  .sidebar-link-5,
+  .sidebar-link-5 .el-sub-menu__title ,
+  .sidebar-link-6,
+  .sidebar-link-6 .el-sub-menu__title  {
     font-size: 12px !important;
     font-weight: 400 !important;
     margin: 0;

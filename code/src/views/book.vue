@@ -146,6 +146,7 @@ const handleSelect = (key: string) => {
       <el-menu
         :default-active="activeIndex"
         class="blog-menu"
+        unique-opened
         @select="handleSelect"
       >
         <sub-menu-list :list="MENU_LIST" />
