@@ -34,13 +34,26 @@ function getMdFilesName() {
   return filterMdFilesName(result)
 }
 
+
+// [3]  [1,2,3]
+function prefixArr(a: string[], b: string[]) {
+  const l = b.length - a.length
+  if (l > 0) {
+    return a.map(m => {
+      return `${b.slice(0, l).join('/')}/${m}`
+    })
+  }
+  return a
+}
+
+
 function arr2Tree(arr: string[], href: string) {
+  const parr = prefixArr(arr, href.split('/'))
   let obj = {} as IMenuItem
   // 指针
   let v: IMenuItem[]
   arr.forEach((m, i) => {
-    const hrefArr = href.split('/')
-    const idx = hrefArr.slice(0, hrefArr.length - i).join('/')
+    const idx = parr.slice(0, i + 1).join('/')
     if (i === 0) {
       if (arr.length > 1) {
         obj = {
@@ -181,4 +194,6 @@ export const MESSAGE = '最近在学习js基础～'
 
 export const MD_PATH = normalize(getMdFilesName())
 
+
+console.log(getMenuData())
 export const MENU_LIST = getMenuData()

@@ -117,9 +117,9 @@ const updateTitles = (id = '') => {
       indent: hTags.indexOf(el.tagName),
     }))
   })
-  
+
   const _id = id || articleId.value
-  const article = MD_PATH.find((m) => +m.id === +_id)  
+  const article = MD_PATH.find((m) => +m.id === +_id)
   tagName.value = article?.tag_name || ''
 
   router.push({
@@ -134,7 +134,7 @@ const backtop = () => {
 
 // 顶部菜单选中activeIndex
 const activeIndex = computed(() => store.state.activeIndex)
-const handleSelect = (key: string) => {  
+const handleSelect = (key: string) => {
   store.dispatch('updateActiveIndex', { index: key })
 }
 </script>
@@ -146,7 +146,6 @@ const handleSelect = (key: string) => {
       <el-menu
         :default-active="activeIndex"
         class="blog-menu"
-        unique-opened        
         @select="handleSelect"
       >
         <sub-menu-list :list="MENU_LIST" />
@@ -245,7 +244,7 @@ const handleSelect = (key: string) => {
 .left-side-container {
   // 左边侧边栏容器
   margin-left: 2%;
-  width: 15%;
+  width: 320px;
 }
 .left-side-card {
   position: fixed;
@@ -257,7 +256,7 @@ const handleSelect = (key: string) => {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: none;
-  width: 15%;
+  width: 320px;
   border-right: 1px solid #eee;
   .blog-menu {
     border: none;
@@ -265,7 +264,7 @@ const handleSelect = (key: string) => {
 }
 .right-side-container {
   // 右边侧边栏容器
-  width: 15%;
+  width: 320px;
   margin-right: 2%;
 }
 .md-container {
@@ -330,7 +329,7 @@ const handleSelect = (key: string) => {
         color: var(--el-color-primary);
       }
     }
-  }   
+  }
 }
 </style>
 <style lang="scss">
