@@ -56,7 +56,6 @@ const menuItemClick = async (data: IMenuItem) => {
   .sidebar-link-1 .el-sub-menu__title {
     font-size: 16px !important;
     font-weight: bold !important;
-    color: #2c3e50;
     margin-top: 20px;
   }
 
