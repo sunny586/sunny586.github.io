@@ -2,13 +2,10 @@ import axios from 'axios'
 import { MD_PATH } from './path'
 
 function getPublicPath() {
-  if (process.env.VUE_APP_TARGET === 'gitee') {
-    return 'https://zhangyu586.gitee.io/dist'
-  }
-  return process.env.NODE_ENV === 'production'
-    ? 'https://sunny586.github.io/dist'
-    : ''
+  return process.env.VUE_BASE_URL || ''
 }
+
+console.log(process.env.VUE_BASE_URL, 'dadad')
 
 export async function getMdTemplate(id: number) {
   const baseUrl = getPublicPath()
@@ -41,10 +38,9 @@ export async function getExmapleData(href: string) {
   if (!href) {
     return new Error('例子demo模板不存在，请检查')
   }
-  const { data } = await axios.get(baseUrl  + href)
+  const { data } = await axios.get(baseUrl + href)
   if (!data) {
     throw new Error('例子demo模板没有数据, 请检查!')
   }
   return data
 }
-

@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build && node pack.js",
-    "build:gitee": "vue-cli-service build --mode gitee && node pack.js --gitee",
+    "build:gitee": "vue-cli-service build --mode gitee && node build/index.js --mode gitee",
+    "build:github": "vue-cli-service build --mode github && node build/index.js --mode github",
     "lint": "vue-cli-service li=nt"
   },
   "dependencies": {
@@ -14,6 +14,7 @@
     "axios": "^0.25.0",
     "babel-plugin-prismjs": "^2.1.0",
     "core-js": "^3.6.5",
+    "dotenv": "^16.0.0",
     "element-plus": "^1.2.0-beta.5",
     "highlight.js": "^11.4.0",
     "js-file-download": "^0.4.12",

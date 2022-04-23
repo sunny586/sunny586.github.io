@@ -15,7 +15,7 @@ export interface IMenuItem {
   children?: IMenuItem[]
 }
 
-const CONST_FG_SORT = '_'
+const CONST_FG_SORT = process.env.CONST_FG_SORT
 
 function filterMdFilesName(filesName: string[]) {
   return filesName.filter((m) => m.indexOf('hide') === -1)
@@ -197,5 +197,4 @@ export const MESSAGE = '最近在学习js基础～'
 export const MD_PATH = normalize(getMdFilesName())
 
 
-console.log(getMenuData())
 export const MENU_LIST = getMenuData()

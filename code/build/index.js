@@ -1,17 +1,16 @@
+const dotenv = require('dotenv')
 const fs = require('fs')
 const path = require('path')
 const ejs = require('ejs')
 const fse = require('fs-extra')
 
-
+// 设置dotenv
 const lv = process.argv[process.argv.length - 1]
+dotenv.config({ path: `.env.${lv}` })
 
 function getAllFiles() {
   const arrFiles = []
-  let str = path.join(__dirname, '../dist/docs/zh-CN/')
-  if (lv === '--gitee') {
-    str = path.join(__dirname, '../../zhangyu586/dist/docs/zh-CN/')
-  }
+  let str = path.join(__dirname, process.env.DOCS_ZH_CN_PATH)  
   function load(val) {
     const files = fs.readdirSync(val)
     files.forEach(function (item) {
@@ -30,15 +29,13 @@ function getAllFiles() {
   return arrFiles
 }
 
-function start() {
-  const argv = process.argv[process.argv.length - 1]
-  let url = 'https://sunny586.github.io/dist'
-  if (argv === '--gitee') {
-    url = 'https://zhangyu586.gitee.io/dist'
-  }
+function start() {  
   const allFiles = getAllFiles()
   allFiles.map((file) => {
-    ejs.renderFile(file, { BASE_URL: url }, {}, (err, result) => {
+    ejs.renderFile(file, { 
+      BASE_URL: process.env.VUE_BASE_URL,
+      CONST_FG_SORT: process.env.CONST_FG_SORT
+     }, {}, (err, result) => {
       if (err) {
         console.log('err:', err)
       } else {

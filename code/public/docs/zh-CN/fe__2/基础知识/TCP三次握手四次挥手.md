@@ -50,5 +50,5 @@ HTTP 协议是一个应用层的协议，它只规定了 req 和 res 的数据�
 
 ## 图示
 
-![](<%= BASE_URL %>/docs/zh-CN/fe@2/基础知识/img/TCP三次握手和四次挥手.png)
+![](<%= BASE_URL %>/docs/zh-CN/fe<%= CONST_FG_SORT %>2/基础知识/img/TCP三次握手和四次挥手.png)
 

@@ -8,7 +8,7 @@ PS：注意回顾 “Node 和 Element 和区别”
 
 ## 深度优先 vs 广度优先
 
-![](<%= BASE_URL %>/docs/zh-CN/fe@2/手写高质量代码/img/dom-tree.png)
+![](<%= BASE_URL %>/docs/zh-CN/fe<%= CONST_FG_SORT %>2/手写高质量代码/img/dom-tree.png)
 
 深度优先的结果 `<div> <p> "hello" <b> "world" <img> 注释 <ul> <li> "a" <li> "b"`
 

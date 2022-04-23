@@ -7,9 +7,11 @@ const props = defineProps({
 });
 const { article } = toRefs(props);
 
+const CONST_FG_SORT = process.env.CONST_FG_SORT
+
 const filterTageName = (tageName: string) => { 
   const [a, b] = tageName.split('·')
-  return a.split('_')[0] + ' · ' + b
+  return a.split(CONST_FG_SORT)[0] + ' · ' + b
 }
 
 
@@ -21,7 +23,7 @@ const filterTageName = (tageName: string) => {
         <div class="tag-name">{{ filterTageName(article!.tag_name) }}</div>
       </div>
       <div class="info-row">
-        <div class="article-title">{{ article!.title.split('_')[0]  }}</div>
+        <div class="article-title">{{ article!.title.split(CONST_FG_SORT)[0]  }}</div>
       </div>
       <div class="info-row">
         <div class="desc">{{ article!.desc }}</div>

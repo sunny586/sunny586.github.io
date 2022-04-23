@@ -1,30 +1,3 @@
-<template>
-  <template class="blog-menu-item" v-for="item in list" :key="item.idx">
-    <el-menu-item
-      @click="menuItemClick(item)"
-      v-if="item.href"
-      :index="item.idx"
-      :class="`sidebar-link-${item.idx?.split('/').length}`"
-      >{{ item.title.split('_')[0] }}</el-menu-item
-    >
-    <el-sub-menu
-      v-else
-      :index="item.idx"
-      :class="`sidebar-link-${item.idx?.split('/').length}`"
-      popper-class="haha"
-    >
-      <template #title>
-        {{ item.title.split('_')[0].toLocaleUpperCase() }}
-        <el-icon style="color: #ccc; font-size: 13px"><caret-right /></el-icon>
-      </template>
-      <blog-sub-menu
-        v-if="item.children && item.children.length > 0"
-        :list="item.children"
-      ></blog-sub-menu>
-    </el-sub-menu>
-  </template>
-</template>
-
 <script lang="ts" setup name="blog-sub-menu">
 import { defineProps } from 'vue'
 import { useStore } from 'vuex'
@@ -40,6 +13,8 @@ const props = defineProps({
 
 const list = props.list as IMenuItem[]
 
+const CONST_FG_SORT = process.env.CONST_FG_SORT
+
 const menuItemClick = async (data: IMenuItem) => {
   await store.dispatch('updateArticleMd', { href: data.href + '.md' })
   const url = '/docs/zh-CN/' + data.href + '.md'
@@ -47,6 +22,33 @@ const menuItemClick = async (data: IMenuItem) => {
   ebus.emit('updateLeftCatalogue', obj?.id || '')
 }
 </script>
+
+<template>
+  <template class="blog-menu-item" v-for="item in list" :key="item.idx">
+    <el-menu-item
+      @click="menuItemClick(item)"
+      v-if="item.href"
+      :index="item.idx"
+      :class="`sidebar-link-${item.idx?.split('/').length}`"
+      >{{ item.title.split(CONST_FG_SORT)[0] }}</el-menu-item
+    >
+    <el-sub-menu
+      v-else
+      :index="item.idx"
+      :class="`sidebar-link-${item.idx?.split('/').length}`"
+      popper-class="haha"
+    >
+      <template #title>
+        {{ item.title.split(CONST_FG_SORT)[0].toLocaleUpperCase() }}
+        <el-icon style="color: #ccc; font-size: 13px"><caret-right /></el-icon>
+      </template>
+      <blog-sub-menu
+        v-if="item.children && item.children.length > 0"
+        :list="item.children"
+      ></blog-sub-menu>
+    </el-sub-menu>
+  </template>
+</template>
 
 <style lang="scss">
 .blog-menu {

@@ -57,11 +57,10 @@ module.exports = {
     config.plugin('define').tap((args) => [
       {
         ...args,
-        'window.isDefine': JSON.stringify(true),
         'process.env.VUE_APP_TITLE': JSON.stringify(process.env.VUE_APP_TITLE),
-        'process.env.VUE_APP_TARGET': JSON.stringify(
-          process.env.VUE_APP_TARGET
-        ),
+        'process.env.VUE_APP_TARGET': JSON.stringify(process.env.VUE_APP_TARGET),
+        'process.env.VUE_BASE_URL': JSON.stringify(process.env.VUE_BASE_URL),
+        'process.env.CONST_FG_SORT': JSON.stringify(process.env.CONST_FG_SORT),
       },
     ])
 
