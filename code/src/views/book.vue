@@ -2,7 +2,6 @@
 import { ref, reactive, toRefs, nextTick, computed, onActivated } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
-import { Top } from '@element-plus/icons-vue'
 import ebus from '@/utils/event-bus'
 import { getScrollTop } from '@/utils/index'
 import SubMenuList from '@/components/blog-sub-menu.vue'
@@ -71,6 +70,8 @@ onActivated(async () => {
   }
 
   const target = getTargetById(+route.params.articleId)
+
+  console.log(target, 'target...', target!.idx, MENU_LIST)
 
   // 设置左侧菜单的默认选中样式
   store.dispatch('updateActiveIndex', { index: target!.idx })
@@ -182,7 +183,8 @@ const handleSelect = (key: string) => {
 const formatPageNav = (value: string) => {
   const values = value.split('/')
   const v = values[values.length - 1]
-  return v.split(CONST_FG_SORT)[0]
+  const fv = v.split(CONST_FG_SORT)[0]
+  return fv.length > 20 ? fv.substring(0, 30) + '...' : fv
 }
 const openMd = async (href: string) => {
   await store.dispatch('updateArticleMd', { href: href + '.md' })
@@ -216,9 +218,23 @@ const openMd = async (href: string) => {
     </div>
     <div class="md-container">
       <!-- 回到顶部按钮  -->
-      <el-icon @click="backtop()" v-if="showBackTopIcon" class="backtop-icon">
-        <top />
-      </el-icon>
+      <svg
+        @click="backtop()"
+        v-if="showBackTopIcon"
+        class="backtop-icon"
+        width="40"
+        height="30"
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M2.75 1C2.33579 1 2 1.33579 2 1.75C2 2.16421 2.33579 2.5 2.75 2.5H13.25C13.6642 2.5 14 2.16421 14 1.75C14 1.33579 13.6642 1 13.25 1H2.75ZM7.24407 3.87287C7.64284 3.41241 8.35716 3.41241 8.75593 3.87287L13.0622 8.84535C13.6231 9.49299 13.163 10.5 12.3063 10.5H10V14C10 14.5523 9.55228 15 9 15H7C6.44772 15 6 14.5523 6 14V10.5H3.69371C2.83696 10.5 2.37691 9.49299 2.93778 8.84535L7.24407 3.87287Z"
+        ></path>
+      </svg>
+
       <div class="toc">
         <div class="title">{{ toc_title }}</div>
         <ul
@@ -341,8 +357,10 @@ const openMd = async (href: string) => {
         text-decoration: none;
         .prev-link,
         .next-link {
-          color: var(--el-color-primary);
           cursor: pointer;
+          &:hover {
+            color: var(--el-color-primary);
+          }
         }
         .next {
           float: right;
@@ -360,15 +378,7 @@ const openMd = async (href: string) => {
     // top: 1vh;
     transition: all ease-out 0.25s;
     cursor: pointer;
-    &.hide {
-      fill: #f4f5f7;
-    }
-    &.show {
-      fill: #707070;
-      &:hover {
-        cursor: pointer;
-      }
-    }
+    fill: var(--el-color-primary);
   }
   .toc {
     background: #fff;

@@ -38,24 +38,22 @@ function getMdFilesName() {
 }
 
 
-function prefixArr(a: string[], b: string[]) {
+function prefix(a: string[], b: string[]) {
   const l = b.length - a.length
   if (l > 0) {
-    return a.map(m => {
-      return `${b.slice(0, l).join('/')}/${m}`
-    })
+    return b.slice(0, l).join('/') + '/'
   }
-  return a
+  return ''
 }
 
 
 function arr2Tree(arr: string[], href: string) {
-  const parr = prefixArr(arr, href.split('/'))
+  const pf = prefix(arr, href.split('/'))
   let obj = {} as IMenuItem
   // 指针
   let v: IMenuItem[]
   arr.forEach((m, i) => {
-    const idx = parr.slice(0, i + 1).join('/')
+    const idx = pf + arr.slice(0, i + 1).join('/')
     if (i === 0) {
       if (arr.length > 1) {
         obj = {
