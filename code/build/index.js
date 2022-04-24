@@ -9,9 +9,6 @@ const lv = process.argv[process.argv.length - 1]
 // config
 dotenv.config({ path: '.env.' + lv })
 
-
-
-
 function getAllFiles() {
   const arrFiles = []
   let str = path.join(__dirname, process.env.DOCS_ZH_CN_PATH)
