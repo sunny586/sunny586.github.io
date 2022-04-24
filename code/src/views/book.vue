@@ -2,10 +2,10 @@
 import { ref, reactive, toRefs, nextTick, computed, onActivated } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
+import { Top } from '@element-plus/icons-vue'
 import ebus from '@/utils/event-bus'
 import { getScrollTop } from '@/utils/index'
 import SubMenuList from '@/components/blog-sub-menu.vue'
-
 import { MD_PATH, MENU_LIST } from '@config/path'
 
 const route = useRoute()
@@ -14,6 +14,9 @@ const store = useStore()
 const router = useRouter()
 
 const preview = ref()
+
+const CONST_FG_SORT = process.env.CONST_FG_SORT
+
 let { articleId, titles, toc_title, showBackTopIcon, tagName } = toRefs(
   reactive({
     article_list: MD_PATH.slice(0, 10),
@@ -27,6 +30,32 @@ let { articleId, titles, toc_title, showBackTopIcon, tagName } = toRefs(
 
 const articleMd = computed(() => store.state.articleMd)
 
+const pageNavPre = ref('')
+const pageNavNext = ref('')
+
+const findPageNavData = (idx?: string) => {
+  const result: any = []
+  const _t = (list: any) => {
+    list.forEach((item: any) => {
+      if (item.href) {
+        result.push(item.href)
+      }
+      if (item.children && item.children.length > 0) {
+        _t(item.children)
+      }
+    })
+  }
+  _t(MENU_LIST)
+  const index = result.indexOf(idx)
+  pageNavPre.value = result[index - 1] || ''
+  pageNavNext.value = result[index + 1] || ''
+}
+
+const getTargetById = (id: number) => {
+  const target = MD_PATH.find((item) => +item.id === id)
+  return target
+}
+
 onActivated(async () => {
   // 滚动条滚动到顶部
   window.scrollTo(0, 0)
@@ -37,18 +66,26 @@ onActivated(async () => {
     } else {
       showBackTopIcon.value = false
     }
-    // 设置左侧导航样式
+    // 设置右侧导航样式
     autoLeftNavActive()
   }
 
+  const target = getTargetById(+route.params.articleId)
+
+  // 设置左侧菜单的默认选中样式
+  store.dispatch('updateActiveIndex', { index: target!.idx })
+
+  // 获取page-nav Data
+  findPageNavData(target!.idx)
+
   // 监听左侧菜单更新
-  ebus.on('updateLeftCatalogue', (id: any) => {
+  ebus.on('updateLeftCatalogue', (id: string) => {
     updateTitles(id)
     backtop()
+    // 获取page-nav Data
+    const _target = getTargetById(+id)
+    findPageNavData(_target!.idx)
   })
-  // 设置左侧菜单选中样式
-  const target = MD_PATH.find((item) => item.id === +route.params.articleId)
-  store.dispatch('updateActiveIndex', { index: target!.idx })
 
   // loadData
   await loadData()
@@ -141,6 +178,26 @@ const activeIndex = computed(() => store.state.activeIndex)
 const handleSelect = (key: string) => {
   store.dispatch('updateActiveIndex', { index: key })
 }
+
+const formatPageNav = (value: string) => {
+  const values = value.split('/')
+  const v = values[values.length - 1]
+  return v.split(CONST_FG_SORT)[0]
+}
+const openMd = async (href: string) => {
+  await store.dispatch('updateArticleMd', { href: href + '.md' })
+  const target = MD_PATH.find((item) => item.idx === href)
+  if (target?.id) {
+    router.push({
+      path: '/book/' + target.id,
+    })
+    updateTitles(target.id.toString())
+    store.dispatch('updateActiveIndex', { index: target!.idx })
+    // 获取page-nav Data
+    findPageNavData(target!.idx)
+    backtop()
+  }
+}
 </script>
 
 <template>
@@ -159,36 +216,9 @@ const handleSelect = (key: string) => {
     </div>
     <div class="md-container">
       <!-- 回到顶部按钮  -->
-      <svg
-        t="1644671796536"
-        :class="`backtop-icon ${showBackTopIcon ? 'show' : 'hide'}`"
-        viewBox="0 0 1024 1024"
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg"
-        p-id="3019"
-        @click="backtop()"
-      >
-        <path
-          d="M698.8 337.6H325.2c-18.4 0-33.5-14.4-33.5-32s15.1-32 33.5-32h373.7c18.4 0 33.5 14.4 33.5 32-0.1 17.6-15.1 32-33.6 32z"
-          p-id="3020"
-        ></path>
-        <path
-          d="M508.4 547.8l1.8-1.8-1.8 1.8zM508.2 545.8l2.2 2.2c-0.7-0.8-1.4-1.5-2.2-2.2zM511.1 508.7l1.8 1.8-1.8-1.8z"
-          p-id="3021"
-        ></path>
-        <path
-          d="M510.9 510.7l2.2-2.2c-0.8 0.7-1.5 1.4-2.2 2.2z"
-          p-id="3022"
-        ></path>
-        <path
-          d="M544 472.4v246c0 17.6-14.4 32-32 32s-32-14.4-32-32v-246c0-17.6 14.4-32 32-32s32 14.4 32 32z"
-          p-id="3023"
-        ></path>
-        <path
-          d="M511.9 379c-8.3 0-15.8 3.1-21.5 8.3l-2.2 2.2-21.5 21.5L311 566.7c-12.4 12.4-12.4 32.8 0 45.3 12.4 12.4 32.8 12.4 45.3 0L512 456.2l155.8 155.7c12.4 12.4 32.8 12.4 45.3 0 12.4-12.4 12.4-32.8-0.1-45.2L557.3 411l-21.8-21.8-1.8-1.8c-5.7-5.3-13.4-8.5-21.8-8.4z"
-          p-id="3024"
-        ></path>
-      </svg>
+      <el-icon @click="backtop()" v-if="showBackTopIcon" class="backtop-icon">
+        <top />
+      </el-icon>
       <div class="toc">
         <div class="title">{{ toc_title }}</div>
         <ul
@@ -215,6 +245,22 @@ const handleSelect = (key: string) => {
       </div>
       <div class="preview">
         <v-md-preview :text="articleMd" ref="preview" />
+        <div class="page-nav">
+          <p class="inner">
+            <span class="prev" v-if="pageNavPre">
+              ←
+              <a class="prev-link" @click="openMd(pageNavPre)">
+                {{ formatPageNav(pageNavPre) }}
+              </a>
+            </span>
+            <span class="next" v-if="pageNavNext">
+              <a class="next-link" @click="openMd(pageNavNext)">
+                {{ formatPageNav(pageNavNext) }}
+              </a>
+              →
+            </span>
+          </p>
+        </div>
       </div>
     </div>
 
@@ -282,6 +328,27 @@ const handleSelect = (key: string) => {
   margin-top: 2px;
   .preview {
     width: 100%;
+    .page-nav {
+      margin: 0rem 2.5rem;
+      padding: 10px 0;
+      .inner {
+        min-height: 2rem;
+        margin-top: 0;
+        border-top: 1px solid #eaecef;
+        padding-top: 1rem;
+        overflow: auto;
+        font-weight: 500;
+        text-decoration: none;
+        .prev-link,
+        .next-link {
+          color: var(--el-color-primary);
+          cursor: pointer;
+        }
+        .next {
+          float: right;
+        }
+      }
+    }
   }
   .backtop-icon {
     width: 2.3em;
@@ -292,6 +359,7 @@ const handleSelect = (key: string) => {
     padding: 5px;
     // top: 1vh;
     transition: all ease-out 0.25s;
+    cursor: pointer;
     &.hide {
       fill: #f4f5f7;
     }
