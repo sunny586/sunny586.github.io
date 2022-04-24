@@ -6,11 +6,10 @@ const fse = require('fs-extra')
 
 // 设置dotenv
 const lv = process.argv[process.argv.length - 1]
-dotenv.config({ path: `.env.${lv}` })
 
 function getAllFiles() {
   const arrFiles = []
-  let str = path.join(__dirname, process.env.DOCS_ZH_CN_PATH)  
+  let str = path.join(__dirname, process.env.DOCS_ZH_CN_PATH)
   function load(val) {
     const files = fs.readdirSync(val)
     files.forEach(function (item) {
@@ -29,13 +28,13 @@ function getAllFiles() {
   return arrFiles
 }
 
-function start() {  
+function start() {
   const allFiles = getAllFiles()
   allFiles.map((file) => {
-    ejs.renderFile(file, { 
+    ejs.renderFile(file, {
       BASE_URL: process.env.VUE_BASE_URL,
       CONST_FG_SORT: process.env.CONST_FG_SORT
-     }, {}, (err, result) => {
+    }, {}, (err, result) => {
       if (err) {
         console.log('err:', err)
       } else {

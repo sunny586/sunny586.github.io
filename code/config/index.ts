@@ -5,8 +5,6 @@ function getPublicPath() {
   return process.env.VUE_BASE_URL || ''
 }
 
-console.log(process.env.VUE_BASE_URL, 'dadad')
-
 export async function getMdTemplate(id: number) {
   const baseUrl = getPublicPath()
   const target = MD_PATH.find((item) => item.id === +id)

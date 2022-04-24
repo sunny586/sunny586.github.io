@@ -5,6 +5,7 @@ export interface IMdPath {
   desc?: string
   tag_name?: string
   type?: string
+  idx?: string
 }
 
 // 顶部菜单树
@@ -37,7 +38,6 @@ function getMdFilesName() {
 }
 
 
-// [3]  [1,2,3]
 function prefixArr(a: string[], b: string[]) {
   const l = b.length - a.length
   if (l > 0) {
@@ -108,6 +108,9 @@ function findTarget(target: any, str: string) {
   return { parent, idx }
 }
 
+
+
+
 function addMdItem(target: IMenuItem, filePath: string) {
   // 通过文件路径找到parent节点和idx
   const { parent, idx } = findTarget(target, filePath)
@@ -168,6 +171,7 @@ function sortTreeArr(treeArr: IMenuItem[]) {
         _sort(tree.children)
       }
     })
+
     treeArr.sort((a: IMenuItem, b: IMenuItem) => {
       return +a.title.split(CONST_FG_SORT)[1] - +b.title.split(CONST_FG_SORT)[1]
     })
@@ -188,6 +192,7 @@ function normalize(list: string[]) {
       title: arr[arr.length - 1],
       tag_name: `${arr[0]} · ${arr[1] || 'JavaScript'}`,
       type: arr[0],
+      idx: item
     } as IMdPath
   })
 }
@@ -195,6 +200,5 @@ function normalize(list: string[]) {
 export const MESSAGE = '最近在学习js基础～'
 
 export const MD_PATH = normalize(getMdFilesName())
-
 
 export const MENU_LIST = getMenuData()

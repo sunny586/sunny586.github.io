@@ -21,6 +21,10 @@ const menuItemClick = async (data: IMenuItem) => {
   const obj = MD_PATH.find((m) => m.url === url)
   ebus.emit('updateLeftCatalogue', obj?.id || '')
 }
+
+const firstCharToLocaleUpperCase = (value: string) => {
+  return value.replace(value[0], value[0].toLocaleUpperCase())
+}
 </script>
 
 <template>
@@ -29,18 +33,29 @@ const menuItemClick = async (data: IMenuItem) => {
       @click="menuItemClick(item)"
       v-if="item.href"
       :index="item.idx"
-      :class="`sidebar-link-${item.idx?.split('/').length}`"
+      :class="`${
+        item.idx?.split('/').length === 1
+          ? 'sidebar-link-start'
+          : item.children && item.children.length > 0
+          ? 'sidebar-link-middle'
+          : 'sidebar-link-last'
+      }`"
       >{{ item.title.split(CONST_FG_SORT)[0] }}</el-menu-item
     >
     <el-sub-menu
       v-else
       :index="item.idx"
-      :class="`sidebar-link-${item.idx?.split('/').length}`"
-      popper-class="haha"
+      :class="`${
+        item.idx?.split('/').length === 1
+          ? 'sidebar-link-start'
+          : item.children && item.children.length > 0
+          ? 'sidebar-link-middle'
+          : 'sidebar-link-last'
+      }`"
     >
       <template #title>
-        {{ item.title.split(CONST_FG_SORT)[0].toLocaleUpperCase() }}
-        <el-icon style="color: #ccc; font-size: 13px"><caret-right /></el-icon>
+        {{ firstCharToLocaleUpperCase(item.title.split(CONST_FG_SORT)[0]) }}
+        <el-icon style="color: #ccc; font-size: 12px"><caret-right /></el-icon>
       </template>
       <blog-sub-menu
         v-if="item.children && item.children.length > 0"
@@ -52,32 +67,30 @@ const menuItemClick = async (data: IMenuItem) => {
 
 <style lang="scss">
 .blog-menu {
-  .sidebar-link-1,
-  .sidebar-link-1 .el-sub-menu__title {
-    font-size: 16px !important;
+  .sidebar-link-start,
+  .sidebar-link-start .el-sub-menu__title {
+    font-size: 18px !important;
     font-weight: bold !important;
-    margin-top: 20px;
+    margin-top: 16px;
+    color: #2c3e50;
   }
 
-  .sidebar-link-2,
-  .sidebar-link-2 .el-sub-menu__title {
-    font-size: 13px !important;
+  .sidebar-link-middle,
+  .sidebar-link-middle .el-sub-menu__title {
+    font-size: 14px !important;
     font-weight: 400 !important;
     color: #ccc;
     margin: 0;
   }
-  .sidebar-link-3,
-  .sidebar-link-3 .el-sub-menu__title,
-  .sidebar-link-4,
-  .sidebar-link-4 .el-sub-menu__title ,
-  .sidebar-link-5,
-  .sidebar-link-5 .el-sub-menu__title ,
-  .sidebar-link-6,
-  .sidebar-link-6 .el-sub-menu__title  {
+
+  .sidebar-link-last,
+  .sidebar-link-last .el-sub-menu__title {
     font-size: 12px !important;
     font-weight: 400 !important;
     margin: 0;
+    color: #2c3e50;
   }
+
   .el-sub-menu__icon-arrow {
     display: none !important;
   }
@@ -95,8 +108,11 @@ const menuItemClick = async (data: IMenuItem) => {
 
   .el-menu-item,
   .el-sub-menu__title {
-    height: 32px !important;
-    line-height: 32px !important;
+    height: 28px !important;
+    line-height: 28px !important;
+  }
+  .el-menu-item.is-active {
+    color: var(--el-menu-active-color) !important;
   }
 }
 </style>

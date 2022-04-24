@@ -46,6 +46,10 @@ onActivated(async () => {
     updateTitles(id)
     backtop()
   })
+  // 设置左侧菜单选中样式
+  const target = MD_PATH.find((item) => item.id === +route.params.articleId)
+  store.dispatch('updateActiveIndex', { index: target!.idx })
+
   // loadData
   await loadData()
 })
@@ -148,6 +152,7 @@ const handleSelect = (key: string) => {
         class="blog-menu"
         unique-opened
         @select="handleSelect"
+        :collapse-transition="false"
       >
         <sub-menu-list :list="MENU_LIST" />
       </el-menu>
