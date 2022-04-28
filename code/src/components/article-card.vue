@@ -9,8 +9,6 @@ const { article } = toRefs(props)
 
 const CONST_FG_SORT = process.env.CONST_FG_SORT
 
-console.log(CONST_FG_SORT, 'CONST_FG_SORT...', process.env.VUE_APP_TITLE)
-
 const filterTageName = (tageName: string) => {
   const [a, b] = tageName.split('·')
   return a.split(CONST_FG_SORT)[0] + ' · ' + b
