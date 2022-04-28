@@ -1,9 +1,14 @@
 import '@kangc/v-md-editor/lib/style/base-editor.css'
 import VMdPreview from '@kangc/v-md-editor/lib/preview'
 import '@kangc/v-md-editor/lib/style/preview.css'
+// 主题样式
 import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js'
 import '@kangc/v-md-editor/lib/theme/style/vuepress.css'
 import Prism from 'prismjs'
+// import githubTheme from '@kangc/v-md-editor/lib/theme/github.js'
+// import '@kangc/v-md-editor/lib/theme/style/github.css'
+// import hljs from 'highlight.js'
+
 import createEmojiPlugin from '@kangc/v-md-editor/lib/plugins/emoji/index'
 import '@kangc/v-md-editor/lib/plugins/emoji/emoji.css'
 import createKatexPlugin from '@kangc/v-md-editor/lib/plugins/katex/cdn'
@@ -20,6 +25,7 @@ import { mdPlugin } from '@config/plugin'
 function loadVMdPreview(app: any) {
   VMdPreview.use(vuepressTheme, {
     Prism,
+    // Hljs: hljs,
     extend(md: any) {
       // md为 markdown-it 实例，可以在此处进行修改配置,并使用 plugin 进行语法扩展
       // md.set(option).use(plugin);

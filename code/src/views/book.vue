@@ -357,13 +357,15 @@ const openMd = async (href: string) => {
         text-decoration: none;
         .prev-link,
         .next-link {
-          cursor: pointer;
-          &:hover {
-            color: var(--el-color-primary);
-          }
+          cursor: pointer;          
         }
         .next {
           float: right;
+        }
+        .next, .prev{ 
+          &:hover {
+            color: var(--el-color-primary);
+          }
         }
       }
     }

@@ -6,9 +6,8 @@ const fse = require('fs-extra')
 
 // 设置dotenv
 const lv = process.argv[process.argv.length - 1]
-
+// config
 dotenv.config({ path: '.env.' + lv })
-
 
 function getAllFiles() {
   const arrFiles = []
