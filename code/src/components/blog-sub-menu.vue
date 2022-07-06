@@ -72,8 +72,7 @@ const firstCharToLocaleUpperCase = (value: string) => {
   .sidebar-link-start,
   .sidebar-link-start .el-sub-menu__title {
     font-size: 15px !important;
-    font-weight: bold !important;
-    margin-top: 16px;
+    margin-top: 4px;
     color: #2c3e50;
   }
 
