@@ -71,8 +71,6 @@ onActivated(async () => {
 
   const target = getTargetById(+route.params.articleId)
 
-  console.log(target, 'target...', target!.idx, MENU_LIST)
-
   // 设置左侧菜单的默认选中样式
   store.dispatch('updateActiveIndex', { index: target!.idx })
 
@@ -357,12 +355,13 @@ const openMd = async (href: string) => {
         text-decoration: none;
         .prev-link,
         .next-link {
-          cursor: pointer;          
+          cursor: pointer;
         }
         .next {
           float: right;
         }
-        .next, .prev{ 
+        .next,
+        .prev {
           &:hover {
             color: var(--el-color-primary);
           }

@@ -54,8 +54,10 @@ const firstCharToLocaleUpperCase = (value: string) => {
       }`"
     >
       <template #title>
+        <el-icon style="color: #666; font-size: 14px; width: 14px">
+          <caret-right />
+        </el-icon>
         {{ firstCharToLocaleUpperCase(item.title.split(CONST_FG_SORT)[0]) }}
-        <el-icon style="color: #ccc; font-size: 12px"><caret-right /></el-icon>
       </template>
       <blog-sub-menu
         v-if="item.children && item.children.length > 0"
@@ -69,7 +71,7 @@ const firstCharToLocaleUpperCase = (value: string) => {
 .blog-menu {
   .sidebar-link-start,
   .sidebar-link-start .el-sub-menu__title {
-    font-size: 18px !important;
+    font-size: 15px !important;
     font-weight: bold !important;
     margin-top: 16px;
     color: #2c3e50;
@@ -79,13 +81,12 @@ const firstCharToLocaleUpperCase = (value: string) => {
   .sidebar-link-middle .el-sub-menu__title {
     font-size: 14px !important;
     font-weight: 400 !important;
-    color: #ccc;
     margin: 0;
   }
 
   .sidebar-link-last,
   .sidebar-link-last .el-sub-menu__title {
-    font-size: 12px !important;
+    font-size: 13px !important;
     font-weight: 400 !important;
     margin: 0;
     color: #2c3e50;
