@@ -11,7 +11,7 @@ const CONST_FG_SORT = process.env.CONST_FG_SORT
 
 const filterTageName = (tageName: string) => {
   const [a, b] = tageName.split('·')
-  return a.split(CONST_FG_SORT)[0] + ' · ' + b
+  return a.split(CONST_FG_SORT)[0] + ' · ' + b.split(CONST_FG_SORT)[0]
 }
 </script>
 <template>
