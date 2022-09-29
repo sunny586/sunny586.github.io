@@ -51,7 +51,7 @@ const resetTheme = () => {
 <template>
   <div class="navibar">
     <div class="nav-logo">
-      <el-image :src="logo" class="image-cat"></el-image>
+      <el-image v-if="false" :src="logo" class="image-cat"></el-image>
     </div>
     <book-nav v-if="route.path.indexOf('/book/') !== -1"></book-nav>
     <default-nav v-else></default-nav>
