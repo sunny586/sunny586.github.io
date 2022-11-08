@@ -56,7 +56,7 @@ const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin')
 optimization: {
   minimize: true,
   minimizer: [
-    new UglifyjsWebpackPlugin({ sourceMap: true })
+    new UglifyjsWebpackPlugin({ sourceMap: false })
   ]
 }
 ```
@@ -137,13 +137,7 @@ module.exports = {
   module: {
     rules: [{
       test: /\.css$/,
-      // 抽取css
-      // 还需要配合MiniCssExtractPlugin插件
-      // new MiniCssExtractPlugin({
-      //   filename: 'css/[name].[hash:6].css',
-      //   chunkFilename: 'css/[name].chunk.css'
-      // })
-      use: [MiniCssExtractPlugin.loader, 'css-loader'] 
+      use: [MiniCssExtractPlugin.loader, 'css-loader']
     }, {
       // webpack4 是使用file-loader和url-loader 
       test: /\.(png|svg|jpg|jpeg|gif)$/i,
@@ -156,12 +150,24 @@ module.exports = {
       generator: {
         filename: 'img/[name].[hash:6][ext]'
       }
+    }, {
+      test: /\.ejs$/,
+      // loader: 'ejs-loader',
+      // options: {
+      //   esModule: false
+      // }
+      use: [{
+        loader: 'ejs-loader',
+        options: {
+          esModule: false
+        }
+      }]
     }]
   },
   optimization: {
     minimize: true,
     minimizer: [
-      new UglifyjsWebpackPlugin({ sourceMap: true }),
+      new UglifyjsWebpackPlugin({ sourceMap: false }),
       new CssMinimizerWebpackPlugin()
     ],
     splitChunks: {
@@ -210,11 +216,11 @@ module.exports = {
       $: 'jquery',
       jQuery: 'jquery'
     }),
-    new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: 'css/[name].[hash:6].css',
       chunkFilename: 'css/[name].chunk.css'
-    })
+    }),
+    new CleanWebpackPlugin(),
   ]
 }
 
