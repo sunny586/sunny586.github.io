@@ -10,7 +10,33 @@ const pendingRequest = new Map(); // 请求对象
 const CancelToken = axios.CancelToken;
 
 const service: AxiosInstance = axios.create({
-  timeout: 30000
+  // 联调
+  baseURL: process.env.NODE_ENV === 'production' ? `/` : '/',
+  headers: {
+    get: {
+      'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+    },
+    post: {
+      'Content-Type': 'application/json;charset=utf-8'
+    }
+  },
+  // 是否跨站点访问控制请求
+  withCredentials: true,
+  timeout: 30000,
+  transformRequest: [(data) => {
+    data = JSON.stringify(data)
+    return data
+  }],
+  validateStatus() {
+    // 使用async-await，处理reject情况较为繁琐，所以全部返回resolve，在业务代码中处理异常
+    return true
+  },
+  transformResponse: [(data) => {
+    if (typeof data === 'string' && data.startsWith('{')) {
+      data = JSON.parse(data)
+    }
+    return data
+  }]
 })
 
 
@@ -40,10 +66,8 @@ service.interceptors.request.use((config: AxiosRequestConfig) => {
   //   config.headers.Authorization = `Bearer ${token}`;
   // }
   // 在发送请求之前做些什么
-  config.headers = {
-    'content-type': 'application/json',
-    'token': 'xxxx'
-  }
+  config.headers!['token'] = 'xxx'
+  // debugger
   // 获取请求key
   let requestKey = getReqKey(config);
 
@@ -111,11 +135,13 @@ service.interceptors.response.use((response: AxiosResponse<Result>) => {
   return Promise.reject(error)
 })
 
-
 /* 导出封装的请求方法 */
 const http = {
-  get<T = any>(url: string, config?: AxiosRequestConfig): Promise<T> {
-    return service.get(url, config)
+  get<T = any>(url: string, params?: object, config?: AxiosRequestConfig): Promise<T> {
+    return service.get(url, {
+      ...config,
+      params
+    })
   },
 
   post<T = any>(url: string, data?: object, config?: AxiosRequestConfig): Promise<T> {
