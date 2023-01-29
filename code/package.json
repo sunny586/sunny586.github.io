@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build:gitee": "vue-cli-service build --mode gitee && node build/index.js --mode gitee",
-    "build:github": "vue-cli-service build --mode github && node build/index.js --mode github",
+    "build": "vue-cli-service build --mode github && node build/index.js --mode github",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {

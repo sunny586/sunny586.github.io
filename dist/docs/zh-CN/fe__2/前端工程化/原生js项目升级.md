@@ -234,3 +234,28 @@ module.exports = {
  * 7. 使用splitChunk进行代码抽离
  */
 ```
+
+### 识别.vue文件
+
++  引人vue-loader 和 vue-template-compiler
+```node
+npm i -D vue-loader vue-template-compiler
+```
++ 添加loader和plugin
+```js
+const { VueLoaderPlugin } = require('vue-loader')
+const config = {
+  module: {
+    rules: [
+       {
+        test: /\.vue$/,
+        use: 'vue-loader'  // 处理 .vue 文件的 loader
+      }
+    ]
+  },
+  plugins: [
+    new VueLoaderPlugin()
+  ]
+}
+```
+   
