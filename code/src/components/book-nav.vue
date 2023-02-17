@@ -40,5 +40,6 @@ const goHome = () => {
   font-size: 18px;
   position: relative;
   top: 6px;
+  right: 40px;
 }
 </style>
