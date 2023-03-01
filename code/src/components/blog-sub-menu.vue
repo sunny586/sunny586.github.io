@@ -1,30 +1,31 @@
 <script lang="ts" setup name="blog-sub-menu">
-import { defineProps } from 'vue'
-import { useStore } from 'vuex'
-import { IMenuItem, MD_PATH } from '@config/path'
-import ebus from '@/utils/event-bus'
-import { CaretRight } from '@element-plus/icons-vue'
+import { defineProps } from "vue";
+import { useStore } from "vuex";
+import { IMenuItem, MD_PATH } from "@config/path";
+import ebus from "@/utils/event-bus";
+import { CaretRight } from "@element-plus/icons-vue";
 
-const store = useStore()
+const store = useStore();
 
 const props = defineProps({
   list: Array,
-})
+});
 
-const list = props.list as IMenuItem[]
+const list = props.list as IMenuItem[];
 
-const CONST_FG_SORT = process.env.CONST_FG_SORT
+const CONST_FG_SORT = process.env.CONST_FG_SORT;
 
 const menuItemClick = async (data: IMenuItem) => {
-  await store.dispatch('updateArticleMd', { href: data.href + '.md' })
-  const url = '/docs/zh-CN/' + data.href + '.md'
-  const obj = MD_PATH.find((m) => m.url === url)
-  ebus.emit('updateLeftCatalogue', obj?.id || '')
-}
+  await store.dispatch("updateArticleMd", { href: data.href + ".md" });
+  const url = "/docs/zh-CN/" + data.href + ".md";
+  const obj = MD_PATH.find((m) => m.url === url);
+  ebus.emit("updateLeftCatalogue", obj?.id || "");
+};
 
 const firstCharToLocaleUpperCase = (value: string) => {
-  return value.replace(value[0], value[0].toLocaleUpperCase())
-}
+  // return value.replace(value[0], value[0].toLocaleUpperCase())
+  return value;
+};
 </script>
 
 <template>

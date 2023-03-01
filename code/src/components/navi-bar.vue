@@ -1,57 +1,51 @@
 <script lang="ts" setup>
-import { useRoute } from 'vue-router'
-import { ref } from 'vue'
-import { mix } from '@/utils/index'
-import logo from './logo.icon'
-import DefaultNav from './default-nav.vue'
-import BookNav from './book-nav.vue'
+import { useRoute } from "vue-router";
+import { ref } from "vue";
+import { mix } from "@/utils/index";
+import logo from "./logo.icon";
+import DefaultNav from "./default-nav.vue";
+import BookNav from "./book-nav.vue";
 
-const route = useRoute()
+const route = useRoute();
 // 主题颜色切换
 // 变量前缀
-const pre = '--el-color-primary'
+const pre = "--el-color-primary";
 // 白色混合色
-const mixWhite = '#ffffff'
+const mixWhite = "#ffffff";
 // 黑色混合色
-const mixBlack = '#000000'
+const mixBlack = "#000000";
 // 默认主题
-const defaultTheme = '#fe7300' // '#409eff'
-const node = document.documentElement
-const color = ref(localStorage.getItem('primaryColor') || defaultTheme)
+const defaultTheme = "#fe7300"; // '#409eff'
+const node = document.documentElement;
+const color = ref(localStorage.getItem("primaryColor") || defaultTheme);
 // 改变主题颜色
 const changeTheme = (activeColor: string = color.value) => {
   if (!activeColor) {
-    resetTheme()
-    return
+    resetTheme();
+    return;
   }
-  node.style.setProperty(pre, activeColor)
-  localStorage.setItem('primaryColor', activeColor)
+  node.style.setProperty(pre, activeColor);
+  localStorage.setItem("primaryColor", activeColor);
   // 这里是覆盖原有颜色的核心代码
   for (let i = 1; i < 10; i += 1) {
-    node.style.setProperty(
-      `${pre}-light-${i}`,
-      mix(activeColor, mixWhite, i * 0.1)
-    )
+    node.style.setProperty(`${pre}-light-${i}`, mix(activeColor, mixWhite, i * 0.1));
   }
-  node.style.setProperty(
-    '--el-color-primary-dark',
-    mix(activeColor, mixBlack, 0.1)
-  )
+  node.style.setProperty("--el-color-primary-dark", mix(activeColor, mixBlack, 0.1));
   // 本地缓存style，样式持久化，你也可以存在后端
-  localStorage.setItem('style', node.style.cssText)
-}
+  localStorage.setItem("style", node.style.cssText);
+};
 //  重置主题颜色
 const resetTheme = () => {
-  localStorage.removeItem('style')
-  localStorage.removeItem('primaryColor')
-  node.style.cssText = ''
-  color.value = defaultTheme
-}
+  localStorage.removeItem("style");
+  localStorage.removeItem("primaryColor");
+  node.style.cssText = "";
+  color.value = defaultTheme;
+};
 </script>
 <template>
   <div class="navibar">
     <div class="nav-logo">
-      <el-image v-if="false" :src="logo" class="image-cat"></el-image>
+      <el-image v-if="true" :src="logo" class="image-cat"></el-image>
     </div>
     <book-nav v-if="route.path.indexOf('/book/') !== -1"></book-nav>
     <default-nav v-else></default-nav>

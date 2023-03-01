@@ -1,7 +1,7 @@
 <script lang="ts" setup></script>
 <template>
   <div class="nav-card">
-    <div class="nav-title">haha</div>
+    <div class="nav-title"></div>
   </div>
 </template>
 
