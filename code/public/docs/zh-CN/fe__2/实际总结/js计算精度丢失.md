@@ -53,6 +53,7 @@ function numToFixed(num: number) {
   return num.toFixed(2)
 }
 
+// 计算 ”200 * 100 / 15“ 并保留2位小数
 const test =  operation(times, 100, 200)(divide, 15)(numToFixed)()
 
 console.log(test)
