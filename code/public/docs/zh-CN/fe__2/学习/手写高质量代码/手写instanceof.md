@@ -6,7 +6,7 @@ instanceof 的原理是什么，请用代码来表示
 
 ## 原型链
 
-![](<%= BASE_URL %>/docs/zh-CN/fe<%= CONST_FG_SORT %>2/手写高质量代码/img/原型链.png)
+![](<%= BASE_URL %>/docs/zh-CN/fe<%= CONST_FG_SORT %>2/学习/手写高质量代码/img/原型链.png)
 
 ## instanceof 原理
 

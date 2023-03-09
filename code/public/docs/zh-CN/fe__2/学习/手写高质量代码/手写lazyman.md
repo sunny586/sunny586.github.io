@@ -40,7 +40,7 @@ class LazyMan {
 
 初始化一个任务队列，执行 `eat` 和 `sleep` 是都往队列插入一个函数。依次执行队列的任务，遇到 `sleep` 就延迟触发 `next` 。
 
-![](<%= BASE_URL %>/docs/zh-CN/fe<%= CONST_FG_SORT %>2/手写高质量代码/img/sleep.png)
+![](<%= BASE_URL %>/docs/zh-CN/fe<%= CONST_FG_SORT %>2/学习/手写高质量代码/img/sleep.png)
 
 代码参考 
 ```ts
