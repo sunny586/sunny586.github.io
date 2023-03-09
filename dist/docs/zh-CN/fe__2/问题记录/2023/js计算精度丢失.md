@@ -40,7 +40,6 @@ export function operation(...args: any[]): ((...args: any[]) => any) {
     return fn
   }
 }
-
 ```
 
 使用
@@ -58,3 +57,4 @@ const test =  operation(times, 100, 200)(divide, 15)(numToFixed)()
 
 console.log(test)
 ```
+
