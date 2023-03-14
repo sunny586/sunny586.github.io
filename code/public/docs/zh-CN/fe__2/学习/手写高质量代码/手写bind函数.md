@@ -82,3 +82,83 @@ Function.prototype.myApply = function (context: any, args: any[] = []) {
 - 使用 `obj.fn` 执行，即可设置 `fn` 执行时的 `this`
 - 考虑 `context` 各种情况
 - 使用 `symbol` 类型扩展属性
+
+
+参考代码
+```ts
+// @ts-ignore
+Function.prototype.myCall = function (target: any, ..._args: any[]) {
+  if (target === null || target === undefined) {
+    target = globalThis
+  }
+  if (typeof target !== 'object') {
+    target = new Object(target)
+  }
+  const key = Symbol()
+
+  Object.defineProperty(target, key, {
+    enumerable: false,
+    configurable: true,
+    value: this
+  })
+  const result = target[key](..._args)
+  Reflect.deleteProperty(target, key)
+  return result
+}
+
+// @ts-ignore
+Function.prototype.myApply = function (target: any, _args: any[]) {
+  if (target === null || target === undefined) {
+    target = globalThis
+  }
+  if (typeof target !== 'object') {
+    target = new Object(target)
+  }
+  const key = Symbol()
+
+  Object.defineProperty(target, key, {
+    enumerable: false,
+    configurable: true,
+    value: this
+  })
+  const result = target[key](..._args)
+  Reflect.deleteProperty(target, key)
+  return result
+}
+
+// @ts-ignore
+Function.prototype.myBind = function (target: any, ..._args: any[]) {
+  if (target === null || target === undefined) {
+    target = globalThis
+  }
+  if (typeof target !== 'object') {
+    target = new Object(target)
+  }
+  const key = Symbol()
+  Object.defineProperty(target, key, {
+    enumerable: false,
+    configurable: true,
+    value: this
+  })
+  const length = this.length
+
+  return function (...__args: any[]) {
+    const args = [..._args, ...__args].slice(0, length)
+    const result = target[key](...args)
+    Reflect.deleteProperty(target, key)
+    return result
+  }
+}
+
+function test(a: number, b: number, c: number) {
+  console.log(this, a, b, c)
+  console.log(Object.keys(this))
+  return a + b + c
+}
+
+// @ts-ignore
+const t = test.myBind({ haha: 123 }, 10)
+console.log('t:', t(20, 30))
+
+
+```
