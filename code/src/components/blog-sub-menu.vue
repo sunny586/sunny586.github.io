@@ -1,30 +1,31 @@
 <script lang="ts" setup name="blog-sub-menu">
-import { defineProps } from 'vue'
-import { useStore } from 'vuex'
-import { IMenuItem, MD_PATH } from '@config/path'
-import ebus from '@/utils/event-bus'
-import { CaretRight } from '@element-plus/icons-vue'
+import { defineProps } from "vue";
+import { useStore } from "vuex";
+import { IMenuItem, MD_PATH } from "@config/path";
+import ebus from "@/utils/event-bus";
+import { CaretRight } from "@element-plus/icons-vue";
 
-const store = useStore()
+const store = useStore();
 
 const props = defineProps({
   list: Array,
-})
+});
 
-const list = props.list as IMenuItem[]
+const list = props.list as IMenuItem[];
 
-const CONST_FG_SORT = process.env.CONST_FG_SORT
+const CONST_FG_SORT = process.env.CONST_FG_SORT;
 
 const menuItemClick = async (data: IMenuItem) => {
-  await store.dispatch('updateArticleMd', { href: data.href + '.md' })
-  const url = '/docs/zh-CN/' + data.href + '.md'
-  const obj = MD_PATH.find((m) => m.url === url)
-  ebus.emit('updateLeftCatalogue', obj?.id || '')
-}
+  await store.dispatch("updateArticleMd", { href: data.href + ".md" });
+  const url = "/docs/zh-CN/" + data.href + ".md";
+  const obj = MD_PATH.find((m) => m.url === url);
+  ebus.emit("updateLeftCatalogue", obj?.id || "");
+};
 
 const firstCharToLocaleUpperCase = (value: string) => {
-  return value.replace(value[0], value[0].toLocaleUpperCase())
-}
+  // return value.replace(value[0], value[0].toLocaleUpperCase())
+  return value;
+};
 </script>
 
 <template>
@@ -54,8 +55,10 @@ const firstCharToLocaleUpperCase = (value: string) => {
       }`"
     >
       <template #title>
+        <el-icon style="color: #666; font-size: 14px; width: 14px">
+          <caret-right />
+        </el-icon>
         {{ firstCharToLocaleUpperCase(item.title.split(CONST_FG_SORT)[0]) }}
-        <el-icon style="color: #ccc; font-size: 12px"><caret-right /></el-icon>
       </template>
       <blog-sub-menu
         v-if="item.children && item.children.length > 0"
@@ -69,9 +72,8 @@ const firstCharToLocaleUpperCase = (value: string) => {
 .blog-menu {
   .sidebar-link-start,
   .sidebar-link-start .el-sub-menu__title {
-    font-size: 18px !important;
-    font-weight: bold !important;
-    margin-top: 16px;
+    font-size: 15px !important;
+    margin-top: 4px;
     color: #2c3e50;
   }
 
@@ -79,13 +81,12 @@ const firstCharToLocaleUpperCase = (value: string) => {
   .sidebar-link-middle .el-sub-menu__title {
     font-size: 14px !important;
     font-weight: 400 !important;
-    color: #ccc;
     margin: 0;
   }
 
   .sidebar-link-last,
   .sidebar-link-last .el-sub-menu__title {
-    font-size: 12px !important;
+    font-size: 13px !important;
     font-weight: 400 !important;
     margin: 0;
     color: #2c3e50;

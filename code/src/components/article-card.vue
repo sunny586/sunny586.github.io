@@ -1,20 +1,18 @@
 <script lang="ts" setup>
-import { defineProps, toRefs } from "vue";
+import { defineProps, toRefs } from 'vue'
 
 // 定义属性
 const props = defineProps({
   article: Object,
-});
-const { article } = toRefs(props);
+})
+const { article } = toRefs(props)
 
 const CONST_FG_SORT = process.env.CONST_FG_SORT
 
-const filterTageName = (tageName: string) => { 
+const filterTageName = (tageName: string) => {
   const [a, b] = tageName.split('·')
-  return a.split(CONST_FG_SORT)[0] + ' · ' + b
+  return a.split(CONST_FG_SORT)[0] + ' · ' + b.split(CONST_FG_SORT)[0]
 }
-
-
 </script>
 <template>
   <router-link class="article-link" :to="`${'/book/' + article!.id}`">
@@ -23,7 +21,9 @@ const filterTageName = (tageName: string) => {
         <div class="tag-name">{{ filterTageName(article!.tag_name) }}</div>
       </div>
       <div class="info-row">
-        <div class="article-title">{{ article!.title.split(CONST_FG_SORT)[0]  }}</div>
+        <div class="article-title">
+          {{ article!.title.split(CONST_FG_SORT)[0]  }}
+        </div>
       </div>
       <div class="info-row">
         <div class="desc">{{ article!.desc }}</div>

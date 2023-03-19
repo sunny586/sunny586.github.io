@@ -1,7 +1,16 @@
 const path = require('path')
 const HotHashWebpackPlugin = require('hot-hash-webpack-plugin')
 const WebpackBar = require('webpackbar')
+const dotenv = require('dotenv')
+
 const resolve = (dir) => path.join(__dirname, '.', dir)
+
+// 设置dotenv
+const lv = process.argv[process.argv.length - 1]
+// config
+dotenv.config({ path: '.env.' + lv })
+
+
 
 module.exports = {
   productionSourceMap: false,

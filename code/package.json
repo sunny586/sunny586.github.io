@@ -5,12 +5,13 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build:gitee": "vue-cli-service build --mode gitee && node build/index.js --mode gitee",
-    "build:github": "vue-cli-service build --mode github && node build/index.js --mode github",
-    "lint": "vue-cli-service li=nt"
+    "build": "vue-cli-service build --mode github && node build/index.js --mode github",
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "@kangc/v-md-editor": "^2.3.13",
     "@types/markdown-it": "^12.2.3",
+    "@types/webpack-env": "^1.18.0",
     "axios": "^0.25.0",
     "babel-plugin-prismjs": "^2.1.0",
     "core-js": "^3.6.5",

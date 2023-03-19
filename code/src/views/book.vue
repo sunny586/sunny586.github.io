@@ -71,8 +71,6 @@ onActivated(async () => {
 
   const target = getTargetById(+route.params.articleId)
 
-  console.log(target, 'target...', target!.idx, MENU_LIST)
-
   // 设置左侧菜单的默认选中样式
   store.dispatch('updateActiveIndex', { index: target!.idx })
 
@@ -357,12 +355,13 @@ const openMd = async (href: string) => {
         text-decoration: none;
         .prev-link,
         .next-link {
-          cursor: pointer;          
+          cursor: pointer;
         }
         .next {
           float: right;
         }
-        .next, .prev{ 
+        .next,
+        .prev {
           &:hover {
             color: var(--el-color-primary);
           }
@@ -387,10 +386,10 @@ const openMd = async (href: string) => {
     padding-right: 1.4vw;
     padding-left: 0.6vw;
     transition: all 0.25s;
-    width: 220px;
+    width: 280px;
     user-select: none;
     position: fixed;
-    right: 50px;
+    right: 12px;
     max-height: calc(100% - 48px - 60px - 2px);
     top: 50px;
     overflow: auto;
@@ -425,7 +424,7 @@ const openMd = async (href: string) => {
     transform: translate(-746px, -4px);
     background-color: #f4f5f7;
     .toc {
-      width: 220px !important;
+      width: 280px !important;
     }
   }
   .el-affix {

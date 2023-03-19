@@ -14,6 +14,7 @@ import loadVMdPreview from './lib/vmd-preview'
 // index.css
 import '@/css/index.scss'
 
+
 const app = createApp(App)
 app.use(store)
 app.use(router)

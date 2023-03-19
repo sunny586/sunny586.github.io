@@ -98,7 +98,6 @@ const keywordChange = (value: string) => {
         class="mt-4 page"
         prev-text="上一页"
         next-text="下一页"
-        :pager-count="6"
         @current-change="handleCurrentChange"
       />
     </template>
