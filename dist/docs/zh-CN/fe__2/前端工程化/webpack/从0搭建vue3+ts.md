@@ -533,5 +533,7 @@ const { route, href, isActive, isExactActive,navigate } = useLink({ to: '/sub', 
 [参考文档](https://element-plus.gitee.io/zh-CN/)
 
 
-### 现在支持 package.json 中的 exports 和 imports 字段。原生支持 Yarn PnP。
+### 现在支持 package.json 中的 exports 字段。原生支持 Yarn PnP。
 更多细节请参见[package exports](https://webpack.docschina.org/guides/package-exports/)。
+
+

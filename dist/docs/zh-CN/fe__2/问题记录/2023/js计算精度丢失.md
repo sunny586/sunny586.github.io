@@ -58,3 +58,10 @@ const test =  operation(times, 100, 200)(divide, 15)(numToFixed)()
 console.log(test)
 ```
 
+利用lodash的flow 和 partial
+```js
+import { partial, flow, partialRight } from 'lodash'
+import { divide, times, minus } from 'number-precision'
+
+flow(divide, partial(times, 100), numRound)(item.actualMinAmount, item.standardMinAmount)
+```
