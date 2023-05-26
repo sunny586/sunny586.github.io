@@ -40,7 +40,7 @@ npx eslint --init
 ### husky 的使用
 1. 安装husky
 ```js
-npm install eslint -D
+npm install husky -D
 ```
 2. 在package.json 中加入prepare脚本，每次在 npm i 安装完依赖后都会执行这个命令
 ```json
