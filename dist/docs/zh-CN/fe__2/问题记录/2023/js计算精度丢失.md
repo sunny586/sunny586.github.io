@@ -65,3 +65,133 @@ import { divide, times, minus } from 'number-precision'
 
 flow(divide, partial(times, 100), numRound)(item.actualMinAmount, item.standardMinAmount)
 ```
+
+vue封装的千分位input输入框
+```vue
+<template>
+  <div class="cs-thousand-input">
+    <el-input
+      v-show="isInputing"
+      ref="thousandInputRef"
+      v-model.trim="money"
+      type="number"
+      v-bind="$attrs"
+      v-on="$listeners"
+      @input.native="onChangeInput($event)"
+      @blur="onBlur"
+      @mousewheel.native.prevent
+    >
+      <template slot="append">
+        <span v-if="!!unit"> {{ unit }}</span>
+        <slot
+          v-else
+          name="append"
+        />
+      </template>
+    </el-input>
+    <el-input
+      v-show="!isInputing"
+      :value="thousandFormatMoney"
+      v-bind="$attrs"
+      v-on="$listeners"
+      @focus="onFocus"
+      @mousewheel.native.prevent
+    >
+      <template slot="append">
+        <span v-if="!!unit"> {{ unit }}</span>
+        <slot
+          v-else
+          name="append"
+        />
+      </template>
+    </el-input>
+  </div>
+</template>
+
+<script lang="tsx">
+import { Component, Prop, Vue, ModelSync, Ref } from 'vue-property-decorator'
+import { ElInput } from 'element-ui/types/input'
+import { toThousandsls } from '@utils/util'
+
+@Component({
+  name: 'CsThousandInput',
+  inheritAttrs: false
+})
+export default class CsThousandInput extends Vue {
+  // 单位
+  @Prop({ default: '' })
+  unit!: string
+
+  // 双向绑定的数据
+  @ModelSync('value', 'input')
+  money!: string | number
+
+  // 小数点的精度 默认保留2位小数
+  @Prop({ default: 2 })
+  decimalLength!: number
+
+  @Ref()
+  thousandInputRef!: ElInput
+
+  // 表示是否是正在输入的状态
+  isInputing = false
+
+  // 用计算属性 对输入的数据进行千分位展示
+  get thousandFormatMoney() {
+    return toThousandsls(this.money)
+  }
+
+  // 判断精度是否超出
+  isPrecisionExceeded(value: string | number) {
+    value = value + ''
+    // 获取小数的正则
+    const DECI_REG = /^\d*\.(\d+)$/
+    let isTrue = false
+    const result = value.match(DECI_REG)
+    if (result) {
+      const dl = result[1].length
+      if (dl > this.decimalLength) {
+        isTrue = true
+      }
+    }
+    return isTrue
+  }
+
+  getValueByDecimalLength(value: string | number) {
+    value = value + ''
+    const reg = new RegExp('^(\\d*\\.\\d{' + this.decimalLength + '})\\d*$')
+    return value.replace(reg, '$1')
+  }
+
+  onChangeInput(e: Event) {
+    const target = e.target as HTMLInputElement
+    const isPrecisionExceeded = this.isPrecisionExceeded(target.value)
+    if (isPrecisionExceeded) {
+      target.value = this.getValueByDecimalLength(target.value)
+      this.money = target.value
+    }
+  }
+
+  // 聚焦的事件触发函数
+  onFocus() {
+    this.isInputing = true
+    this.$nextTick(() => {
+      this.thousandInputRef.focus()
+    })
+  }
+
+  // 失焦的事件触发函数
+  onBlur() {
+    this.isInputing = false
+  }
+}
+
+</script>
+
+<style lang="scss"  scoped>
+.cs-thousand-input {
+  display: inline;
+}
+</style>
+
+```
