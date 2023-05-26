@@ -4,7 +4,7 @@
 Github Flow 文档地址：https://guides.github.com/introduction/flow/index.html
 
 ### 图片描述：
-![](https://cdn.nlark.com/yuque/0/2020/png/328441/1609063340633-6a4687b3-2d7b-4d47-8b9e-f43687fb7f27.png)
+![](https://raw.githubusercontent.com/sunny586/sunny586.github.io/main/dist/docs/zh-CN/fe__2/%E7%A0%94%E5%8F%91%E8%A7%84%E8%8C%83/github-flow.png)
 
 ### 文字过程描述：
 + 根据需求，从 master 拉出分支
