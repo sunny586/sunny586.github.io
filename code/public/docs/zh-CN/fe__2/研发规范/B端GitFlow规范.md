@@ -22,3 +22,5 @@ Github Flow 文档地址：https://guides.github.com/introduction/flow/index.htm
 
 ### Commit 信息
 Commit 信息，杜绝 `update，fix bug` 这类废话，每次提交必须`言之有物`，至少要言简意赅的把一次 commit 完成的任务说清楚。
+
+[参考](https://imooc-lego.yuque.com/imooc-lego/elp4vn)
